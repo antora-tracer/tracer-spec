@@ -1,0 +1,22 @@
+site:
+  title: Tracer Spec Workflow
+  start_page: tracer-spec::index.adoc
+content:
+  sources:
+    - url: .
+      start_path: examples/tracer
+      branches: HEAD
+      tags: v*
+antora:
+  extensions:
+    - require: antora-tracer/antora-extension
+      config:
+        path: traceability.yml
+        generateMatrices: true
+        generateCoverage: true
+ui:
+  bundle:
+    url: https://github.com/rattermeyer/antora-tracer/releases/latest/download/ui-bundle.zip
+    snapshot: true
+output:
+  dir: ./build/site

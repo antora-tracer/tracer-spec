@@ -1,0 +1,46 @@
+= Tracer Spec Workflow
+
+Spec-driven development built on Antora Tracer.
+
+This project eats its own dog food: requirements, design concepts, ADRs, and changes are traceable items in this very site.
+
+== Overview
+
+The Tracer Spec Workflow replaces OpenSpec's parallel artifact hierarchy with a unified project knowledge base.
+
+=== Durable artifacts
+
+* *Use Cases* — user goals and stakeholder scenarios
+* *Requirements* — observable system obligations
+* *Architecture Decision Records* — change-specific decisions and their context
+* *Design Concepts* — stable architectural knowledge
+
+=== Temporary guidance
+
+* *Change Plans* — working execution checklists that may be revised before implementation begins
+
+=== The workflow
+
+[source,text]
+----
+Use case → Requirement → Change → ADR → Design concept → Plan → Implementation
+----
+
+The graph is the source of truth.
+Git and pull requests provide review, authorization, and change history.
+Initial policy validates statuses and relationships; transitions are declarative but not yet enforced.
+
+== Key decisions
+
+* Single traceable project knowledge base (not a parallel hierarchy)
+* Changes link to addressed requirements and recorded ADRs
+* ADRs lead to stable design concepts
+* Tasks are temporary, not durable
+* Git/PR review provides authorization and history
+* Initial workflow validation is structural, not transactional
+
+== Next steps
+
+* xref:workflow/overview.adoc[Read the workflow overview]
+* xref:requirements/index.adoc[View the requirements]
+* xref:design/index.adoc[Review design concepts]

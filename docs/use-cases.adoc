@@ -1,0 +1,19 @@
+= Use Cases
+
+[#UC-001, item, role=use_case, status=accepted, title="Requirements engineer traces a change"]
+--
+A Requirements Engineer captures a proposed change and follows its traceability chain so that an implementation can be planned from durable project knowledge.
+
+Primary Actor:: Requirements Engineer
+Preconditions:: The project contains a change proposal.
+Trigger:: The Requirements Engineer refines the change.
+Basic Flow::
+. The Requirements Engineer describes the intended outcome.
+. The Requirements Engineer identifies the affected requirements.
+. The Requirements Engineer records decisions and resulting design concepts.
+. The Requirements Engineer prepares an execution plan.
+Postconditions:: The change is connected to requirements, decisions, and design concepts, and an implementation plan can be generated.
+
+leads_to:REQ-001[]
+tracer:links[]
+--

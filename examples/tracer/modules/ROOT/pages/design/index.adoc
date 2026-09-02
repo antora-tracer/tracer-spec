@@ -1,0 +1,3 @@
+= Design Concepts
+
+include::../../../../docs/design.adoc[]

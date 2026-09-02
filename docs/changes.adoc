@@ -1,0 +1,15 @@
+= Changes
+
+[#CHG-001, item, role=change, status=refined, title="Create the Tracer Spec Workflow"]
+--
+Replace OpenSpec's parallel artifact hierarchy with a project-level traceability workflow built on Antora Tracer.
+The workflow supports exploration, use cases, requirements, ADRs, stable design concepts, and temporary execution plans.
+
+addresses:REQ-001[]
+addresses:REQ-002[]
+addresses:REQ-003[]
+addresses:REQ-004[]
+records:ADR-001[]
+records:ADR-002[]
+tracer:links[]
+--

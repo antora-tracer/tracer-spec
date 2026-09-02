@@ -1,0 +1,14 @@
+{
+  "name": "tracer-spec",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate": "antora-tracer validate -i docs --config traceability.yml",
+    "build": "npx antora antora-playbook.yml"
+  },
+  "devDependencies": {
+    "@antora/cli": "^3.1.0",
+    "@antora/site-generator": "^3.1.0",
+    "antora-tracer": "^0.23.0"
+  }
+}

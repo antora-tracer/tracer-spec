@@ -1,0 +1,119 @@
+= Authoring Guide
+
+== Use Cases
+
+A use case describes a user goal in Karl Wiegers tabular form.
+
+[source,asciidoc]
+----
+[#UC-001, item, role=use_case, status=draft, title="Actor action outcome"]
+--
+.Use Case
+[width=100%, cols="25h,75a"]
+|===
+| Primary Actor | Who performs this?
+| Preconditions | What must be true beforehand?
+| Trigger | What event starts this?
+| Basic Flow | Steps 1, 2, 3...
+| Postconditions | What state results after success?
+| Priority | High / Medium / Low
+|===
+
+leads_to:REQ-NNN[]
+tracer:links[]
+--
+----
+
+== Requirements
+
+A requirement states what the system must do — never how.
+
+Use EARS patterns:
+
+* *Ubiquitous:* `The system SHALL <behaviour>.`
+* *Event-driven:* `WHEN <trigger>, the system SHALL <behaviour>.`
+* *State-driven:* `WHILE <state>, the system SHALL <behaviour>.`
+* *Unwanted behaviour:* `IF <condition>, THEN the system SHALL <behaviour>.`
+
+[source,asciidoc]
+----
+[#REQ-001, item, role=requirement, status=draft, title="Short title"]
+--
+The system SHALL <observable behaviour>.
+
+<boundary conditions or scope>
+
+tracer:links[]
+--
+----
+
+== Changes
+
+A change records a proposed feature, fix, or improvement.
+
+[source,asciidoc]
+----
+[#CHG-001, item, role=change, status=proposed, title="Change title"]
+--
+Describe the outcome to deliver.
+
+addresses:REQ-NNN[]
+records:ADR-NNN[]
+
+tracer:links[]
+--
+----
+
+== ADRs
+
+An Architecture Decision Record preserves change-specific decisions.
+
+[source,asciidoc]
+----
+[#ADR-001, item, role=adr, status=proposed, title="Decision title"]
+--
+Context:: Why is this decision needed?
+Decision:: What was decided?
+Alternatives:: What was rejected?
+Consequences:: What follows?
+
+records:CHG-NNN[]
+leads_to:DES-NNN[]
+
+tracer:links[]
+--
+----
+
+== Design Concepts
+
+A design concept is stable architectural knowledge.
+
+[source,asciidoc]
+----
+[#DES-001, item, role=design_concept, status=draft, title="Concept title"]
+--
+Describe the stable concept and its rationale.
+
+addresses:REQ-NNN[]
+derived_from:ADR-NNN[]
+
+tracer:links[]
+--
+----
+
+== Workflow Transitions
+
+Use the `status` attribute to mark progression:
+
+[width=100%, cols="20h,80a"]
+|===
+| Role | Recommended states
+| use_case | draft → reviewed → accepted
+| requirement | draft → reviewed → approved → superseded
+| change | proposed → refined → accepted → implemented → verified → closed
+| adr | proposed → accepted → superseded
+| design_concept | draft → accepted → deprecated
+|===
+
+The initial workflow validates structure, not transitions.
+Git/PR review controls authorization.

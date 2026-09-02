@@ -1,0 +1,99 @@
+# Trace Spec Workflow self-traceability model
+extends: requirements-engineering
+
+roles:
+  - use_case
+  - change
+  - adr
+  - design_concept
+
+roleGuidance:
+  use_case:
+    page: guidance/use_case.adoc
+    idPrefix: UC
+  change:
+    page: guidance/change.adoc
+    idPrefix: CHG
+  adr:
+    page: guidance/adr.adoc
+    idPrefix: ADR
+  design_concept:
+    page: guidance/design_concept.adoc
+    idPrefix: DES
+
+relations:
+  use_case:
+    requirement:
+      leads_to:
+        reverse: is_derived_from
+  change:
+    requirement:
+      addresses:
+        reverse: addressed_by
+    adr:
+      records:
+        reverse: recorded_by
+  adr:
+    design_concept:
+      leads_to:
+        reverse: derived_from
+  design_concept:
+    requirement:
+      addresses:
+        reverse: addressed_by
+
+matrices:
+  - name: use-cases-to-requirements
+    description: Use cases traced to requirements
+    rows: use_case
+    columns: [requirement]
+    coverageRelations:
+      requirement: [leads_to]
+  - name: changes-to-requirements
+    description: Changes traced to addressed requirements
+    rows: change
+    columns: [requirement]
+    coverageRelations:
+      requirement: [addresses]
+  - name: requirements-to-design-concepts
+    description: Requirements traced to stable design concepts
+    rows: requirement
+    columns: [design_concept]
+    coverageRelations:
+      design_concept: [addresses]
+
+workflow:
+  change:
+    states: [proposed, refined, accepted, implemented, verified, closed, rejected]
+    transitions:
+      proposed: [refined, rejected]
+      refined: [accepted, proposed]
+      accepted: [implemented, rejected]
+      implemented: [verified, accepted]
+      verified: [closed, implemented]
+  adr:
+    states: [proposed, accepted, rejected, superseded]
+    transitions:
+      proposed: [accepted, rejected]
+      accepted: [superseded]
+  requirement:
+    states: [draft, reviewed, approved, superseded]
+    transitions:
+      draft: [reviewed]
+      reviewed: [approved, draft]
+      approved: [superseded]
+  design_concept:
+    states: [draft, accepted, deprecated]
+    transitions:
+      draft: [accepted]
+      accepted: [deprecated]
+
+validation:
+  change:
+    refined:
+      requiresRoles: [use_case]
+    accepted:
+      requiresRoles: [requirement]
+  adr:
+    accepted:
+      requiresRoles: [design_concept]

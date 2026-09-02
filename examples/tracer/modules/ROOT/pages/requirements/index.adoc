@@ -1,0 +1,3 @@
+= Requirements
+
+include::../../../../docs/requirements.adoc[]

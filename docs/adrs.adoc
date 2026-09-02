@@ -1,0 +1,25 @@
+= Architecture Decision Records
+
+[#ADR-001, item, role=adr, status=accepted, title="Use Antora Tracer items as the canonical model"]
+--
+Context:: OpenSpec maintains a parallel hierarchy of proposals, specs, designs, and tasks.
+Decision:: Use Antora Tracer items and relationships as the canonical project knowledge model.
+Alternatives:: Keep OpenSpec beside Antora Tracer, or introduce a separate workflow database.
+Consequences:: Project artifacts are published together, while Git remains the history and review mechanism.
+
+records:CHG-001[]
+leads_to:DES-001[]
+tracer:links[]
+--
+
+[#ADR-002, item, role=adr, status=accepted, title="Keep execution tasks temporary"]
+--
+Context:: Tasks help an AI agent implement a change but do not usually provide durable project knowledge.
+Decision:: Generate or write a temporary change plan as an ordinary document when planning and execution are separated.
+Alternatives:: Make every task a durable traceability item, or store tasks in a workflow database.
+Consequences:: Plans can change without polluting the permanent knowledge graph.
+
+records:CHG-001[]
+leads_to:DES-002[]
+tracer:links[]
+--
