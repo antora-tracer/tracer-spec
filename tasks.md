@@ -6,64 +6,63 @@
 * [x] Initialize Git with `main` as the default branch.
 * [x] Create the initial directory structure.
 * [x] Add an initial README describing the project and workflow.
-* [ ] Add `LICENSE`.
-* [ ] Add `.gitignore`.
-* [ ] Add `package.json` and the minimum Antora build dependencies.
+* [x] Add `LICENSE`.
+* [x] Add `.gitignore`.
+* [x] Add `package.json` and the minimum Antora build dependencies.
 
 == Traceability model
 
-* [ ] Define the project roles in `traceability.yml`:
-** `use_case`
-** `requirement`
-** `change`
-** `adr`
-** `design_concept`
-** `test`
-* [ ] Define the durable relationships between the roles.
-* [ ] Define workflow states and declarative transitions.
-* [ ] Define structural validation rules for important states.
-* [ ] Define useful traceability matrices.
+* [x] Define the project roles in `traceability.yml`:
+** [x] `use_case`
+** [x] `requirement`
+** [x] `change`
+** [x] `adr`
+** [x] `design_concept`
+* [x] Define the durable relationships between the roles.
+* [x] Define workflow states and declarative transitions.
+* [x] Define structural validation rules for important states.
+* [x] Define useful traceability matrices.
 * [ ] Validate the configuration with the installed `antora-tracer` CLI.
 
 == Project dogfood documents
 
-* [ ] Create the project-level use-case document.
-* [ ] Create the project-level requirements document.
-* [ ] Create the project-level design-concepts document.
-* [ ] Create the project-level ADR document.
-* [ ] Create the project-level changes document.
-* [ ] Add initial items describing Tracer Spec Workflow itself.
-* [ ] Link the documents into one complete traceability chain.
-* [ ] Add a temporary plan example showing delayed execution and plan changes.
+* [x] Create the project-level use-case document.
+* [x] Create the project-level requirements document.
+* [x] Create the project-level design-concepts document.
+* [x] Create the project-level ADR document.
+* [x] Create the project-level changes document.
+* [x] Add initial items describing Tracer Spec Workflow itself.
+* [x] Link the documents into one complete traceability chain.
+* [x] Add a temporary plan example showing delayed execution and plan changes.
 
 == Antora example site
 
-* [ ] Add an Antora playbook.
-* [ ] Add an Antora component descriptor and navigation.
-* [ ] Publish the project-level documents as the self-tracing example site.
-* [ ] Add workflow explanation and authoring guidance pages.
+* [x] Add an Antora playbook.
+* [x] Add an Antora component descriptor and navigation.
+* [x] Publish the project-level documents as the self-tracing example site.
+* [x] Add workflow explanation and authoring guidance pages.
 * [ ] Build the site and fix any item or relationship errors.
 
 == Agent Skills
 
-* [ ] Define the shared skill conventions and workflow vocabulary.
-* [ ] Implement `explore-change`.
-* [ ] Implement `write-use-case`.
-* [ ] Implement `write-requirement`.
-* [ ] Implement `record-adr`.
-* [ ] Implement `review-design`.
-* [ ] Implement `plan-change`.
-* [ ] Implement `validate-traceability`.
-* [ ] Make every skill assume the `antora-tracer` CLI is installed.
+* [x] Define the shared skill conventions and workflow vocabulary.
+* [x] Implement `explore-change`.
+* [x] Implement `write-use-case`.
+* [x] Implement `write-requirement`.
+* [x] Implement `record-adr`.
+* [x] Implement `review-design`.
+* [x] Implement `plan-change`.
+* [x] Implement `validate-traceability`.
+* [x] Make every skill assume the `antora-tracer` CLI is installed.
 * [ ] Test each skill against the repository's own documents.
 
 == Documentation and release
 
-* [ ] Document the complete Tracer Spec Workflow.
-* [ ] Document the distinction between durable artifacts and temporary plans.
-* [ ] Document the policy that Git/PR review provides authorization and history.
-* [ ] Document that status transitions are declarative but not initially enforced.
+* [x] Document the complete Tracer Spec Workflow.
+* [x] Document the distinction between durable artifacts and temporary plans.
+* [x] Document the policy that Git/PR review provides authorization and history.
+* [x] Document that status transitions are declarative but not initially enforced.
 * [ ] Add contribution guidance.
 * [ ] Run validation, tests, linting, and the Antora build.
 * [ ] Review the repository for duplicated or unnecessary artifacts.
-* [ ] Commit the initial working version.
+* [x] Commit the initial working version.
