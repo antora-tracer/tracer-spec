@@ -1,8 +1,12 @@
-= Tracer Spec Workflow
+= Tracer Spec Workflow — Complete Example
 
 Spec-driven development workflow built on Antora Tracer.
 
 This repository eats its own dog food: its requirements, design concepts, ADRs, changes, and workflow documentation are traceable items published by Antora.
+
+**For a new project?** Start with https://github.com/rattermeyer/tracer-spec-minimal — the minimal template with an empty slate.
+
+**To see a working example?** You're in the right place. This repository demonstrates the full workflow with self-tracing documentation.
 
 == Purpose
 
