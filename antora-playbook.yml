@@ -6,7 +6,6 @@ content:
     - url: .
       start_path: examples/tracer
       branches: HEAD
-      tags: v*
 antora:
   extensions:
     - require: antora-tracer/antora-extension
@@ -16,7 +15,6 @@ antora:
         generateCoverage: true
 ui:
   bundle:
-    url: https://github.com/rattermeyer/antora-tracer/releases/latest/download/ui-bundle.zip
-    snapshot: true
+    url: https://github.com/opendevise/antora-ui-default/releases/download/v2.1.2/ui-bundle-2.1.2.zip
 output:
   dir: ./build/site

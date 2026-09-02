@@ -7,7 +7,7 @@ Decision:: Use Antora Tracer items and relationships as the canonical project kn
 Alternatives:: Keep OpenSpec beside Antora Tracer, or introduce a separate workflow database.
 Consequences:: Project artifacts are published together, while Git remains the history and review mechanism.
 
-records:CHG-001[]
+recorded_by:CHG-001[]
 leads_to:DES-001[]
 tracer:links[]
 --
@@ -19,7 +19,7 @@ Decision:: Generate or write a temporary change plan as an ordinary document whe
 Alternatives:: Make every task a durable traceability item, or store tasks in a workflow database.
 Consequences:: Plans can change without polluting the permanent knowledge graph.
 
-records:CHG-001[]
+recorded_by:CHG-001[]
 leads_to:DES-002[]
 tracer:links[]
 --
