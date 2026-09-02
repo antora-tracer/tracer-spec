@@ -19,10 +19,81 @@ Durable artifacts are written as traceable Antora content:
 Tasks are temporary execution guidance.
 When planning and implementation are separated in time, a change plan may be externalized as an ordinary AsciiDoc file.
 
-== Prerequisites
+== Quick Start
 
-The `antora-tracer` CLI must be installed and available on `PATH`.
-Node.js and Antora are required to build the example site.
+=== Prerequisites
+
+- Node.js 20+
+- `antora-tracer` CLI installed and available on `PATH`
+- Antora (installed via npm)
+
+=== Install this template
+
+[source,bash]
+----
+git clone https://github.com/rattermeyer/tracer-spec.git my-project
+cd my-project
+npm install
+----
+
+=== Validate the example graph
+
+[source,bash]
+----
+node /path/to/antora-tracer/lib/src/cli.js validate -i docs --config traceability.yml
+----
+
+Expected output:
+
+[source,text]
+----
+Validating requirements traceability...
+No validation errors found
+Summary: 10 items, 11 relationships
+----
+
+=== Customize for your project
+
+1. Edit the project name and description in `README.md` and `antora.yml`.
+2. Update `docs/*.adoc` with your own use cases, requirements, changes, and ADRs.
+3. Adapt `traceability.yml` if you need additional roles or relationships.
+4. Run validation regularly: `npm run validate`
+
+=== Use the skills
+
+Install the skills into your Pi agent or LiteLLM proxy:
+
+[source,bash]
+----
+# Copy skills to your agent's skill directory
+cp -r skills/* ~/.pi/agent/skills/
+
+# Or register them with LiteLLM Skills Gateway
+# (see each skill's SKILL.md for endpoint details)
+----
+
+Then trigger them in your workflow:
+
+[source,bash]
+----
+pi explore-change "Add user authentication"
+pi write-use-case CHG-001
+pi write-requirement CHG-001
+pi record-adr CHG-001
+pi review-design CHG-001
+pi plan-change CHG-001
+pi validate-traceability
+----
+
+=== Build the Antora site
+
+[source,bash]
+----
+npm run build
+# Output: ./build/site/index.html
+----
+
+This publishes your project documentation with traceability matrices and coverage reports.
 
 == Repository structure
 
