@@ -1,0 +1,16 @@
+= Decisions
+:traceability-links: true
+
+Add your decisions here using the `tspec-propose` skill.
+
+[source,asciidoc]
+----
+[#DEC-001, item, role=decision, status=proposed, title="Decision title"]
+--
+Context:: Why is this decision needed?
+Decision:: What was decided?
+Consequences:: What follows?
+
+tracer:links[]
+--
+----

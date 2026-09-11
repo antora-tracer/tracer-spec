@@ -1,0 +1,8 @@
+= Decision
+
+A *Decision* records a domain or specification choice: its context, the option chosen, and the consequences.
+
+* Change-scoped: a decision is `recorded_by` one change (`CHG`).
+* Durable: once accepted, a decision is immutable and superseded rather than edited.
+
+Status: `proposed` → `accepted` → `rejected` · `superseded`.

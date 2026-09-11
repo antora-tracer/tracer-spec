@@ -1,0 +1,6 @@
+= Workflow Overview
+
+explore → propose → apply → archive
+
+The traceability graph is the source of truth. See `AGENTS.md` for the skills
+that drive this workflow.

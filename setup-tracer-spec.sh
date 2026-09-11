@@ -32,16 +32,9 @@ npm install --silent
 echo "✅ Dependencies installed"
 echo ""
 
-# Install skills to Pi (if Pi agent exists)
-if [ -d "$HOME/.pi/agent/skills" ]; then
-  echo "Installing skills to Pi agent..."
-  mkdir -p "$HOME/.pi/agent/skills"
-  cp -r skills/* "$HOME/.pi/agent/skills/"
-  echo "✅ Skills installed to ~/.pi/agent/skills"
-else
-  echo "⚠️  Pi agent not found at ~/.pi/agent"
-  echo "   Skills are available in ./skills/ for manual installation"
-fi
+# Skills for a new project are installed by `tracer-spec init --tools <ids>`
+# (default: oh-my-pi, claude, agents). The cloned example ships them in
+# ./skills/ for reference.
 echo ""
 
 # Validate the example
@@ -57,11 +50,11 @@ echo ""
 echo "Next steps:"
 echo ""
 echo "1. Customize for your project:"
-echo "   • Edit docs/*.adoc with your own artifacts"
-echo "   • Update README.md, antora.yml with your project name"
+echo "   • Edit docs/modules/specs/pages/*.adoc with your own artifacts"
+echo "   • Update README.md, docs/antora.yml with your project name"
 echo ""
 echo "2. Use the workflow:"
-echo "   pi explore-change \"your feature idea\""
+echo "   pi tspec-propose \"your feature idea\""
 echo ""
 echo "3. Validate frequently:"
 echo "   npm run validate"
@@ -71,6 +64,6 @@ echo "   npm run build"
 echo ""
 echo "5. Read the docs:"
 echo "   • ./README.md — Installation and configuration"
-echo "   • ./examples/tracer/modules/ROOT/pages/getting-started.adoc — Tutorial"
-echo "   • ./examples/tracer/modules/ROOT/pages/workflow/ — Workflow details"
+echo "   • ./docs/modules/specs/pages/getting-started.adoc — Tutorial"
+echo "   • ./docs/modules/specs/pages/workflow/ — Workflow details"
 echo ""

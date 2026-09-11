@@ -1,6 +1,6 @@
 site:
-  title: Tracer Spec Workflow
-  start_page: tracer-spec:specs:index.adoc
+  title: {{title}}
+  start_page: {{name}}:specs:index.adoc
 content:
   sources:
     - url: .
@@ -15,4 +15,6 @@ antora:
         generateCoverage: true
 ui:
   bundle:
-    url: https://github.com/rattermeyer/antora-ui-conemso/releases/download/v1.2.0/ui-bundle.zip
+    url: https://github.com/opendevise/antora-ui-default/releases/download/v2.1.2/ui-bundle-2.1.2.zip
+output:
+  dir: ./build/site

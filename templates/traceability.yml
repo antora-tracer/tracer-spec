@@ -1,0 +1,60 @@
+# Trace Spec Workflow configuration.
+# Starts from the minimal preset (requirement + test) and adds the spec-driven
+# Tier-1 core: change and decision.
+
+extends: minimal
+
+roles:
+  - change
+  - decision
+
+roleGuidance:
+  change:
+    page: guidance/change.adoc
+    idPrefix: CHG
+  decision:
+    page: guidance/decision.adoc
+    idPrefix: DEC
+
+relations:
+  change:
+    requirement:
+      addresses:
+        reverse: addressed_by
+    decision:
+      records:
+        reverse: recorded_by
+
+matrices:
+  - name: changes-to-requirements
+    description: Changes traced to addressed requirements
+    rows: change
+    columns: [requirement]
+    coverageRelations:
+      requirement: [addresses]
+
+workflow:
+  change:
+    states: [proposed, refined, accepted, implemented, verified, closed, rejected]
+    transitions:
+      proposed: [refined, rejected]
+      refined: [accepted, proposed]
+      accepted: [implemented, rejected]
+      implemented: [verified, accepted]
+      verified: [closed, implemented]
+  requirement:
+    states: [draft, reviewed, approved, superseded, withdrawn]
+    transitions:
+      draft: [reviewed, withdrawn]
+      reviewed: [approved, draft]
+      approved: [superseded]
+  decision:
+    states: [proposed, accepted, rejected, superseded]
+    transitions:
+      proposed: [accepted, rejected]
+      accepted: [superseded]
+
+validation:
+  change:
+    accepted:
+      requiresRoles: [requirement]

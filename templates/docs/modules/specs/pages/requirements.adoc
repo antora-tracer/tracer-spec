@@ -1,0 +1,16 @@
+= Requirements
+:traceability-links: true
+
+Add your requirements here using the `tspec-propose` skill.
+
+[source,asciidoc]
+----
+[#REQ-001, item, role=requirement, status=draft, title="Observable behaviour"]
+--
+The system SHALL <observable behaviour>.
+
+<boundary conditions or scope>
+
+tracer:links[]
+--
+----

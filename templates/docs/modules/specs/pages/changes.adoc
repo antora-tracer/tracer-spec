@@ -1,0 +1,18 @@
+= Changes
+:traceability-links: true
+
+Add your changes here using the `tspec-propose` skill.
+
+[source,asciidoc]
+----
+[#CHG-001, item, role=change, status=proposed, title="Your feature"]
+--
+Rationale:: Why this change is needed.
+Outcome:: What the change produces.
+Out-of-scope:: What the change excludes.
+
+addresses:REQ-NNN[]
+records:DEC-NNN[]
+tracer:links[]
+--
+----

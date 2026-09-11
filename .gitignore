@@ -3,3 +3,9 @@ public/
 build/
 plans/*.generated.adoc
 .DS_Store
+.idea/
+*.tgz
+.omp/
+.claude/
+.agents/
+traceability/

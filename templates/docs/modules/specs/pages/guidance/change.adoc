@@ -1,0 +1,8 @@
+= Change
+
+A change is the entry point of the workflow.
+It records rationale, outcome, and out-of-scope fields, and links to the requirements it addresses and the decisions it records.
+
+Status: `proposed` → `refined` → `accepted` → `implemented` → `verified` → `closed` · `rejected`.
+
+An accepted change must address at least one requirement.

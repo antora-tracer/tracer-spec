@@ -1,0 +1,5 @@
+name: {{name}}
+version: ~
+title: {{title}}
+nav:
+  - modules/specs/nav.adoc
