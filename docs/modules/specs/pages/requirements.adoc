@@ -1,0 +1,45 @@
+= Requirements
+:traceability-links: true
+
+[#REQ-001, item, role=requirement, status=approved, title="Represent changes and requirements as the traceability core"]
+--
+The system SHALL represent changes and requirements as first-class traceable items.
+
+tracer:links[]
+--
+
+[#REQ-002, item, role=requirement, status=approved, title="Connect changes to addressed requirements"]
+--
+The system SHALL connect each change to the requirements it addresses.
+
+tracer:links[]
+--
+
+[#REQ-003, item, role=requirement, status=approved, title="Preserve decisions as durable items"]
+--
+The system SHALL preserve domain and specification decisions as durable items recorded by the change that made them.
+
+tracer:links[]
+--
+
+[#REQ-004, item, role=requirement, status=approved, title="Keep execution tasks temporary"]
+--
+The system SHALL keep execution tasks as temporary Markdown under tspec/, never as durable graph items.
+
+tracer:links[]
+--
+
+[#REQ-005, item, role=requirement, status=approved, title="Supersede approved requirements instead of editing"]
+--
+WHEN an approved requirement's meaning must change, the system SHALL supersede it with a new requirement and SHALL NOT edit it in place.
+A non-semantic fix such as a typo MAY be edited in place.
+
+tracer:links[]
+--
+
+[#REQ-006, item, role=requirement, status=approved, title="Enforce a human acceptance gate"]
+--
+The system SHALL let a change reach the accepted state only on a human's instruction, and validation SHALL enforce the transition.
+
+tracer:links[]
+--

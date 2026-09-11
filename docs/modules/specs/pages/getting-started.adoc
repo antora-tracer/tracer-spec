@@ -1,0 +1,61 @@
+= Getting Started
+
+== Use this as a template
+
+Tracer Spec Workflow is a reference implementation and template for spec-driven development on Antora Tracer.
+
+== 1. Clone or fork the template
+
+[source,bash]
+----
+git clone https://github.com/antora-tracer/tracer-spec.git my-project
+cd my-project
+npm install
+----
+
+== 2. Validate the example
+
+[source,bash]
+----
+antora-tracer validate -i docs --config traceability.yml
+----
+
+Should see: `No validation errors found`.
+
+== 3. Customize the project
+
+Update the pages under `docs/modules/specs/pages/`:
+
+* `changes.adoc` — one change item per feature, fix, or improvement.
+* `requirements.adoc` — the requirements each change addresses.
+* `decisions.adoc` — the decisions each change records.
+
+Edit `traceability.yml` to add growth roles (`use_case`, `design_concept`, `goal`, `scenario`, `arc42`) when the project needs them.
+
+== 4. Use the workflow
+
+For each change, use the workflow skills:
+
+[source,bash]
+----
+pi tspec-explore "Add user authentication"   # sketch, no write
+pi tspec-propose CHG-001                     # change + requirements + tasks.md
+# review, then accept
+pi tspec-apply CHG-001                       # implement tasks
+pi tspec-archive CHG-001                     # validate + clean tspec/
+pi tspec-validate                            # check the graph
+----
+
+== 5. Build and publish
+
+[source,bash]
+----
+npm run build
+----
+
+Generates `build/site/` with the traceability matrices and coverage reports.
+
+== Next steps
+
+* xref:workflow/overview.adoc[Read the full workflow]
+* xref:workflow/authoring.adoc[Learn authoring conventions]

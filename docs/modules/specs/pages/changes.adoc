@@ -1,0 +1,55 @@
+= Changes
+:traceability-links: true
+
+[#CHG-004, item, role=change, status=closed, title="Redesign the tspec workflow: minimal grammar, stage skills, and thin tooling"]
+--
+Rationale:: The traceability grammar was inherited from presets and accreted by hand instead of being derived from the questions the workflow must answer.
+OpenSpec's workflow shape is the reference model, but its store and engine cannot reach antora-tracer, so the workflow is rebuilt tracer-native.
+Four decisions settle the grammar.
+The change is the entry point and the requirement is the spec unit; both belong to the Tier-1 core.
+Scenarios remain prose inside a requirement, and a test verifies the requirement.
+Design is recorded as decisions rather than ADRs because most choices are domain or specification clarifications, not architecture.
+An approved requirement is immutable: a change to its meaning supersedes it with a new requirement.
+The workflow mechanics follow from the grammar: stage skills orchestrate the change lifecycle, a human acceptance gate plus validation enforces review before implementation, and only execution tasks are temporary.
+
+Outcome:: The grammar is a three-tier model that starts lean and grows on demand.
+Tier 1, the workflow core, holds the change role with states proposed, refined, accepted, implemented, verified, closed, and rejected, and the requirement role with states draft, reviewed, approved, superseded, and withdrawn.
+Tier 2, understanding, holds the decision role with states proposed, accepted, rejected, and superseded, and the test role without a lifecycle.
+Tier 2 also holds growth roles that never gate the workflow: design_concept, use_case, goal, scenario, and arc42.
+Tier 3 holds temporary execution tasks as Markdown under tspec/, never in the graph.
+Initial relation pairs are change addresses requirement (reverse addressed_by), change records decision (reverse recorded_by), requirement supersedes requirement (reverse superseded_by), and test verifies requirement (reverse verified_by); either name may be authored and the edge canonicalizes to the primary direction.
+Initial matrices are changes-to-requirements and requirements-tests.
+A change carries structured rationale, outcome, and out-of-scope fields.
+A change cannot reach accepted without addressing at least one requirement.
+The grammar extends the minimal preset and declares change and decision instead of extending requirements-engineering.
+Six skills implement the workflow: explore, propose, apply, archive, and validate orchestrate the change lifecycle, and write-item creates items of any declared role.
+Propose writes the change, its requirements, and its decisions atomically so relation macros never dangle.
+A change is accepted by a human gate: the agent advances refined to accepted only on the human's instruction, and validation enforces the transition.
+The temporary store is tspec/<change-id>/tasks.md, created by propose, consumed by apply, and deleted by archive.
+The command-line tool is thin: init scaffolds the project and installs the skills, no command drives the workflow, and validation and matrices stay with the antora-tracer CLI.
+An item is an anchor block `[#ID, item, role=<role>, status=<state>, title="..."]` opening a `--` delimited body of prose, relation macros, and a closing `tracer:links[]`.
+A relation macro is `<relation>:<ID>[]` written in the source item.
+A change body carries Rationale, Outcome, and Out-of-scope labeled-list fields.
+The changes-to-requirements matrix uses change rows, requirement columns, and the addresses coverage relation, and the requirements-tests matrix from the minimal preset uses requirement rows, test columns, and the verified_by and covers coverage relations.
+Explore reads code and produces a change sketch without writing.
+Apply ticks the tasks, adds test evidence, and advances the change from accepted to implemented to verified.
+Archive runs validation, deletes the tspec directory, and advances the change from verified to closed.
+Validate runs the antora-tracer check without changing state.
+Write-item writes one item of any declared role and wires its relations.
+
+Out-of-scope:: The implementation reset of the example content to the new grammar.
+Field-level enforcement and matrix presentation details.
+The skip-specs escape for requirement-free changes is not yet enforced.
+
+addresses:REQ-001[]
+addresses:REQ-002[]
+addresses:REQ-003[]
+addresses:REQ-004[]
+addresses:REQ-005[]
+addresses:REQ-006[]
+records:DEC-001[]
+records:DEC-002[]
+records:DEC-003[]
+records:DEC-004[]
+tracer:links[]
+--

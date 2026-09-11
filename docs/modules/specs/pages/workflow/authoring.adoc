@@ -1,0 +1,90 @@
+= Authoring Guide
+
+== Requirements
+
+A requirement states what the system must do — never how.
+
+Use EARS patterns:
+
+* *Ubiquitous:* `The system SHALL <behaviour>.`
+* *Event-driven:* `WHEN <trigger>, the system SHALL <behaviour>.`
+* *State-driven:* `WHILE <state>, the system SHALL <behaviour>.`
+* *Unwanted behaviour:* `IF <condition>, THEN the system SHALL <behaviour>.`
+
+Scenarios stay as prose inside the requirement body.
+
+[source,asciidoc]
+----
+[#REQ-001, item, role=requirement, status=draft, title="Short title"]
+--
+The system SHALL <observable behaviour>.
+
+WHEN <condition>, the system SHALL <behaviour>.
+
+tracer:links[]
+--
+----
+
+== Changes
+
+A change is the entry point.
+Its body carries `Rationale::`, `Outcome::`, and `Out-of-scope::` labeled-list fields, then typed relation macros.
+
+[source,asciidoc]
+----
+[#CHG-001, item, role=change, status=proposed, title="Change title"]
+--
+Rationale:: Why this change is needed.
+Outcome:: What the change produces.
+Out-of-scope:: What the change excludes.
+
+addresses:REQ-NNN[]
+records:DEC-NNN[]
+
+tracer:links[]
+--
+----
+
+== Decisions
+
+A decision preserves a domain or specification choice.
+
+[source,asciidoc]
+----
+[#DEC-001, item, role=decision, status=proposed, title="Decision title"]
+--
+Context:: Why is this decision needed?
+Decision:: What was decided?
+Consequences:: What follows?
+
+tracer:links[]
+--
+----
+
+== Relation macros
+
+A relation macro `<relation>:<ID>[]` is written in the source item.
+The reverse name is derived for queries.
+
+|===
+| Source → Target | Macro | Reverse
+| change → requirement | `addresses:REQ-NNN[]` | addressed_by
+| change → decision | `records:DEC-NNN[]` | recorded_by
+| requirement → requirement | `supersedes:REQ-OLD[]` | superseded_by
+| test → requirement | `verifies:REQ-NNN[]` | verified_by
+|===
+
+== Workflow transitions
+
+Use the `status` attribute to mark progression:
+
+[width=100%, cols="20h,80a"]
+|===
+| Role | States
+| requirement | draft → reviewed → approved → superseded · withdrawn
+| change | proposed → refined → accepted → implemented → verified → closed · rejected
+| decision | proposed → accepted → rejected · superseded
+|===
+
+The `accepted` gate is enforced by validation.
+Other transitions are declarative and reviewed via Git.

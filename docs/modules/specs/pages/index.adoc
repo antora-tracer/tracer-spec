@@ -1,0 +1,36 @@
+= Tracer Spec Workflow
+
+Spec-driven development built on Antora Tracer.
+
+This project eats its own dog food: changes, requirements, and decisions are traceable items in this very site.
+
+== Overview
+
+The Tracer Spec Workflow replaces OpenSpec's parallel artifact hierarchy with a single traceability graph.
+
+=== Durable artifacts
+
+* *Changes* — the entry point: rationale, outcome, and scope, with a lifecycle from proposed to closed.
+* *Requirements* — the spec unit: observable obligations a change addresses.
+* *Decisions* — durable records of domain and specification choices.
+
+=== Temporary artifacts
+
+* *Tasks* — Markdown checklists under `tspec/<change-id>/`, deleted when the change closes.
+
+=== The workflow
+
+[source,text]
+----
+explore → propose → apply → archive
+----
+
+The graph is the source of truth.
+Git and pull requests provide review, authorization, and change history.
+A human acceptance gate plus validation enforces review before implementation.
+
+== Next steps
+
+* xref:workflow/overview.adoc[Read the workflow overview]
+* xref:requirements.adoc[View the requirements]
+* xref:changes.adoc[View the change]
