@@ -8,10 +8,10 @@ roles:
 
 roleGuidance:
   change:
-    page: guidance/change.adoc
+    page: docs/modules/specs/pages/guidance/change.adoc
     idPrefix: CHG
   decision:
-    page: guidance/decision.adoc
+    page: docs/modules/specs/pages/guidance/decision.adoc
     idPrefix: DEC
 
 relations:

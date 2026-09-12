@@ -2,6 +2,20 @@
 
 A *Decision* records a domain or specification choice: its context, the option chosen, and the consequences.
 
+== Item template
+
+[source,asciidoc]
+----
+[#DEC-NNN, item, role=decision, status=proposed, title="Short decision title"]
+--
+Context:: Why this decision is needed.
+Decision:: What was chosen.
+Consequences:: What follows from the decision.
+
+tracer:links[]
+--
+----
+
 * Change-scoped: a decision is `recorded_by` one change (`CHG`).
 * Durable: once accepted, a decision is immutable and superseded rather than edited.
 

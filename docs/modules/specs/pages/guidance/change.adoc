@@ -3,6 +3,23 @@
 A change is the entry point of the workflow.
 It records rationale, outcome, and out-of-scope fields, and links to the requirements it addresses and the decisions it records.
 
+== Item template
+
+[source,asciidoc]
+----
+[#CHG-NNN, item, role=change, status=proposed, title="Short change title"]
+--
+Rationale:: Why this change is needed.
+Outcome:: What the change produces.
+Out-of-scope:: What the change excludes.
+
+addresses:REQ-NNN[]
+records:DEC-NNN[]
+
+tracer:links[]
+--
+----
+
 States: proposed → refined → accepted → implemented → verified → closed · rejected.
 
 An accepted change must address at least one requirement.
