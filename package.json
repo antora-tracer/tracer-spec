@@ -36,7 +36,7 @@
     "commander": "^12.1.0"
   },
   "devDependencies": {
-    "@antora-tracer/core": "^0.24.1",
+    "@antora-tracer/core": "^0.24.2",
     "@antora/cli": "^3.2.0",
     "@antora/site-generator": "^3.2.0"
   },
