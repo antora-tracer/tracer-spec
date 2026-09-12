@@ -1,0 +1,8 @@
+[#DEC-002, item, role=decision, status=accepted, title="Scenarios stay prose; tests verify requirements"]
+--
+Context:: OpenSpec nests scenarios inside requirements, but antora-tracer is a flat typed graph.
+Decision:: Scenarios remain prose inside a requirement body, and a test verifies the requirement. A scenario role is a later growth option.
+Consequences:: Coverage is tracked at requirement granularity; no scenario-level traceability yet.
+
+tracer:links[]
+--

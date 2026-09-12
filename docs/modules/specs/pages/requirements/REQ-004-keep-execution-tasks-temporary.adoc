@@ -1,0 +1,6 @@
+[#REQ-004, item, role=requirement, status=approved, title="Keep execution tasks temporary"]
+--
+The system SHALL keep execution tasks as temporary Markdown under tspec/, never as durable graph items.
+
+tracer:links[]
+--

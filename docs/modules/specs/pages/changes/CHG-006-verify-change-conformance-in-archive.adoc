@@ -1,0 +1,21 @@
+[#CHG-006, item, role=change, status=proposed, title="Verify change conformance in archive, not a separate skill"]
+--
+Rationale:: `tspec-archive` closes a change after only structural validation (`antora-tracer validate`), which checks roles, relations, statuses, and dangling references but cannot catch conformance gaps.
+A requirement can be satisfied on paper yet not in the repository, such as a field named differently than the change declared or a page path that does not resolve.
+Conformance verification is currently ad hoc, so a change can reach `closed` with no independent check that the implementation satisfies its requirements.
+Verification has no standalone lifecycle: it only ever precedes close, so it belongs inside archive, not in a seventh skill.
+
+Outcome:: `tspec-archive` runs an independent, read-only conformance review before advancing a change to `closed`.
+A cold reviewer reads the change, its addressed requirements, and its recorded decisions, checks each requirement against the repository state, and emits a per-requirement verdict.
+Archive closes only on a clean verdict.
+
+Out-of-scope:: A dedicated `tspec-verify-change` skill.
+New states or transitions: `verified` to `closed` is unchanged, and the gate is archive behavior, not a new state-machine rule.
+`tspec-validate` stays structural-only, and `tspec-apply` still self-advances to `verified`.
+
+addresses:REQ-010[]
+addresses:REQ-011[]
+addresses:REQ-012[]
+records:DEC-006[]
+tracer:links[]
+--

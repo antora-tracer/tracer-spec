@@ -1,0 +1,6 @@
+[#REQ-002, item, role=requirement, status=approved, title="Connect changes to addressed requirements"]
+--
+The system SHALL connect each change to the requirements it addresses.
+
+tracer:links[]
+--

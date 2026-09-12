@@ -1,0 +1,6 @@
+[#REQ-003, item, role=requirement, status=approved, title="Preserve decisions as durable items"]
+--
+The system SHALL preserve domain and specification decisions as durable items recorded by the change that made them.
+
+tracer:links[]
+--

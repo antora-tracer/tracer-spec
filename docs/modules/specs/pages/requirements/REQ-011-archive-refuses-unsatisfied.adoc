@@ -1,0 +1,6 @@
+[#REQ-011, item, role=requirement, status=draft, title="Archive refuses to close an unsatisfied change"]
+--
+The system SHALL NOT advance a change to `closed` when any requirement the change addresses is not satisfied.
+
+tracer:links[]
+--

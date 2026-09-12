@@ -1,45 +1,26 @@
 = Requirements
 :traceability-links: true
 
-[#REQ-001, item, role=requirement, status=approved, title="Represent changes and requirements as the traceability core"]
---
-The system SHALL represent changes and requirements as first-class traceable items.
+include::requirements/REQ-001-changes-requirements-core.adoc[]
 
-tracer:links[]
---
+include::requirements/REQ-002-connect-changes-to-requirements.adoc[]
 
-[#REQ-002, item, role=requirement, status=approved, title="Connect changes to addressed requirements"]
---
-The system SHALL connect each change to the requirements it addresses.
+include::requirements/REQ-003-preserve-decisions-durable.adoc[]
 
-tracer:links[]
---
+include::requirements/REQ-004-keep-execution-tasks-temporary.adoc[]
 
-[#REQ-003, item, role=requirement, status=approved, title="Preserve decisions as durable items"]
---
-The system SHALL preserve domain and specification decisions as durable items recorded by the change that made them.
+include::requirements/REQ-005-supersede-approved-requirements.adoc[]
 
-tracer:links[]
---
+include::requirements/REQ-006-enforce-human-acceptance-gate.adoc[]
 
-[#REQ-004, item, role=requirement, status=approved, title="Keep execution tasks temporary"]
---
-The system SHALL keep execution tasks as temporary Markdown under tspec/, never as durable graph items.
+include::requirements/REQ-007-resolve-role-guidance-pages.adoc[]
 
-tracer:links[]
---
+include::requirements/REQ-008-change-guidance-item-template.adoc[]
 
-[#REQ-005, item, role=requirement, status=approved, title="Supersede approved requirements instead of editing"]
---
-WHEN an approved requirement's meaning must change, the system SHALL supersede it with a new requirement and SHALL NOT edit it in place.
-A non-semantic fix such as a typo MAY be edited in place.
+include::requirements/REQ-009-decision-guidance-item-template.adoc[]
 
-tracer:links[]
---
+include::requirements/REQ-010-archive-verifies-requirements.adoc[]
 
-[#REQ-006, item, role=requirement, status=approved, title="Enforce a human acceptance gate"]
---
-The system SHALL let a change reach the accepted state only on a human's instruction, and validation SHALL enforce the transition.
+include::requirements/REQ-011-archive-refuses-unsatisfied.adoc[]
 
-tracer:links[]
---
+include::requirements/REQ-012-archive-verification-read-only.adoc[]

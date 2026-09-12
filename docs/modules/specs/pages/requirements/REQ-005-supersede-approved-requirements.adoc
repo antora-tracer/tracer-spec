@@ -1,0 +1,7 @@
+[#REQ-005, item, role=requirement, status=approved, title="Supersede approved requirements instead of editing"]
+--
+WHEN an approved requirement's meaning must change, the system SHALL supersede it with a new requirement and SHALL NOT edit it in place.
+A non-semantic fix such as a typo MAY be edited in place.
+
+tracer:links[]
+--

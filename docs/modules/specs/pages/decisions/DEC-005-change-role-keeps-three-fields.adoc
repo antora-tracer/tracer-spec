@@ -1,0 +1,9 @@
+[#DEC-005, item, role=decision, status=proposed, title="tracer-spec change role keeps three fields, not the core preset's five"]
+--
+Context:: The core `spec-driven-development` preset's `change.adoc` now carries a five-field template (Rationale, Outcome, Out of Scope, Open Questions, Notes), but tracer-spec extends `minimal` and owns its own guidance.
+Decision:: tracer-spec's change role keeps the established three fields (Rationale, Outcome, Out-of-scope), matching CHG-004 and the current skill fallback.
+Consequences:: tracer-spec and the core preset diverge on the change field set.
+The skill follows whatever the guidance declares, so divergence is tolerated, and Open Questions and Notes can be added later as growth.
+
+tracer:links[]
+--

@@ -1,0 +1,8 @@
+[#DEC-004, item, role=decision, status=accepted, title="Approved requirements are immutable, gated on meaning"]
+--
+Context:: In-place edits break the referential integrity of the traceability graph.
+Decision:: An approved requirement is immutable: a change to its meaning supersedes it with a new requirement. Typos may be edited in place.
+Consequences:: Append-only requirements with a supersedes lineage edge; some document sprawl.
+
+tracer:links[]
+--

@@ -1,38 +1,14 @@
 = Decisions
 :traceability-links: true
 
-[#DEC-001, item, role=decision, status=accepted, title="Change is the entry point; requirement is the Tier-1 spec unit"]
---
-Context:: The workflow needed an entry point and a minimal traceability core.
-Decision:: The change is the entry point, and the requirement is the spec unit; both belong to the Tier-1 core. Use cases and goals are deferred to growth roles.
-Consequences:: No mandatory use-case ceremony; the requirement is the durable contract a change addresses.
+include::decisions/DEC-001-change-as-entry-point.adoc[]
 
-tracer:links[]
---
+include::decisions/DEC-002-scenarios-as-prose.adoc[]
 
-[#DEC-002, item, role=decision, status=accepted, title="Scenarios stay prose; tests verify requirements"]
---
-Context:: OpenSpec nests scenarios inside requirements, but antora-tracer is a flat typed graph.
-Decision:: Scenarios remain prose inside a requirement body, and a test verifies the requirement. A scenario role is a later growth option.
-Consequences:: Coverage is tracked at requirement granularity; no scenario-level traceability yet.
+include::decisions/DEC-003-design-recorded-as-decisions.adoc[]
 
-tracer:links[]
---
+include::decisions/DEC-004-approved-requirements-immutable.adoc[]
 
-[#DEC-003, item, role=decision, status=accepted, title="Design is recorded as decisions, not ADRs or design concepts"]
---
-Context:: Most choices are domain or specification clarifications, not architecture.
-Decision:: Record design as the decision role. Drop the ADR and design-concept distinction; add a design-concept role later if stable abstractions are needed.
-Consequences:: One decision role; no forced decision-to-concept link.
+include::decisions/DEC-005-change-role-keeps-three-fields.adoc[]
 
-tracer:links[]
---
-
-[#DEC-004, item, role=decision, status=accepted, title="Approved requirements are immutable, gated on meaning"]
---
-Context:: In-place edits break the referential integrity of the traceability graph.
-Decision:: An approved requirement is immutable: a change to its meaning supersedes it with a new requirement. Typos may be edited in place.
-Consequences:: Append-only requirements with a supersedes lineage edge; some document sprawl.
-
-tracer:links[]
---
+include::decisions/DEC-006-fold-verification-into-archive.adoc[]

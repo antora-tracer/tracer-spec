@@ -1,0 +1,6 @@
+[#REQ-012, item, role=requirement, status=draft, title="Archive verification is read-only"]
+--
+The archive conformance verification SHALL be read-only and SHALL NOT alter any durable item.
+
+tracer:links[]
+--

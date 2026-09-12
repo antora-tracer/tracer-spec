@@ -1,0 +1,8 @@
+[#DEC-003, item, role=decision, status=accepted, title="Design is recorded as decisions, not ADRs or design concepts"]
+--
+Context:: Most choices are domain or specification clarifications, not architecture.
+Decision:: Record design as the decision role. Drop the ADR and design-concept distinction; add a design-concept role later if stable abstractions are needed.
+Consequences:: One decision role; no forced decision-to-concept link.
+
+tracer:links[]
+--
