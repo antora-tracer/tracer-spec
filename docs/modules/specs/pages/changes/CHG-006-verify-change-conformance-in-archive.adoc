@@ -1,4 +1,4 @@
-[#CHG-006, item, role=change, status=proposed, title="Verify change conformance in archive, not a separate skill"]
+[#CHG-006, item, role=change, status=closed, title="Verify change conformance in archive, not a separate skill"]
 --
 Rationale:: `tspec-archive` closes a change after only structural validation (`antora-tracer validate`), which checks roles, relations, statuses, and dangling references but cannot catch conformance gaps.
 A requirement can be satisfied on paper yet not in the repository, such as a field named differently than the change declared or a page path that does not resolve.
