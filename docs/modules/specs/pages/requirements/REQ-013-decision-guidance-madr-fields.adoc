@@ -1,0 +1,6 @@
+[#REQ-013, item, role=requirement, status=draft, title="Decision guidance declares MADR-shaped item fields"]
+--
+The decision guidance page SHALL declare an `Item template` whose labeled-list fields are Context, Options (each alternative with its advantages and disadvantages), Decision, Rationale (why the chosen option won), and Consequences.
+
+tracer:links[]
+--

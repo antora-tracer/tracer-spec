@@ -38,7 +38,7 @@ tracer:links[]
 ## Rules
 
 - Requirements state WHAT, never how; use SHALL; scenarios stay as prose in the body.
-- Decisions capture context, decision, and consequences.
+- Decisions follow the decision guidance template: Context, Options (per-option pros and cons), Decision, Rationale, and Consequences.
 - A change must address at least one requirement to later reach `accepted`.
 - Write all items together before validating; the change, requirements, and decisions land atomically.
 

@@ -6,3 +6,5 @@ include::changes/CHG-004-tspec-workflow-redesign.adoc[]
 include::changes/CHG-005-role-guidance-resolvable-and-template-driven.adoc[]
 
 include::changes/CHG-006-verify-change-conformance-in-archive.adoc[]
+
+include::changes/CHG-007-enrich-decision-template-madr.adoc[]

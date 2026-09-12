@@ -12,3 +12,5 @@ include::decisions/DEC-004-approved-requirements-immutable.adoc[]
 include::decisions/DEC-005-change-role-keeps-three-fields.adoc[]
 
 include::decisions/DEC-006-fold-verification-into-archive.adoc[]
+
+include::decisions/DEC-007-nest-pros-cons-in-options.adoc[]

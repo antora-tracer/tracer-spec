@@ -1,6 +1,19 @@
 = Decision
 
-A *Decision* records a domain or specification choice: its context, the option chosen, and the consequences.
+A *Decision* records a domain or specification choice: its context, the alternatives weighed, the option chosen, and the rationale.
+
+== Fields
+
+[cols="1,3"]
+|===
+| Field | Purpose
+
+| `Context` | Why the decision is needed — the problem or question it answers.
+| `Options` | The alternatives considered; each carries its advantages and disadvantages.
+| `Decision` | The option chosen.
+| `Rationale` | Why the chosen option won over the rejected alternatives.
+| `Consequences` | What follows from the decision, positive and negative.
+|===
 
 == Item template
 
@@ -9,8 +22,20 @@ A *Decision* records a domain or specification choice: its context, the option c
 [#DEC-NNN, item, role=decision, status=proposed, title="Short decision title"]
 --
 Context:: Why this decision is needed.
-Decision:: What was chosen.
-Consequences:: What follows from the decision.
+
+Options::
+* Option A — description.
+** Good: argument for A.
+** Bad: argument against A.
+* Option B — description.
+** Good: argument for B.
+** Bad: argument against B.
+
+Decision:: Chosen Option B.
+
+Rationale:: Why B over A — the deciding trade-off.
+
+Consequences:: What follows, positive and negative.
 
 tracer:links[]
 --

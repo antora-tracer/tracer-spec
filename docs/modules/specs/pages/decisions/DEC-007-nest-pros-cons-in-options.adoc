@@ -1,0 +1,8 @@
+[#DEC-007, item, role=decision, status=proposed, title="Nest per-option pros and cons inside Options, not a separate field"]
+--
+Context:: MADR structures per-option advantages and disadvantages as a separate "Pros and Cons of the Options" section, but tracer-spec decisions are flat AsciiDoc labeled lists.
+Decision:: Nest each option's good and bad as sub-bullets under Options, keeping the field list flat as Context, Options, Decision, Rationale, and Consequences.
+Consequences:: Field derivation and AsciiDoc rendering stay uniform, options are enumerated once, and a reader sees each alternative with its trade-offs inline.
+
+tracer:links[]
+--
