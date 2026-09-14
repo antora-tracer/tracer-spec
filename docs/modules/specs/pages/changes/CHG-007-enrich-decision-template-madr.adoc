@@ -1,7 +1,7 @@
 [#CHG-007, item, role=change, status=closed, title="Enrich the decision template with MADR-style fields"]
 --
 Rationale:: The decision role records only context, the chosen option, and consequences, so a reader cannot reconstruct what alternatives were weighed or why the chosen option won.
-MADR (Markdown Any Decision Records) provides a proven body structure — considered options with per-option pros and cons, the chosen option, and the rationale — that generalizes to any decision, not just architecture.
+MADR (Markdown Any Decision Records) provides a proven body structure — considered options with per-option pros and cons, the chosen option, and the rationale — that generalizes to any decision, not architecture.
 Adopt MADR's body fields as an AsciiDoc labeled-list template; keep the Status, Deciders, Date, and Technical Story header out because the item's status attribute, its recorded_by relation, and git already express them.
 
 Outcome:: The decision guidance template declares MADR-shaped fields: Context, Options (with per-option good/bad nested), Decision, Rationale, and Consequences.

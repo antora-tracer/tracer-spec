@@ -1,6 +1,6 @@
 [#CHG-010, item, role=change, status=closed, title="Complete Diátaxis site structure with CLI and skills documentation"]
 --
-Rationale:: The site explains the workflow and shows its own traceability, but the two things a new user actually operates — the `tracer-spec` CLI and the seven workflow skills — are documented only in `README.md` and the `SKILL.md` files, not in the site.
+Rationale:: The site explains the workflow and shows its own traceability, but the two things a new user operates — the `tracer-spec` CLI and the seven workflow skills — are documented only in `README.md` and the `SKILL.md` files, not in the site.
 The existing pages also violate the repo's own Diátaxis rule (one page = one mode): `getting-started.adoc` links out to Reference, `workflow/overview.adoc` mixes explanation with instructions, and `workflow/authoring.adoc` duplicates the `guidance/` templates.
 A seventh skill, `tspec-track`, was added without touching the README, which still says six.
 
