@@ -1,0 +1,17 @@
+# Tracer Spec Workflow configuration.
+# tracer-spec owns this file; antora-tracer owns traceability.yml.
+
+tracker:
+  # none | github | jira
+  provider: github
+
+  # GitHub: reach the tracker via the `gh` CLI.
+  github:
+    repo: antora-tracer/tracer-spec
+
+  # Optional: map change lifecycle states to tracker statuses.
+  # Unlisted states pass through unchanged.
+  # status:
+  #   accepted: In Progress
+  #   implemented: Done
+  #   closed: Closed
