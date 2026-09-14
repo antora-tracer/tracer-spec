@@ -1,0 +1,21 @@
+[#DEC-013, item, role=decision, status=proposed, title="One how-to page for the seven-skill workflow"]
+--
+Context:: Each skill could get its own how-to page, or the workflow could be documented as one task.
+Candidates: seven per-skill pages, one combined page, or one page now with a split later.
+
+Options::
+* One combined how-to page, "How to drive the workflow".
+** Good: the skills are one sequential workflow, not seven independent tasks; the sequence is the thing to learn.
+** Bad: a long page once any single skill accumulates standalone steps.
+* Seven per-skill pages.
+** Good: strictly one task per page.
+** Bad: 15-line pages hide the workflow sequence and fragment a walkthrough that is already linear.
+
+Decision:: One combined how-to page now; split a skill into its own page only when that skill's section grows real standalone steps.
+
+Rationale:: The seven skills are phases of one task, so a single walkthrough models the workflow accurately; splitting is a mechanical cut with no rework when a section outgrows the page.
+
+Consequences:: Keeps the how-to section at two pages (scaffold + workflow); per-skill detail lives in the reference catalog where it belongs.
+
+tracer:links[]
+--

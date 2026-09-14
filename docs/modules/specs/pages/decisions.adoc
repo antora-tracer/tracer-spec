@@ -24,3 +24,7 @@ include::decisions/DEC-010-link-tracker-one-way.adoc[]
 include::decisions/DEC-011-centralize-tracker-in-one-skill.adoc[]
 
 include::decisions/DEC-012-enforce-what-not-how-at-propose.adoc[]
+
+include::decisions/DEC-013-single-workflow-how-to-page.adoc[]
+
+include::decisions/DEC-014-keep-guidance-pages-in-place.adoc[]

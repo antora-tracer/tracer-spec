@@ -1,0 +1,48 @@
+= How Traceability Works
+
+This page explains how items and their relations become the matrices, coverage reports, and self-tracing site.
+
+== Items carry relations in their source
+
+An item is an AsciiDoc block with an ID, a role, and a status:
+
+[source,asciidoc]
+----
+[#CHG-010, item, role=change, status=proposed, title="..."]
+--
+addresses:REQ-021[]
+records:DEC-013[]
+tracer:links[]
+--
+----
+
+The relation macros (`addresses:`, `records:`, `verifies:`, `supersedes:`) are written in the source item.
+The reverse name is derived for queries, so `addresses` from a change is `addressed_by` from a requirement's perspective.
+
+== The graph is parsed, not stored separately
+
+`antora-tracer` reads the item blocks from the AsciiDoc pages and builds the graph from the role attributes and relation macros.
+There is no separate database: the documentation *is* the model.
+
+== Matrices and coverage
+
+A matrix in `traceability.yml` declares which relation counts as coverage:
+
+[source,yaml]
+----
+matrices:
+  - name: changes-to-requirements
+    rows: change
+    columns: [requirement]
+    coverageRelations:
+      requirement: [addresses]
+----
+
+The site renders this as a matrix showing each change against the requirements it addresses, and a coverage report that flags requirements with no addressing change and changes with no addressed requirement.
+
+== Self-traceability
+
+This site traces itself.
+Its own changes, requirements, and decisions are the items in the graph, and the pages under `changes/`, `requirements/`, and `decisions/` render those items alongside the matrices and coverage reports.
+
+The extension that produces the graph is the same extension this documentation describes — the site demonstrates the workflow it teaches.

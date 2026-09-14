@@ -1,0 +1,6 @@
+[#REQ-023, item, role=requirement, status=draft, title="Assign each site page to exactly one Diátaxis mode"]
+--
+The system SHALL organise every site page into exactly one Diátaxis mode — tutorial, how-to, reference, explanation, or self-traceability — with the tutorial linking out to no other mode.
+
+tracer:links[]
+--

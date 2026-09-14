@@ -1,0 +1,6 @@
+[#REQ-022, item, role=requirement, status=draft, title="Document all seven workflow skills in the site"]
+--
+The system SHALL document every workflow skill — explore, propose, apply, archive, validate, write-item, and track — in the site, both as a task-oriented how-to and as an exhaustive reference entry naming each skill's trigger, arguments, subcommands, and configuration.
+
+tracer:links[]
+--

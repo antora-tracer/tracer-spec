@@ -1,0 +1,21 @@
+[#DEC-014, item, role=decision, status=proposed, title="Keep role guidance pages in place, fold duplicates into reference"]
+--
+Context:: `guidance/change.adoc` and `guidance/decision.adoc` are targets of `traceability.yml` `roleGuidance`, and their template content overlaps `workflow/authoring.adoc`.
+Candidates: move them into `reference/`, or keep them and fold the overlap.
+
+Options::
+* Keep them in place and fold `workflow/authoring.adoc` into `reference/roles.adoc`.
+** Good: `roleGuidance` keeps pointing at stable paths; no config edit.
+** Bad: two reference-like pages remain outside the `reference/` directory.
+* Move them into `reference/` and update `traceability.yml`.
+** Good: a clean `reference/` directory.
+** Bad: an unnecessary config change for pages the graph itself resolves.
+
+Decision:: Keep the guidance pages in place; fold the duplicated template content into `reference/roles.adoc`.
+
+Rationale:: The pages are config-coupled, not ordinary docs; moving them buys layout purity at the cost of a `traceability.yml` edit with no functional gain.
+
+Consequences:: `roleGuidance` paths stay stable; `workflow/authoring.adoc` is removed and its content lands once in `reference/roles.adoc`.
+
+tracer:links[]
+--

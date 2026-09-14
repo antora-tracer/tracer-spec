@@ -1,0 +1,38 @@
+= Why the Workflow Works This Way
+
+The Tracer Spec Workflow replaces parallel artifact hierarchies with a single traceability graph.
+This page explains the reasoning behind its phases, states, and the acceptance gate.
+
+== The graph is the source of truth
+
+Traditional spec workflows keep changes, requirements, and decisions in separate documents that drift apart.
+Here they are items in one graph: a change *addresses* requirements and *records* decisions, and those typed relations are queryable and renderable.
+
+Git and pull requests provide review, authorization, and history; the graph provides the spec structure.
+Neither replaces the other.
+
+== The phases
+
+[source,text]
+----
+explore → propose → accept → apply → archive
+----
+
+* *Explore* is deliberately write-free. An idea is investigated and a sketch produced before anything durable exists, so the graph is never littered with half-formed items.
+* *Propose* writes everything atomically. A change, its requirements, and its decisions land in one pass so no relation macro ever dangles.
+* *Accept* is a human gate, not a tool step. Validation enforces it structurally — an accepted change must address a requirement — but a person decides.
+* *Apply* implements tasks and records verification evidence against requirements.
+* *Archive* verifies conformance independently, then removes only the temporary task checklist.
+
+== The acceptance gate
+
+The `accepted` state is the one state validation polices.
+Everything upstream (proposed, refined) is free-form drafting; everything downstream (implemented, verified, closed) presumes the proposal was sound.
+
+One structural rule — an accepted change addresses at least one requirement — catches the common failure of a change with no spec intent, without trying to police semantic quality, which is unreviewable by a linter.
+
+== Temporary vs durable
+
+Tasks live in `tspec/<change-id>/tasks.md` and are deleted when the change closes.
+Changes, requirements, and decisions are durable and stay in the graph forever.
+Approved requirements are immutable: a changed meaning is a new requirement that supersedes the old one, never an edit in place.

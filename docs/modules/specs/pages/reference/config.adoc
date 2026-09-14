@@ -1,0 +1,107 @@
+= Configuration Reference
+
+Two configuration files drive the workflow, owned by different tools.
+`antora-tracer` owns `traceability.yml`; `tracer-spec` owns `tspec.yml`.
+
+== traceability.yml
+
+The traceability model: roles, relations, matrices, workflow states, and validation.
+It lives at the project root and is read by `antora-tracer` and every skill.
+
+[source,yaml]
+----
+extends: minimal
+
+roles:
+  - change
+  - decision
+
+roleGuidance:
+  change:
+    page: docs/modules/specs/pages/guidance/change.adoc
+    idPrefix: CHG
+  decision:
+    page: docs/modules/specs/pages/guidance/decision.adoc
+    idPrefix: DEC
+
+relations:
+  change:
+    requirement:
+      addresses:
+        reverse: addressed_by
+    decision:
+      records:
+        reverse: recorded_by
+
+matrices:
+  - name: changes-to-requirements
+    rows: change
+    columns: [requirement]
+    coverageRelations:
+      requirement: [addresses]
+
+workflow:
+  change:
+    states: [proposed, refined, accepted, implemented, verified, closed, rejected]
+    transitions: { ... }
+  requirement:
+    states: [draft, reviewed, approved, superseded, withdrawn]
+    transitions: { ... }
+  decision:
+    states: [proposed, accepted, rejected, superseded]
+    transitions: { ... }
+
+validation:
+  change:
+    accepted:
+      requiresRoles: [requirement]
+----
+
+[cols="25a,75a"]
+|===
+| Key | Purpose
+
+| `extends` | Base the model on a preset. `minimal` supplies the `requirement` role and its relations; the file then declares the roles it adds.
+| `roles` | The roles this project declares beyond the preset (`change`, `decision` here).
+| `roleGuidance.<role>.page` | The guidance page that holds the role's item template — resolved by `tspec-propose` and `tspec-write-item`.
+| `roleGuidance.<role>.idPrefix` | The role's ID prefix (`CHG`, `DEC`, `REQ`, `TST`).
+| `relations` | The typed relation edges between roles, each with a `reverse` name.
+| `matrices` | The cross-role coverage matrices the site renders; `coverageRelations` names the relation that counts as coverage.
+| `workflow.<role>.states` | The ordered states a role may occupy.
+| `workflow.<role>.transitions` | The allowed state-to-state moves.
+| `validation` | Structural gates; here, an `accepted` change must address a `requirement`.
+|===
+
+== tspec.yml
+
+The `tracer-spec` configuration, specifically the issue-tracker bridge.
+It sits beside `traceability.yml` and is owned by `tracer-spec` — `antora-tracer` ignores it.
+
+[source,yaml]
+----
+tracker:
+  provider: none        # none | github | jira
+
+  # github:
+  #   repo: owner/repo
+
+  # jira:
+  #   url: https://your-domain.atlassian.net
+  #   project: KEY
+
+  # status:
+  #   accepted: In Progress
+  #   implemented: Done
+  #   closed: Closed
+----
+
+[cols="25a,75a"]
+|===
+| Key | Purpose
+
+| `tracker.provider` | The issue tracker: `none` (default), `github`, or `jira`. `none` makes every `tspec-track` subcommand a no-op.
+| `tracker.github.repo` | For `github`: the `owner/repo` the `gh` CLI reaches.
+| `tracker.jira.url` | For `jira`: the REST base URL.
+| `tracker.jira.project` | For `jira`: the project key issues are filed under.
+| `tracker.status` | Optional map from change lifecycle states to tracker statuses. Unlisted states pass through unchanged.
+|===

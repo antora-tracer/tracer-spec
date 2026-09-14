@@ -1,0 +1,75 @@
+= How to Scaffold a Project
+
+This guide turns an empty directory into a Tracer Spec Workflow project with a self-tracing Antora site.
+
+== 1. Install the CLI
+
+[source,bash]
+----
+npm install -g @antora-tracer/tracer-spec
+----
+
+The CLI needs Node.js 20+.
+
+== 2. Initialize the project
+
+[source,bash]
+----
+cd my-project
+tracer-spec init "My Project"
+npm install
+----
+
+`init` writes the scaffold into the current directory:
+
+* `traceability.yml` — the traceability model (roles, relations, matrices, workflow).
+* `tspec.yml` — the tracer-spec configuration (issue-tracker bridge).
+* `docs/` — the Antora content source and site.
+* `antora-playbook.yml` — the site build playbook.
+* `AGENTS.md` — the project's agent instructions.
+* `skills/` — a local copy of the seven workflow skills.
+
+Omit the name to use the current directory name.
+
+== 3. Pick the agent harnesses
+
+`init` installs the workflow skills into your agent harness directories.
+By default it installs into Oh My Pi, Claude Code, and the shared `.agents` directory.
+
+Pass `--tools` to choose:
+
+[source,bash]
+----
+tracer-spec init --tools oh-my-pi,claude   # pick specific harnesses
+tracer-spec init --tools all               # every supported harness
+tracer-spec init --tools none              # scaffold only, no skills
+tracer-spec init --tools omp,codex,pi      # omp aliases oh-my-pi
+----
+
+When you omit `--tools` and run interactively, `init` shows a picker.
+When `stdin` is not a terminal, it falls back to the default set.
+
+Every harness reads the same `SKILL.md` files; only the target directory differs.
+See xref:reference/cli.adoc[CLI reference] for the full flag list.
+
+== 4. Confirm the result
+
+[source,bash]
+----
+antora-tracer validate -i docs --config traceability.yml
+----
+
+Expected: `No validation errors found`.
+
+== 5. Build the site
+
+[source,bash]
+----
+npm run build
+----
+
+The site publishes to `build/site/` with the traceability matrices and coverage reports.
+
+== Next
+
+xref:how-to/drive-the-workflow.adoc[Drive the workflow] with the seven skills.

@@ -1,0 +1,68 @@
+= Skills Reference
+
+The Tracer Spec Workflow ships seven skills.
+Each is a self-contained instruction file; this page catalogs every skill's trigger, argument, and tool access.
+The `SKILL.md` files are the source of truth — this page mirrors their frontmatter.
+
+[width=100%, cols="20a,45a,15a,20a"]
+|===
+| Skill | Purpose | Argument | Tools
+
+| `tspec-explore` | Shape a change sketch without writing. | `<topic>` | unrestricted (read-only)
+| `tspec-propose` | Write a change, its requirements, and decisions atomically. | `<change-id or title>` | `antora-tracer`
+| `tspec-apply` | Implement a change's tasks and advance state. | `<change-id>` | `antora-tracer`
+| `tspec-archive` | Validate, verify, and close a change. | `<change-id>` | `antora-tracer`
+| `tspec-validate` | Validate the traceability graph. | — | `antora-tracer`
+| `tspec-write-item` | Write one item of any role. | `<role> [<id>]` | `antora-tracer`
+| `tspec-track` | Bridge a change to its issue-tracker issue. | `<--link\|--create\|--import\|--status> <id>` | `antora-tracer`, `gh`, `curl`
+|===
+
+== tspec-explore
+
+Enter explore mode — a thinking partner that produces a change sketch (rationale, outcome, scope) without writing durable content.
+Read-only by discipline: it may read files, search code, and run commands, but must not edit the repo or `docs/modules/specs/pages/`.
+
+== tspec-propose
+
+Propose a change: write the change item, its requirements, and its decisions in one pass, plus the temporary task checklist at `tspec/<change-id>/tasks.md`.
+Generates every ID up front, resolves role guidance templates, writes each item as its own file with a matching `include::` line, and validates before reporting.
+If `tspec.yml` declares a tracker, delegates issue linking to `tspec-track`.
+
+== tspec-apply
+
+Implement an accepted change: work the task checklist, tick `- [ ]` to `- [x]`, add verification evidence for each addressed requirement, and advance `accepted` → `implemented` → `verified`.
+Never modifies requirements in place — a changed meaning is a supersession.
+
+== tspec-archive
+
+Close a verified change: validate, spawn an independent cold reviewer that verdicts each requirement SATISFIED/NOT, then delete `tspec/<change-id>/` and advance `verified` → `closed`.
+Stops on any NOT-satisfied verdict.
+
+== tspec-validate
+
+Run `antora-tracer validate` and report the summary plus any errors with file and line.
+Never changes state.
+
+== tspec-write-item
+
+Write one item of any declared role (`change`, `requirement`, `decision`, `test`, or a declared growth role) and wire its relations directly.
+Generates the next ID from the role's prefix and writes into the role's page.
+
+== tspec-track
+
+Bridge a change to its issue tracker, one-way.
+
+[cols="25a,75a"]
+|===
+| Subcommand | Behavior
+
+| `--link <change-id>` | Record an existing tracker issue as `trackerId=` on the change.
+| `--create <change-id>` | Create a tracker issue for the change, then record its ID.
+| `--import <issue-id>` | Import a tracker-first issue as a seeded change.
+| `--status <change-id>` | Push the change's lifecycle status to its linked issue.
+|===
+
+Configuration lives in `tspec.yml` under `tracker`.
+`provider: none` (the default) makes every subcommand a no-op.
+`github` drives the `gh` CLI; `jira` drives REST against the configured `url` and `project`.
+Tracker state is never read back into the graph; `trackerId` is a block-header attribute, not a relation.

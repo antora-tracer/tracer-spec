@@ -1,0 +1,88 @@
+= How to Drive the Workflow
+
+One change moves through the workflow as a single sequence, each phase driven by a skill.
+This guide walks the full path, from idea to closed change.
+
+== 1. Explore the change
+
+[source,bash]
+----
+tspec-explore "Add user authentication"
+----
+
+`tspec-explore` is a thinking partner.
+It investigates the codebase and produces a change sketch — rationale, intended outcome, and scope — without writing anything durable.
+
+== 2. Propose the change
+
+[source,bash]
+----
+tspec-propose CHG-001
+----
+
+`tspec-propose` writes the change item, the requirements it addresses, and the decisions it records in one pass, plus a temporary task checklist at `tspec/CHG-001/tasks.md`.
+Relation macros never dangle because everything lands atomically.
+
+== 3. Accept the change
+
+A human reviews the proposal.
+On the human's instruction the change advances from `refined` to `accepted`.
+Validation enforces that an accepted change addresses at least one requirement.
+
+== 4. Apply the change
+
+[source,bash]
+----
+tspec-apply CHG-001
+----
+
+`tspec-apply` works through `tspec/CHG-001/tasks.md`, ticking each task, and adds verification evidence for each addressed requirement.
+The change moves `accepted` → `implemented` → `verified`.
+
+== 5. Archive the change
+
+[source,bash]
+----
+tspec-archive CHG-001
+----
+
+`tspec-archive` validates, verifies conformance against the requirements with an independent cold reviewer, deletes `tspec/CHG-001/`, and closes the change.
+The durable items stay in the graph; only the temporary checklist is removed.
+
+== 6. Validate at any point
+
+[source,bash]
+----
+tspec-validate
+----
+
+Validation checks roles, relations, statuses, and the acceptance gate.
+It runs any time and never changes state.
+
+== Track a change in an issue tracker
+
+When `tspec.yml` declares a tracker (GitHub or Jira), bridge a change to its issue:
+
+[source,bash]
+----
+tspec-track --link CHG-001     # record an existing issue
+tspec-track --create CHG-001   # create an issue and record it
+tspec-track --import 42        # import an issue as a seeded change
+tspec-track --status CHG-001   # push status to the tracker
+----
+
+The bridge is one-way: tracker state is never read back into the graph.
+
+== Write a single item
+
+[source,bash]
+----
+tspec-write-item decision DEC-001
+----
+
+Use `tspec-write-item` to author one item of any declared role outside the propose-apply cycle, wiring its relations directly.
+
+== Next
+
+xref:reference/skills.adoc[Skill reference] for every trigger, argument, and option.
+xref:explanation/workflow.adoc[Why the workflow works this way].

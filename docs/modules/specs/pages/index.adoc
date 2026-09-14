@@ -31,6 +31,6 @@ A human acceptance gate plus validation enforces review before implementation.
 
 == Next steps
 
-* xref:workflow/overview.adoc[Read the workflow overview]
+* xref:explanation/workflow.adoc[Understand the workflow]
 * xref:requirements.adoc[View the requirements]
 * xref:changes.adoc[View the change]

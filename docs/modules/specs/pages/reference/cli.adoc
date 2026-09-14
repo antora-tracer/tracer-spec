@@ -1,0 +1,77 @@
+= CLI Reference
+
+This page documents every command and option of the Tracer Spec Workflow CLI.
+The traceability model itself is the `antora-tracer` CLI, covered for the commands the workflow uses.
+
+== tracer-spec
+
+`tracer-spec` scaffolds a project and installs the workflow skills.
+It ships one command.
+
+=== init
+
+Initialize a Tracer Spec Workflow project in the current directory.
+
+[source,bash]
+----
+tracer-spec init [name] [options]
+----
+
+[cols="30a,70a"]
+|===
+| Argument | Description
+
+| `name` | Project name, also used as the Antora component name and site title.
+Defaults to the current directory name.
+|===
+
+[cols="25a,75a"]
+|===
+| Option | Description
+
+| `--force` | Overwrite existing files instead of skipping them.
+
+| `--skip-skills` | Do not install the workflow skills into any harness.
+Installs nothing, regardless of `--tools`.
+
+| `--dry-run` | Preview actions without writing any file.
+Prints the component name, title, selected harnesses, and every file that would be created.
+
+| `--tools <ids>` | Agent harnesses to install skills for: a comma-separated list, `all`, or `none`.
+When omitted and the terminal is interactive, shows a picker; when not a terminal, defaults to `oh-my-pi,claude,agents`.
+|===
+
+==== Harnesses
+
+[width=100%, cols="25a,35a,40a"]
+|===
+| ID | Label | Skill directory
+
+| `oh-my-pi` | Oh My Pi | `.omp/skills`
+| `claude` | Claude Code | `.claude/skills`
+| `codex` | Codex | `.agents/skills`
+| `pi` | Pi | `.pi/skills`
+| `agents` | Shared .agents | `.agents/skills`
+|===
+
+`omp` is an alias for `oh-my-pi`.
+`codex` and `agents` share `.agents/skills`, so the files are written once.
+
+Slash commands are installed only for harnesses that define a command convention: Oh My Pi (`.omp/commands/tspec-<id>.md`) and Claude Code (`.claude/commands/tspec/<id>.md`).
+Codex, Pi, and the shared `.agents` directory install skills only.
+
+== antora-tracer
+
+`antora-tracer` is the graph engine behind the workflow.
+The workflow uses these commands directly.
+
+[cols="30a,70a"]
+|===
+| Command | Purpose
+
+| `validate -i docs --config traceability.yml` | Check roles, relations, statuses, and the acceptance gate.
+| `next-id --prefix CHG -i docs` | Return the next unused ID for a role prefix.
+| `role-guidance <role> --config traceability.yml --content` | Print a role's item template and prefix, resolved from `traceability.yml`.
+|===
+
+The full `antora-tracer` CLI is documented in its own reference; this workflow depends on it as `@antora-tracer/core`.

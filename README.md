@@ -22,7 +22,7 @@ npm install
 ----
 
 `init` writes `traceability.yml`, `docs/`, an Antora playbook and site, `AGENTS.md`,
-and installs the six workflow skills into your agent harness directories
+and installs the seven workflow skills into your agent harness directories
 (default: Oh My Pi `.omp/skills/`, Claude `.claude/skills/`, shared `.agents/skills/`).
 Pass `--tools claude,codex,agents` to pick harnesses, `--tools all` for every
 supported one, or `--tools none` to skip.
@@ -84,7 +84,7 @@ Summary: 11 items, 10 relationships
 explore → propose → apply → archive
 ----
 
-The six skills:
+The seven skills:
 
 | Skill | Purpose |
 |-------|---------|
@@ -94,6 +94,7 @@ The six skills:
 | `tspec-archive` | Validate and close a verified change |
 | `tspec-validate` | Validate the traceability graph |
 | `tspec-write-item` | Write one item of any declared role |
+| `tspec-track` | Bridge a change to its issue-tracker issue (link, create, import, status) |
 
 === Build the Antora site
 
@@ -152,7 +153,9 @@ tracer-spec/
 │       └── pages/
 │           ├── index.adoc
 │           ├── getting-started.adoc
-│           ├── workflow/
+│           ├── how-to/
+│           ├── reference/
+│           ├── explanation/
 │           ├── changes.adoc
 │           ├── requirements.adoc
 │           └── decisions.adoc
@@ -163,6 +166,7 @@ tracer-spec/
     ├── tspec-apply/
     ├── tspec-archive/
     ├── tspec-validate/
+    ├── tspec-track/
     └── tspec-write-item/
 ----
 

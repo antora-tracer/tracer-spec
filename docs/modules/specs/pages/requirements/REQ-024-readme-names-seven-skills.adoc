@@ -1,0 +1,6 @@
+[#REQ-024, item, role=requirement, status=draft, title="Name all seven skills in the README"]
+--
+The system SHALL list all seven workflow skills, including `tspec-track`, in the README wherever the skill set is enumerated.
+
+tracer:links[]
+--

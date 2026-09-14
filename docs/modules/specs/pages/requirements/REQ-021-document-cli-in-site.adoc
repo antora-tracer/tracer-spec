@@ -1,0 +1,6 @@
+[#REQ-021, item, role=requirement, status=draft, title="Document the workflow CLI in the site"]
+--
+The system SHALL document the `tracer-spec init` command and the `antora-tracer validate` invocation in the Antora site, covering every flag, option, and argument.
+
+tracer:links[]
+--

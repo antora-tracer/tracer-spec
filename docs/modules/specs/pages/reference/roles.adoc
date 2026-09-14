@@ -1,4 +1,21 @@
-= Authoring Guide
+= Roles Reference
+
+Every traceability item is a role with an ID prefix, a set of fields, and a state machine.
+This page is the authoritative reference for authoring items.
+
+== Roles and prefixes
+
+[cols="20a,15a,25a,40a"]
+|===
+| Role | Prefix | Initial status | Purpose
+
+| `change` | `CHG` | `proposed` | The entry point: rationale, outcome, and scope of one change.
+| `requirement` | `REQ` | `draft` | The spec unit: an observable obligation a change addresses.
+| `decision` | `DEC` | `proposed` | A durable record of a domain or specification choice.
+| `test` | `TST` | — | Verification evidence carrying `verifies:REQ-NNN[]`.
+|===
+
+Growth roles (`use_case`, `design_concept`, `goal`, `scenario`, `arc42`) are available when declared in `traceability.yml`.
 
 == Requirements
 
@@ -61,22 +78,25 @@ tracer:links[]
 --
 ----
 
+Decisions may additionally carry `Options::` (per-option pros and cons) and `Rationale::` fields, following the MADR shape documented in xref:guidance/decision.adoc[the decision guidance].
+
 == Relation macros
 
 A relation macro `<relation>:<ID>[]` is written in the source item.
 The reverse name is derived for queries.
 
+[width=100%, cols="30a,30a,20a,20a"]
 |===
-| Source → Target | Macro | Reverse
-| change → requirement | `addresses:REQ-NNN[]` | addressed_by
-| change → decision | `records:DEC-NNN[]` | recorded_by
-| requirement → requirement | `supersedes:REQ-OLD[]` | superseded_by
-| test → requirement | `verifies:REQ-NNN[]` | verified_by
+| Source → Target | Macro | Reverse | Used in
+| change → requirement | `addresses:REQ-NNN[]` | `addressed_by` | change
+| change → decision | `records:DEC-NNN[]` | `recorded_by` | change
+| requirement → requirement | `supersedes:REQ-OLD[]` | `superseded_by` | requirement
+| test → requirement | `verifies:REQ-NNN[]` | `verified_by` | test
 |===
 
-== Workflow transitions
+== Workflow states
 
-Use the `status` attribute to mark progression:
+Use the `status` attribute to mark progression.
 
 [width=100%, cols="20h,80a"]
 |===
@@ -86,5 +106,5 @@ Use the `status` attribute to mark progression:
 | decision | proposed → accepted → rejected · superseded
 |===
 
-The `accepted` gate is enforced by validation.
+The `accepted` gate is enforced by validation: an accepted change must address at least one requirement.
 Other transitions are declarative and reviewed via Git.

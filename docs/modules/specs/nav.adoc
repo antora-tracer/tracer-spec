@@ -1,7 +1,16 @@
 * xref:index.adoc[Home]
 * xref:getting-started.adoc[Getting Started]
-* xref:workflow/overview.adoc[Workflow]
-** xref:workflow/authoring.adoc[Authoring Guide]
+* How-to Guides
+** xref:how-to/scaffold-project.adoc[How to scaffold a project]
+** xref:how-to/drive-the-workflow.adoc[How to drive the workflow]
+* Reference
+** xref:reference/cli.adoc[CLI]
+** xref:reference/skills.adoc[Skills]
+** xref:reference/roles.adoc[Roles]
+** xref:reference/config.adoc[Configuration]
+* Explanation
+** xref:explanation/workflow.adoc[Workflow]
+** xref:explanation/traceability.adoc[Traceability]
 * xref:changes.adoc[Changes]
 * xref:requirements.adoc[Requirements]
 * xref:decisions.adoc[Decisions]

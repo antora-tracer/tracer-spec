@@ -40,3 +40,11 @@ include::requirements/REQ-018-keep-tracker-status-in-step.adoc[]
 include::requirements/REQ-019-ignore-tracker-state-changes.adoc[]
 
 include::requirements/REQ-020-record-requirements-as-behaviour-not-mechanisms.adoc[]
+
+include::requirements/REQ-021-document-cli-in-site.adoc[]
+
+include::requirements/REQ-022-document-workflow-skills.adoc[]
+
+include::requirements/REQ-023-one-page-one-diataxis-mode.adoc[]
+
+include::requirements/REQ-024-readme-names-seven-skills.adoc[]

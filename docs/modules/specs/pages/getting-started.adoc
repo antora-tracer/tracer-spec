@@ -57,5 +57,4 @@ Generates `build/site/` with the traceability matrices and coverage reports.
 
 == Next steps
 
-* xref:workflow/overview.adoc[Read the full workflow]
-* xref:workflow/authoring.adoc[Learn authoring conventions]
+* xref:how-to/drive-the-workflow.adoc[Drive the workflow with the skills]
