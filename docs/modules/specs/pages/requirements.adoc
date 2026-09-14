@@ -26,3 +26,17 @@ include::requirements/REQ-011-archive-refuses-unsatisfied.adoc[]
 include::requirements/REQ-012-archive-verification-read-only.adoc[]
 
 include::requirements/REQ-013-decision-guidance-madr-fields.adoc[]
+
+include::requirements/REQ-014-associate-issue-tracker-with-workflow.adoc[]
+
+include::requirements/REQ-015-record-tracker-issue-for-change.adoc[]
+
+include::requirements/REQ-016-create-or-link-tracker-issue.adoc[]
+
+include::requirements/REQ-017-import-tracker-first-issue.adoc[]
+
+include::requirements/REQ-018-keep-tracker-status-in-step.adoc[]
+
+include::requirements/REQ-019-ignore-tracker-state-changes.adoc[]
+
+include::requirements/REQ-020-record-requirements-as-behaviour-not-mechanisms.adoc[]

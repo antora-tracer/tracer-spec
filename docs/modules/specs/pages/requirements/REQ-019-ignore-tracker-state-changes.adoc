@@ -1,0 +1,6 @@
+[#REQ-019, item, role=requirement, status=draft, title="Ignore tracker-driven state changes"]
+--
+IF the linked tracker issue changes state, THEN the system SHALL NOT change the corresponding change's state.
+
+tracer:links[]
+--

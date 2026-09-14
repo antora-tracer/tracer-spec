@@ -19,6 +19,7 @@ Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
 |-------|---------|
 | `tspec-explore` | Enter explore mode; shape a change sketch without writing |
 | `tspec-propose` | Write a change, its requirements, and its decisions atomically |
+| `tspec-track` | Link, create, import, or push status for a change's tracker issue |
 | `tspec-apply` | Implement the change's tasks and advance its state |
 | `tspec-archive` | Validate and close a verified change |
 | `tspec-validate` | Validate the traceability graph |

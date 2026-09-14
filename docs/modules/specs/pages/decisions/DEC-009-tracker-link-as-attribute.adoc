@@ -1,0 +1,21 @@
+[#DEC-009, item, role=decision, status=proposed, title="Record the tracker link as a block attribute, not a relation"]
+--
+Context:: A change item must reference its tracker issue.
+Two candidate forms: a `trackerId` header attribute or a `tracker:<id>[]` relation macro.
+
+Options::
+* A `trackerId=` header attribute.
+** Good: arbitrary attributes are already parsed into `item.attributes`, so no grammar or core change; the issue stays outside the graph.
+** Bad: antora-tracer does not validate or render the link.
+* A `tracker:<id>[]` relation macro.
+** Good: consistent with existing relation syntax; potentially matrixable.
+** Bad: the target is not a graph item, so the edge dangles on validation or requires declaring an `issue` role that drags tracker data into the graph.
+
+Decision:: A `trackerId=` attribute.
+
+Rationale:: The issue is a pointer, not a traceability item; the parser already stores arbitrary attributes, so no core change is needed and validation stays quiet.
+
+Consequences:: The link is inert to antora-tracer — not validated, not in matrices — which is intended; `tspec-track` reads it from the item header.
+
+tracer:links[]
+--

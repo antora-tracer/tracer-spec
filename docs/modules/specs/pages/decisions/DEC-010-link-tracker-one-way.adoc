@@ -1,0 +1,21 @@
+[#DEC-010, item, role=decision, status=proposed, title="Link the tracker one-way and never reconcile"]
+--
+Context:: Both a change and its tracker issue carry a status; if both own it, they drift.
+Two candidate models: bidirectional sync or a link with one-way status push.
+
+Options::
+* Bidirectional synchronization — reconcile status in both directions.
+** Good: the tracker and the graph always agree.
+** Bad: needs conflict resolution and per-provider webhooks; the brittle path.
+* A link with one-way push — the change owns spec state; status is pushed to the tracker at lifecycle boundaries and never pulled back.
+** Good: one writer for status; no reconciliation logic; thin.
+** Bad: tracker-driven state changes are not reflected in the graph.
+
+Decision:: A link with one-way push.
+
+Rationale:: The acceptance gate is already human; the agent mirrors the human's decision into the tracker. Reconciliation adds complexity with no benefit to spec traceability.
+
+Consequences:: Tracker-driven state changes are ignored by design. Teams that want the tracker to be the execution source of truth mirror it manually, or a future change adds an explicit pull path.
+
+tracer:links[]
+--

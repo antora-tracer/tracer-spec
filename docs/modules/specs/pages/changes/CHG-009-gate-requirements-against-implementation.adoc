@@ -1,0 +1,16 @@
+[#CHG-009, item, role=change, status=proposed, title="Gate proposed requirements against implementation detail"]
+--
+Rationale:: The propose skill says requirements "state WHAT, never how", but the rule is advisory and nothing forces a pause, so requirements get written with implementation nouns — for example "as a `trackerId` attribute on the change item block header".
+The requirement guidance already carries a "Solution prescription" flag list, but the skill never applies it.
+
+Outcome:: The propose skill's Rules gain a concrete gate: before writing each requirement, run the SHALL against the requirement guidance's "Solution prescription" list, strip any mechanism to the observable outcome, and record the mechanism as a decision instead.
+The skill references the guidance's flag list rather than duplicating it.
+
+Out-of-scope:: Automatic enforcement via validation or lint — the distinction is semantic and un-lintable.
+A new review skill.
+Changes to the human accept gate or the archive cold reviewer.
+
+addresses:REQ-020[]
+records:DEC-012[]
+tracer:links[]
+--

@@ -1,0 +1,6 @@
+[#REQ-016, item, role=requirement, status=draft, title="Create or link the tracker issue on propose"]
+--
+WHEN a change is proposed and a tracker is configured, the system SHALL create or link the tracker issue and record its identifier on the change item.
+
+tracer:links[]
+--

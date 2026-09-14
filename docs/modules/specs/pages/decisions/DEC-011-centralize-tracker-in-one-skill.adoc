@@ -1,0 +1,21 @@
+[#DEC-011, item, role=decision, status=proposed, title="Centralize tracker interaction in one skill"]
+--
+Context:: Tracker interaction spans propose (link or create), apply and archive (status push), and a new import path.
+It could be folded into the existing lifecycle skills or centralized in one.
+
+Options::
+* Extend `tspec-propose`, `tspec-apply`, and `tspec-archive` — each grows tracker calls.
+** Good: no new skill; the lifecycle reads as one flow.
+** Bad: spreads provider-specific logic across skills that otherwise stay provider-agnostic.
+* One `tspec-track` skill — all tracker interaction in one place.
+** Good: provider specifics (gh CLI, Jira REST, transition names) change together and live together; import delegates item-writing to propose's machinery.
+** Bad: an extra skill in the workflow.
+
+Decision:: One `tspec-track` skill.
+
+Rationale:: Provider specifics change together and should live together; keeping them in one skill leaves the six lifecycle skills provider-agnostic.
+
+Consequences:: The lifecycle skills stay unchanged; `tspec-track` is the single place to add or fix a provider.
+
+tracer:links[]
+--

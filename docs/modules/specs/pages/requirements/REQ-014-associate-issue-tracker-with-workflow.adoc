@@ -1,0 +1,6 @@
+[#REQ-014, item, role=requirement, status=draft, title="Associate an issue tracker with the workflow"]
+--
+The system SHALL let a project associate an issue tracker with the workflow, or none, defaulting to none.
+
+tracer:links[]
+--

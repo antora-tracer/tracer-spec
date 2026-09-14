@@ -1,0 +1,6 @@
+[#REQ-017, item, role=requirement, status=draft, title="Import a tracker-first issue as a change"]
+--
+WHEN a change already exists in the configured tracker, the system SHALL import it as a change with its requirements, recording the tracker identifier on the change item.
+
+tracer:links[]
+--

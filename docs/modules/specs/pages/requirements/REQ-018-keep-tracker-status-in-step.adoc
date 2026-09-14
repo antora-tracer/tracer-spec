@@ -1,0 +1,6 @@
+[#REQ-018, item, role=requirement, status=draft, title="Keep tracker issue status in step with the change"]
+--
+The system SHALL keep the linked tracker issue's status in step with the change's lifecycle.
+
+tracer:links[]
+--

@@ -7,7 +7,7 @@ It records rationale, outcome, and out-of-scope fields, and links to the require
 
 [source,asciidoc]
 ----
-[#CHG-NNN, item, role=change, status=proposed, title="Short change title"]
+[#CHG-NNN, item, role=change, status=proposed, trackerId=, title="Short change title"]
 --
 Rationale:: Why this change is needed.
 Outcome:: What the change produces.

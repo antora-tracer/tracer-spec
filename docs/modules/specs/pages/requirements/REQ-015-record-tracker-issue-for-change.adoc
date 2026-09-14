@@ -1,0 +1,6 @@
+[#REQ-015, item, role=requirement, status=draft, title="Record the tracker issue for a change"]
+--
+The system SHALL record the identifier of the tracker issue associated with a change.
+
+tracer:links[]
+--

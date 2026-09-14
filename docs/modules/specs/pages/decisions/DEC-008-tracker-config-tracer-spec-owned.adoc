@@ -1,0 +1,21 @@
+[#DEC-008, item, role=decision, status=proposed, title="Keep tracker configuration in a tracer-spec-owned file"]
+--
+Context:: The tracker is a tracer-spec orchestration concern, but the workflow's only configuration file is `traceability.yml`, which belongs to the antora-tracer core.
+Placing tracker settings there would make tracer-spec inject content into a file owned by a dependency it adds onto.
+
+Options::
+* Add a `tracker:` block to `traceability.yml` — one file, but leaks tracer-spec content into antora-tracer's configuration.
+** Good: no new file; skills already read this file.
+** Bad: couples tracer-spec configuration to a file antora-tracer owns and validates.
+* A tracer-spec-owned `tspec.yml` — a parallel file scaffolded beside `traceability.yml`.
+** Good: keeps the dependency boundary clean; tracer-spec owns its own configuration.
+** Bad: a second configuration file to discover.
+
+Decision:: A tracer-spec-owned `tspec.yml`.
+
+Rationale:: `traceability.yml` belongs to antora-tracer, which has no dependency on tracer-spec; tracer-spec is an independent add-on and should own its configuration.
+
+Consequences:: Two configuration files. The `tspec-track` skill reads `tspec.yml` directly, and the command-line tool stays thin.
+
+tracer:links[]
+--

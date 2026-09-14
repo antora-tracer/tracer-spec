@@ -1,0 +1,6 @@
+[#REQ-020, item, role=requirement, status=draft, title="Record requirements as observable behaviour, not mechanisms"]
+--
+The system SHALL record each proposed requirement as observable behaviour, with any mechanism it names recorded as a decision instead.
+
+tracer:links[]
+--

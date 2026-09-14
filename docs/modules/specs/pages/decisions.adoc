@@ -14,3 +14,13 @@ include::decisions/DEC-005-change-role-keeps-three-fields.adoc[]
 include::decisions/DEC-006-fold-verification-into-archive.adoc[]
 
 include::decisions/DEC-007-nest-pros-cons-in-options.adoc[]
+
+include::decisions/DEC-008-tracker-config-tracer-spec-owned.adoc[]
+
+include::decisions/DEC-009-tracker-link-as-attribute.adoc[]
+
+include::decisions/DEC-010-link-tracker-one-way.adoc[]
+
+include::decisions/DEC-011-centralize-tracker-in-one-skill.adoc[]
+
+include::decisions/DEC-012-enforce-what-not-how-at-propose.adoc[]

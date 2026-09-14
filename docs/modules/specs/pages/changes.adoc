@@ -8,3 +8,7 @@ include::changes/CHG-005-role-guidance-resolvable-and-template-driven.adoc[]
 include::changes/CHG-006-verify-change-conformance-in-archive.adoc[]
 
 include::changes/CHG-007-enrich-decision-template-madr.adoc[]
+
+include::changes/CHG-008-configurable-issue-tracker-bridge.adoc[]
+
+include::changes/CHG-009-gate-requirements-against-implementation.adoc[]
