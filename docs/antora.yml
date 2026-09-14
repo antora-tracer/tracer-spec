@@ -1,6 +1,7 @@
 name: tracer-spec
 version: ~
 title: Tracer Spec Workflow
+start_page: specs:index.adoc
 nav:
   - modules/specs/nav.adoc
 asciidoc:
