@@ -10,7 +10,7 @@ Our basic model for a traced and AI-friendly workflow knows the following roles
 |Role | Description
 
 |Business Goal
-|A business goal is a desired outcome that an organization aims to achieve to support its strategic direction and business success.
+|A **business goal** is a desired outcome that an organization aims to achieve to support its strategic direction and business success.
 
 |User Need
 |A **user need** describes what a user requires from a system to achieve a desired goal or perform a task.
@@ -29,7 +29,7 @@ It defines the expected behavior of the system from the actor’s perspective, i
 
 |Requirement
 |Anything that describes what observable behaviour the software should expose.
-A requirement can be a functional, a constraint or a non-functional requirement.
+A **requirement** can be a functional, a constraint, or a non-functional requirement.
 A requirement can also be against processes or tooling for building and delivering the software.
 
 |Design Element
@@ -40,7 +40,7 @@ A requirement can also be against processes or tooling for building and deliveri
 Typical examples are Architecture Decision Records or Requirement Decision Records.
 |===
 
-== Role Relationships
+=== Role Relationships
 
 [cols="1,3a"]
 |===
@@ -51,3 +51,8 @@ Typical examples are Architecture Decision Records or Requirement Decision Recor
 
 
 |===
+
+== Tspec Artifacts
+
+Change::
+Not traced item. Provides the container for a change that addresses certain use cases and requirements.
