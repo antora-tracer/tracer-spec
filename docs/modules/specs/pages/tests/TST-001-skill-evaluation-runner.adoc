@@ -1,0 +1,15 @@
+[#TST-001, item, role=test, title="Paired skill evaluation runner checks"]
+--
+Test file: `scripts/evaluate-skills.js`; scenario suites: `skills/*/evals/evals.json`.
+
+The runner validates scenario suite shape, expectation types, and relative fixture paths before running cases.
+The valid graph fixture passes `antora-tracer validate`, and the invalid graph fixture reports dangling `REQ-999` from `CHG-001` without modifying either fixture.
+Deterministic Claude CLI stub runs pass all 6 explore checks, all 5 proposal checks, and all 9 validation checks with skills enabled; paired proposal and validation baseline checks also pass.
+The proposal fixture is copied separately for each run, and only the skill-enabled run changes traceability and `tspec/` files.
+The runner stores per-configuration transcripts, workspace-change summaries, expectation evidence, per-run JSON, and aggregate JSON and Markdown reports.
+These stub runs verify runner mechanics only; they do not measure real-model skill quality.
+
+verifies:REQ-025[]
+verifies:REQ-026[]
+tracer:links[]
+--

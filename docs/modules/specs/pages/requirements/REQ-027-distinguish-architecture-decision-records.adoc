@@ -1,0 +1,6 @@
+[#REQ-027, item, role=requirement, status=draft, title="Distinguish architecture decision records from business decisions"]
+--
+The system SHALL preserve software architecture decisions that are costly to reverse as a distinct, durable ADR item role separate from domain and business decisions.
+
+tracer:links[]
+--

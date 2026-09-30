@@ -1,0 +1,78 @@
+= How to Evaluate Workflow Skills
+
+This guide runs a skill's scenario suite with and without the skill in isolated copies of the same project fixture.
+
+== Prerequisites
+
+- Node.js 20 or later.
+- Dependencies installed with `npm install`.
+- Claude Code CLI installed, authenticated, and available on `PATH`.
+- A scenario suite and fixture under `skills/<skill>/evals/` and `evals/fixtures/`.
+
+== Run a suite
+
+Run the selected skill's default suite:
+
+[source,bash]
+----
+npm run eval:skills -- --skill tspec-explore
+----
+
+Select a different suite, output directory, model, or Claude executable with the runner options:
+
+[source,bash]
+----
+npm run eval:skills -- --skill tspec-explore --scenario skills/tspec-explore/evals/evals.json --output /tmp/tspec-explore-results --model sonnet
+----
+
+The runner executes each scenario once with the skill installed and once with Claude Code skill commands disabled.
+Each run gets a fresh copy of the same fixture.
+The runner deletes those copies after capturing the transcript, stderr, and file-change summary.
+
+The report directory contains `benchmark.json`, `benchmark.md`, and an `eval-<id>/` directory for each scenario.
+Each configuration directory contains `transcript.jsonl`, `stderr.txt`, `workspace-changes.json`, and `result.json`.
+
+== Add an evaluation scenario
+
+Add `skills/<skill>/evals/evals.json` with a matching `skill_name` and a non-empty `evals` array.
+Each scenario needs a numeric `id`, descriptive `name`, task `prompt`, relative `fixture` path, and an `expectations` array.
+The fixture path is relative to the repository root.
+
+Example:
+
+[source,json]
+----
+{
+  "skill_name": "tspec-validate",
+  "evals": [
+    {
+      "id": 1,
+      "name": "valid graph passes",
+      "prompt": "Validate the graph without editing files.",
+      "expected_output": "Reports successful validation without modifying the fixture.",
+      "fixture": "evals/fixtures/spec-project",
+      "expectations": [
+        {
+          "configuration": "with_skill",
+          "type": "workspace_unchanged",
+          "text": "Validation leaves fixture files unchanged."
+        }
+      ]
+    }
+  ]
+}
+----
+
+Each expectation may apply to `with_skill`, `without_skill`, or `both` configurations; omitting `configuration` applies it to both.
+Supported checks are `assistant_contains`, `assistant_not_contains`, `transcript_contains`, `workspace_unchanged`, `workspace_changed_under`, `new_file_contains`, `file_exists`, `file_not_exists`, `file_contains`, `directory_contains`, and `exit_code`.
+Use relative paths for filesystem checks so the runner can reject paths outside the fixture.
+
+== Interpret the results
+
+Use `benchmark.md` for per-scenario checks and aggregate pass rates.
+Compare the saved transcripts for qualitative behavior; string matches do not establish that reasoning is correct.
+A non-zero runner exit means at least one declared expectation failed or a run did not satisfy the scenario's configured exit check.
+
+The runner targets Claude Code and gives it only file-inspection, file-editing, and `antora-tracer` CLI tools; the baseline additionally disables Claude Code skill commands.
+Project instructions remain enabled in both configurations.
+The runner is not a security sandbox: only evaluate trusted prompts and fixtures, and do not allow a scenario to make external changes.

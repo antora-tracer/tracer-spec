@@ -1,0 +1,56 @@
+extends: minimal
+
+roles:
+  - change
+  - decision
+
+roleGuidance:
+  change:
+    page: docs/modules/specs/pages/guidance/change.adoc
+    idPrefix: CHG
+  decision:
+    page: docs/modules/specs/pages/guidance/decision.adoc
+    idPrefix: DEC
+
+relations:
+  change:
+    requirement:
+      addresses:
+        reverse: addressed_by
+    decision:
+      records:
+        reverse: recorded_by
+
+matrices:
+  - name: changes-to-requirements
+    description: Changes traced to addressed requirements
+    rows: change
+    columns: [requirement]
+    coverageRelations:
+      requirement: [addresses]
+
+workflow:
+  change:
+    states: [proposed, refined, accepted, implemented, verified, closed, rejected]
+    transitions:
+      proposed: [refined, rejected]
+      refined: [accepted, proposed]
+      accepted: [implemented, rejected]
+      implemented: [verified, accepted]
+      verified: [closed, implemented]
+  requirement:
+    states: [draft, reviewed, approved, superseded, withdrawn]
+    transitions:
+      draft: [reviewed, withdrawn]
+      reviewed: [approved, draft]
+      approved: [superseded]
+  decision:
+    states: [proposed, accepted, rejected, superseded]
+    transitions:
+      proposed: [accepted, rejected]
+      accepted: [superseded]
+
+validation:
+  change:
+    accepted:
+      requiresRoles: [requirement]

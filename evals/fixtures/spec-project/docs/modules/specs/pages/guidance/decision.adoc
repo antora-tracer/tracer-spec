@@ -1,0 +1,14 @@
+= Decision
+
+[source,asciidoc]
+----
+[#DEC-NNN, item, role=decision, status=proposed, title="Short decision title"]
+--
+Context:: Why this decision is needed.
+Options:: Alternatives and their advantages and disadvantages.
+Decision:: Chosen option.
+Rationale:: Why the chosen option won.
+Consequences:: What follows.
+tracer:links[]
+--
+----

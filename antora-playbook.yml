@@ -16,3 +16,7 @@ antora:
 ui:
   bundle:
     url: https://github.com/rattermeyer/antora-ui-conemso/releases/download/v1.2.0/ui-bundle.zip
+
+runtime:
+  log:
+    level: warn

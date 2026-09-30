@@ -1,0 +1,6 @@
+= Verification Tests
+
+Test items record observable verification evidence for requirements.
+
+include::tests/TST-001-skill-evaluation-runner.adoc[]
+

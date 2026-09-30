@@ -43,6 +43,7 @@ The site renders this as a matrix showing each change against the requirements i
 == Self-traceability
 
 This site traces itself.
-Its own changes, requirements, and decisions are the items in the graph, and the pages under `changes/`, `requirements/`, and `decisions/` render those items alongside the matrices and coverage reports.
+Its own changes, requirements, decisions, and tests are the items in the graph, and the pages under `changes/`, `requirements/`, `decisions/`, and `tests/` render those items alongside the matrices and coverage reports.
+Test items carry `verifies:` relations that record evidence for requirements implemented by a change.
 
 The extension that produces the graph is the same extension this documentation describes — the site demonstrates the workflow it teaches.

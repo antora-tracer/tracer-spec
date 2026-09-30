@@ -1,0 +1,17 @@
+[#DEC-001, item, role=decision, status=proposed, title="Base fixture decision"]
+--
+Context:: The evaluation fixture needs a valid baseline graph.
+
+Options::
+* Include a linked change, requirement, and decision.
+** Good: exercises the declared roles and relations.
+** Bad: adds three small fixture records.
+
+Decision:: Include the linked records.
+
+Rationale:: The fixture must support propose and validate scenarios.
+
+Consequences:: Validation starts from a known graph.
+
+tracer:links[]
+--

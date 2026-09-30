@@ -1,0 +1,53 @@
+= Presets
+
+
+== Antora Tracer Roles
+
+Our basic model for a traced and AI-friendly workflow knows the following roles
+
+[cols="1,3a"]
+|===
+|Role | Description
+
+|Business Goal
+|A business goal is a desired outcome that an organization aims to achieve to support its strategic direction and business success.
+
+|User Need
+|A **user need** describes what a user requires from a system to achieve a desired goal or perform a task.
+It focuses on the user’s desired outcome rather than prescribing a specific solution or implementation.
+
+|Quality Attribute
+|A **quality attribute** is a measurable or assessable characteristic of a system that describes how well it performs or satisfies a requirement, rather than what functionality it provides. Examples include performance, security, reliability, usability, and maintainability.
+
+|Quality Scenario
+|A **quality scenario** describes a specific, testable situation in which a system’s quality attribute is evaluated.
+It defines the relevant context, stimulus, expected system response, and measurable response criteria.
+
+|Use Case
+|A **Use Case** describes how an actor interacts with a system to achieve a specific goal.
+It defines the expected behavior of the system from the actor’s perspective, including the relevant interactions and outcomes.
+
+|Requirement
+|Anything that describes what observable behaviour the software should expose.
+A requirement can be a functional, a constraint or a non-functional requirement.
+A requirement can also be against processes or tooling for building and delivering the software.
+
+|Design Element
+|A **Design Element** is the resulting concrete structural or behavioral element, such as a component, interface, data model, or deployment element.
+
+|Decision Record
+|When you have to decide between multiple alternatives, you should document your decision process.
+Typical examples are Architecture Decision Records or Requirement Decision Records.
+|===
+
+== Role Relationships
+
+[cols="1,3a"]
+|===
+|Relationship | Description
+
+|User Need - is motivated by - Business Goal
+|
+
+
+|===

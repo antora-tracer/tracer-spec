@@ -17,6 +17,33 @@ The `SKILL.md` files are the source of truth — this page mirrors their frontma
 | `tspec-track` | Bridge a change to its issue-tracker issue. | `<--link\|--create\|--import\|--status> <id>` | `antora-tracer`, `gh`, `curl`
 |===
 
+== Skill evaluation suite
+
+Evaluation suites are JSON files at `skills/<skill>/evals/evals.json`.
+Each suite contains a matching `skill_name` and a non-empty `evals` array.
+Each evaluation has a numeric `id`, `name`, task `prompt`, repository-relative fixture directory, optional `expected_output`, and `expectations` array.
+
+Each expectation has a description in `text`, a supported `type`, and an optional `configuration` selector (`with_skill`, `without_skill`, or `both`).
+If the selector is omitted, the check runs against both configurations.
+
+[cols="30a,70a"]
+|===
+| Type | Result
+
+| `assistant_contains`, `assistant_not_contains` | Check the final assistant response for a literal substring.
+| `transcript_contains` | Check the complete CLI transcript for a literal substring.
+| `workspace_unchanged` | Require no fixture-file changes.
+| `workspace_changed_under` | Require at least one fixture-file change under the relative `path`.
+| `file_exists`, `file_not_exists` | Check the relative `path` in the fixture.
+| `file_contains` | Find literal `value` in the file at the relative `path`.
+| `directory_contains` | Find literal `value` in any file below the relative `path`.
+| `new_file_contains` | Find literal `value` in any newly created or modified file below the relative `path`.
+| `exit_code` | Compare `value` with the Claude CLI process exit code.
+|===
+
+File checks reject absolute paths and paths that escape the fixture.
+Expectations are deterministic checks, not a measure of reasoning quality.
+
 == tspec-explore
 
 Enter explore mode — a thinking partner that produces a change sketch (rationale, outcome, scope) without writing durable content.

@@ -14,3 +14,8 @@ include::changes/CHG-008-configurable-issue-tracker-bridge.adoc[]
 include::changes/CHG-009-gate-requirements-against-implementation.adoc[]
 
 include::changes/CHG-010-complete-diataxis-site-structure.adoc[]
+
+include::changes/CHG-011-evaluate-workflow-skills.adoc[]
+
+include::changes/CHG-012-requirement-driven-architecture-records.adoc[]
+

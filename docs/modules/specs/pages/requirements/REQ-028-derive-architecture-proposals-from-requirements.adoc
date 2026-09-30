@@ -1,0 +1,6 @@
+[#REQ-028, item, role=requirement, status=draft, title="Derive architecture proposals from change requirements"]
+--
+When change requirements imply a software architecture decision that is costly to reverse, the system SHALL produce an architecture proposal grounded in the relevant requirements and identify the material options and trade-offs.
+
+tracer:links[]
+--

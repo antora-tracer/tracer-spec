@@ -3,6 +3,7 @@
 * How-to Guides
 ** xref:how-to/scaffold-project.adoc[How to scaffold a project]
 ** xref:how-to/drive-the-workflow.adoc[How to drive the workflow]
+** xref:how-to/evaluate-workflow-skills.adoc[How to evaluate workflow skills]
 * Reference
 ** xref:reference/cli.adoc[CLI]
 ** xref:reference/skills.adoc[Skills]
@@ -14,3 +15,4 @@
 * xref:changes.adoc[Changes]
 * xref:requirements.adoc[Requirements]
 * xref:decisions.adoc[Decisions]
+* xref:tests.adoc[Tests]

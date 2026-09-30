@@ -1,78 +1,41 @@
 ---
 name: tspec-explore
 description: >
-  Enter explore mode - a thinking partner for shaping a potential change in the antora-tracer traceability graph before writing anything. Use this whenever the user wants to think through a change, requirement, or design decision before proposing it, even without naming the workflow: "let me think through this", "should we add X?", "help me understand Y before proposing". Produces a change sketch (rationale, outcome, scope) without writing durable content.
+  Enter explore mode when the user wants to think through a change, requirement, or design decision before proposing or recording it, even without naming the workflow (for example, "should we add X?" or "help me understand Y first"). Investigate relevant project context, compare options, and conclude with a change sketch or a clear no-change/requirement-level outcome without making durable changes.
 argument-hint: "<topic>"
 license: MIT
 compatibility: antora-tracer
 ---
 
-Explore a problem before proposing a change.
+Explore a problem before deciding whether to propose a change.
 
-**Explore mode is for thinking, not implementing.** The line is durable change, not code: don't edit the repo or the traceability docs (`docs/modules/specs/pages/`). Read files, search code, and run commands freely — a throwaway scratch script in `/tmp` to test an assumption is fine. No tool restriction; read-only by discipline, not by sandbox.
+**Explore mode is for understanding, not implementing.** Do not edit the repository, traceability docs, or external systems. Read files, search code, and run commands only when they are read-only. Put any scratch files or experiments in `/tmp`; avoid commands that alter repository or external state.
 
 ## Stance
 
-- Curious, not prescriptive - ask questions that emerge naturally.
-- Open threads, not interrogations - surface directions, don't funnel through one path.
-- Visual - use ASCII diagrams liberally.
-- Grounded - investigate the actual codebase, don't theorize.
+- Be curious and grounded: investigate the actual codebase and ask focused questions when an answer would change the direction.
+- Keep questions open-ended, not interrogative. Resolve what you can from the repository before asking the user.
+- Stay exploratory rather than prescriptive; explain uncertainty and assumptions.
 
-## What you might do
+## Explore
 
-**Clarify the problem**
-- ask questions
-- challenge assumptions
-- reframe the problem
-
-**Investigate the context**
-- read the codebase and docs
-- map the architecture and integration points
-- identify patterns already in use
-- surface hidden complexity
-- check the existing traceability graph for related items
-
-**Compare options**
-- pros, cons, trade-offs, and a recommendation
-- Brainstorm alternatives and variations
-- Sketch trade-offs and implications
-- Recommend a path forward (if asked)
-
-**Visualize the change**
-- ASCII diagrams, flowcharts, and tables
-```
-+------------------------------------------+
-|     Use ASCII diagrams liberally         |
-+------------------------------------------+
-|                                          |
-|   [State A] -------> [State B]           |
-|       |                                  |
-|       v                                  |
-|   [State C]                              |
-|                                          |
-|   System diagrams, state machines,       |
-|   data flows, architecture sketches,     |
-|   dependency graphs, comparison tables   |
-|                                          |
-+------------------------------------------+
-```
-
-**Draw with plain ASCII only** — borders `+` `-` `|`, arrows `-->` `<--` `^` `v`, markers `*` `x`.
-Unicode diagram glyphs can render at different widths across terminals, fonts, and locales, so padded boxes and aligned tables can drift. Keep every diagram character ASCII.
-
-**Surface risks and unknowns**
-- Identify gaps in knowledge
-- Highlight assumptions and dependencies
-- Suggest spikes or investigations to reduce risk
-
-**Produce a prose change sketch**
-- Cover why the change is needed, what it produces, and what it excludes.
+- Clarify the goal and reframe the problem when useful.
+- Inspect relevant code, documentation, and traceability items to map existing behavior, integration points, conventions, and constraints.
+- Compare plausible options, trade-offs, risks, and dependencies. Recommend a path when the user asks or the evidence supports a clear choice.
+- Surface important unknowns and small, read-only investigations that could resolve them.
+- Use diagrams or tables only when they make the reasoning easier to follow. Keep diagrams plain ASCII for consistent rendering.
+- Do not force a change: existing coverage, lack of a justified need, or a requirement-level need may be the right conclusion.
 
 ## Output
 
+For a justified change, end with a concise change sketch covering the rationale, intended outcome, and out-of-scope boundaries; label material assumptions or open questions.
+
+If no change is warranted, state why. Distinguish an existing item that already covers the need from a need that is not justified. If the need is a requirement or another single traceability item rather than a change, say so instead of drafting a change sketch.
+
 Do not write anything durable.
-End with a one-paragraph change sketch the user can confirm.
 
 ## Next
 
-Hand off to `tspec-propose` once the user confirms the sketch — or stop if exploration found no change is warranted (an existing item covers it, or the need is a requirement rather than a change).
+- Hand off to `tspec-propose` after the user confirms a change sketch.
+- For a requirement or another single item, suggest `tspec-write-item` instead.
+- If no change or item is warranted, explain the conclusion and stop.

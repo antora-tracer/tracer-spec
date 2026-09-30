@@ -1,0 +1,22 @@
+[#DEC-016, item, role=decision, status=proposed, title="Record hard-to-reverse software architecture as traceable ADRs"]
+--
+Context:: The current decision role captures domain and specification choices, while software architecture choices that are costly to reverse need a record derived from change requirements and explicit user input on unresolved options.
+
+Options::
+* Keep all choices in the `decision` role.
+** Good: preserves one item role and existing traceability.
+** Bad: conflates domain and business decisions with long-lived technical architecture choices.
+* Add a distinct, traceable ADR role.
+** Good: distinguishes architectural records and allows direct links to their change and relevant requirements.
+** Bad: adds a role, guidance, and relation to maintain.
+
+Decision:: Add a distinct ADR role for software architecture choices that are costly to reverse; keep domain and business choices as `DEC` items.
+
+Rationale:: The user distinguished costly-to-reverse software architecture decisions from domain and business choices and selected a dedicated, traceable ADR role linked to the change and relevant requirements.
+
+Consequences:: Proposals must identify requirement-driven architecture choices and ask the user to resolve material unknowns before finalizing an ADR.
+The traceability model needs an ADR identifier, guidance, index, and relations to changes and requirements.
+The accepted DEC-003 policy that rejects ADRs must be superseded when this change is implemented.
+
+tracer:links[]
+--

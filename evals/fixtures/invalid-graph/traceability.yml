@@ -1,0 +1,9 @@
+extends: minimal
+roles:
+  - change
+  - decision
+relations:
+  change:
+    requirement:
+      addresses:
+        reverse: addressed_by

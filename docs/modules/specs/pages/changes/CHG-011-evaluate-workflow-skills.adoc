@@ -1,0 +1,20 @@
+[#CHG-011, item, role=change, status=verified, title="Evaluate workflow skills with paired, repeatable scenarios"]
+--
+Rationale:: The workflow skills guide exploration, traceability edits, and validation, but the repository has no repeatable way to check whether they produce their promised behavior or to compare that behavior with the same task run without the skill.
+The external skill-creator tooling offers useful eval and benchmark conventions, but its task execution is not a project-local, reproducible runner for these skills.
+
+Outcome:: Add a small repository-local evaluation runner and per-skill scenario files using the existing skill-creator eval schema where practical.
+Run each selected scenario against equivalent temporary project copies with the target skill enabled and disabled, preserve transcripts and workspace-change summaries, and report deterministic expectation results, timing, and errors for both configurations.
+Provide initial scenarios for explore, propose, and validate to cover read-only reasoning, traceability writes, and CLI validation.
+Use the installed Claude Code CLI as the initial execution adapter, with no added runtime dependency.
+
+Out-of-scope:: Supporting other agent harnesses or model-provider APIs.
+Building a hosted evaluation service, custom web review UI, automatic prompt optimizer, or general-purpose grading platform.
+Treating automated text matches as a substitute for human review of nuanced reasoning.
+Changing the durable traceability model to represent evaluation cases as graph items.
+
+addresses:REQ-025[]
+addresses:REQ-026[]
+records:DEC-015[]
+tracer:links[]
+--

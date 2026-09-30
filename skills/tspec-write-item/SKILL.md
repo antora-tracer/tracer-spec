@@ -45,3 +45,7 @@ The reverse name is derived; either name may be authored.
 tracer:links[]
 --
 ```
+
+## Guidelines
+
+- One sentence per line.

@@ -1,0 +1,15 @@
+= Change Guidance
+
+[source,asciidoc]
+----
+[#CHG-NNN, item, role=change, status=proposed, title="Short change title"]
+--
+Rationale:: Why this change is needed.
+Outcome:: What the change produces.
+Out-of-scope:: What the change excludes.
+
+addresses:REQ-NNN[]
+records:DEC-NNN[]
+tracer:links[]
+--
+----

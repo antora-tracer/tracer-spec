@@ -1,0 +1,30 @@
+{
+  "skill_name": "tspec-validate",
+  "evals": [
+    {
+      "id": 1,
+      "name": "valid graph passes without modification",
+      "prompt": "Validate the traceability graph using antora-tracer and report the result. Do not edit any files.",
+      "expected_output": "Runs the fixture's validation command, reports the graph summary and result, and leaves repository files unchanged.",
+      "fixture": "evals/fixtures/spec-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "Validation is read-only." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "valid", "text": "Reports successful validation." },
+        { "configuration": "both", "type": "exit_code", "value": 0, "text": "Agent invocation completes successfully." }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "dangling relation is reported",
+      "prompt": "Validate the traceability graph and report every error with its file and line. Do not change files.",
+      "expected_output": "Reports that CHG-001 addresses the missing REQ-999 target and leaves all files unchanged.",
+      "fixture": "evals/fixtures/invalid-graph",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "Invalid graph validation is read-only." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "REQ-999", "text": "Reports the missing relationship target." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "CHG-001", "text": "Identifies the source change item." },
+        { "configuration": "both", "type": "exit_code", "value": 0, "text": "Agent invocation completes successfully." }
+      ]
+    }
+  ]
+}

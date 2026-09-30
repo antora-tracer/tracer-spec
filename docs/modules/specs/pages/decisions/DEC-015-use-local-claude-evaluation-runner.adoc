@@ -1,0 +1,30 @@
+[#DEC-015, item, role=decision, status=proposed, title="Start skill evaluation with a local Claude Code runner"]
+--
+Context:: The workflow skills need repeatable behavioral checks and with-skill versus baseline comparisons.
+The skill-creator tooling defines useful scenario, expectation, and benchmark conventions, but its task runs depend on interactive subagents and its trigger evaluator is specific to Claude Code.
+
+Options::
+* Reuse the external skill-creator scripts and viewer directly.
+** Good: avoids duplicating benchmark conventions and offers a mature review interface.
+** Bad: those scripts are outside this package, task execution is not a reusable project runner, and results depend on a user's separate skill-creator installation.
+* Build a repository-local, Claude Code-backed runner using Node.js built-ins and compatible scenario conventions.
+** Good: one project command can create equivalent fixtures, run paired cases, and preserve evidence without adding dependencies.
+** Bad: the first runner supports only Claude Code, and its deterministic checks cannot judge nuanced reasoning.
+* Build a provider-neutral agent execution and grading platform.
+** Good: supports multiple harnesses and richer grading from the outset.
+** Bad: adds abstractions, provider integrations, and operational surface before there is evidence they are needed.
+
+Decision:: Start with a repository-local Node.js runner that invokes the installed `claude` CLI, runs paired cases in temporary project copies, and stores scenario files under each skill's `evals/` directory.
+Reuse the skill-creator scenario and benchmark conventions where practical, but produce repository-local JSON and Markdown results.
+Use deterministic assertions for observable facts and leave qualitative judgments to transcript review.
+
+Rationale:: A thin local runner makes the paired comparison reproducible in this repository while reusing an existing scenario vocabulary.
+Restricting the initial adapter to the available Claude Code CLI avoids a speculative provider abstraction; the result files retain evidence needed to add other adapters later if actual use demands them.
+
+Consequences:: Evaluations require the Claude Code CLI and its configured model access.
+Runner executions must use disposable project copies and keep each configuration's workspace separate so skill-driven edits cannot contaminate the baseline.
+The initial report is a file-based review surface rather than a browser application.
+Expectation results measure declared checks, not overall reasoning quality, so transcripts remain available for human review.
+
+tracer:links[]
+--

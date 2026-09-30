@@ -1,0 +1,19 @@
+{
+  "skill_name": "tspec-propose",
+  "evals": [
+    {
+      "id": 1,
+      "name": "proposal creates linked traceability records",
+      "prompt": "Propose a change titled 'Add a project-local skill evaluation command'. Its rationale is to make skill regressions repeatable. Its outcome is one local command that compares a selected skill against a no-skill run on the same prompt and stores evidence. Out of scope are multiple agent providers and automatic grading. Include one testable requirement and one decision to use Node.js built-ins. Do not run the workflow implementation.",
+      "expected_output": "Writes one proposed CHG with Rationale/Outcome/Out-of-scope, one draft requirement linked with addresses, one proposed decision linked with records, and a temporary tasks.md; validates all new relations.",
+      "fixture": "evals/fixtures/spec-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_changed_under", "path": "docs/modules/specs/pages", "text": "The skill authors durable traceability item files." },
+        { "configuration": "with_skill", "type": "workspace_changed_under", "path": "tspec", "text": "The skill creates a temporary change task checklist." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "addresses:REQ-", "text": "The new change addresses the generated requirement." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "records:DEC-", "text": "The new change records the generated decision." },
+        { "configuration": "without_skill", "type": "workspace_unchanged", "text": "The baseline run cannot mutate the project fixture." }
+      ]
+    }
+  ]
+}

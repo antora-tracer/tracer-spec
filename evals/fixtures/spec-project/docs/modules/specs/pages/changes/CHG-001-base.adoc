@@ -1,0 +1,10 @@
+[#CHG-001, item, role=change, status=proposed, title="Base fixture change"]
+--
+Rationale:: The evaluation fixture needs a small valid graph.
+Outcome:: One linked change, requirement, and decision.
+Out-of-scope:: Additional workflow artifacts.
+
+addresses:REQ-001[]
+records:DEC-001[]
+tracer:links[]
+--

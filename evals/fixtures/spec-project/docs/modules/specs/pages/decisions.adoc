@@ -1,0 +1,2 @@
+= Decisions
+:traceability-links: true

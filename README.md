@@ -96,6 +96,18 @@ The seven skills:
 | `tspec-write-item` | Write one item of any declared role |
 | `tspec-track` | Bridge a change to its issue-tracker issue (link, create, import, status) |
 
+=== Evaluate a workflow skill
+
+Install dependencies and the Claude Code CLI, then run a skill's scenario suite:
+
+[source,bash]
+----
+npm run eval:skills -- --skill tspec-explore
+----
+
+Results are written under `eval-results/` with paired transcripts and a JSON and Markdown summary.
+See the xref:how-to/evaluate-workflow-skills.adoc[skill evaluation guide] for writing scenarios and reading results.
+
 === Build the Antora site
 
 [source,bash]

@@ -1,0 +1,9 @@
+[#CHG-001, item, role=change, status=proposed, title="Dangling fixture change"]
+--
+Rationale:: The fixture must exercise dangling-reference reporting.
+Outcome:: Validation reports the missing requirement reference.
+Out-of-scope:: Repairing the reference.
+
+addresses:REQ-999[]
+tracer:links[]
+--

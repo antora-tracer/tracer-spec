@@ -1,0 +1,6 @@
+[#REQ-026, item, role=requirement, status=draft, title="Report skill evaluation outcomes with evidence"]
+--
+The system SHALL report each declared expectation's pass or fail result and evidence by scenario and run configuration, together with aggregate results, execution time, and runtime errors.
+
+tracer:links[]
+--

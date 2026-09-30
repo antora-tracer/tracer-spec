@@ -8,14 +8,16 @@
   },
   "scripts": {
     "validate": "antora-tracer validate -i docs --config traceability.yml",
-    "build": "npx antora antora-playbook.yml"
+    "build": "npx antora antora-playbook.yml",
+    "eval:skills": "node scripts/evaluate-skills.js"
   },
   "files": [
     "bin",
     "src",
     "templates",
     "skills",
-    "commands",
+    "scripts",
+    "evals",
     "README.md",
     "LICENSE"
   ],

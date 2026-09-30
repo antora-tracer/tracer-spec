@@ -1,0 +1,38 @@
+{
+  "skill_name": "tspec-explore",
+  "evals": [
+    {
+      "id": 1,
+      "name": "exploration leaves workspace untouched",
+      "prompt": "Explore whether the project should add a single workflow skill named eval-review. Inspect relevant files and tell me whether it duplicates anything. Do not implement or save a proposal.",
+      "expected_output": "A concise, repository-grounded conclusion and change sketch only if justified; exploration must leave the project unchanged.",
+      "fixture": "evals/fixtures/spec-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "Explore leaves every project file unchanged." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "SKILL.md", "text": "Investigation identifies the skills as repository inputs." }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "exploration recognizes single-item need",
+      "prompt": "A user wants to record a single missing requirement to list changes by status. Explore the right traceability approach, without writing files.",
+      "expected_output": "Recognizes this as a single requirement item, not a multi-artifact change; recommends tspec-write-item and makes no durable edits.",
+      "fixture": "evals/fixtures/spec-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "Single-item exploration leaves every project file unchanged." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "tspec-write-item", "text": "Points a single-item need to the single-item authoring workflow." }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "existing coverage does not force a change sketch",
+      "prompt": "The fixture already has a requirement that fully covers the requested feature of listing changes by status. Explore whether a new change is warranted, and do not write files.",
+      "expected_output": "Recognizes the existing requirement fully covers listing changes by status, reports that no new change is warranted, and does not modify the workspace.",
+      "fixture": "evals/fixtures/spec-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "Exploration of already-covered need makes no project edits." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "no new change is warranted", "text": "Concludes that existing coverage removes the need for a new change." }
+      ]
+    }
+  ]
+}

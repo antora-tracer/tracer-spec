@@ -1,0 +1,6 @@
+[#REQ-001, item, role=requirement, status=draft, title="List changes by status"]
+--
+The system SHALL let a user list changes filtered by their lifecycle status.
+
+tracer:links[]
+--

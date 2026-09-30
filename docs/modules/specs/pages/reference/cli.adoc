@@ -75,3 +75,23 @@ The workflow uses these commands directly.
 |===
 
 The full `antora-tracer` CLI is documented in its own reference; this workflow depends on it as `@antora-tracer/core`.
+== Skill evaluation
+
+`npm run eval:skills --` runs one skill's scenario suite with Claude Code.
+Each scenario runs once with the skill and once with skill commands disabled, against separate copies of the same fixture.
+
+[source,bash]
+----
+npm run eval:skills -- --skill <name> [options]
+----
+
+Options:
+
+`--skill <name>` is required and names a directory under `skills/` containing `SKILL.md`.
+`--scenario <file>` selects an evaluation suite; the default is `skills/<name>/evals/evals.json`.
+`--output <dir>` selects the report directory; the default is `eval-results/<name>-<timestamp>/`.
+`--model <id>` selects the Claude model; the default is the CLI-configured model.
+`--claude <executable>` selects the Claude Code executable; the default is `claude` on `PATH`.
+
+The report contains per-run transcripts, standard error, workspace-change summaries, deterministic expectation evidence, execution durations, model metadata, and aggregate JSON and Markdown summaries.
+The fixture directories must be trusted: the runner is not a security sandbox and does not prevent external side effects.

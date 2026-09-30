@@ -1,0 +1,18 @@
+[#CHG-012, item, role=change, status=proposed, trackerId=2, title="Derive traceable architecture records from requirements"]
+--
+Rationale:: The workflow records domain and business choices as `DEC` items, but software architecture decisions that are costly to reverse need a distinct record derived from the change requirements.
+
+Outcome:: Add a traceable ADR item role for hard-to-reverse software architecture choices.
+`tspec-propose` derives architecture proposals and their options from the relevant requirements, asks the user to resolve material open choices, and records the resulting ADR linked to its change and the requirements it addresses.
+Keep domain and business decisions as `DEC` items.
+
+Out-of-scope:: Reclassifying existing domain or business decisions as ADRs.
+Creating ADRs for architecture choices not implied by the change requirements.
+Choosing an unresolved architecture option on the user's behalf.
+
+addresses:REQ-027[]
+addresses:REQ-028[]
+addresses:REQ-029[]
+records:DEC-016[]
+tracer:links[]
+--

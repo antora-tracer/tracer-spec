@@ -1,6 +1,8 @@
 = Decisions
 :traceability-links: true
 
+== Traceability model
+
 include::decisions/DEC-001-change-as-entry-point.adoc[]
 
 include::decisions/DEC-002-scenarios-as-prose.adoc[]
@@ -9,11 +11,19 @@ include::decisions/DEC-003-design-recorded-as-decisions.adoc[]
 
 include::decisions/DEC-004-approved-requirements-immutable.adoc[]
 
+== Item templates
+
 include::decisions/DEC-005-change-role-keeps-three-fields.adoc[]
+
+include::decisions/DEC-007-nest-pros-cons-in-options.adoc[]
+
+== Workflow skills
 
 include::decisions/DEC-006-fold-verification-into-archive.adoc[]
 
-include::decisions/DEC-007-nest-pros-cons-in-options.adoc[]
+include::decisions/DEC-012-enforce-what-not-how-at-propose.adoc[]
+
+== Issue tracker
 
 include::decisions/DEC-008-tracker-config-tracer-spec-owned.adoc[]
 
@@ -23,8 +33,16 @@ include::decisions/DEC-010-link-tracker-one-way.adoc[]
 
 include::decisions/DEC-011-centralize-tracker-in-one-skill.adoc[]
 
-include::decisions/DEC-012-enforce-what-not-how-at-propose.adoc[]
+== Documentation
 
 include::decisions/DEC-013-single-workflow-how-to-page.adoc[]
 
 include::decisions/DEC-014-keep-guidance-pages-in-place.adoc[]
+
+== Skill evaluation
+
+include::decisions/DEC-015-use-local-claude-evaluation-runner.adoc[]
+
+== Architecture decisions
+
+include::decisions/DEC-016-record-architecture-choices-as-adrs.adoc[]
