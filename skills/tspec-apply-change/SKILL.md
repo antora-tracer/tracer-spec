@@ -1,5 +1,5 @@
 ---
-name: tspec-apply
+name: tspec-apply-change
 description: >
   Implement an accepted change: work through the task checklist, add test evidence, and advance the change state from accepted to implemented to verified.
 argument-hint: "<change-id>"
