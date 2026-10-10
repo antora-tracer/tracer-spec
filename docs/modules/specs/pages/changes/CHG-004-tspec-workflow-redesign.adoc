@@ -10,19 +10,15 @@ An approved requirement is immutable: a change to its meaning supersedes it with
 The workflow mechanics follow from the grammar: stage skills orchestrate the change lifecycle, a human acceptance gate plus validation enforces review before implementation, and only execution tasks are temporary.
 
 Outcome:: The grammar is a three-tier model that starts lean and grows on demand.
-Tier 1, the workflow core, holds the change role with states proposed, refined, accepted, implemented, verified, closed, and rejected, and the requirement role with states draft, reviewed, approved, superseded, and withdrawn.
-Tier 2, understanding, holds the decision role with states proposed, accepted, rejected, and superseded, and the test role without a lifecycle.
-Tier 2 also holds growth roles that never gate the workflow: design_concept, use_case, goal, scenario, and arc42.
-Tier 3 holds temporary execution tasks as Markdown under tspec/, never in the graph.
-Initial relation pairs are change addresses requirement (reverse addressed_by), change records decision (reverse recorded_by), requirement supersedes requirement (reverse superseded_by), and test verifies requirement (reverse verified_by); either name may be authored and the edge canonicalizes to the primary direction.
-Initial matrices are changes-to-requirements and requirements-tests.
+Tier 1, the workflow core, holds change and requirement roles; Tier 2 holds decisions, tests, and optional understanding roles including use_case; Tier 3 holds temporary execution tasks.
+Initial relation pairs are change `addresses` requirement, change `records` decision, requirement `supersedes` requirement, and test `verifies` requirement. Feature refinement adds use_case `leads_to` requirement and requirement `refines` requirement; configured reverse names are derived.
+Initial matrices are changes-to-requirements and requirements-tests; feature refinement adds use-cases-to-requirements and requirements-refinement.
 A change carries structured rationale, outcome, and out-of-scope fields.
 A change cannot reach accepted without addressing at least one requirement.
-The grammar extends the minimal preset and declares change and decision instead of extending requirements-engineering.
-Six skills implement the workflow: explore, propose, apply, archive, and validate orchestrate the change lifecycle, and write-item creates items of any declared role.
-Propose writes the change, its requirements, and its decisions atomically so relation macros never dangle.
-A change is accepted by a human gate: the agent advances refined to accepted only on the human's instruction, and validation enforces the transition.
-The temporary store is tspec/<change-id>/tasks.md, created by propose, consumed by apply, and deleted by archive.
+The grammar extends `minimal`, retaining its requirement/test roles and adding change, decision, and use_case.
+Workflow skills separate exploration, feature refinement, proposal of one implementation slice, change refinement, apply, archive, validation, generic item writing, and ticket access.
+Feature refinement writes use cases and product/component requirements; proposal writes the implementation change and its links; change refinement adds software requirements and then temporary tasks.
+A change is accepted by a human gate only after its refined requirements are ready; the existing apply/archive lifecycle remains downstream.
 The command-line tool is thin: init scaffolds the project and installs the skills, no command drives the workflow, and validation and matrices stay with the antora-tracer CLI.
 An item is an anchor block `[#ID, item, role=<role>, status=<state>, title="..."]` opening a `--` delimited body of prose, relation macros, and a closing `tracer:links[]`.
 A relation macro is `<relation>:<ID>[]` written in the source item.

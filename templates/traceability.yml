@@ -1,20 +1,22 @@
-# Trace Spec Workflow configuration.
-# Starts from the minimal preset (requirement + test) and adds the spec-driven
-# Tier-1 core: change and decision.
+# Trace Spec Workflow configuration extending antora-tracer minimal.
 
 extends: minimal
 
 roles:
   - change
   - decision
+  - use_case
 
 roleGuidance:
   change:
-    page: guidance/change.adoc
+    page: docs/modules/specs/pages/guidance/change.adoc
     idPrefix: CHG
   decision:
-    page: guidance/decision.adoc
+    page: docs/modules/specs/pages/guidance/decision.adoc
     idPrefix: DEC
+  use_case:
+    page: docs/modules/specs/pages/guidance/use-case.adoc
+    idPrefix: UC
 
 relations:
   change:
@@ -24,6 +26,14 @@ relations:
     decision:
       records:
         reverse: recorded_by
+  use_case:
+    requirement:
+      leads_to:
+        reverse: is_derived_from
+  requirement:
+    requirement:
+      refines:
+        reverse: refined_by
 
 matrices:
   - name: changes-to-requirements
@@ -32,27 +42,18 @@ matrices:
     columns: [requirement]
     coverageRelations:
       requirement: [addresses]
-
-workflow:
-  change:
-    states: [proposed, refined, accepted, implemented, verified, closed, rejected]
-    transitions:
-      proposed: [refined, rejected]
-      refined: [accepted, proposed]
-      accepted: [implemented, rejected]
-      implemented: [verified, accepted]
-      verified: [closed, implemented]
-  requirement:
-    states: [draft, reviewed, approved, superseded, withdrawn]
-    transitions:
-      draft: [reviewed, withdrawn]
-      reviewed: [approved, draft]
-      approved: [superseded]
-  decision:
-    states: [proposed, accepted, rejected, superseded]
-    transitions:
-      proposed: [accepted, rejected]
-      accepted: [superseded]
+  - name: use-cases-to-requirements
+    description: Use cases traced to derived requirements
+    rows: use_case
+    columns: [requirement]
+    coverageRelations:
+      requirement: [leads_to]
+  - name: requirements-refinement
+    description: Requirements traced to more detailed requirements
+    rows: requirement
+    columns: [requirement]
+    coverageRelations:
+      requirement: [refines]
 
 validation:
   change:

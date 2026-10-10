@@ -1,5 +1,6 @@
 = Requirements
 :traceability-links: true
+Requirement levels use the ordinary `level` metadata values `product`, `component`, or `software`; more detailed requirements use `refines` links. See xref:reference/roles.adoc#requirements[the roles reference].
 
 == Traceable items
 

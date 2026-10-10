@@ -1,0 +1,4 @@
+= Requirements
+:traceability-links: true
+include::requirements/REQ-001-product.adoc[]
+include::requirements/REQ-002-component.adoc[]

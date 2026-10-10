@@ -10,12 +10,15 @@ This page is the authoritative reference for authoring items.
 | Role | Prefix | Initial status | Purpose
 
 | `change` | `CHG` | `proposed` | The entry point: rationale, outcome, and scope of one change.
-| `requirement` | `REQ` | `draft` | The spec unit: an observable obligation a change addresses.
+| `requirement` | `REQ` | `draft` | One observable obligation; its `level` metadata identifies product, component, or software scope.
+| `use_case` | `UC` | — | An actor goal and observable interaction leading to requirements.
 | `decision` | `DEC` | `proposed` | A durable record of a domain or specification choice.
 | `test` | `TST` | — | Verification evidence carrying `verifies:REQ-NNN[]`.
+
 |===
 
-Growth roles (`use_case`, `design_concept`, `goal`, `scenario`, `arc42`) are available when declared in `traceability.yml`.
+Other growth roles are available only when declared in `traceability.yml`.
+The `minimal` preset supplies the inherited `requirement` and `test` roles, requirement workflow, requirement relations, and `requirements-tests` matrix. This project adds `change`, `decision`, and `use_case`; inherited roles and coverage remain.
 
 == Requirements
 
@@ -30,54 +33,30 @@ Use EARS patterns:
 
 Scenarios stay as prose inside the requirement body.
 
-[source,asciidoc]
-----
-[#REQ-001, item, role=requirement, status=draft, title="Short title"]
---
-The system SHALL <observable behaviour>.
+A requirement may carry exactly one project convention for `level`: `product`, `component`, or `software`.
+These values are ordinary item metadata, not separate roles or a core-validated enum.
+Use the same `requirement` role at every level; a more detailed requirement points to the broader one with `refines:REQ-NNN[]`.
+Behavior scenarios, including BDD-style examples, remain prose in requirement items; tests remain separate `test` items linked with `verifies`.
 
-WHEN <condition>, the system SHALL <behaviour>.
+== Requirement item shape
 
-tracer:links[]
---
-----
+Use role `requirement` with item metadata `level=product`, `level=component`, or `level=software`.
+Keep one observable obligation in the body; a more detailed requirement carries a configured refinement relation to its broader requirement.
+These levels are metadata conventions, not separate roles.
+
+== Use-case item shape
+
+Use role `use_case` with a `UC`-prefixed ID and a table describing a specific actor, goal, trigger, preconditions, observable flows, postconditions, priority, and frequency.
+Add the configured use-case-to-requirement relation when a relevant requirement exists.
 
 == Changes
 
 A change is the entry point.
 Its body carries `Rationale::`, `Outcome::`, and `Out-of-scope::` labeled-list fields, then typed relation macros.
 
-[source,asciidoc]
-----
-[#CHG-001, item, role=change, status=proposed, title="Change title"]
---
-Rationale:: Why this change is needed.
-Outcome:: What the change produces.
-Out-of-scope:: What the change excludes.
-
-addresses:REQ-NNN[]
-records:DEC-NNN[]
-
-tracer:links[]
---
-----
-
 == Decisions
 
 A decision preserves a domain or specification choice.
-
-[source,asciidoc]
-----
-[#DEC-001, item, role=decision, status=proposed, title="Decision title"]
---
-Context:: Why is this decision needed?
-Decision:: What was decided?
-Consequences:: What follows?
-
-tracer:links[]
---
-----
-
 Decisions may additionally carry `Options::` (per-option pros and cons) and `Rationale::` fields, following the MADR shape documented in xref:guidance/decision.adoc[the decision guidance].
 
 == Relation macros
@@ -88,7 +67,10 @@ The reverse name is derived for queries.
 [width=100%, cols="30a,30a,20a,20a"]
 |===
 | Source → Target | Macro | Reverse | Used in
+| use_case → requirement | `leads_to:REQ-NNN[]` | `is_derived_from` | use_case
+| requirement → requirement | `refines:REQ-NNN[]` | `refined_by` | requirement
 | change → requirement | `addresses:REQ-NNN[]` | `addressed_by` | change
+| requirement → requirement | `depends_on:REQ-NNN[]` | `is_prerequisite_of` | requirement
 | change → decision | `records:DEC-NNN[]` | `recorded_by` | change
 | requirement → requirement | `supersedes:REQ-OLD[]` | `superseded_by` | requirement
 | test → requirement | `verifies:REQ-NNN[]` | `verified_by` | test
@@ -101,9 +83,10 @@ Use the `status` attribute to mark progression.
 [width=100%, cols="20h,80a"]
 |===
 | Role | States
-| requirement | draft → reviewed → approved → superseded · withdrawn
-| change | proposed → refined → accepted → implemented → verified → closed · rejected
-| decision | proposed → accepted → rejected · superseded
+| requirement | `draft` → `reviewed` → `approved` → `superseded` · `withdrawn`
+| test | No configured lifecycle states
+| change | `proposed` → `refined` → `accepted` → `implemented` → `verified` → `closed` · `rejected`
+| decision | `proposed` → `accepted` → `rejected` · `superseded`
 |===
 
 The `accepted` gate is enforced by validation: an accepted change must address at least one requirement.

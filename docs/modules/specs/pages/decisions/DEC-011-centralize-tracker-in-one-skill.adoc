@@ -1,21 +1,20 @@
-[#DEC-011, item, role=decision, status=proposed, title="Centralize tracker interaction in one skill"]
+[#DEC-011, item, role=decision, status=proposed, title="Separate feature and change refinement from ticket access"]
 --
-Context:: Tracker interaction spans propose (link or create), apply and archive (status push), and a new import path.
-It could be folded into the existing lifecycle skills or centralized in one.
+Context:: Product feature refinement, detailed change refinement, and provider-specific ticket access have different responsibilities. Combining them makes the change-proposal step author details prematurely and spreads provider behavior through lifecycle skills.
 
 Options::
-* Extend `tspec-propose`, `tspec-apply`, and `tspec-archive` — each grows tracker calls.
-** Good: no new skill; the lifecycle reads as one flow.
-** Bad: spreads provider-specific logic across skills that otherwise stay provider-agnostic.
-* One `tspec-track` skill — all tracker interaction in one place.
-** Good: provider specifics (gh CLI, Jira REST, transition names) change together and live together; import delegates item-writing to propose's machinery.
-** Bad: an extra skill in the workflow.
+* Put all work in `tspec-propose` and `tspec-track`.
+** Good: fewer workflow entry points.
+** Bad: proposal authors detailed software requirements/tasks before change refinement; ticket logic becomes lifecycle logic.
+* Separate feature refinement, change refinement, proposal, and tracker access.
+** Good: `tspec-refine-feature` handles product-level feature definition; `tspec-propose` proposes changes without detailed software requirements/tasks; `tspec-refine-change` elaborates an approved change and creates tasks; `tspec-track` owns the limited external ticket interaction.
+** Bad: requires using distinct workflow skills for distinct stages.
 
-Decision:: One `tspec-track` skill.
+Decision:: Keep feature and change refinement separate, and centralize tracker access in `tspec-track`. Create tasks only after change refinement.
 
-Rationale:: Provider specifics change together and should live together; keeping them in one skill leaves the six lifecycle skills provider-agnostic.
+Rationale:: The workflow keeps product behavior, proposed change scope, detailed software requirements, and provider-specific interaction at their correct boundaries.
 
-Consequences:: The lifecycle skills stay unchanged; `tspec-track` is the single place to add or fix a provider.
+Consequences:: `tspec-track` reads an existing ticket via shared `featureTicketId` and, only after user approval, updates its unique `TSPEC refinement` section. It never creates/imports tickets, manages provider configuration, or writes status, backlog placement, or estimates.
 
 tracer:links[]
 --

@@ -1,21 +1,20 @@
-[#DEC-009, item, role=decision, status=proposed, title="Record the tracker link as a block attribute, not a relation"]
+[#DEC-009, item, role=decision, status=proposed, title="Use shared external feature-ticket metadata"]
 --
-Context:: A change item must reference its tracker issue.
-Two candidate forms: a `trackerId` header attribute or a `tracker:<id>[]` relation macro.
+Context:: Canonical graph items need to reference an existing externally owned feature ticket without making that ticket part of graph traceability.
 
 Options::
-* A `trackerId=` header attribute.
-** Good: arbitrary attributes are already parsed into `item.attributes`, so no grammar or core change; the issue stays outside the graph.
-** Bad: antora-tracer does not validate or render the link.
-* A `tracker:<id>[]` relation macro.
-** Good: consistent with existing relation syntax; potentially matrixable.
-** Bad: the target is not a graph item, so the edge dangles on validation or requires declaring an `issue` role that drags tracker data into the graph.
+* Put a tracker identifier on a change only.
+** Good: narrow and simple.
+** Bad: use cases and requirements cannot share a canonical feature-ticket reference, and independent changes cannot explicitly refer to the same ticket.
+* Use one shared `featureTicketId` scalar metadata field on canonical graph items.
+** Good: use cases, requirements, and changes can point to the same external ticket; the link adds no graph relation.
+** Bad: the reference is intentionally outside graph validation and traceability matrices.
 
-Decision:: A `trackerId=` attribute.
+Decision:: Use shared `featureTicketId` scalar metadata on canonical graph items; treat the referenced ticket as external, not as a graph item or relation.
 
-Rationale:: The issue is a pointer, not a traceability item; the parser already stores arbitrary attributes, so no core change is needed and validation stays quiet.
+Rationale:: One feature ticket can cover multiple independent changes and connect the feature's graph items without confusing tracker ownership with spec traceability.
 
-Consequences:: The link is inert to antora-tracer — not validated, not in matrices — which is intended; `tspec-track` reads it from the item header.
+Consequences:: Many items MAY share a feature ticket ID. The workflow preserves unknown legacy `trackerId` metadata and does not auto-convert it.
 
 tracer:links[]
 --

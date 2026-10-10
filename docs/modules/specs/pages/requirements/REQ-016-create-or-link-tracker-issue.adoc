@@ -1,6 +1,6 @@
-[#REQ-016, item, role=requirement, status=draft, title="Create or link the tracker issue on propose"]
+[#REQ-016, item, role=requirement, status=draft, title="Read the existing feature ticket"]
 --
-WHEN a change is proposed and a tracker is configured, the system SHALL create or link the tracker issue and record its identifier on the change item.
+WHEN an item has a `featureTicketId`, the system SHALL read the referenced existing ticket when tracker information is requested. It SHALL NOT create tracker tickets or import tickets into the graph.
 
 tracer:links[]
 --

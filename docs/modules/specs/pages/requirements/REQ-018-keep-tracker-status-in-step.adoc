@@ -1,6 +1,6 @@
-[#REQ-018, item, role=requirement, status=draft, title="Keep tracker issue status in step with the change"]
+[#REQ-018, item, role=requirement, status=draft, title="Keep ticket-owned state outside the graph"]
 --
-The system SHALL keep the linked tracker issue's status in step with the change's lifecycle.
+The system SHALL treat the external ticket as authoritative for its backlog placement, status, and estimate. It SHALL NOT synchronize those values into graph state.
 
 tracer:links[]
 --

@@ -1,5 +1,5 @@
 # Tracer Spec Workflow configuration.
-# tracer-spec owns this file; antora-tracer owns traceability.yml.
+# Provider settings are user-owned; tracer-spec never creates tickets or changes ticket lifecycle state.
 
 tracker:
   # none | github | jira
@@ -13,10 +13,3 @@ tracker:
   # jira:
   #   url: https://your-domain.atlassian.net
   #   project: KEY
-
-  # Optional: map change lifecycle states to tracker statuses.
-  # Unlisted states pass through unchanged.
-  # status:
-  #   accepted: In Progress
-  #   implemented: Done
-  #   closed: Closed

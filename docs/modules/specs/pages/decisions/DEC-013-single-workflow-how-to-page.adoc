@@ -1,21 +1,19 @@
-[#DEC-013, item, role=decision, status=proposed, title="One how-to page for the seven-skill workflow"]
+[#DEC-013, item, role=decision, status=proposed, title="One how-to page for the nine-skill workflow"]
 --
-Context:: Each skill could get its own how-to page, or the workflow could be documented as one task.
-Candidates: seven per-skill pages, one combined page, or one page now with a split later.
+Context:: Each skill could have its own how-to page, or the workflow could be documented as one task. The workflow has nine skills across feature refinement, implementation-change refinement, ticket access, and execution.
 
 Options::
-* One combined how-to page, "How to drive the workflow".
-** Good: the skills are one sequential workflow, not seven independent tasks; the sequence is the thing to learn.
-** Bad: a long page once any single skill accumulates standalone steps.
-* Seven per-skill pages.
-** Good: strictly one task per page.
-** Bad: 15-line pages hide the workflow sequence and fragment a walkthrough that is already linear.
+* One combined page, “How to drive the workflow.”
+** Good: the phases form one learning path, from feature intent through independent implementation changes.
+** Bad: the page may grow as individual skills gain standalone procedures.
+* Nine per-skill pages.
+** Good: strict task separation.
+** Bad: fragments the workflow sequence and repeats setup context.
 
-Decision:: One combined how-to page now; split a skill into its own page only when that skill's section grows real standalone steps.
+Decision:: Keep one workflow how-to; split a skill into its own page only when it gains genuinely standalone steps.
 
-Rationale:: The seven skills are phases of one task, so a single walkthrough models the workflow accurately; splitting is a mechanical cut with no rework when a section outgrows the page.
+Rationale:: The workflow sequence remains the main user task; the skills reference carries per-skill details.
 
-Consequences:: Keeps the how-to section at two pages (scaffold + workflow); per-skill detail lives in the reference catalog where it belongs.
-
+Consequences:: The how-to documents the nine-skill sequence; the reference catalog lists each skill's arguments and operations.
 tracer:links[]
 --

@@ -1,0 +1,30 @@
+{
+  "skill_name": "tspec-refine-change",
+  "evals": [
+    {
+      "id": 1,
+      "name": "estimatable slice adds software requirements and checklist",
+      "prompt": "Refine only CHG-001, the saved-filter implementation slice associated with FEAT-42. The slice should let a reviewer create and reuse a named filter for changes requiring attention. Keep rationale, observable outcome, and out-of-scope explicit. Use the existing approved product/component requirements and create testable level=software requirements with BDD example prose. The scope and acceptance examples are estimatable; make CHG-001 refined and then create its temporary task checklist. Do not write to any ticket or touch another change.",
+      "expected_output": "Refines only CHG-001, preserves featureTicketId=FEAT-42, addresses existing approved product/component requirements, creates software requirements that refines their applicable parent requirement, and creates tasks only after marking the estimatable slice refined.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_changed_under", "path": "docs/modules/specs/pages", "text": "Change refinement writes only its own change and software requirements." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "level=software", "text": "A new detailed behavior requirement is software-level." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "featureTicketId=FEAT-42", "text": "New change requirements retain the shared feature ticket." },
+        { "configuration": "with_skill", "type": "file_exists", "path": "tspec/CHG-001/tasks.md", "text": "An estimatable refined slice receives its temporary checklist." },
+        { "configuration": "with_skill", "type": "file_contains", "path": "tspec/CHG-001/tasks.md", "value": "- [ ]", "text": "Checklist items are actionable checkboxes." }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "not-estimatable slice gets no checklist",
+      "prompt": "Refine CHG-001 only. The featureTicketId is FEAT-42; use the already approved product and component requirements. The current change description is vague: 'Make filters better.' Help me define the scope and software-level requirements, but an integration decision remains open and the slice is not yet estimatable. Do not mark the change refined, create a task checklist, or call any tracker.",
+      "expected_output": "Records only the agreed draft refinement; CHG-001 remains proposed, no temporary checklist exists, and the unresolved integration decision is explicit.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "file_not_exists", "path": "tspec/CHG-001/tasks.md", "text": "No temporary checklist is created before estimatable readiness." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "integration", "text": "The unresolved decision remains explicit." }
+      ]
+    }
+  ]
+}

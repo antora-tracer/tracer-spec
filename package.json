@@ -9,7 +9,8 @@
   "scripts": {
     "validate": "antora-tracer validate -i docs --config traceability.yml",
     "build": "npx antora antora-playbook.yml",
-    "eval:skills": "node scripts/evaluate-skills.js"
+    "eval:skills": "node scripts/evaluate-skills.js",
+    "test": "node --test"
   },
   "files": [
     "bin",

@@ -10,9 +10,12 @@ This is a Tracer Spec Workflow project. Add durable items to
 1. xref:changes.adoc[View changes]
 2. xref:requirements.adoc[Read requirements]
 3. xref:decisions.adoc[Review decisions]
+4. xref:use-cases.adoc[Review use cases]
+
 
 == Next steps
 
-* Use `tspec-propose` to create a new change
+* Use `tspec-explore`, then `tspec-refine-feature` for existing feature tickets
+* Use `tspec-propose` and `tspec-refine-change` for implementation slices
 * Validate with `npm run validate`
 * Build with `npm run build`

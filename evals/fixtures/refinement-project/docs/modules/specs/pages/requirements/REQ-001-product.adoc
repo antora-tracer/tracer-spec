@@ -1,0 +1,6 @@
+[#REQ-001, item, role=requirement, level=product, status=approved, featureTicketId=FEAT-42, title="Reviewers can find changes needing attention"]
+--
+The system SHALL let a reviewer find changes that need attention.
+
+tracer:links[]
+--

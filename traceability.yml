@@ -5,6 +5,7 @@ extends: minimal
 roles:
   - change
   - decision
+  - use_case
 
 roleGuidance:
   change:
@@ -13,6 +14,9 @@ roleGuidance:
   decision:
     page: docs/modules/specs/pages/guidance/decision.adoc
     idPrefix: DEC
+  use_case:
+    page: docs/modules/specs/pages/guidance/use-case.adoc
+    idPrefix: UC
 
 relations:
   change:
@@ -22,6 +26,14 @@ relations:
     decision:
       records:
         reverse: recorded_by
+  use_case:
+    requirement:
+      leads_to:
+        reverse: is_derived_from
+  requirement:
+    requirement:
+      refines:
+        reverse: refined_by
 
 matrices:
   - name: changes-to-requirements
@@ -30,6 +42,18 @@ matrices:
     columns: [requirement]
     coverageRelations:
       requirement: [addresses]
+  - name: use-cases-to-requirements
+    description: Use cases traced to derived requirements
+    rows: use_case
+    columns: [requirement]
+    coverageRelations:
+      requirement: [leads_to]
+  - name: requirements-refinement
+    description: Requirements traced to more detailed requirements
+    rows: requirement
+    columns: [requirement]
+    coverageRelations:
+      requirement: [refines]
 
 workflow:
   change:

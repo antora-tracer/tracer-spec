@@ -14,9 +14,10 @@ From idea, over change, to requirements and design, implementation, verification
 
 It will create durable artifacts.
 
-* *Changes* — the entry point: rationale, outcome, and scope, with a lifecycle from proposed to closed.
-* *Requirements* — the spec unit: observable obligations a change addresses.
-* *Design* – this details how changes are technically delivered.
+* *Changes* — independently deliverable implementation slices with rationale, outcome, and scope.
+* *Requirements* — observable obligations at product, component, or software level; changes address them, and more detailed requirements refine broader ones.
+* *Use Cases* — specific actor goals and observable interactions that lead to requirements.
+* *Decisions* — durable domain and specification choices.
 
 === Temporary artifacts
 
@@ -26,12 +27,12 @@ It will create durable artifacts.
 
 [source,text]
 ----
-explore → propose → apply → archive
+explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
 ----
 
-The graph is the source of truth.
-Git and pull requests provide review, authorization, and change history.
-A human acceptance gate plus validation enforces review before implementation.
+The graph is the canonical specification; each graph item's `featureTicketId` references its existing feature ticket.
+One ticket may link to multiple independent implementation changes.
+The ticket remains authoritative for backlog placement, status, and estimate.
 
 === Customizability
 

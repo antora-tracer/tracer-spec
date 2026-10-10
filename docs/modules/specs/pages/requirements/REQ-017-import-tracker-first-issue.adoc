@@ -1,6 +1,6 @@
-[#REQ-017, item, role=requirement, status=draft, title="Import a tracker-first issue as a change"]
+[#REQ-017, item, role=requirement, status=draft, title="Update only a user-approved ticket summary"]
 --
-WHEN a change already exists in the configured tracker, the system SHALL import it as a change with its requirements, recording the tracker identifier on the change item.
+WHEN the user approves a proposed summary update, the system SHALL update only the unique `TSPEC refinement` section of the existing ticket description (a GitHub heading or equivalent Jira ADF section). It SHALL preserve the rest of the description and SHALL NOT write if that section cannot be identified uniquely.
 
 tracer:links[]
 --

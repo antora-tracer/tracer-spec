@@ -1,7 +1,7 @@
 ---
 name: tspec-explore
 description: >
-  Enter explore mode when the user wants to think through a change, requirement, or design decision before proposing or recording it, even without naming the workflow (for example, "should we add X?" or "help me understand Y first"). Investigate relevant project context, compare options, and conclude with a change sketch or a clear no-change/requirement-level outcome without making durable changes.
+  Use when the user wants to think through a change, requirement, or design decision before proposing or recording it, even without naming the workflow (for example, "should we add X?" or "help me understand Y first").
 argument-hint: "<topic>"
 license: MIT
 compatibility: antora-tracer
@@ -25,10 +25,11 @@ Explore a problem before deciding whether to propose a change.
 - Surface important unknowns and small, read-only investigations that could resolve them.
 - Use diagrams or tables only when they make the reasoning easier to follow. Keep diagrams plain ASCII for consistent rendering.
 - Do not force a change: existing coverage, lack of a justified need, or a requirement-level need may be the right conclusion.
+- For a justified feature-sized idea that is still rough, sketch candidate user use cases and product/component outcomes. State assumptions and unanswered questions explicitly; do not turn the sketch into requirement items or save it.
 
 ## Output
 
-For a justified change, end with a concise change sketch covering the rationale, intended outcome, and out-of-scope boundaries; label material assumptions or open questions.
+For a justified change, end with a concise change sketch covering the rationale, intended outcome, and out-of-scope boundaries; label material assumptions or open questions. For rough feature ideas, include candidate use cases and product/component outcomes in that sketch.
 
 If no change is warranted, state why. Distinguish an existing item that already covers the need from a need that is not justified. If the need is a requirement or another single traceability item rather than a change, say so instead of drafting a change sketch.
 
@@ -36,6 +37,7 @@ Do not write anything durable.
 
 ## Next
 
-- Hand off to `tspec-propose` after the user confirms a change sketch.
+- After the user confirms a feature-sized sketch, hand off to `tspec-refine-feature` to refine an existing feature ticket into approved graph items and an optional ticket-description section.
+- After the user confirms an implementation change sketch, use `tspec-propose` to record one implementation change against its existing feature ticket and product/component requirements.
 - For a requirement or another single item, suggest `tspec-write-item` instead.
 - If no change or item is warranted, explain the conclusion and stop.

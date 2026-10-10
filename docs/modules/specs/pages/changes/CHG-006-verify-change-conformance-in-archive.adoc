@@ -11,7 +11,7 @@ Archive closes only on a clean verdict.
 
 Out-of-scope:: A dedicated `tspec-verify-change` skill.
 New states or transitions: `verified` to `closed` is unchanged, and the gate is archive behavior, not a new state-machine rule.
-`tspec-validate` stays structural-only, and `tspec-apply` still self-advances to `verified`.
+`tspec-validate` stays structural-only, and `tspec-apply-change` (formerly `tspec-apply`) still self-advances to `verified`.
 
 addresses:REQ-010[]
 addresses:REQ-011[]

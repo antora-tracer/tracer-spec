@@ -17,10 +17,12 @@ Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
 
 | Skill | Purpose |
 |-------|---------|
-| `tspec-explore` | Enter explore mode; shape a change sketch without writing |
-| `tspec-propose` | Write a change, its requirements, and its decisions atomically |
-| `tspec-track` | Link, create, import, or push status for a change's tracker issue |
-| `tspec-apply` | Implement the change's tasks and advance its state |
+| `tspec-explore` | Explore a feature idea and shape its change sketch |
+| `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items |
+| `tspec-propose` | Propose an implementation change from refined product requirements |
+| `tspec-refine-change` | Refine a change into detailed software requirements and tasks |
+| `tspec-track` | Read an existing ticket or update its user-approved refinement section |
+| `tspec-apply-change` | Implement the change's refined tasks and advance state |
 | `tspec-archive` | Validate and close a verified change |
 | `tspec-validate` | Validate the traceability graph |
 | `tspec-write-item` | Write one item of any declared role |
@@ -28,14 +30,22 @@ Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
 ## Workflow
 
 ```
-tspec-explore → tspec-propose → tspec-apply → tspec-archive
+tspec-explore → tspec-refine-feature → tspec-propose → tspec-refine-change → tspec-apply-change → tspec-archive
 ```
 
-## Rules
+One existing feature ticket may be associated with many independent changes
+through shared `featureTicketId=<id>` metadata on graph items. `tspec-propose`
+does not author detailed software requirements or tasks; run
+`tspec-refine-change` before creating a change's task checklist.
 
-- The graph is the source of truth. Durable artifacts are pages in
-  `docs/modules/specs/pages/`; temporary tasks go in `tspec/<change-id>/`.
-- Always run `antora-tracer validate -i docs --config traceability.yml` after
-  changing the docs.
+- The graph is the source of truth for specifications. The external feature
+  ticket remains authoritative for backlog position, status, and estimate.
+  Durable artifacts are pages in `docs/modules/specs/pages/`; temporary tasks
+  go in `tspec/<change-id>/`.
+- `tspec-track --read <feature-ticket-id>` reads an existing ticket.
+  `--update-refinement` requires approval of the exact section preview and
+  changes only the unique `TSPEC refinement` section, preserving all other
+  ticket content. The workflow does not create/import tickets or update status,
+  backlog position, or estimates.
 - Take role names, relation types, and ID prefixes from `traceability.yml`
   (or its `extends:` preset) — never invent them.

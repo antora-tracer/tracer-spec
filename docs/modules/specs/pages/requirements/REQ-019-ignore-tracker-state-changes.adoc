@@ -1,6 +1,6 @@
-[#REQ-019, item, role=requirement, status=draft, title="Ignore tracker-driven state changes"]
+[#REQ-019, item, role=requirement, status=draft, title="Do not write or pull ticket state and estimates"]
 --
-IF the linked tracker issue changes state, THEN the system SHALL NOT change the corresponding change's state.
+The system SHALL NOT change a feature ticket's status, backlog placement, or estimate, or pull those values into graph state. Tracker interaction is limited to reading the existing ticket and, after user approval, updating its unique `TSPEC refinement` description section.
 
 tracer:links[]
 --

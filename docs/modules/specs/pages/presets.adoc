@@ -5,7 +5,7 @@
 
 Our basic model for a traced and AI-friendly workflow knows the following roles
 
-[cols="1,3a"]
+[cols="1h,3a"]
 |===
 |Role | Description
 
@@ -40,19 +40,6 @@ A requirement can also be against processes or tooling for building and deliveri
 Typical examples are Architecture Decision Records or Requirement Decision Records.
 |===
 
-=== Role Relationships
+== Tracer Spec Workflow Artifacts
 
-[cols="1,3a"]
-|===
-|Relationship | Description
-
-|User Need - is motivated by - Business Goal
-|
-
-
-|===
-
-== Tspec Artifacts
-
-Change::
-Not traced item. Provides the container for a change that addresses certain use cases and requirements.
+The tracer-spec workflow uses changes, use cases, requirements, decisions, and tests as traceable graph items. Tracer presets provide optional roles such as goals, designs, and quality scenarios; enable them in `traceability.yml` only when the project needs them.

@@ -1,0 +1,35 @@
+{
+  "skill_name": "tspec-refine-feature",
+  "evals": [
+    {
+      "id": 1,
+      "name": "approved partial feature remains draft",
+      "prompt": "Refine feature ticket FEAT-42 using this user-supplied ticket text (tracker provider is none): 'Reviewers need a reusable saved filter for changes requiring attention. The filter should be easy to name and reuse.' Work with me to produce one reviewer's use case and one testable product-level requirement. I approve writing the graph items now. I have not confirmed the component design or that the feature is estimatable, and I do not approve changing an external ticket. Leave the requirement draft, record the open component question, and show the manual TSPEC refinement section.",
+      "expected_output": "Creates a use_case and a level=product requirement linked by leads_to; both carry featureTicketId=FEAT-42. The requirement remains draft, an unresolved component-design question is explicit, no external API is called, and a manual section is shown.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_changed_under", "path": "docs/modules/specs/pages", "text": "Approved partial refinement creates graph items." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "featureTicketId=FEAT-42", "text": "New feature graph items share the existing ticket identifier." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "role=use_case", "text": "Refinement records the agreed use case." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "leads_to:REQ-", "text": "The use case links to its derived product requirement." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "status=draft", "text": "Incomplete refinement does not advance the requirement." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "manual", "text": "Provider none returns a manual ticket-section draft." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "component", "text": "Open component-design gap is surfaced." }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "ticket update needs separate approval",
+      "prompt": "The existing feature ticket FEAT-42 says: 'Reviewers need a reusable saved filter for changes requiring attention.' Tracker provider is none. Refine it into a complete, estimatable use case and product/component requirements; I approve saving those graph items and confirm the requirements are estimatable. Prepare the exact TSPEC refinement section, but I have not approved changing a ticket. Do not write a ticket; show the section for review.",
+      "expected_output": "Builds and validates the approved graph, advances user-confirmed estimatable requirements through reviewed to approved, and previews a section with readiness and graph IDs/titles/repository-relative paths; no ticket write occurs without separate approval.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_changed_under", "path": "docs/modules/specs/pages", "text": "User-approved graph is persisted before ticket update approval." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "status=approved", "text": "Confirmed estimatable requirements reach approved state." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "TSPEC refinement", "text": "Shows the exact ticket section preview." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "estimatable", "text": "Reports readiness based on the user confirmation." },
+        { "configuration": "without_skill", "type": "workspace_unchanged", "text": "No-skill run has no provider write access through the fixture." }
+      ]
+    }
+  ]
+}

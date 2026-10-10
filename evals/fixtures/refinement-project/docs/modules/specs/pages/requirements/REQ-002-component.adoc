@@ -1,0 +1,7 @@
+[#REQ-002, item, role=requirement, level=component, status=approved, featureTicketId=FEAT-42, title="Filters can be named and reused"]
+--
+A reviewer SHALL be able to name a filter and reuse it.
+
+refines:REQ-001[]
+tracer:links[]
+--

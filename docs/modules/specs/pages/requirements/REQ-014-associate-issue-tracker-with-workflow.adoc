@@ -1,6 +1,6 @@
-[#REQ-014, item, role=requirement, status=draft, title="Associate an issue tracker with the workflow"]
+[#REQ-014, item, role=requirement, status=draft, title="Preserve existing tracker provider configuration"]
 --
-The system SHALL let a project associate an issue tracker with the workflow, or none, defaulting to none.
+The system SHALL use existing user-owned provider configuration to access feature tickets and SHALL preserve it. It SHALL NOT create, import, or rewrite provider configuration as part of feature-ticket refinement.
 
 tracer:links[]
 --

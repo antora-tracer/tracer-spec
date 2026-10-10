@@ -1,0 +1,55 @@
+= Writing Use Cases
+
+A `use_case` item describes a specific actor's goal and the observable interaction that achieves it.
+Keep the flow at a business level; requirements state detailed system obligations.
+
+== Traceability
+
+A use case may link to one or more requirements with `leads_to:REQ-NNN[]`.
+The inverse relation is `is_derived_from` when linking from a requirement to a use case.
+A requirement may refine a more general requirement with `refines:REQ-NNN[]`; the reverse relation is `refined_by`.
+Use only configured relations and real target IDs; omit a link when no relevant target exists yet.
+Put `tracer:links[]` in the item body when its links should be displayed.
+
+== Writing a use case
+
+Identify a specific primary actor, preferably one defined by a project persona; generic labels such as "User" or "Author" hide important context.
+State the actor's goal and stakeholder benefit in the title and goal.
+Describe the trigger, preconditions, successful basic flow, meaningful alternate flows, and verifiable postconditions.
+Write preconditions and postconditions as testable statements about state, and distinguish what is true before the trigger from what changes after success.
+Number the basic flow in present tense, one observable actor action or system response per step.
+Start each alternate flow with its condition and describe the resulting path or outcome.
+Do not put implementation details such as API calls, field types, or internal events in use cases; capture those as requirements or design instead.
+Record realistic priority, frequency, and any open assumptions or references.
+
+[source,asciidoc]
+----
+[#UC-001, item, role=use_case, title="<Specific actor> <action> <outcome>"]
+--
+.Use Case: <title>
+[width=100%, cols="25h,75a"]
+|===
+| ID | UC-001
+| Title | <actor> <action> <outcome>
+| Goal | <actor> does <action> so that <stakeholder benefit>
+| Primary Actor | <specific role or persona>
+| Preconditions | <testable state that is true before the trigger>
+| Trigger | <event that starts the use case>
+| Basic Flow |
+. <observable actor action or system response>
+. <observable actor action or system response>
+| Alternate Flows |
+. <condition>: <alternate steps and outcome>
+| Postconditions | <testable state after successful completion>
+| Priority | High / Medium / Low
+| Frequency | <how often>
+| Notes | <open questions, assumptions, or references>
+|===
+
+leads_to:REQ-NNN[]
+tracer:links[]
+--
+----
+
+Do not invent actors, flow details, priorities, relation names, or target IDs.
+Ask for missing facts; record unresolved questions rather than presenting guesses as settled behavior.

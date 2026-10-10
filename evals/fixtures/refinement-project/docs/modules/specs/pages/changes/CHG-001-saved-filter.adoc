@@ -1,0 +1,10 @@
+[#CHG-001, item, role=change, status=proposed, featureTicketId=FEAT-42, title="Implement reusable saved filters"]
+--
+Rationale:: Reviewers repeatedly need to find changes requiring attention.
+Outcome:: Reviewers can create and reuse named filters for relevant changes.
+Out-of-scope:: Sharing filters across organizations.
+
+addresses:REQ-001[]
+addresses:REQ-002[]
+tracer:links[]
+--

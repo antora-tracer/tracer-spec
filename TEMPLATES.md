@@ -15,14 +15,16 @@ GitHub: https://github.com/antora-tracer/tracer-spec
 - Durable docs (changes, requirements, decisions)
 - One change (CHG-004) fully traced through the graph
 - Complete Antora documentation site with workflow guidance
-- Six Agent Skills
+- Nine Agent Skills
 
 **First steps:**
 ```bash
 git clone https://github.com/antora-tracer/tracer-spec.git my-project
 cd my-project
 npm install
-pi tspec-propose "Your feature"
+pi tspec-explore "Your feature"
+pi tspec-refine-feature <feature-ticket-id>
+pi tspec-propose "Your first change"
 ```
 
 **Best for:** Learning, reference, copying patterns.
@@ -41,16 +43,18 @@ GitHub: https://github.com/antora-tracer/tracer-spec-minimal
 - Empty docs with templates and examples
 - Tracer Spec configuration (extends minimal + change + decision)
 - Antora structure with minimal pages
-- Six Agent Skills
+- Nine Agent Skills
 
-**No example data:** you start fresh with `pi tspec-propose`.
+**No example data:** start fresh by exploring your feature, refining its existing ticket with `tspec-refine-feature`, then proposing a change with `tspec-propose`.
 
 **First steps:**
 ```bash
 git clone https://github.com/antora-tracer/tracer-spec-minimal.git my-project
 cd my-project
 npm install
-pi tspec-propose "Your first feature"
+pi tspec-explore "Your first feature"
+pi tspec-refine-feature <feature-ticket-id>
+pi tspec-propose "Your first change"
 ```
 
 **Best for:** New projects, starting from scratch, minimal noise.
@@ -59,15 +63,20 @@ pi tspec-propose "Your first feature"
 
 == Workflow is the Same
 
-Both templates use the **exact same workflow**:
+Both templates use the same workflow:
 
-```bash
-pi tspec-explore "your feature"   # shape a change sketch
-pi tspec-propose CHG-001          # change + requirements + decisions + tasks
-pi tspec-apply CHG-001            # implement the tasks
-pi tspec-archive CHG-001          # validate and close
-pi tspec-validate                 # check the graph
-npm run build                     # publish the site
-```
+[source,bash]
+----
+pi tspec-explore "your feature"                 # shape the feature intent
+pi tspec-refine-feature <feature-ticket-id>      # refine existing ticket to product-level graph items
+pi tspec-propose CHG-001                         # propose an implementation change
+pi tspec-refine-change CHG-001                   # detailed software requirements + tasks
+pi tspec-apply-change CHG-001                    # implement the refined tasks
+pi tspec-archive CHG-001                         # validate and close
+pi tspec-validate                                # check the graph
+npm run build                                    # publish the site
+----
+
+One feature ticket can link to multiple independent changes. `tspec-propose` does not write detailed software requirements or tasks; refine each change before creating its task checklist. The external ticket remains authoritative for backlog position, status, and estimate. `tspec-track --read` reads existing tickets; `tspec-track --update-refinement` updates only the user-approved `TSPEC refinement` section.
 
 The only difference is whether you **start with examples** (tracer-spec) or a **blank slate** (tracer-spec-minimal).

@@ -1,21 +1,20 @@
-[#DEC-010, item, role=decision, status=proposed, title="Link the tracker one-way and never reconcile"]
+[#DEC-010, item, role=decision, status=proposed, title="Keep ticket state external and limit writes to approved summaries"]
 --
-Context:: Both a change and its tracker issue carry a status; if both own it, they drift.
-Two candidate models: bidirectional sync or a link with one-way status push.
+Context:: The external ticket owns its estimate, backlog placement, and status. Refinement needs a limited way to publish a summary without taking over ticket workflow state.
 
 Options::
-* Bidirectional synchronization — reconcile status in both directions.
-** Good: the tracker and the graph always agree.
-** Bad: needs conflict resolution and per-provider webhooks; the brittle path.
-* A link with one-way push — the change owns spec state; status is pushed to the tracker at lifecycle boundaries and never pulled back.
-** Good: one writer for status; no reconciliation logic; thin.
-** Bad: tracker-driven state changes are not reflected in the graph.
+* Synchronize graph lifecycle or estimates with tracker state.
+** Good: values could appear aligned automatically.
+** Bad: introduces competing ownership and may change user-managed ticket state.
+* Read tracker-owned values as external and write only a user-approved refinement summary.
+** Good: leaves ticket workflow ownership with the user while providing a controlled description update.
+** Bad: summary publication requires explicit user approval and does not synchronize state.
 
-Decision:: A link with one-way push.
+Decision:: Treat ticket backlog placement, status, and estimate as external authoritative values; never write them. After user approval, update only the unique `TSPEC refinement` section of the existing description, preserving all other content.
 
-Rationale:: The acceptance gate is already human; the agent mirrors the human's decision into the tracker. Reconciliation adds complexity with no benefit to spec traceability.
+Rationale:: External ticket management remains user-owned. A scoped, approved summary update supports refinement without silently changing the fields the tracker owns.
 
-Consequences:: Tracker-driven state changes are ignored by design. Teams that want the tracker to be the execution source of truth mirror it manually, or a future change adds an explicit pull path.
+Consequences:: `tspec-track` may read the existing ticket and may update its unique `TSPEC refinement` section after user approval (GitHub heading or equivalent Jira ADF section); it does not create/import tickets or synchronize status, backlog placement, or estimates. If the section is not unique, no update is made.
 
 tracer:links[]
 --

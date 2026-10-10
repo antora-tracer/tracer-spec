@@ -2,4 +2,5 @@
 * xref:workflow/overview.adoc[Workflow]
 * xref:changes.adoc[Changes]
 * xref:requirements.adoc[Requirements]
+* xref:use-cases.adoc[Use Cases]
 * xref:decisions.adoc[Decisions]

@@ -1,6 +1,6 @@
-[#REQ-022, item, role=requirement, status=draft, title="Document all seven workflow skills in the site"]
+[#REQ-022, item, role=requirement, status=draft, title="Document all nine workflow skills in the site"]
 --
-The system SHALL document every workflow skill — explore, propose, apply, archive, validate, write-item, and track — in the site, both as a task-oriented how-to and as an exhaustive reference entry naming each skill's trigger, arguments, subcommands, and configuration.
+The system SHALL document every workflow skill — `tspec-explore`, `tspec-refine-feature`, `tspec-propose`, `tspec-refine-change`, `tspec-apply-change`, `tspec-archive`, `tspec-validate`, `tspec-write-item`, and `tspec-track` — in the site, with a task-oriented how-to and exhaustive reference entry naming each skill's trigger, arguments, operations, and configuration.
 
 tracer:links[]
 --

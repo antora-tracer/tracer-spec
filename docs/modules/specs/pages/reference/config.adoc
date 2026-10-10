@@ -15,6 +15,7 @@ extends: minimal
 roles:
   - change
   - decision
+  - use_case
 
 roleGuidance:
   change:
@@ -23,6 +24,9 @@ roleGuidance:
   decision:
     page: docs/modules/specs/pages/guidance/decision.adoc
     idPrefix: DEC
+  use_case:
+    page: docs/modules/specs/pages/guidance/use-case.adoc
+    idPrefix: UC
 
 relations:
   change:
@@ -32,6 +36,14 @@ relations:
     decision:
       records:
         reverse: recorded_by
+  use_case:
+    requirement:
+      leads_to:
+        reverse: is_derived_from
+  requirement:
+    requirement:
+      refines:
+        reverse: refined_by
 
 matrices:
   - name: changes-to-requirements
@@ -39,7 +51,16 @@ matrices:
     columns: [requirement]
     coverageRelations:
       requirement: [addresses]
-
+  - name: use-cases-to-requirements
+    rows: use_case
+    columns: [requirement]
+    coverageRelations:
+      requirement: [leads_to]
+  - name: requirements-refinement
+    rows: requirement
+    columns: [requirement]
+    coverageRelations:
+      requirement: [refines]
 workflow:
   change:
     states: [proposed, refined, accepted, implemented, verified, closed, rejected]
@@ -61,21 +82,25 @@ validation:
 |===
 | Key | Purpose
 
-| `extends` | Base the model on a preset. `minimal` supplies the `requirement` role and its relations; the file then declares the roles it adds.
-| `roles` | The roles this project declares beyond the preset (`change`, `decision` here).
-| `roleGuidance.<role>.page` | The guidance page that holds the role's item template — resolved by `tspec-propose` and `tspec-write-item`.
-| `roleGuidance.<role>.idPrefix` | The role's ID prefix (`CHG`, `DEC`, `REQ`, `TST`).
-| `relations` | The typed relation edges between roles, each with a `reverse` name.
-| `matrices` | The cross-role coverage matrices the site renders; `coverageRelations` names the relation that counts as coverage.
-| `workflow.<role>.states` | The ordered states a role may occupy.
-| `workflow.<role>.transitions` | The allowed state-to-state moves.
-| `validation` | Structural gates; here, an `accepted` change must address a `requirement`.
+| `extends` | Base the model on a preset. `minimal` supplies `requirement` and `test`, their guidance, requirement workflow, requirement-test relations, and the `requirements-tests` matrix. These inherited roles, workflows, relations, and matrices remain available alongside project additions.
+| `roles` | Additional roles declared by this project (`change`, `decision`, `use_case`); they do not replace inherited `requirement` and `test` roles.
+| `roleGuidance.<role>.page` | The guidance page that holds the role's item template — resolved by `tspec-propose`, refinement skills, and `tspec-write-item`.
+| `roleGuidance.<role>.idPrefix` | The role's ID prefix (`CHG`, `DEC`, `UC`; inherited roles use `REQ` and `TST`).
+| `relations` | Additional typed relation edges between roles, each with a `reverse` name. `use_case` uses `leads_to` for derived requirements (`is_derived_from` in reverse); `requirement` uses `refines` for more detailed requirements (`refined_by` in reverse). Inherited requirement and test relations are preserved.
+| `matrices` | Additional cross-role coverage matrices; `coverageRelations` names the relation that counts as coverage. The two refinement matrices cover use-case-to-requirement `leads_to` and requirement-to-requirement `refines`; inherited `requirements-tests` remains.
+| `workflow.<role>.states` | The ordered, declarative states a role may occupy; they do not enforce state transitions.
+| `workflow.<role>.transitions` | Configured state-to-state moves, available to consumers as metadata.
+| `validation` | Structural validation settings. Core does not enforce `requiresRoles` workflow gates.
 |===
+
+Use one `requirement` role for each abstraction level. `level=product`, `level=component`, and `level=software` are ordinary item metadata conventions, not separate roles or a core-validated enum.
+Link a more detailed requirement to the broader requirement it refines with `refines`; behavior scenarios remain prose in requirement items, and verification evidence remains separate `test` items.
+
 
 == tspec.yml
 
-The `tracer-spec` configuration, specifically the issue-tracker bridge.
-It sits beside `traceability.yml` and is owned by `tracer-spec` — `antora-tracer` ignores it.
+The `tracer-spec` selector for the user's issue-ticket provider.
+It sits beside `traceability.yml` and is read by `tspec-track`; provider credentials and ticket state remain user-owned.
 
 [source,yaml]
 ----
@@ -88,20 +113,18 @@ tracker:
   # jira:
   #   url: https://your-domain.atlassian.net
   #   project: KEY
-
-  # status:
-  #   accepted: In Progress
-  #   implemented: Done
-  #   closed: Closed
 ----
 
 [cols="25a,75a"]
 |===
 | Key | Purpose
 
-| `tracker.provider` | The issue tracker: `none` (default), `github`, or `jira`. `none` makes every `tspec-track` subcommand a no-op.
-| `tracker.github.repo` | For `github`: the `owner/repo` the `gh` CLI reaches.
-| `tracker.jira.url` | For `jira`: the REST base URL.
-| `tracker.jira.project` | For `jira`: the project key issues are filed under.
-| `tracker.status` | Optional map from change lifecycle states to tracker statuses. Unlisted states pass through unchanged.
+| `tracker.provider` | The issue-ticket provider: `none` (default), `github`, or `jira`. `none` disables external ticket access.
+| `tracker.github.repo` | For `github`: the `owner/repo` reached by authenticated `gh`.
+| `tracker.jira.url` | For Jira Cloud: the REST base URL; authenticate with the user's existing `~/.netrc` entry for that host.
+| `tracker.jira.project` | For `jira`: the project key associated with feature tickets.
 |===
+
+Feature-ticket association is item metadata, not a `tspec.yml` setting: refinement skills write shared `featureTicketId=<id>` metadata on relevant canonical graph items. One ticket may be associated with multiple items and independent changes.
+
+`tspec-track --read <feature-ticket-id>` reads an existing ticket. `tspec-track --update-refinement <feature-ticket-id>` replaces only the unique `TSPEC refinement` section after the user approves the exact preview; content outside that section is preserved. The ticket is authoritative for backlog position, status, and estimate. The bridge does not create or import tickets or write those fields.

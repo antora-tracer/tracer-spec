@@ -1,19 +1,17 @@
 [#CHG-010, item, role=change, status=closed, title="Complete Diátaxis site structure with CLI and skills documentation"]
 --
-Rationale:: The site explains the workflow and shows its own traceability, but the two things a new user operates — the `tracer-spec` CLI and the seven workflow skills — are documented only in `README.md` and the `SKILL.md` files, not in the site.
-The existing pages also violate the repo's own Diátaxis rule (one page = one mode): `getting-started.adoc` links out to Reference, `workflow/overview.adoc` mixes explanation with instructions, and `workflow/authoring.adoc` duplicates the `guidance/` templates.
-A seventh skill, `tspec-track`, was added without touching the README, which still says six.
+Rationale:: The site explains the workflow and shows its own traceability, but the CLI and workflow skills need task-oriented and reference documentation.
+The original pages mixed Diátaxis modes, and the README did not enumerate the skills consistently as the set evolved.
+The skills reference and workflow how-to now describe feature-ticket refinement, one-to-many changes, change refinement, and the provider boundary.
 
-Outcome:: A complete Diátaxis site: `how-to/` (scaffold a project, drive the seven-skill workflow), `reference/` (CLI, skills catalog, roles, config), and `explanation/` (workflow rationale, traceability).
-The mixed-mode pages are re-homed — `workflow/overview.adoc` becomes `explanation/workflow.adoc`, `workflow/authoring.adoc` is folded into `reference/roles.adoc` — and the tutorial's out-links are removed.
-`guidance/change.adoc` and `guidance/decision.adoc` stay in place because `traceability.yml` `roleGuidance` points at them.
-The README is corrected to name all seven skills.
-`use-cases/` and `design/` remain, empty, for growth-role documentation.
+Outcome:: A complete Diátaxis site: task-oriented how-to, exhaustive CLI/skill/role/config reference, and workflow/traceability explanation.
+Mixed-mode pages are in their appropriate sections and role guidance remains where `traceability.yml` expects it.
+The README and site enumerate the nine workflow skills consistently.
+`use-cases/` and `design/` retain optional growth-role documentation; the main use-case workflow guidance is at `guidance/use-case.adoc`.
 
-Out-of-scope:: Populating `use-cases/` and `design/` with growth-role content.
-Splitting the workflow how-to into per-skill pages.
+Out-of-scope:: Splitting the workflow how-to into per-skill pages.
 Documenting the full `antora-tracer` CLI beyond `validate` (linked out to its own reference).
-Rewriting item content under `changes/`, `requirements/`, or `decisions/`.
+Rewriting unrelated historical item content.
 
 addresses:REQ-021[]
 addresses:REQ-022[]

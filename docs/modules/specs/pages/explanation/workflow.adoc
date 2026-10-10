@@ -1,38 +1,42 @@
 = Why the Workflow Works This Way
 
-The Tracer Spec Workflow replaces parallel artifact hierarchies with a single traceability graph.
-This page explains the reasoning behind its phases, states, and the acceptance gate.
+The Tracer Spec Workflow connects product intent from an existing feature ticket to one or more independently delivered implementation changes. This page explains why product refinement, change refinement, and ticket tracking are separate.
 
-== The graph is the source of truth
+== The graph is the source of truth for the specification
 
-Traditional spec workflows keep changes, requirements, and decisions in separate documents that drift apart.
-Here they are items in one graph: a change *addresses* requirements and *records* decisions, and those typed relations are queryable and renderable.
+Traditional spec workflows keep changes, requirements, and decisions in separate documents that drift apart. Here they are items in one graph: a change addresses requirements and records decisions, and those typed relations are queryable and renderable.
 
-Git and pull requests provide review, authorization, and history; the graph provides the spec structure.
-Neither replaces the other.
+Git and pull requests provide review, authorization, and history; the graph provides the specification structure. Neither replaces the other. The external feature ticket remains authoritative for backlog position, ticket status, and estimate.
 
-== The phases
+== From feature to changes
 
 [source,text]
 ----
-explore → propose → accept → apply → archive
+explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
 ----
 
-* *Explore* is deliberately write-free. An idea is investigated and a sketch produced before anything durable exists, so the graph is never littered with half-formed items.
-* *Propose* writes everything atomically. A change, its requirements, and its decisions land in one pass so no relation macro ever dangles.
+* *Explore* shapes the feature's rationale, outcome, and scope before graph refinement.
+* *Refine feature* turns an existing ticket into product-level behavior, use cases, and requirements. The shared scalar `featureTicketId=<id>` associates canonical graph items with that external ticket; it is metadata, not a graph relation.
+* *Propose* creates an implementation change against the refined product-level specification. It does not create detailed software requirements or tasks.
+* *Refine change* defines detailed software requirements and the execution tasks for that particular change. Tasks therefore follow change refinement, not proposal.
 * *Accept* is a human gate, not a tool step. Validation enforces it structurally — an accepted change must address a requirement — but a person decides.
 * *Apply* implements tasks and records verification evidence against requirements.
 * *Archive* verifies conformance independently, then removes only the temporary task checklist.
 
+The relationship is intentionally one-to-many: one feature ticket can support several independent changes, and multiple graph items can share the same `featureTicketId`. This keeps product intent stable while allowing the implementation to be split into separately reviewed and delivered changes.
+
 == The acceptance gate
 
-The `accepted` state is the one state validation polices.
-Everything upstream (proposed, refined) is free-form drafting; everything downstream (implemented, verified, closed) presumes the proposal was sound.
+The `accepted` state is the one state validation polices. Everything upstream (proposed, refined) is free-form drafting; everything downstream (implemented, verified, closed) presumes the proposal was sound.
 
-One structural rule — an accepted change addresses at least one requirement — catches the common failure of a change with no spec intent, without trying to police semantic quality, which is unreviewable by a linter.
+One structural rule — an accepted change addresses at least one requirement — catches a change with no specification intent, without trying to police semantic quality, which is unreviewable by a linter.
+
+== The tracker boundary
+
+`tspec-track` reads an existing feature ticket or updates only its unique `TSPEC refinement` section after the user approves the exact preview. For GitHub this is a heading; for Jira it is the equivalent ADF section. Everything outside that section is preserved. The workflow does not create or import tickets, update status or backlog position, or set estimates. It does not treat tracker status as graph lifecycle state.
+
+Existing unknown legacy `trackerId` metadata is preserved rather than automatically converted. New feature-ticket associations use the shared `featureTicketId` scalar on relevant graph items.
 
 == Temporary vs durable
 
-Tasks live in `tspec/<change-id>/tasks.md` and are deleted when the change closes.
-Changes, requirements, and decisions are durable and stay in the graph forever.
-Approved requirements are immutable: a changed meaning is a new requirement that supersedes the old one, never an edit in place.
+Tasks live in `tspec/<change-id>/tasks.md` and are deleted when the change closes. Changes, requirements, and decisions are durable and stay in the graph. Approved requirements are immutable: a changed meaning is a new requirement that supersedes the old one, never an edit in place.

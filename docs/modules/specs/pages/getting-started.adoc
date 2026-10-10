@@ -26,24 +26,29 @@ Should see: `No validation errors found`.
 
 Update the pages under `docs/modules/specs/pages/`:
 
-* `changes.adoc` — one change item per feature, fix, or improvement.
-* `requirements.adoc` — the requirements each change addresses.
-* `decisions.adoc` — the decisions each change records.
+* `use-cases.adoc` — product actors, goals, and observable flows.
+* `requirements.adoc` — product, component, and software-level requirements.
+* `changes.adoc` — independently deliverable implementation slices.
+* `decisions.adoc` — durable domain and specification decisions.
 
-Edit `traceability.yml` to add growth roles (`use_case`, `design_concept`, `goal`, `scenario`, `arc42`) when the project needs them.
+The existing feature ticket stays authoritative for estimate and backlog state.
+All related graph items use its shared `featureTicketId`.
 
 == 4. Use the workflow
 
-For each change, use the workflow skills:
+Explore the feature, refine its existing ticket into use cases and product/component requirements, then propose one or more independently deliverable changes.
+Refine each change into testable software requirements and a task checklist before accepting and applying it.
 
 [source,bash]
 ----
-pi tspec-explore "Add user authentication"   # sketch, no write
-pi tspec-propose CHG-001                     # change + requirements + tasks.md
+pi tspec-explore "Add user authentication"           # sketch product intent
+pi tspec-refine-feature AUTH-001                      # feature ticket -> use cases and requirements
+pi tspec-propose CHG-001                              # one implementation slice
+pi tspec-refine-change CHG-001                        # software requirements and tasks
 # review, then accept
-pi tspec-apply CHG-001                       # implement tasks
-pi tspec-archive CHG-001                     # validate + clean tspec/
-pi tspec-validate                            # check the graph
+pi tspec-apply-change CHG-001                         # implement tasks
+pi tspec-archive CHG-001                              # verify and close
+pi tspec-validate                                     # check the graph
 ----
 
 == 5. Build and publish

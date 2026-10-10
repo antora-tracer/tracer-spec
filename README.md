@@ -22,7 +22,7 @@ npm install
 ----
 
 `init` writes `traceability.yml`, `docs/`, an Antora playbook and site, `AGENTS.md`,
-and installs the seven workflow skills into your agent harness directories
+and installs the nine workflow skills into your agent harness directories
 (default: Oh My Pi `.omp/skills/`, Claude `.claude/skills/`, shared `.agents/skills/`).
 Pass `--tools claude,codex,agents` to pick harnesses, `--tools all` for every
 supported one, or `--tools none` to skip.
@@ -33,9 +33,9 @@ The Tracer Spec Workflow replaces OpenSpec's parallel artifact hierarchy with a 
 
 The grammar is three tiers:
 
-* *Tier 1 (core):* changes and requirements — the spec unit.
-* *Tier 2 (understanding):* decisions and tests, plus growth roles (`use_case`, `design_concept`, `goal`, `scenario`, `arc42`) added when a project needs them.
-* *Tier 3 (temporary):* task checklists under `tspec/<change-id>/`, deleted when the change closes.
+* *Tier 1 (core):* changes and requirements; use cases are enabled for feature refinement.
+* *Tier 2 (understanding):* decisions and tests, plus optional growth roles enabled per project.
+* *Tier 3 (temporary):* task checklists under `tspec/<change-id>/`, created after change refinement and deleted when the change closes.
 
 == Quick Start
 
@@ -73,28 +73,34 @@ Summary: 11 items, 10 relationships
 === Customize for your project
 
 1. Edit the project name and description in `README.md` and `docs/antora.yml`.
-2. Update the pages under `docs/modules/specs/pages/` with your own changes, requirements, and decisions.
-3. Adapt `traceability.yml` if you need additional growth roles or relationships.
+2. Update `use-cases.adoc`, `requirements.adoc`, and `changes.adoc` with your feature and independent implementation slices.
+3. Adapt `traceability.yml` for additional project roles and relations.
 4. Run validation regularly: `npm run validate`
 
 === Use the workflow
 
 [source,text]
 ----
-explore → propose → apply → archive
+explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
 ----
 
-The seven skills:
+Explore the feature, then refine an existing external feature ticket into product-level behavior, use cases, and requirements before proposing implementation changes. A ticket can link to many independent changes. Refine each proposed change into detailed software requirements and tasks before accepting and applying it; `tspec-propose` does not author those detailed requirements or tasks.
+
+The nine skills:
 
 | Skill | Purpose |
 |-------|---------|
-| `tspec-explore` | Enter explore mode; shape a change sketch without writing |
-| `tspec-propose` | Write a change, its requirements, and its decisions atomically |
-| `tspec-apply` | Implement the change's tasks and advance its state |
+| `tspec-explore` | Explore a feature idea and shape its change sketch |
+| `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items |
+| `tspec-propose` | Propose an implementation change linked to refined product requirements |
+| `tspec-refine-change` | Refine a change into detailed software requirements and tasks |
+| `tspec-apply-change` | Implement the change's tasks and advance its state |
 | `tspec-archive` | Validate and close a verified change |
 | `tspec-validate` | Validate the traceability graph |
 | `tspec-write-item` | Write one item of any declared role |
-| `tspec-track` | Bridge a change to its issue-tracker issue (link, create, import, status) |
+| `tspec-track` | Read a ticket or update its user-approved refinement section |
+
+The shared scalar metadata `featureTicketId=<id>` associates canonical graph items with the existing ticket; it is not a graph relation. `tspec-track --read <feature-ticket-id>` reads the ticket. `--update-refinement` writes only its unique `TSPEC refinement` section after the user approves the exact preview. The ticket remains authoritative for backlog position, status, and estimate; the workflow does not create/import tickets or update those fields.
 
 === Evaluate a workflow skill
 
@@ -174,24 +180,23 @@ tracer-spec/
 ├── tspec/                        # temporary, change-scoped task checklists
 └── skills/                       # Agent Skills for the workflow
     ├── tspec-explore/
+    ├── tspec-refine-feature/
     ├── tspec-propose/
-    ├── tspec-apply/
+    ├── tspec-refine-change/
+    ├── tspec-apply-change/
     ├── tspec-archive/
     ├── tspec-validate/
     ├── tspec-track/
     └── tspec-write-item/
-----
 
 == Workflow
 
 [source,text]
 ----
-explore → propose → apply → archive
+explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
 ----
 
-The graph is the source of truth.
-Git and pull requests provide review, authorization, and history.
-A human acceptance gate plus validation enforces review before implementation.
+Product-level intent is refined from an existing feature ticket before implementation changes are proposed. One ticket may link to multiple changes, each with its own detailed requirements and execution tasks. A human acceptance gate plus validation enforces review before implementation.
 
 == Build
 

@@ -33,6 +33,17 @@
         { "configuration": "with_skill", "type": "workspace_unchanged", "text": "Exploration of already-covered need makes no project edits." },
         { "configuration": "with_skill", "type": "assistant_contains", "value": "no new change is warranted", "text": "Concludes that existing coverage removes the need for a new change." }
       ]
+    },
+    {
+      "id": 4,
+      "name": "rough feature sketch hands off to refinement",
+      "prompt": "Explore a rough idea for a shared saved-filter feature that helps reviewers repeatedly find changes needing attention. The project has no saved-filter feature yet. Do not edit or save anything. Return candidate use cases, product/component outcomes, assumptions, and unanswered questions, then identify the next workflow step.",
+      "expected_output": "Remains write-free, sketches candidate user use cases and product/component outcomes with assumptions and open questions, and hands off confirmed ticket refinement to tspec-refine-feature.",
+      "fixture": "evals/fixtures/spec-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "Rough feature exploration remains write-free." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "tspec-refine-feature", "text": "Hands durable feature-ticket refinement to its dedicated skill." }
+      ]
     }
   ]
 }

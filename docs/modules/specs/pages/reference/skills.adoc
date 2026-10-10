@@ -1,6 +1,6 @@
 = Skills Reference
 
-The Tracer Spec Workflow ships seven skills.
+The Tracer Spec Workflow ships nine skills.
 Each is a self-contained instruction file; this page catalogs every skill's trigger, argument, and tool access.
 The `SKILL.md` files are the source of truth — this page mirrors their frontmatter.
 
@@ -8,13 +8,15 @@ The `SKILL.md` files are the source of truth — this page mirrors their frontma
 |===
 | Skill | Purpose | Argument | Tools
 
-| `tspec-explore` | Shape a change sketch without writing. | `<topic>` | unrestricted (read-only)
-| `tspec-propose` | Write a change, its requirements, and decisions atomically. | `<change-id or title>` | `antora-tracer`
-| `tspec-apply` | Implement a change's tasks and advance state. | `<change-id>` | `antora-tracer`
+| `tspec-explore` | Explore a feature idea and shape its change sketch. | `<topic>` | unrestricted (read-only)
+| `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items. | `<feature-ticket-id>` | `antora-tracer`, tracker CLI/API
+| `tspec-propose` | Propose an implementation change linked to refined product requirements. | `<change-id or title>` | `antora-tracer`
+| `tspec-refine-change` | Refine a proposed change into detailed software requirements and tasks. | `<change-id>` | `antora-tracer`
+| `tspec-apply-change` | Implement a change's tasks and advance state. | `<change-id>` | `antora-tracer`
 | `tspec-archive` | Validate, verify, and close a change. | `<change-id>` | `antora-tracer`
 | `tspec-validate` | Validate the traceability graph. | — | `antora-tracer`
 | `tspec-write-item` | Write one item of any role. | `<role> [<id>]` | `antora-tracer`
-| `tspec-track` | Bridge a change to its issue-tracker issue. | `<--link\|--create\|--import\|--status> <id>` | `antora-tracer`, `gh`, `curl`
+| `tspec-track` | Read or update an existing feature ticket. | `--read` or `--update-refinement` with `<feature-ticket-id>` | `antora-tracer`, `gh`, `curl`, `node`
 |===
 
 == Skill evaluation suite
@@ -49,13 +51,21 @@ Expectations are deterministic checks, not a measure of reasoning quality.
 Enter explore mode — a thinking partner that produces a change sketch (rationale, outcome, scope) without writing durable content.
 Read-only by discipline: it may read files, search code, and run commands, but must not edit the repo or `docs/modules/specs/pages/`.
 
+== tspec-refine-feature
+
+Refine an existing feature ticket into product-level behavior, use cases, and requirements. Related canonical graph items carry shared scalar metadata `featureTicketId=<id>`; one ticket may be linked from many independent changes. The ticket remains authoritative for backlog position, status, and estimate.
+
 == tspec-propose
 
-Propose a change: write the change item, its requirements, and its decisions in one pass, plus the temporary task checklist at `tspec/<change-id>/tasks.md`.
-Generates every ID up front, resolves role guidance templates, writes each item as its own file with a matching `include::` line, and validates before reporting.
-If `tspec.yml` declares a tracker, delegates issue linking to `tspec-track`.
+Propose an implementation change linked to the refined product-level graph. This skill writes the change and decisions it records; it does not author detailed software requirements or tasks. One feature ticket may lead to multiple independent changes.
+Generates the change ID, resolves role guidance templates, writes each item as its own file with a matching `include::` line, and validates before reporting.
 
-== tspec-apply
+
+== tspec-refine-change
+
+Refine a proposed change into detailed software requirements and an execution task checklist at `tspec/<change-id>/tasks.md`. Tasks are created only after the change is refined.
+
+== tspec-apply-change
 
 Implement an accepted change: work the task checklist, tick `- [ ]` to `- [x]`, add verification evidence for each addressed requirement, and advance `accepted` → `implemented` → `verified`.
 Never modifies requirements in place — a changed meaning is a supersession.
@@ -77,19 +87,18 @@ Generates the next ID from the role's prefix and writes into the role's page.
 
 == tspec-track
 
-Bridge a change to its issue tracker, one-way.
+Read an existing feature ticket or update its approved refinement section.
 
 [cols="25a,75a"]
 |===
-| Subcommand | Behavior
+| Operation | Behavior
 
-| `--link <change-id>` | Record an existing tracker issue as `trackerId=` on the change.
-| `--create <change-id>` | Create a tracker issue for the change, then record its ID.
-| `--import <issue-id>` | Import a tracker-first issue as a seeded change.
-| `--status <change-id>` | Push the change's lifecycle status to its linked issue.
+| `--read <feature-ticket-id>` | Read an existing linked GitHub or Jira feature ticket; it does not change the graph or ticket.
+| `--update-refinement <feature-ticket-id>` | After the user approves the exact preview, replace only the ticket's unique `TSPEC refinement` section (GitHub heading or equivalent Jira ADF section), preserving the rest of the ticket.
 |===
 
+The ticket must already exist; this skill does not create or import tickets, change ticket status or backlog position, or own estimates. The external ticket remains authoritative for those fields. Feature association is the shared `featureTicketId=<id>` item-header metadata written by refinement skills, not a graph relation; existing unknown legacy `trackerId` data is preserved and is not converted automatically.
+
 Configuration lives in `tspec.yml` under `tracker`.
-`provider: none` (the default) makes every subcommand a no-op.
-`github` drives the `gh` CLI; `jira` drives REST against the configured `url` and `project`.
-Tracker state is never read back into the graph; `trackerId` is a block-header attribute, not a relation.
+`provider: none` (the default) disables external ticket operations; `github` uses the `gh` CLI and `jira` uses REST against the configured `url` and `project`.
+The tracker bridge reads existing tickets and writes only a user-approved refinement section; it never synchronizes tracker status or estimates.

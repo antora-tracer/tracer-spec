@@ -1,21 +1,20 @@
-[#DEC-008, item, role=decision, status=proposed, title="Keep tracker configuration in a tracer-spec-owned file"]
+[#DEC-008, item, role=decision, status=proposed, title="Keep provider selection in tspec.yml without storing credentials"]
 --
-Context:: The tracker is a tracer-spec orchestration concern, but the workflow's only configuration file is `traceability.yml`, which belongs to the antora-tracer core.
-Placing tracker settings there would make tracer-spec inject content into a file owned by a dependency it adds onto.
+Context:: Feature-ticket refinement needs a provider selector to choose how to read an existing ticket and publish an explicitly approved summary. Credentials and ticket lifecycle state are owned by the user and provider tooling, not by the graph workflow.
 
 Options::
-* Add a `tracker:` block to `traceability.yml` — one file, but leaks tracer-spec content into antora-tracer's configuration.
-** Good: no new file; skills already read this file.
-** Bad: couples tracer-spec configuration to a file antora-tracer owns and validates.
-* A tracer-spec-owned `tspec.yml` — a parallel file scaffolded beside `traceability.yml`.
-** Good: keeps the dependency boundary clean; tracer-spec owns its own configuration.
-** Bad: a second configuration file to discover.
+* Put provider selectors, credentials, and ticket-status mappings in tracer-spec-owned `tspec.yml`.
+** Good: the workflow controls the complete tracker integration.
+** Bad: secrets and user-managed ticket lifecycle fields become project configuration.
+* Keep `tspec.yml` as a thin selector for the user's GitHub or Jira provider; credentials and ticket lifecycle state remain provider-owned.
+** Good: TSPEC selects provider-specific ticket access without storing secrets or taking ownership of estimates, backlog, or status.
+** Bad: ticket access depends on configured provider authentication.
 
-Decision:: A tracer-spec-owned `tspec.yml`.
+Decision:: Keep `tspec.yml` as a thin selector for `none`, GitHub, or Jira; it contains provider choice only, not credentials, ticket-status mappings, or estimates.
 
-Rationale:: `traceability.yml` belongs to antora-tracer, which has no dependency on tracer-spec; tracer-spec is an independent add-on and should own its configuration.
+Rationale:: The workflow needs provider-specific ticket access, while credentials and ticket state remain user/provider-owned. A selector supports GitHub and Jira without storing secrets or taking over tracker lifecycle.
 
-Consequences:: Two configuration files. The `tspec-track` skill reads `tspec.yml` directly, and the command-line tool stays thin.
+Consequences:: Scaffold `provider: none` by default. Use authenticated `gh` for GitHub and Jira Cloud REST with the user's existing `~/.netrc` host entry. Never alter that credential file. If Jira auth is missing or ADF cannot be safely preserved, return a manual draft and do not write.
 
 tracer:links[]
 --

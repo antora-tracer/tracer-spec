@@ -27,7 +27,7 @@ npm install
 * `docs/` — the Antora content source and site.
 * `antora-playbook.yml` — the site build playbook.
 * `AGENTS.md` — the project's agent instructions.
-* `skills/` — a local copy of the seven workflow skills.
+* `skills/` — a local copy of the nine workflow skills.
 
 Omit the name to use the current directory name.
 
@@ -72,4 +72,4 @@ The site publishes to `build/site/` with the traceability matrices and coverage 
 
 == Next
 
-xref:how-to/drive-the-workflow.adoc[Drive the workflow] with the seven skills.
+xref:how-to/drive-the-workflow.adoc[Drive the workflow] with the nine skills.

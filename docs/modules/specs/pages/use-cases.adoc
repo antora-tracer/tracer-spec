@@ -1,0 +1,14 @@
+= Use Cases
+:traceability-links: true
+
+== Traceable items
+
+Use cases describe actor goals and observable interactions; keep detailed system obligations in requirements.
+
+== Guidance
+
+See xref:guidance/use-case.adoc[Writing Use Cases] for the item template and traceability rules.
+
+== Items
+
+No use cases have been added yet.

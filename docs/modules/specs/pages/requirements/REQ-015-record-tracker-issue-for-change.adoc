@@ -1,6 +1,8 @@
-[#REQ-015, item, role=requirement, status=draft, title="Record the tracker issue for a change"]
+[#REQ-015, item, role=requirement, status=draft, title="Associate graph items with a shared feature ticket"]
 --
-The system SHALL record the identifier of the tracker issue associated with a change.
+The system SHALL allow canonical graph items, including use cases, requirements, and changes, to carry a scalar `featureTicketId` metadata field that references an existing externally owned feature ticket.
+
+Items covering the same feature MAY share a `featureTicketId`, including multiple independent changes. The reference SHALL remain external metadata, not a traceability relation or a graph item.
 
 tracer:links[]
 --

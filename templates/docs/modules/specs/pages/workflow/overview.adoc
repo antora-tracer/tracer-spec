@@ -1,6 +1,7 @@
 = Workflow Overview
 
-explore → propose → apply → archive
+explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
 
-The traceability graph is the source of truth. See `AGENTS.md` for the skills
-that drive this workflow.
+One feature ticket may link to multiple independently delivered changes.
+See `AGENTS.md` for the skills that drive this workflow.
+The user owns ticket status, backlog position, and estimate; TSPEC stores only the shared ticket ID and an explicitly approved refinement summary.
