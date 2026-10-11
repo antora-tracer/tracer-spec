@@ -48,7 +48,7 @@ If no applicable approved requirement can be identified, stop and ask for clarif
 
 Rename the source skill directory and command to `tspec-new-change` / `new-change`; remove the old skill and command names rather than maintaining aliases. Update the `tspec-explore` handoff, active workflow documentation, skill inventory, examples, and evaluation fixtures. Route change collection guidance to `tspec-new-change`; route standalone requirement/decision authoring to `tspec-write-item`.
 
-Update draft requirements `REQ-015`, `REQ-016`, `REQ-022`, `REQ-030`, `REQ-033`, and `REQ-034`, and proposed decisions `DEC-009` and `DEC-017`, to encode the optional `externalId` and ticketless-but-requirement-anchored refinement contract.
+Update draft requirements `REQ-015`, `REQ-016`, `REQ-022`, `REQ-030`, `REQ-033`, and `REQ-034`, and proposed decisions `DEC-009`, `DEC-011`, and `DEC-017`, to encode the optional `externalId` and ticketless-but-requirement-anchored refinement contract. Update proposed change `CHG-012` only to replace its renamed-skill reference.
 
 Refresh the project-local `.omp`, `.claude`, and `.agents` skill/command copies after checking for local edits; remove only the old TSPEC skill and command entries. The scaffold discovers skill and command files dynamically, so no installer code change is expected.
 
