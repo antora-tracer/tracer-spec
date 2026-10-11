@@ -1,5 +1,5 @@
-# Trace Spec Workflow — self-traceability model
-# Spec-driven development: a minimal Tier-1 core (change + requirement) with growable Tier-2 roles.
+# Trace Spec Workflow configuration extending antora-tracer minimal.
+
 extends: minimal
 
 roles:
@@ -54,33 +54,6 @@ matrices:
     columns: [requirement]
     coverageRelations:
       requirement: [refines]
-  - name: requirements-to-changes
-    description: Requirements traced to changes that address them
-    rows: requirement
-    columns: [ change ]
-    coverageRelations:
-      change: [ addresses ]
-
-workflow:
-  change:
-    states: [proposed, refined, accepted, implemented, verified, closed, rejected]
-    transitions:
-      proposed: [refined, rejected]
-      refined: [accepted, proposed]
-      accepted: [implemented, rejected]
-      implemented: [verified, accepted]
-      verified: [closed, implemented]
-  requirement:
-    states: [draft, reviewed, approved, superseded, withdrawn]
-    transitions:
-      draft: [reviewed, withdrawn]
-      reviewed: [approved, draft]
-      approved: [superseded]
-  decision:
-    states: [proposed, accepted, rejected, superseded]
-    transitions:
-      proposed: [accepted, rejected]
-      accepted: [superseded]
 
 validation:
   change:

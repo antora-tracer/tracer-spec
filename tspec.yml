@@ -3,8 +3,13 @@
 
 tracker:
   # none | github | jira
-  provider: github
+  provider: none
 
   # GitHub: reach the tracker via the `gh` CLI.
-  github:
-    repo: antora-tracer/tracer-spec
+  # github:
+  #   repo: owner/repo
+
+  # Jira: reach the tracker via its REST API.
+  # jira:
+  #   url: https://your-domain.atlassian.net
+  #   project: KEY
