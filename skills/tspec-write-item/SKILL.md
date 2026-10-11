@@ -12,9 +12,9 @@ Write one item of any declared role.
 
 ## Behavior
 
-1. Confirm the role and, for feature-related items, the existing shared `featureTicketId`. Declared core roles: `change`, `requirement`, `decision`, `test`; growth roles including `use_case` must first be declared in `traceability.yml`.
+1. Confirm the role and include the shared `externalId` only when the item is associated with an existing external item. Declared core roles: `change`, `requirement`, `decision`, `test`; growth roles including `use_case` must first be declared in `traceability.yml`.
 2. Generate the next ID with `antora-tracer next-id --prefix <PREFIX> -i docs` (prefix from role guidance; core prefixes include CHG, REQ, DEC, TST, while `use_case` uses UC).
-3. Write the item block to its role collection with appropriate `status`, and include `featureTicketId=<id>` in the header when it belongs to an existing external feature ticket.
+3. Write the item block to its role collection with appropriate `status`; include `externalId=<id>` in the header only when the item belongs to an existing external item.
 4. Wire configured relations to existing IDs with `<relation>:<ID>[]` macros.
 
 ## Roles, collections, prefixes, initial status
@@ -39,7 +39,7 @@ Use only relations enabled by the project's `traceability.yml`; the reverse name
 ## Item format
 
 ```asciidoc
-[#<ID>, item, role=<role>, status=<state>, featureTicketId=<existing-ticket-id>, title="..."]
+[#<ID>, item, role=<role>, status=<state>, title="..."]
 --
 <body>
 

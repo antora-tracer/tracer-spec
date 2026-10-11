@@ -1,3 +1,5 @@
 = Changes
 :traceability-links: true
 include::changes/CHG-001-saved-filter.adoc[]
+include::changes/CHG-002-local.adoc[]
+include::changes/CHG-003-unanchored.adoc[]

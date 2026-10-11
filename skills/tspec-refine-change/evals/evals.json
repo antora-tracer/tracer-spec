@@ -5,12 +5,12 @@
       "id": 1,
       "name": "estimatable slice adds software requirements and checklist",
       "prompt": "Refine only CHG-001, the saved-filter implementation slice associated with FEAT-42. The slice should let a reviewer create and reuse a named filter for changes requiring attention. Keep rationale, observable outcome, and out-of-scope explicit. Use the existing approved product/component requirements and create testable level=software requirements with BDD example prose. The scope and acceptance examples are estimatable; make CHG-001 refined and then create its temporary task checklist. Do not write to any ticket or touch another change.",
-      "expected_output": "Refines only CHG-001, preserves featureTicketId=FEAT-42, addresses existing approved product/component requirements, creates software requirements that refines their applicable parent requirement, and creates tasks only after marking the estimatable slice refined.",
+      "expected_output": "Refines only CHG-001, preserves externalId=FEAT-42, addresses existing approved product/component requirements, creates software requirements that refines their applicable parent requirement, and creates tasks only after marking the estimatable slice refined.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
         { "configuration": "with_skill", "type": "workspace_changed_under", "path": "docs/modules/specs/pages", "text": "Change refinement writes only its own change and software requirements." },
         { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "level=software", "text": "A new detailed behavior requirement is software-level." },
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "featureTicketId=FEAT-42", "text": "New change requirements retain the shared feature ticket." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/requirements", "value": "externalId=FEAT-42", "text": "New change requirements retain the shared external ID." },
         { "configuration": "with_skill", "type": "file_exists", "path": "tspec/CHG-001/tasks.md", "text": "An estimatable refined slice receives its temporary checklist." },
         { "configuration": "with_skill", "type": "file_contains", "path": "tspec/CHG-001/tasks.md", "value": "- [ ]", "text": "Checklist items are actionable checkboxes." }
       ]
@@ -18,12 +18,35 @@
     {
       "id": 2,
       "name": "not-estimatable slice gets no checklist",
-      "prompt": "Refine CHG-001 only. The featureTicketId is FEAT-42; use the already approved product and component requirements. The current change description is vague: 'Make filters better.' Help me define the scope and software-level requirements, but an integration decision remains open and the slice is not yet estimatable. Do not mark the change refined, create a task checklist, or call any tracker.",
+      "prompt": "Refine CHG-001 only. The externalId is FEAT-42; use the already approved product and component requirements. The current change description is vague: 'Make filters better.' Help me define the scope and software-level requirements, but an integration decision remains open and the slice is not yet estimatable. Do not mark the change refined, create a task checklist, or call any tracker.",
       "expected_output": "Records only the agreed draft refinement; CHG-001 remains proposed, no temporary checklist exists, and the unresolved integration decision is explicit.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
         { "configuration": "with_skill", "type": "file_not_exists", "path": "tspec/CHG-001/tasks.md", "text": "No temporary checklist is created before estimatable readiness." },
         { "configuration": "with_skill", "type": "assistant_contains", "value": "integration", "text": "The unresolved decision remains explicit." }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "ticketless change refines from approved requirement",
+      "prompt": "Refine only CHG-002. It has no externalId and addresses the approved component requirement REQ-003, which applies to this change. The work is bounded and estimatable; define one testable software-level requirement with a BDD example, show the proposed edits, and I approve saving them. Mark the change refined and create its task checklist. Do not call any tracker.",
+      "expected_output": "Refines CHG-002 from REQ-003 without requiring or inventing an externalId, saves the user-approved software-level requirement, and creates tasks only after the change is refined.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/requirements", "value": "level=software", "text": "Ticketless refinement records a software-level requirement." },
+        { "configuration": "with_skill", "type": "file_contains", "path": "docs/modules/specs/pages/changes/CHG-002-local.adoc", "value": "status=refined", "text": "The change becomes refined after the user approves its estimatable scope." },
+        { "configuration": "with_skill", "type": "file_exists", "path": "tspec/CHG-002/tasks.md", "text": "An estimatable ticketless change receives its task checklist." }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "external ID cannot replace requirement anchor",
+      "prompt": "Refine CHG-003. It has externalId FEAT-99 but no applicable approved product or component requirement is linked or identified in the graph. Ask me to clarify or establish the requirement anchor; do not invent one, write graph items, or create a task checklist.",
+      "expected_output": "Asks for an applicable approved requirement anchor and leaves the graph and task directory unchanged.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "No graph or task files are written without an approved requirement anchor." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "requirement", "text": "The user is asked to establish the missing requirement anchor." }
       ]
     }
   ]

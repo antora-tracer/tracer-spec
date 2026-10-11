@@ -38,6 +38,6 @@ Do not write anything durable.
 ## Next
 
 - After the user confirms a feature-sized sketch, hand off to `tspec-refine-feature` to refine an existing feature ticket into approved graph items and an optional ticket-description section.
-- After the user confirms an implementation change sketch, use `tspec-propose` to record one implementation change against its existing feature ticket and product/component requirements.
+- After the user confirms an implementation change sketch, use `tspec-new-change` to record one implementation change against applicable approved product/component requirements; include optional `externalId` only when the change already has an external item.
 - For a requirement or another single item, suggest `tspec-write-item` instead.
 - If no change or item is warranted, explain the conclusion and stop.

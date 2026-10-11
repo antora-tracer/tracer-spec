@@ -1,0 +1,39 @@
+{
+  "skill_name": "tspec-new-change",
+  "evals": [
+    {
+      "id": 1,
+      "name": "context creates linked change with external ID",
+      "prompt": "The context is settled: reviewers need a reusable named filter for changes requiring attention. Use approved component requirement REQ-002. The rationale is to let reviewers create and reuse a named filter; the outcome is reuse across review sessions; sharing filters across organizations is out of scope. The existing external tracker item is FEAT-42. I have already reviewed and approve the exact preview for the next CHG ID, with those fields, externalId=FEAT-42, and addresses:REQ-002[]. Record it now. Do not create requirements, tasks, or tracker tickets.",
+      "expected_output": "Creates exactly one proposed CHG from context, retains externalId=FEAT-42, addresses REQ-002, and creates no requirements or tasks.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/changes", "value": "externalId=FEAT-42", "text": "The external item identifier is included when supplied." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/changes", "value": "addresses:REQ-002[]", "text": "The change links to the applicable approved requirement." },
+        { "configuration": "with_skill", "type": "workspace_unchanged", "path": "tspec", "text": "Creation does not create a task checklist." }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "context creates ticketless requirement-anchored change",
+      "prompt": "The local change is clear from context: preserve the audit record when an approved local change is applied. Use the applicable approved component requirement REQ-003. Rationale: the project needs a bounded local implementation item; outcome: the change has a traceable proposed record; out of scope: creating or updating a tracker ticket. No external item exists. I approve the exact proposed preview with addresses:REQ-003[] and no externalId; record it now.",
+      "expected_output": "Creates one proposed ticketless change anchored to REQ-003 without asking for or inventing an externalId.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/changes", "value": "addresses:REQ-003[]", "text": "The local change remains anchored to its approved requirement." },
+        { "configuration": "with_skill", "type": "workspace_unchanged", "path": "tspec", "text": "Creation does not create a task checklist." }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "unclear requirement anchor asks without writing",
+      "prompt": "Create a change for a local CSV export feature. The graph contains no approved product or component requirement for export. Use the context you have, but ask me to clarify or establish an applicable approved requirement before creating the change. Do not invent a link or write graph files.",
+      "expected_output": "Asks for an applicable approved requirement and leaves the graph unchanged.",
+      "fixture": "evals/fixtures/refinement-project",
+      "expectations": [
+        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "No change is saved without an approved requirement anchor." },
+        { "configuration": "with_skill", "type": "assistant_contains", "value": "requirement", "text": "The user is asked to establish the missing requirement anchor." }
+      ]
+    }
+  ]
+}

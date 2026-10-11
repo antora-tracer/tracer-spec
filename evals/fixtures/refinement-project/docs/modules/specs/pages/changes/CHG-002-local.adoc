@@ -1,0 +1,9 @@
+[#CHG-002, item, role=change, status=proposed, title="Implement a local change without an external ticket"]
+--
+Rationale:: The project needs a bounded implementation change that is not tracked in an external ticket.
+Outcome:: The approved local requirement is implemented without a tracker association.
+Out-of-scope:: Creating or updating an external ticket.
+
+addresses:REQ-003[]
+tracer:links[]
+--

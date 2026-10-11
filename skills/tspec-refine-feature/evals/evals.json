@@ -5,11 +5,11 @@
       "id": 1,
       "name": "approved partial feature remains draft",
       "prompt": "Refine feature ticket FEAT-42 using this user-supplied ticket text (tracker provider is none): 'Reviewers need a reusable saved filter for changes requiring attention. The filter should be easy to name and reuse.' Work with me to produce one reviewer's use case and one testable product-level requirement. I approve writing the graph items now. I have not confirmed the component design or that the feature is estimatable, and I do not approve changing an external ticket. Leave the requirement draft, record the open component question, and show the manual TSPEC refinement section.",
-      "expected_output": "Creates a use_case and a level=product requirement linked by leads_to; both carry featureTicketId=FEAT-42. The requirement remains draft, an unresolved component-design question is explicit, no external API is called, and a manual section is shown.",
+      "expected_output": "Creates a use_case and a level=product requirement linked by leads_to; both carry externalId=FEAT-42. The requirement remains draft, an unresolved component-design question is explicit, no external API is called, and a manual section is shown.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
         { "configuration": "with_skill", "type": "workspace_changed_under", "path": "docs/modules/specs/pages", "text": "Approved partial refinement creates graph items." },
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "featureTicketId=FEAT-42", "text": "New feature graph items share the existing ticket identifier." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "externalId=FEAT-42", "text": "New feature graph items share the existing external ID." },
         { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "role=use_case", "text": "Refinement records the agreed use case." },
         { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "leads_to:REQ-", "text": "The use case links to its derived product requirement." },
         { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "status=draft", "text": "Incomplete refinement does not advance the requirement." },

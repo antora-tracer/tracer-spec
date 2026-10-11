@@ -1,0 +1,8 @@
+[#CHG-003, item, role=change, status=proposed, externalId=FEAT-99, title="An externally identified but unanchored change"]
+--
+Rationale:: The proposed work has an external identifier but no approved requirement anchor.
+Outcome:: The change is ready to be refined only after an applicable approved requirement is identified.
+Out-of-scope:: Inventing a requirement link.
+
+tracer:links[]
+--

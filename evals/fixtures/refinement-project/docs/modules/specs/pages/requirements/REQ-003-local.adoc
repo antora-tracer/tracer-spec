@@ -1,0 +1,6 @@
+[#REQ-003, item, role=requirement, level=component, status=approved, title="Local changes must preserve audit history"]
+--
+The system SHALL preserve an audit record when an approved local change is applied.
+
+tracer:links[]
+--
