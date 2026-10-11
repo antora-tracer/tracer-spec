@@ -1,23 +1,18 @@
 = Changes
 :traceability-links: true
 
-include::changes/CHG-004-tspec-workflow-redesign.adoc[]
+Add your changes here using the `tspec-new-change` skill.
 
-include::changes/CHG-005-role-guidance-resolvable-and-template-driven.adoc[]
+[source,asciidoc]
+----
+[#CHG-001, item, role=change, status=proposed, title="Your feature"]
+--
+Rationale:: Why this change is needed.
+Outcome:: What the change produces.
+Out-of-scope:: What the change excludes.
 
-include::changes/CHG-006-verify-change-conformance-in-archive.adoc[]
-
-include::changes/CHG-007-enrich-decision-template-madr.adoc[]
-
-include::changes/CHG-008-configurable-issue-tracker-bridge.adoc[]
-
-include::changes/CHG-009-gate-requirements-against-implementation.adoc[]
-
-include::changes/CHG-010-complete-diataxis-site-structure.adoc[]
-
-include::changes/CHG-011-evaluate-workflow-skills.adoc[]
-
-include::changes/CHG-012-requirement-driven-architecture-records.adoc[]
-
-include::changes/CHG-013-feature-ticket-refinement-workflow.adoc[]
-
+addresses:REQ-NNN[]
+records:DEC-NNN[]
+tracer:links[]
+--
+----

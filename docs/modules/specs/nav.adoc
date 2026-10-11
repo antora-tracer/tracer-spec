@@ -1,25 +1,6 @@
 * xref:index.adoc[Home]
-* xref:getting-started.adoc[Getting Started]
-* How-to Guides
-** xref:how-to/scaffold-project.adoc[How to scaffold a project]
-** xref:how-to/drive-the-workflow.adoc[How to drive the workflow]
-** xref:how-to/evaluate-workflow-skills.adoc[How to evaluate workflow skills]
-* Reference
-** xref:reference/cli.adoc[CLI]
-** xref:reference/skills.adoc[Skills]
-** xref:reference/roles.adoc[Roles]
-** xref:reference/config.adoc[Configuration]
-* Explanation
-** xref:explanation/workflow.adoc[Workflow]
-** xref:explanation/traceability.adoc[Traceability]
-* Traceability matrices
-** xref:attachment$traceability/matrix-requirements-tests.html[Requirements to tests]
-** xref:attachment$traceability/matrix-changes-to-requirements.html[Changes to requirements]
-** xref:attachment$traceability/matrix-requirements-to-changes.html[Requirements to changes]
-** xref:attachment$traceability/matrix-use-cases-to-requirements.html[Use cases to requirements]
-** xref:attachment$traceability/matrix-requirements-refinement.html[Requirements refinement]
+* xref:workflow/overview.adoc[Workflow]
 * xref:changes.adoc[Changes]
 * xref:requirements.adoc[Requirements]
 * xref:use-cases.adoc[Use Cases]
 * xref:decisions.adoc[Decisions]
-* xref:tests.adoc[Tests]

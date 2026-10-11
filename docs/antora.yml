@@ -1,9 +1,5 @@
 name: tracer-spec
 version: ~
-title: Tracer Spec Workflow
-start_page: specs:index.adoc
+title: Tracer Spec
 nav:
   - modules/specs/nav.adoc
-asciidoc:
-  attributes:
-    traceability-links: true

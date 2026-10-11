@@ -1,88 +1,16 @@
 = Requirements
 :traceability-links: true
-:traceability-collapsible: true
-Requirement levels use the ordinary `level` metadata values `product`, `component`, or `software`; more detailed requirements use `refines` links. See xref:reference/roles.adoc#requirements[the roles reference].
 
-== Traceable items
+Add standalone requirements here using the `tspec-write-item` skill.
 
-include::requirements/REQ-001-changes-requirements-core.adoc[]
+[source,asciidoc]
+----
+[#REQ-001, item, role=requirement, status=draft, title="Observable behaviour"]
+--
+The system SHALL <observable behaviour>.
 
-include::requirements/REQ-002-connect-changes-to-requirements.adoc[]
+<boundary conditions or scope>
 
-include::requirements/REQ-003-preserve-decisions-durable.adoc[]
-
-include::requirements/REQ-004-keep-execution-tasks-temporary.adoc[]
-
-include::requirements/REQ-005-supersede-approved-requirements.adoc[]
-
-include::requirements/REQ-020-record-requirements-as-behaviour-not-mechanisms.adoc[]
-
-== Change lifecycle
-
-include::requirements/REQ-006-enforce-human-acceptance-gate.adoc[]
-
-include::requirements/REQ-010-archive-verifies-requirements.adoc[]
-
-include::requirements/REQ-011-archive-refuses-unsatisfied.adoc[]
-
-include::requirements/REQ-012-archive-verification-read-only.adoc[]
-
-== Guidance pages
-
-include::requirements/REQ-007-resolve-role-guidance-pages.adoc[]
-
-include::requirements/REQ-008-change-guidance-item-template.adoc[]
-
-include::requirements/REQ-009-decision-guidance-item-template.adoc[]
-
-include::requirements/REQ-013-decision-guidance-madr-fields.adoc[]
-
-== Issue tracker bridge
-
-include::requirements/REQ-014-associate-issue-tracker-with-workflow.adoc[]
-
-include::requirements/REQ-015-record-tracker-issue-for-change.adoc[]
-
-include::requirements/REQ-016-create-or-link-tracker-issue.adoc[]
-
-include::requirements/REQ-017-import-tracker-first-issue.adoc[]
-
-include::requirements/REQ-018-keep-tracker-status-in-step.adoc[]
-
-include::requirements/REQ-019-ignore-tracker-state-changes.adoc[]
-
-== Documentation
-
-include::requirements/REQ-021-document-cli-in-site.adoc[]
-
-include::requirements/REQ-022-document-workflow-skills.adoc[]
-
-include::requirements/REQ-023-one-page-one-diataxis-mode.adoc[]
-
-include::requirements/REQ-024-readme-names-seven-skills.adoc[]
-
-== Skill evaluation
-
-include::requirements/REQ-025-run-isolated-skill-evaluations.adoc[]
-
-include::requirements/REQ-026-report-skill-evaluation-evidence.adoc[]
-
-== Architecture decision records
-
-include::requirements/REQ-027-distinguish-architecture-decision-records.adoc[]
-
-include::requirements/REQ-028-derive-architecture-proposals-from-requirements.adoc[]
-
-include::requirements/REQ-029-clarify-and-record-architecture-decisions.adoc[]
-
-== Feature-ticket refinement workflow
-
-include::requirements/REQ-030-refine-ticket-into-traceable-feature-spec.adoc[]
-
-include::requirements/REQ-031-preserve-partial-feature-refinement-gaps.adoc[]
-
-include::requirements/REQ-032-confirm-feature-readiness-before-approval.adoc[]
-
-include::requirements/REQ-033-propose-independent-feature-implementation-changes.adoc[]
-
-include::requirements/REQ-034-refine-change-before-creating-tasks.adoc[]
+tracer:links[]
+--
+----

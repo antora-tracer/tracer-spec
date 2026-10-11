@@ -1,50 +1,48 @@
 # AGENTS.md
 
+This project uses the **Tracer Spec Workflow** (spec-driven development on
+Antora Tracer). Durable artifacts are traceable Antora/AsciiDoc items published
+as pages under `docs/modules/specs/pages/`, validated with `antora-tracer`.
+
 ## Durable Artifacts Directory
 
-Durable artifacts (changes, use cases, requirements, design concepts, ADRs)
-are written to `docs/modules/specs/pages/`.
+Durable artifacts (changes, requirements, decisions) are written to
+`docs/modules/specs/pages/`.
 
-## Project
+## Skills
 
-## Development
+`tracer-spec init` installs the workflow skills into your agent harness
+directories (`.omp/skills/`, `.claude/skills/`, `.agents/skills/`).
+Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
 
-## Commit Convention
+| Skill | Purpose |
+|-------|---------|
+| `tspec-explore` | Explore a feature idea and shape its change sketch |
+| `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items |
+| `tspec-new-change` | Record a context-first implementation change against approved requirements |
+| `tspec-refine-change` | Refine a change into detailed software requirements and tasks |
+| `tspec-track` | Read an existing ticket or update its user-approved refinement section |
+| `tspec-apply-change` | Implement the change's refined tasks and advance state |
+| `tspec-archive` | Validate and close a verified change |
+| `tspec-validate` | Validate the traceability graph |
+| `tspec-write-item` | Write one item of any declared role |
 
-This project follow https://www.conventionalcommits.org/[Conventional Commits].
-All commit message must use this format:
+## Workflow
 
 ```
-<type>(<scope>): <description>
+tspec-explore → tspec-refine-feature → tspec-new-change → tspec-refine-change → tspec-apply-change → tspec-archive
 ```
 
-Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `ci`, `perf`
+Related graph items may share optional `externalId=<id>` metadata when associated with the same external item. `tspec-new-change` records one proposed CHG against applicable approved requirements, whether or not an external ID exists. It does not author software requirements or tasks; run `tspec-refine-change` before creating the change's task checklist.
 
-Common scopes: `parser`, `cli`, `preset`, `matrix`, `neo4j`, `antora`, `config`, `graph`
-
-Examples: `feat(parser): support escaped inline macros`, `fix(cli): show file location in validation errors`
-
-## Documentation Framework
-
-Example site doc follow https://diataxis.fr[Diátaxis] — framework that split doc into four mode, each serve different reader need. Every page in example site belong to exactly one mode:
-
-| Mode | Purpose | Reader asks | Example pages |
-|---|---|---|---|
-| **Tutorial** | Learn-oriented, step-by-step | "Can you teach me to…?" | `getting-started.adoc` |
-| **How-to Guides** | Task-oriented, solve a problem | "How do I…?" | `how-to/custom-domain-model.adoc` |
-| **Reference** | Info-oriented, exhaustive | "What does X do?" | `reference/cli.adoc`, `reference/api.adoc` |
-| **Explanation** | Understand-oriented, background | "Why does it work that way?" | `architecture.adoc`, `adr/`, `quality/` |
-
-Fifth section, **Self-Traceability**, group page that show extension tracing its own dev artifact (requirement, use case, test plan, dashboard). Not user-facing doc — extension applied on itself.
-
-**Key rule when add or edit doc:**
-
-- One sentence per line. See https://asciidoctor.org/docs/asciidoc-recommended-practices/#one-sentence-per-line[AsciiDoc Recommended Practices] — make pull request diff line-level, review easier.
-- One page = one mode. No mix tutorial step, how-to instruction, reference listing, and explanation in same page.
-- Tutorial no link out to Reference or Explanation — it a guided path.
-- How-to, Reference, Explanation page cross-reference each other freely.
-- How-to page title use the "How to <verb> <object>" format.
-- Reference page exhaustive — every option, flag, attribute get documented.
-
-## Architecture
-
+- The graph is the source of truth for specifications. The external feature
+  ticket remains authoritative for backlog position, status, and estimate.
+  Durable artifacts are pages in `docs/modules/specs/pages/`; temporary tasks
+  go in `tspec/<change-id>/`.
+- `tspec-track --read <feature-ticket-id>` reads an existing ticket.
+  `--update-refinement` requires approval of the exact section preview and
+  changes only the unique `TSPEC refinement` section, preserving all other
+  ticket content. The workflow does not create/import tickets or update status,
+  backlog position, or estimates.
+- Take role names, relation types, and ID prefixes from `traceability.yml`
+  (or its `extends:` preset) — never invent them.

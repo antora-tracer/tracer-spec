@@ -1,60 +1,21 @@
-= Tracer Spec Workflow
+= Tracer Spec
 
-Spec-driven development built on Antora Tracer.
+Your project documentation starts here.
 
-This project eats its own dog food: changes, requirements, and decisions are traceable items in this very site.
+This is a Tracer Spec Workflow project. Add durable items to
+`docs/modules/specs/pages/` and they flow through the traceability graph.
 
-== Overview
+== Getting started
 
-Antora-tracer/core provides projects with the ability to create traced items, like use cases, requirements, designs, or tests.
-tspec builds on this and provides a spec driven development flow.
-From idea, over change, to requirements and design, implementation, verification and consolidation.
-
-=== Durable artifacts
-
-It will create durable artifacts.
-
-* *Changes* — independently deliverable implementation slices with rationale, outcome, and scope.
-* *Requirements* — observable obligations at product, component, or software level; changes address them, and more detailed requirements refine broader ones.
-* *Use Cases* — specific actor goals and observable interactions that lead to requirements.
-* *Decisions* — durable domain and specification choices.
-
-=== Temporary artifacts
-
-* *Tasks* — Markdown checklists under `tspec/<change-id>/`, deleted when the change closes.
-
-=== The workflow
-
-[source,text]
-----
-explore → refine feature ticket → record change(s) → refine each change → accept → apply → archive
-----
-
-The graph is the canonical specification; a graph item's optional `externalId` may reference an existing external item. Local changes may omit it while still addressing approved requirements.
-One ticket may link to multiple independent implementation changes.
-The ticket remains authoritative for backlog placement, status, and estimate.
-
-=== Customizability
-
-antora-tspec and antora-tracer are both customizable to your project situation.
-This is driven by config files and role guidance files.
-Because tspec sits on top of tracer configuration must be compatible.
-Don't worry, this can be checked programmatically.
-
-== Duality
-
-To work with `tspec` you must know that `tspec` consists of two parts
-
-* CLI commands
-* Agent skills
-
-You can use both.
-But most likely, you are most of the time working inside your agent harness.
+1. xref:changes.adoc[View changes]
+2. xref:requirements.adoc[Read requirements]
+3. xref:decisions.adoc[Review decisions]
+4. xref:use-cases.adoc[Review use cases]
 
 
 == Next steps
 
-* xref:explanation/workflow.adoc[Understand the workflow]
-* xref:requirements.adoc[View the requirements]
-* xref:changes.adoc[View the change]
-* xref:tests.adoc[View verification tests]
+* Use `tspec-explore`, then `tspec-refine-feature` for existing feature tickets
+* Use `tspec-new-change` and `tspec-refine-change` for implementation slices
+* Validate with `npm run validate`
+* Build with `npm run build`

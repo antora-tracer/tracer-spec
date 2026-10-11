@@ -1,14 +1,31 @@
 = Use Cases
 :traceability-links: true
 
-== Traceable items
+Add use cases below, following the guidance in xref:guidance/use-case.adoc[Writing Use Cases].
 
-Use cases describe actor goals and observable interactions; keep detailed system obligations in requirements.
+[source,asciidoc]
+----
+[#UC-001, item, role=use_case, title="<Specific actor> <action> <outcome>"]
+--
+.Use Case: <title>
+[width=100%, cols="25h,75a"]
+|===
+| ID | UC-001
+| Title | <actor> <action> <outcome>
+| Goal | <actor> does <action> so that <stakeholder benefit>
+| Primary Actor | <specific role or persona>
+| Preconditions | <testable state before the trigger>
+| Trigger | <event that starts the use case>
+| Basic Flow |
+. <observable action or response>
+| Alternate Flows | <condition and alternate outcome, or none identified>
+| Postconditions | <testable state after success>
+| Priority | High / Medium / Low
+| Frequency | <how often>
+| Notes | <open questions or references>
+|===
 
-== Guidance
-
-See xref:guidance/use-case.adoc[Writing Use Cases] for the item template and traceability rules.
-
-== Items
-
-include::use-cases/UC-001-refine-feature-ticket.adoc[]
+leads_to:REQ-NNN[]
+tracer:links[]
+--
+----

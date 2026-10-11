@@ -1,0 +1,6 @@
+= Workflow Overview
+
+explore → refine feature ticket → record change(s) → refine each change → accept → apply → archive
+
+One external ticket may be associated with multiple independent changes through optional `externalId=<id>` metadata. A local change may omit that identifier when it addresses applicable approved requirements.
+The user owns ticket status, backlog position, and estimate. TSPEC stores the graph and only an explicitly approved ticket refinement summary.

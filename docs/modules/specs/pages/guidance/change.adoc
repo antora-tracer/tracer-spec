@@ -1,27 +1,10 @@
-= Change Guidance
+= Change
 
 A change is the entry point of the workflow.
 It records rationale, outcome, and out-of-scope fields, and links to the requirements it addresses and the decisions it records.
 
-== Item template
+Status: `proposed` → `refined` → `accepted` → `implemented` → `verified` → `closed` · `rejected`.
 
-[source,asciidoc]
-----
-[#CHG-NNN, item, role=change, status=proposed, title="Short change title"]
---
-Rationale:: Why this change is needed.
-Outcome:: What the change produces.
-Out-of-scope:: What the change excludes.
-
-addresses:REQ-NNN[]
-records:DEC-NNN[]
-
-tracer:links[]
---
-----
-
-States: proposed → refined → accepted → implemented → verified → closed · rejected.
-
-An implementation change may carry optional `externalId=<existing-item-id>` metadata in its header. A local change needs no external ID when it addresses approved requirements.
+An implementation change may carry the optional shared external `externalId=<existing-item-id>` metadata in its item header. Multiple related graph items may share that identifier; local changes need no external ID.
 
 An accepted change must address at least one requirement.
