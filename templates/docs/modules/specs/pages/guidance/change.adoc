@@ -5,6 +5,6 @@ It records rationale, outcome, and out-of-scope fields, and links to the require
 
 Status: `proposed` → `refined` → `accepted` → `implemented` → `verified` → `closed` · `rejected`.
 
-An implementation change may carry the shared external `featureTicketId=<existing-ticket-id>` metadata in its item header. Multiple independent changes may reference the same existing feature ticket.
+An implementation change may carry optional shared external `externalId=<existing-item-id>` metadata in its item header. Local changes may omit it when they address applicable approved requirements.
 
 An accepted change must address at least one requirement.
