@@ -1,14 +1,15 @@
 [#CHG-005, item, role=change, status=closed, title="Make role guidance resolvable and template-driven"]
 --
-Rationale:: The tspec skills must resolve item fields from role guidance, but `antora-tracer role-guidance <role> --config traceability.yml --content` fails today.
-The `roleGuidance.*.page` values are Antora-relative paths, but the tracer resolves them as filesystem paths relative to the config file, so `guidance/change.adoc` resolves to a nonexistent repo-root file instead of `docs/modules/specs/pages/guidance/change.adoc`.
-The guidance pages also carry no item template, so field names exist only as informal prose.
+Rationale:: The tspec skills need to read item fields from role guidance, but `antora-tracer role-guidance <role> --config traceability.yml --content` currently fails.
+The `roleGuidance.*.page` entries use Antora-relative paths, while the tracer resolves them as filesystem paths relative to the config file.
+It therefore looks for `guidance/change.adoc` at the repository root instead of `docs/modules/specs/pages/guidance/change.adoc`.
+The guidance pages also lack item templates, leaving field names as informal prose.
 
-Outcome:: `antora-tracer role-guidance change --config traceability.yml --content` and its `decision` equivalent return their guidance pages, each carrying an `Item template` block that enumerates the role's labeled-list fields.
+Outcome:: The `antora-tracer role-guidance change --config traceability.yml --content` command and its `decision` equivalent return their guidance pages with an `Item template` block listing the role's labeled-list fields.
 
-Out-of-scope:: The skill update that consumes the templates is a later change.
-Core-repo preset consistency is a separate change in the core repository.
-Roles, relations, workflow, and validation are unchanged.
+Out-of-scope:: The skill update that uses these templates belongs in a later change.
+Core-repo preset consistency needs a separate change in the core repository.
+The roles, relations, workflow, and validation stay unchanged.
 
 addresses:REQ-007[]
 addresses:REQ-008[]

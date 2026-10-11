@@ -1,13 +1,15 @@
 [#CHG-010, item, role=change, status=closed, title="Complete Diátaxis site structure with CLI and skills documentation"]
 --
-Rationale:: The site explains the workflow and shows its own traceability, but the CLI and workflow skills need task-oriented and reference documentation.
-The original pages mixed Diátaxis modes, and the README did not enumerate the skills consistently as the set evolved.
-The skills reference and workflow how-to now describe feature-ticket refinement, one-to-many changes, change refinement, and the provider boundary.
+Rationale:: The site explains the workflow and its traceability.
+The CLI and workflow skills still need task-oriented guides and reference pages.
+The existing pages mix Diátaxis modes, and the README's skill list has not kept pace as the set has changed.
+The skills reference and workflow how-to now cover feature-ticket refinement, one-to-many changes, change refinement, and the provider boundary.
 
-Outcome:: A complete Diátaxis site: task-oriented how-to, exhaustive CLI/skill/role/config reference, and workflow/traceability explanation.
-Mixed-mode pages are in their appropriate sections and role guidance remains where `traceability.yml` expects it.
-The README and site enumerate the nine workflow skills consistently.
-`use-cases/` and `design/` retain optional growth-role documentation; the main use-case workflow guidance is at `guidance/use-case.adoc`.
+Outcome:: The site now has task-oriented how-to guidance, exhaustive references for the CLI, skills, roles, and configuration, and explanations of the workflow and traceability.
+Move mixed-mode pages to the right sections, and keep role guidance at the path configured in `traceability.yml`.
+The README and site list all nine workflow skills consistently.
+`use-cases/` and `design/` retain optional growth-role documentation.
+The main use-case workflow guidance stays at `guidance/use-case.adoc`.
 
 Out-of-scope:: Splitting the workflow how-to into per-skill pages.
 Documenting the full `antora-tracer` CLI beyond `validate` (linked out to its own reference).

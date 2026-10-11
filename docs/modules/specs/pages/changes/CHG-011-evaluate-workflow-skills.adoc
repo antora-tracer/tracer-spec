@@ -1,12 +1,16 @@
 [#CHG-011, item, role=change, status=verified, title="Evaluate workflow skills with paired, repeatable scenarios"]
 --
-Rationale:: The workflow skills guide exploration, traceability edits, and validation, but the repository has no repeatable way to check whether they produce their promised behavior or to compare that behavior with the same task run without the skill.
-The external skill-creator tooling offers useful eval and benchmark conventions, but its task execution is not a project-local, reproducible runner for these skills.
+Rationale:: The skills guide exploration, traceability edits, and validation, but the repository has no repeatable way to check whether they deliver the expected behavior.
+There is also no way to compare a run with the skill enabled against the same task without it.
+The external skill-creator tooling provides useful evaluation and benchmark conventions, but it cannot run these skills in a reproducible, project-local setup.
 
-Outcome:: Add a small repository-local evaluation runner and per-skill scenario files using the existing skill-creator eval schema where practical.
-Run each selected scenario against equivalent temporary project copies with the target skill enabled and disabled, preserve transcripts and workspace-change summaries, and report deterministic expectation results, timing, and errors for both configurations.
-Provide initial scenarios for explore, propose, and validate to cover read-only reasoning, traceability writes, and CLI validation.
-Use the installed Claude Code CLI as the initial execution adapter, with no added runtime dependency.
+Outcome:: Add a small evaluation runner to the repository.
+Store one scenario file per skill and reuse the skill-creator eval schema where it fits.
+Run each selected scenario against equivalent temporary project copies, once with the target skill enabled and once with it disabled.
+Keep the transcripts and workspace-change summaries, then report deterministic expectation results, timing, and errors for both configurations.
+Start with scenarios for explore, propose, and validate.
+They cover read-only reasoning, traceability writes, and CLI validation.
+Use the installed Claude Code CLI as the first execution adapter, with no added runtime dependency.
 
 Out-of-scope:: Supporting other agent harnesses or model-provider APIs.
 Building a hosted evaluation service, custom web review UI, automatic prompt optimizer, or general-purpose grading platform.

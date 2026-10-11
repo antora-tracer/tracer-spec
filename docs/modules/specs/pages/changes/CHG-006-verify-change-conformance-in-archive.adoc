@@ -1,17 +1,21 @@
 [#CHG-006, item, role=change, status=closed, title="Verify change conformance in archive, not a separate skill"]
 --
-Rationale:: `tspec-archive` closes a change after only structural validation (`antora-tracer validate`), which checks roles, relations, statuses, and dangling references but cannot catch conformance gaps.
-A requirement can be satisfied on paper yet not in the repository, such as a field named differently than the change declared or a page path that does not resolve.
-Conformance verification is currently ad hoc, so a change can reach `closed` with no independent check that the implementation satisfies its requirements.
-Verification has no standalone lifecycle: it only ever precedes close, so it belongs inside archive, not in a seventh skill.
+Rationale:: `tspec-archive` closes a change after running only structural validation with `antora-tracer validate`.
+That command checks roles, relations, statuses, and dangling references, but misses conformance gaps.
+A requirement may be satisfied in the change description but fail in the repository.
+For example, the implementation might use a different field name or a page path might not resolve.
+Conformance checks are ad hoc, so a change can reach `closed` without an independent check that its implementation satisfies its requirements.
+Verification runs only before a change closes, so put it in archive instead of adding a seventh skill.
 
-Outcome:: `tspec-archive` runs an independent, read-only conformance review before advancing a change to `closed`.
-A cold reviewer reads the change, its addressed requirements, and its recorded decisions, checks each requirement against the repository state, and emits a per-requirement verdict.
-Archive closes only on a clean verdict.
+Outcome:: Before setting a change to `closed`, `tspec-archive` runs an independent, read-only conformance review.
+A reviewer unfamiliar with the change reads its addressed requirements and recorded decisions, checks each requirement against the repository, and records a verdict for each one.
+Archive closes the change only when every verdict is clean.
 
-Out-of-scope:: A dedicated `tspec-verify-change` skill.
-New states or transitions: `verified` to `closed` is unchanged, and the gate is archive behavior, not a new state-machine rule.
-`tspec-validate` stays structural-only, and `tspec-apply-change` (formerly `tspec-apply`) still self-advances to `verified`.
+Out-of-scope:: A separate `tspec-verify-change` skill.
+New states or transitions.
+The `verified` to `closed` transition stays as it is; archive adds the gate without changing the state machine.
+`tspec-validate` remains structural-only.
+`tspec-apply-change` (formerly `tspec-apply`) still advances the change to `verified` itself.
 
 addresses:REQ-010[]
 addresses:REQ-011[]

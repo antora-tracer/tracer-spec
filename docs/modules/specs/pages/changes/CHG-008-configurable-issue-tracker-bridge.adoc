@@ -1,17 +1,19 @@
 [#CHG-008, item, role=change, status=verified, title="Configurable issue tracker bridge for the workflow"]
 --
-Rationale:: The workflow describes a change in the traceability graph, but backlog, assignment, priority, and reporting live in an issue tracker such as Jira or GitHub.
-Today the only glue is a human pasting a tracker URL into a change's prose, so the spec graph and the board drift apart.
-Projects need a stable pointer between a change and its tracker issue, a configurable declaration of where that tracker lives, and thin skills to move issues at lifecycle boundaries.
+Rationale:: Changes belong in the traceability graph; backlog, assignment, priority, and reporting belong in an issue tracker such as Jira or GitHub.
+Today, people connect the two by pasting a tracker URL into change prose, leaving the graph and board out of sync.
+Projects need a stable reference between each change and its tracker issue, a way to configure the tracker, and skills that update issues at lifecycle transitions.
 
-Outcome:: A tracer-spec-owned configuration file `tspec.yml` declares an optional tracker (provider `none` by default, plus `github` and `jira`, with reachability and an optional status map).
-A `trackerId` attribute on the change item block header is the stable pointer to the tracker issue, with no change to the traceability grammar.
-One `tspec-track` skill links or creates an issue when a change is proposed, imports a tracker-first issue as a seeded change, and pushes status at accepted, implemented, and closed transitions — always one-way, never reconciling tracker state back into the graph.
+Outcome:: The tracer-spec-owned `tspec.yml` file configures an optional tracker.
+It defaults to `none` and supports `github` and `jira`, with reachability and an optional status map.
+The `trackerId` attribute in a change item header points to its tracker issue; the traceability grammar stays the same.
+One `tspec-track` skill links or creates an issue when a change is proposed, imports a tracker-first issue as a seeded change, and pushes status at accepted, implemented, and closed transitions.
+Updates go from the graph to the tracker; the skill never reconciles tracker state back into the graph.
 
 Out-of-scope:: Bidirectional synchronization.
 Webhooks.
 Comment mirroring.
-Any provider beyond GitHub and Jira.
+Providers beyond GitHub and Jira.
 
 addresses:REQ-014[]
 addresses:REQ-015[]
