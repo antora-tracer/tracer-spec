@@ -48,9 +48,11 @@ If no applicable approved requirement can be identified, stop and ask for clarif
 
 Rename the source skill directory and command to `tspec-new-change` / `new-change`; remove the old skill and command names rather than maintaining aliases. Update the `tspec-explore` handoff, active workflow documentation, skill inventory, examples, and evaluation fixtures. Route change collection guidance to `tspec-new-change`; route standalone requirement/decision authoring to `tspec-write-item`.
 
-Update draft requirements `REQ-015`, `REQ-016`, `REQ-022`, `REQ-030`, `REQ-033`, and `REQ-034`, and proposed decisions `DEC-009` and `DEC-017`, to encode the optional `externalId` and ticketless-but-requirement-anchored refinement contract. Refresh checked-in harness copies so they no longer expose stale `tspec-propose` behavior. The scaffold discovers skill and command files dynamically, so no installer code change is expected.
+Update draft requirements `REQ-015`, `REQ-016`, `REQ-022`, `REQ-030`, `REQ-033`, and `REQ-034`, and proposed decisions `DEC-009` and `DEC-017`, to encode the optional `externalId` and ticketless-but-requirement-anchored refinement contract.
 
-Do not rewrite verified historical change records or auto-convert legacy `trackerId` values. The checked-in graph has no `featureTicketId` item-header values; the evaluation fixture does and must use `externalId` after cutover.
+Refresh the project-local `.omp`, `.claude`, and `.agents` skill/command copies after checking for local edits; remove only the old TSPEC skill and command entries. The scaffold discovers skill and command files dynamically, so no installer code change is expected.
+
+Do not rewrite verified historical change records or auto-convert legacy `trackerId` values. The current graph contains no `featureTicketId` item-header values; the evaluation fixture does and must use `externalId` after cutover.
 
 ## Non-goals
 
