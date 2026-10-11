@@ -12,6 +12,7 @@ antora:
       config:
         configPath: traceability.yml
         generateMatrices: true
+        outputDir: .tracer/traceability
         generateCoverage: true
 ui:
   bundle:

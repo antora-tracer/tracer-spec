@@ -9,5 +9,6 @@ plans/*.generated.adoc
 .claude/
 .agents/
 traceability/
+.tracer/traceability/
 tspec/
 eval-results/
