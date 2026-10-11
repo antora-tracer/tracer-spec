@@ -1,5 +1,6 @@
 = Requirements
 :traceability-links: true
+:traceability-collapsible: true
 Requirement levels use the ordinary `level` metadata values `product`, `component`, or `software`; more detailed requirements use `refines` links. See xref:reference/roles.adoc#requirements[the roles reference].
 
 == Traceable items
@@ -73,3 +74,15 @@ include::requirements/REQ-027-distinguish-architecture-decision-records.adoc[]
 include::requirements/REQ-028-derive-architecture-proposals-from-requirements.adoc[]
 
 include::requirements/REQ-029-clarify-and-record-architecture-decisions.adoc[]
+
+== Feature-ticket refinement workflow
+
+include::requirements/REQ-030-refine-ticket-into-traceable-feature-spec.adoc[]
+
+include::requirements/REQ-031-preserve-partial-feature-refinement-gaps.adoc[]
+
+include::requirements/REQ-032-confirm-feature-readiness-before-approval.adoc[]
+
+include::requirements/REQ-033-propose-independent-feature-implementation-changes.adoc[]
+
+include::requirements/REQ-034-refine-change-before-creating-tasks.adoc[]

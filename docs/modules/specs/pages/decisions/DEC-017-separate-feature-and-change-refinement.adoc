@@ -1,0 +1,21 @@
+[#DEC-017, item, role=decision, status=proposed, title="Separate feature-ticket refinement from implementation-change refinement"]
+--
+Context:: Product scope and use cases are refined from an existing external feature ticket, while several implementation changes may be delivered independently.
+A single workflow stage that writes the feature specification, change-specific software requirements, and task checklists makes the scope and readiness of each artifact unclear.
+
+Options::
+* Refine product and software requirements together while proposing a change.
+** Good: fewer workflow steps.
+** Bad: proposal entangles product definition with one implementation slice and creates tasks before that slice is estimatable.
+* Refine the feature first, then propose and refine each implementation change separately.
+** Good: one ticket can connect to several independent changes; product requirements stay shared, while software requirements and tasks belong to one slice.
+** Bad: users follow separate refinement stages.
+
+Decision:: Use `tspec-refine-feature` to refine an existing ticket into use cases and product/component requirements, `tspec-propose` to create one implementation change against those requirements, and `tspec-refine-change` to create testable software requirements and tasks only after that slice is estimatable.
+
+Rationale:: Feature definition and implementation planning have different scope and readiness criteria. Separating them preserves one-to-many feature-to-change traceability without making any one change own the ticket's lifecycle.
+
+Consequences:: Related graph items share `featureTicketId` metadata; the ticket remains authoritative for estimate, backlog position, and status. BDD examples remain prose in requirement items, and epics/stories remain optional.
+
+tracer:links[]
+--

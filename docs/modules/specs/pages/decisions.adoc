@@ -46,3 +46,5 @@ include::decisions/DEC-015-use-local-claude-evaluation-runner.adoc[]
 == Architecture decisions
 
 include::decisions/DEC-016-record-architecture-choices-as-adrs.adoc[]
+
+include::decisions/DEC-017-separate-feature-and-change-refinement.adoc[]

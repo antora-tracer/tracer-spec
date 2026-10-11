@@ -1,0 +1,7 @@
+[#REQ-032, item, role=requirement, level=product, status=draft, title="Require user confirmation before approving feature requirements"]
+--
+WHEN feature refinement is complete and the user confirms the feature is estimatable, the workflow SHALL let the user advance the reviewed product/component requirements to `approved`.
+The workflow SHALL NOT infer estimatability or approve requirements without that user confirmation.
+
+tracer:links[]
+--

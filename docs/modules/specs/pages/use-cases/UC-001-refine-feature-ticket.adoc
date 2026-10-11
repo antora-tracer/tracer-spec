@@ -1,0 +1,27 @@
+[#UC-001, item, role=use_case, title="Feature owner refines an existing ticket into traceable product requirements"]
+--
+.Use Case: Feature owner refines an existing ticket into traceable product requirements
+[width=100%, cols="25h,75a"]
+|===
+| ID | UC-001
+| Title | Feature owner refines an existing ticket into traceable product requirements
+| Goal | Feature owner makes feature scope clear enough for estimation and backlog placement
+| Primary Actor | Feature owner
+| Preconditions | An existing feature ticket contains a rough idea
+| Trigger | Feature owner starts refining the ticket
+| Basic Flow |
+. Feature owner clarifies the problem, actors, goals, and desired outcomes
+. Feature owner records use cases and testable product/component requirements
+. Feature owner reviews readiness gaps and approves the refined specification
+| Alternate Flows |
+. Material questions remain: feature owner records partial requirements as draft and reviews the remaining gaps
+| Postconditions | The existing ticket is linked to traceable use cases and requirements, or open refinement gaps are recorded
+| Priority | High
+| Frequency | For each feature ticket
+| Notes | The tracker remains authoritative for estimate, backlog position, and ticket status
+|===
+
+leads_to:REQ-030[]
+leads_to:REQ-031[]
+tracer:links[]
+--

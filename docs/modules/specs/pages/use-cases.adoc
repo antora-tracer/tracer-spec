@@ -11,4 +11,4 @@ See xref:guidance/use-case.adoc[Writing Use Cases] for the item template and tra
 
 == Items
 
-No use cases have been added yet.
+include::use-cases/UC-001-refine-feature-ticket.adoc[]

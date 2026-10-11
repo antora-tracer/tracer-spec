@@ -1,0 +1,17 @@
+[#CHG-013, item, role=change, status=proposed, title="Trace feature-ticket refinement into independent implementation changes"]
+--
+Rationale:: The workflow refines an existing feature ticket into use cases and product/component requirements before proposing independent implementation changes.
+Record these behaviors in durable requirements so later changes to the skills and docs remain traceable.
+
+Outcome:: Add requirements for feature refinement, shared ticket association, validated and approved ticket-summary updates, proposals for independent implementation slices, and change-level software refinement before tasks are created.
+Record the decision to keep product refinement separate from implementation-change refinement.
+
+Out-of-scope:: Ticket creation or import.
+Setting tracker estimates, backlog placement, or status.
+Mandatory epic or story items.
+Rewriting verified historical change records.
+
+addresses:REQ-030[]
+records:DEC-017[]
+tracer:links[]
+--

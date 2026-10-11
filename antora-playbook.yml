@@ -6,6 +6,10 @@ content:
     - url: .
       start_path: docs
       branches: HEAD
+asciidoc:
+  attributes:
+    traceability-collapsible: true
+    traceability-links: true
 antora:
   extensions:
     - require: '@antora-tracer/core/antora-extension'

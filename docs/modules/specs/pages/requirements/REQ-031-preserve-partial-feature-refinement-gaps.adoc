@@ -1,0 +1,6 @@
+[#REQ-031, item, role=requirement, level=product, status=draft, title="Preserve partial feature refinement and identify readiness gaps"]
+--
+WHEN a feature ticket has unresolved material questions, the workflow SHALL allow user-approved partial use cases and requirements to remain in `draft` and SHALL identify the unanswered questions that prevent an estimation-readiness recommendation.
+
+tracer:links[]
+--

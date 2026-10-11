@@ -19,3 +19,5 @@ include::changes/CHG-011-evaluate-workflow-skills.adoc[]
 
 include::changes/CHG-012-requirement-driven-architecture-records.adoc[]
 
+include::changes/CHG-013-feature-ticket-refinement-workflow.adoc[]
+

@@ -1,0 +1,8 @@
+[#REQ-033, item, role=requirement, level=component, status=draft, title="Propose independently deliverable changes against feature requirements"]
+--
+WHEN a feature has approved product/component requirements, the workflow SHALL allow a user to propose multiple independently deliverable changes that share the feature ticket's `featureTicketId` and each link with `addresses` only to applicable approved requirements.
+
+Proposing a change SHALL NOT create its detailed software requirements or execution tasks.
+
+tracer:links[]
+--

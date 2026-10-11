@@ -1,0 +1,8 @@
+[#REQ-030, item, role=requirement, level=product, status=draft, title="Refine an existing feature ticket into traceable product requirements"]
+--
+WHEN a feature owner refines an existing feature ticket, the workflow SHALL record the ticket's product intent as one or more traceable use cases and testable product/component requirements, associating those graph items with the ticket through shared `featureTicketId` metadata.
+
+The use cases SHALL link to their derived requirements through `leads_to`; a more detailed requirement SHALL link to the requirement it refines through `refines`.
+
+tracer:links[]
+--

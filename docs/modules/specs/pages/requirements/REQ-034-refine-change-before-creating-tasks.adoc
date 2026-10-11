@@ -1,0 +1,7 @@
+[#REQ-034, item, role=requirement, level=component, status=draft, title="Refine one implementation change before creating execution tasks"]
+--
+WHEN a user refines one proposed implementation change, the workflow SHALL define testable software-level requirements and keep BDD examples within the relevant requirement items.
+The workflow SHALL create that change's temporary task checklist only after the user confirms its scope and software requirements are sufficiently complete to estimate.
+
+tracer:links[]
+--
