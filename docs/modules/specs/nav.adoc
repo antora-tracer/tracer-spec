@@ -15,6 +15,7 @@
 * Traceability matrices
 ** xref:attachment$traceability/matrix-requirements-tests.html[Requirements to tests]
 ** xref:attachment$traceability/matrix-changes-to-requirements.html[Changes to requirements]
+** xref:attachment$traceability/matrix-requirements-to-changes.html[Requirements to changes]
 ** xref:attachment$traceability/matrix-use-cases-to-requirements.html[Use cases to requirements]
 ** xref:attachment$traceability/matrix-requirements-refinement.html[Requirements refinement]
 * xref:changes.adoc[Changes]

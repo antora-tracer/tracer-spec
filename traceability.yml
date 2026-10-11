@@ -54,6 +54,12 @@ matrices:
     columns: [requirement]
     coverageRelations:
       requirement: [refines]
+  - name: requirements-to-changes
+    description: Requirements traced to changes that address them
+    rows: requirement
+    columns: [ change ]
+    coverageRelations:
+      change: [ addresses ]
 
 workflow:
   change:
