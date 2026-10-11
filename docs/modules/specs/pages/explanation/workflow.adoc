@@ -33,7 +33,7 @@ One structural rule â€” an accepted change addresses at least one requirement â€
 
 == The tracker boundary
 
-`tspec-track` reads an existing feature ticket or updates only its unique `TSPEC refinement` section after the user approves the exact preview. For GitHub this is a heading; for Jira it is the equivalent ADF section. Everything outside that section is preserved. The workflow does not create or import tickets, update status or backlog position, or set estimates. It does not treat tracker status as graph lifecycle state.
+`tspec-track` reads an existing feature ticket or updates only its unique `TSPEC refinement` section after the user approves the exact preview. For GitHub and Forgejo the body is Markdown; Jira uses ADF. Everything outside that section is preserved. The workflow does not create or import tickets, update status or backlog position, or set estimates. It does not treat tracker status as graph lifecycle state.
 
 Existing unknown legacy `trackerId` metadata is preserved rather than automatically converted. New external associations use optional shared `externalId` metadata on relevant graph items.
 

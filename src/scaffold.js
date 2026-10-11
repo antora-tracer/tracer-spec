@@ -50,12 +50,20 @@ export function scaffold(opts = {}) {
     const relMapped = rel === "gitignore" ? ".gitignore" : rel;
     const relOut = relMapped.split("__PROJECT__").join(name);
     const dest = join(target, relOut);
-    if (existsSync(dest) && !opts.force) {
+    for (let parent = dirname(dest); parent !== target; parent = dirname(parent)) {
+      if (lstatSync(parent, { throwIfNoEntry: false })?.isSymbolicLink()) {
+        skipped.push(relOut);
+        return;
+      }
+    }
+    const existing = lstatSync(dest, { throwIfNoEntry: false });
+    if (existing && !opts.force) {
       skipped.push(relOut);
       return;
     }
     if (!opts.dryRun) {
       mkdirSync(dirname(dest), { recursive: true });
+      if (existing?.isSymbolicLink()) unlinkSync(dest);
       writeFileSync(dest, content, "utf8");
     }
     created.push(relOut);
@@ -85,6 +93,10 @@ export function scaffold(opts = {}) {
   };
 
   walk(templatesDir, "");
+
+  for (const script of ["update-ticket-refinement.js", "forgejo-issue.js"]) {
+    write(join("scripts", script), readFileSync(join(__dirname, "..", "scripts", script), "utf8"));
+  }
 
   if (!opts.skipSkills && existsSync(skillsDir)) {
     for (const entry of readdirSync(skillsDir, { withFileTypes: true })) {

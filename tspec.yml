@@ -2,7 +2,7 @@
 # Provider settings are user-owned; tracer-spec never creates tickets or changes ticket lifecycle state.
 
 tracker:
-  # none | github | jira
+  # none | github | jira | forgejo
   provider: none
 
   # GitHub: reach the tracker via the `gh` CLI.
@@ -13,3 +13,9 @@ tracker:
   # jira:
   #   url: https://your-domain.atlassian.net
   #   project: KEY
+
+  # Forgejo: API for one instance/repository; set FORGEJO_TOKEN in the environment.
+  # forgejo:
+  #   url: https://forgejo.example.org
+  #   repo: owner/repo
+

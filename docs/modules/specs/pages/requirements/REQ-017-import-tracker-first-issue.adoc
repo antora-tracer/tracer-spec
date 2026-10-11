@@ -1,6 +1,6 @@
 [#REQ-017, item, role=requirement, status=draft, title="Update only a user-approved ticket summary"]
 --
-WHEN the user approves a proposed summary update, the system SHALL update only the unique `TSPEC refinement` section of the existing ticket description (a GitHub heading or equivalent Jira ADF section). It SHALL preserve the rest of the description and SHALL NOT write if that section cannot be identified uniquely.
+WHEN the user approves a proposed summary update, the system SHALL update only the unique `TSPEC refinement` section of the existing ticket description (a GitHub or Forgejo Markdown heading, or the equivalent Jira ADF section). It SHALL preserve the rest of the description and SHALL NOT write if that section cannot be identified uniquely.
 
 tracer:links[]
 --

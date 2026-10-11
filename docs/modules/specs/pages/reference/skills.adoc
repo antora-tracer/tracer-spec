@@ -92,12 +92,12 @@ Read an existing feature ticket or update its approved refinement section.
 |===
 | Operation | Behavior
 
-| `--read <feature-ticket-id>` | Read an existing linked GitHub or Jira feature ticket; it does not change the graph or ticket.
-| `--update-refinement <feature-ticket-id>` | After the user approves the exact preview, replace only the ticket's unique `TSPEC refinement` section (GitHub heading or equivalent Jira ADF section), preserving the rest of the ticket.
+| `--read <feature-ticket-id>` | Read an existing linked GitHub, Jira, or Forgejo ticket; it does not change the graph or ticket.
+| `--update-refinement <feature-ticket-id>` | After the user approves the exact preview, replace only the ticket's unique `TSPEC refinement` section (GitHub/Forgejo Markdown or Jira ADF), preserving the rest of the description.
 |===
 
 The ticket must already exist; this skill does not create or import tickets, change ticket status or backlog position, or own estimates. The external ticket remains authoritative for those fields. Related graph items may share optional `externalId=<id>` metadata; it is not a graph relation. Existing unknown legacy `trackerId` data is preserved and is not converted automatically.
 
 Configuration lives in `tspec.yml` under `tracker`.
-`provider: none` (the default) disables external ticket operations; `github` uses the `gh` CLI and `jira` uses REST against the configured `url` and `project`.
+`provider: none` (the default) disables external ticket operations; `github` uses `gh`, `jira` uses REST, and `forgejo` uses its issue API with `FORGEJO_TOKEN` from the environment.
 The tracker bridge reads existing tickets and writes only a user-approved refinement section; it never synchronizes tracker status or estimates.

@@ -6,15 +6,15 @@ Options::
 * Put provider selectors, credentials, and ticket-status mappings in tracer-spec-owned `tspec.yml`.
 ** Good: the workflow controls the complete tracker integration.
 ** Bad: secrets and user-managed ticket lifecycle fields become project configuration.
-* Keep `tspec.yml` as a thin selector for the user's GitHub or Jira provider; credentials and ticket lifecycle state remain provider-owned.
+* Keep `tspec.yml` as a thin selector for the user's GitHub, Jira, or Forgejo provider; credentials and ticket lifecycle state remain provider-owned.
 ** Good: TSPEC selects provider-specific ticket access without storing secrets or taking ownership of estimates, backlog, or status.
 ** Bad: ticket access depends on configured provider authentication.
 
-Decision:: Keep `tspec.yml` as a thin selector for `none`, GitHub, or Jira; it contains provider choice only, not credentials, ticket-status mappings, or estimates.
+Decision:: Keep `tspec.yml` as a thin selector for `none`, GitHub, Jira, or Forgejo; it contains provider choice only, not credentials, ticket-status mappings, or estimates.
 
-Rationale:: The workflow needs provider-specific ticket access, while credentials and ticket state remain user/provider-owned. A selector supports GitHub and Jira without storing secrets or taking over tracker lifecycle.
+Rationale:: The workflow needs provider-specific ticket access, while credentials and ticket state remain user/provider-owned. A selector supports the existing providers without storing secrets or taking over tracker lifecycle.
 
-Consequences:: Scaffold `provider: none` by default. Use authenticated `gh` for GitHub and Jira Cloud REST with the user's existing `~/.netrc` host entry. Never alter that credential file. If Jira auth is missing or ADF cannot be safely preserved, return a manual draft and do not write.
+Consequences:: Scaffold `provider: none` by default. Use authenticated `gh` for GitHub, Jira Cloud REST with the user's existing `~/.netrc` host entry, and Forgejo's scoped issue API with `FORGEJO_TOKEN` from the process environment. Never place credentials in project config or command arguments. If authentication or safe body preservation fails, return a manual draft and do not write.
 
 tracer:links[]
 --

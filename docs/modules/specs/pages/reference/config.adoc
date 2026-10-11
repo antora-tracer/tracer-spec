@@ -105,7 +105,7 @@ It sits beside `traceability.yml` and is read by `tspec-track`; provider credent
 [source,yaml]
 ----
 tracker:
-  provider: none        # none | github | jira
+  provider: none        # none | github | jira | forgejo
 
   # github:
   #   repo: owner/repo
@@ -113,18 +113,26 @@ tracker:
   # jira:
   #   url: https://your-domain.atlassian.net
   #   project: KEY
+
+  # forgejo:
+  #   url: https://forgejo.example.org
+  #   repo: owner/repo
 ----
 
 [cols="25a,75a"]
 |===
 | Key | Purpose
 
-| `tracker.provider` | The issue-ticket provider: `none` (default), `github`, or `jira`. `none` disables external ticket access.
+| `tracker.provider` | The issue-ticket provider: `none` (default), `github`, `jira`, or `forgejo`. `none` disables external ticket access.
 | `tracker.github.repo` | For `github`: the `owner/repo` reached by authenticated `gh`.
 | `tracker.jira.url` | For Jira Cloud: the REST base URL; authenticate with the user's existing `~/.netrc` entry for that host.
 | `tracker.jira.project` | For `jira`: the project key associated with feature tickets.
+| `tracker.forgejo.url` | Forgejo instance base URL; the provider uses its `/api/v1` issue API.
+| `tracker.forgejo.repo` | The single `owner/repo` whose issue indices are used for this project.
 |===
 
 External-item association is optional item metadata, not a `tspec.yml` setting: related canonical graph items may share `externalId=<id>`. It is not a graph relation; one external item may be associated with multiple independent changes.
+
+Forgejo also requires `FORGEJO_TOKEN` in the process environment, with `read:issue` for reads and `write:issue` for approved updates. Never store the token in `tspec.yml`.
 
 `tspec-track --read <feature-ticket-id>` reads an existing ticket. `tspec-track --update-refinement <feature-ticket-id>` replaces only the unique `TSPEC refinement` section after the user approves the exact preview; content outside that section is preserved. The ticket is authoritative for backlog position, status, and estimate. The bridge does not create or import tickets or write those fields.

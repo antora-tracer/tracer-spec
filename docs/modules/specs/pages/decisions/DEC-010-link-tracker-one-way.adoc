@@ -14,7 +14,7 @@ Decision:: Treat ticket backlog placement, status, and estimate as external auth
 
 Rationale:: External ticket management remains user-owned. A scoped, approved summary update supports refinement without silently changing the fields the tracker owns.
 
-Consequences:: `tspec-track` may read the existing ticket and may update its unique `TSPEC refinement` section after user approval (GitHub heading or equivalent Jira ADF section); it does not create/import tickets or synchronize status, backlog placement, or estimates. If the section is not unique, no update is made.
+Consequences:: `tspec-track` may read the existing ticket and may update its unique `TSPEC refinement` section after user approval (GitHub/Forgejo Markdown heading or equivalent Jira ADF section); it does not create/import tickets or synchronize status, backlog placement, or estimates. If the section is not unique, no update is made.
 
 tracer:links[]
 --

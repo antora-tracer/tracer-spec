@@ -77,7 +77,7 @@ tspec-track --read <feature-ticket-id>
 tspec-track --update-refinement <feature-ticket-id>
 ----
 
-The update preserves all content outside that section (a GitHub heading or equivalent Jira ADF section). The user must approve the exact section preview before it is written. The external ticket remains authoritative for backlog position, status, and estimate; this workflow does not create or import tickets, or change those fields. Graph items may associate with the ticket through shared optional `externalId=<id>` metadata, not a relation.
+The update preserves all content outside that section (a GitHub or Forgejo Markdown heading, or the equivalent Jira ADF section). The user must approve the exact section preview before it is written. The external ticket remains authoritative for backlog position, status, and estimate; this workflow does not create or import tickets, or change those fields. Graph items may associate with the ticket through shared optional `externalId=<id>` metadata, not a relation.
 
 == Write a single item
 
