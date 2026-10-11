@@ -1,53 +1,14 @@
 {
-  "name": "@antora-tracer/tracer-spec",
-  "version": "0.1.0",
+  "name": "tracer-spec",
+  "private": true,
   "type": "module",
-  "description": "Spec-driven development workflow for Antora Tracer - scaffold a project and install the workflow skills",
-  "bin": {
-    "tracer-spec": "bin/tracer-spec.js"
-  },
   "scripts": {
     "validate": "antora-tracer validate -i docs --config traceability.yml",
-    "build": "npx antora antora-playbook.yml",
-    "eval:skills": "node scripts/evaluate-skills.js",
-    "test": "node --test"
-  },
-  "files": [
-    "bin",
-    "src",
-    "templates",
-    "skills",
-    "scripts",
-    "evals",
-    "README.md",
-    "LICENSE"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "keywords": [
-    "antora",
-    "asciidoc",
-    "traceability",
-    "spec-driven-development",
-    "requirements"
-  ],
-  "author": "Richard Attermeyer",
-  "license": "MIT",
-  "dependencies": {
-    "@inquirer/prompts": "^8.7.1",
-    "commander": "^12.1.0"
+    "build": "npx antora antora-playbook.yml"
   },
   "devDependencies": {
-    "@antora-tracer/core": "^0.30.1",
-    "@antora/cli": "^3.2.0",
-    "@antora/site-generator": "^3.2.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/antora-tracer/tracer-spec.git"
-  },
-  "bugs": {
-    "url": "https://github.com/antora-tracer/tracer-spec/issues"
+    "@antora/cli": "^3.1.0",
+    "@antora/site-generator": "^3.1.0",
+    "@antora-tracer/core": "^0.23.0"
   }
 }

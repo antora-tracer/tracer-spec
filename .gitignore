@@ -1,14 +1,5 @@
 node_modules/
-public/
 build/
-plans/*.generated.adoc
+public/
+*.lock
 .DS_Store
-.idea/
-*.tgz
-.omp/
-.claude/
-.agents/
-traceability/
-.tracer/traceability/
-tspec/
-eval-results/

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import { readFileSync } from "node:fs";
 import { stdin as input } from "node:process";
-import { checkbox } from "@inquirer/prompts";
-import { program } from "commander";
+import { checkbox, select } from "@inquirer/prompts";
+import { Option, program } from "commander";
 import {
   scaffold,
   installSkills,
@@ -33,8 +33,26 @@ async function resolveTools(options) {
   });
 }
 
-function describeTools(ids) {
-  return ids.map((id) => `${TOOLS[id].label} (${TOOLS[id].dir})`).join(", ");
+async function resolveScope(options) {
+  if (options.scope !== undefined) return options.scope;
+  if (!input.isTTY) return "project";
+  return select({
+    message: "Where should workflow skills be installed?",
+    choices: [
+      { name: "Project (this repository)", value: "project" },
+      { name: "User (available in all projects)", value: "user" },
+    ],
+    default: "project",
+  });
+}
+
+function describeTools(ids, scope = "project") {
+  return ids
+    .map((id) => {
+      const dir = scope === "user" ? `~/${TOOLS[id].userDir}` : TOOLS[id].dir;
+      return `${TOOLS[id].label} (${dir})`;
+    })
+    .join(", ");
 }
 
 program
@@ -52,6 +70,10 @@ program
   .argument("[name]", "Project name (defaults to current directory name)")
   .option("--force", "Overwrite existing files")
   .option("--skip-skills", "Do not install the workflow skills")
+  .option("--link", "Link installed skills to the package source")
+  .addOption(
+    new Option("--scope <scope>", "Choose project or user skill installation").choices(["project", "user"]),
+  )
   .option("--dry-run", "Preview actions without writing files")
   .option(
     "--tools <ids>",
@@ -60,6 +82,7 @@ program
   .action(async (name, options) => {
     const tools =
       options.skipSkills === true ? [] : await resolveTools(options);
+    const scope = tools.length > 0 ? await resolveScope(options) : "project";
 
     const result = scaffold({
       name,
@@ -72,9 +95,10 @@ program
     const installed =
       tools.length > 0
         ? installSkills({
-            directory: process.cwd(),
+            scope,
             tools,
             force: options.force === true,
+            link: options.link === true,
             dryRun: options.dryRun === true,
           })
         : { created: [], skipped: [] };
@@ -94,7 +118,7 @@ program
       console.log(`  Component name: ${result.name}`);
       console.log(`  Title: ${result.title}`);
       if (tools.length > 0) {
-        console.log(`  Skills for: ${describeTools(tools)}`);
+        console.log(`  Skills for: ${describeTools(tools, scope)}`);
       }
       console.log("  Files that would be created:");
       for (const f of [
@@ -110,7 +134,7 @@ program
     console.log(`Initialized Tracer Spec Workflow project '${result.name}'.`);
     console.log(`Created ${result.created.length} file(s).`);
     if (tools.length > 0) {
-      console.log(`Installed skills for: ${describeTools(tools)}`);
+      console.log(`Installed skills for: ${describeTools(tools, scope)}`);
     }
     if (installedCommands.created.length > 0) {
       console.log(

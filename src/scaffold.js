@@ -1,10 +1,14 @@
 import {
   existsSync,
+  lstatSync,
   mkdirSync,
   readdirSync,
   readFileSync,
+  symlinkSync,
+  unlinkSync,
   writeFileSync,
 } from "node:fs";
+import { homedir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -95,23 +99,24 @@ export function scaffold(opts = {}) {
 }
 
 /**
- * Agent harnesses the workflow skills can be installed into, and the
- * project-local directory each harness reads skills from.
+ * Agent harnesses and their skill directories at project and user scopes.
  */
 export const TOOLS = {
   "oh-my-pi": {
     label: "Oh My Pi",
     dir: ".omp/skills",
+    userDir: ".omp/agent/skills",
     commands: { dir: ".omp/commands", name: (id) => `tspec-${id}.md` },
   },
   claude: {
     label: "Claude Code",
     dir: ".claude/skills",
+    userDir: ".claude/skills",
     commands: { dir: ".claude/commands/tspec", name: (id) => `${id}.md` },
   },
-  codex: { label: "Codex", dir: ".agents/skills" },
-  pi: { label: "Pi", dir: ".pi/skills" },
-  agents: { label: "Shared .agents", dir: ".agents/skills" },
+  codex: { label: "Codex", dir: ".agents/skills", userDir: ".agents/skills" },
+  pi: { label: "Pi", dir: ".pi/skills", userDir: ".agents/skills" },
+  agents: { label: "Shared .agents", dir: ".agents/skills", userDir: ".agents/skills" },
 };
 
 export const DEFAULT_TOOLS = ["oh-my-pi", "claude", "agents"];
@@ -139,16 +144,15 @@ export function parseTools(input) {
 }
 
 /**
- * Install the workflow skills into the selected harnesses' project-local
- * skill directories (`.omp/skills/`, `.claude/skills/`, `.agents/skills/`, …).
+ * Install skills into the selected harnesses' project or user directories.
  */
 export function installSkills(opts = {}) {
-  const target = resolve(opts.directory ?? process.cwd());
+  const target = resolve(opts.directory ?? (opts.scope === "user" ? homedir() : process.cwd()));
   const skillsDir = join(__dirname, "..", "skills");
   const created = [];
   const skipped = [];
-  // `codex` and `agents` share `.agents/skills` — write once.
-  const dirs = [...new Set((opts.tools ?? []).map((id) => TOOLS[id].dir))];
+  const dirs = [...new Set((opts.tools ?? []).map((id) => TOOLS[id][opts.scope === "user" ? "userDir" : "dir"]))];
+  // Deduplicate tool IDs that resolve to the same skill destination.
   for (const dir of dirs) {
     for (const entry of readdirSync(skillsDir, { withFileTypes: true })) {
       if (!entry.isDirectory()) continue;
@@ -156,13 +160,21 @@ export function installSkills(opts = {}) {
       if (!existsSync(skillFile)) continue;
       const rel = join(dir, entry.name, "SKILL.md");
       const dest = join(target, rel);
-      if (existsSync(dest) && !opts.force) {
+      const present = opts.link
+        ? lstatSync(dest, { throwIfNoEntry: false }) !== undefined
+        : existsSync(dest);
+      if (present && !opts.force) {
         skipped.push(rel);
         continue;
       }
       if (!opts.dryRun) {
         mkdirSync(dirname(dest), { recursive: true });
-        writeFileSync(dest, readFileSync(skillFile, "utf8"), "utf8");
+        if (opts.link) {
+          if (present) unlinkSync(dest);
+          symlinkSync(skillFile, dest, "file");
+        } else {
+          writeFileSync(dest, readFileSync(skillFile, "utf8"), "utf8");
+        }
       }
       created.push(rel);
     }
