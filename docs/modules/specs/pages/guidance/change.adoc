@@ -7,7 +7,7 @@ It records rationale, outcome, and out-of-scope fields, and links to the require
 
 [source,asciidoc]
 ----
-[#CHG-NNN, item, role=change, status=proposed, featureTicketId=FEAT-NNN, title="Short change title"]
+[#CHG-NNN, item, role=change, status=proposed, title="Short change title"]
 --
 Rationale:: Why this change is needed.
 Outcome:: What the change produces.
@@ -21,5 +21,7 @@ tracer:links[]
 ----
 
 States: proposed → refined → accepted → implemented → verified → closed · rejected.
+
+An implementation change may carry optional `externalId=<existing-item-id>` metadata in its header. A local change needs no external ID when it addresses approved requirements.
 
 An accepted change must address at least one requirement.

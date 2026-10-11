@@ -19,16 +19,14 @@ skill directory (see `AGENTS.md`), then drive the workflow:
 ----
 tspec-explore "your feature"                  # shape the feature intent
 tspec-refine-feature <feature-ticket-id>       # refine existing ticket into product-level graph items
-tspec-propose CHG-001                          # propose an implementation change
+tspec-new-change "Improve saved-filter review"     # record a new implementation change
 tspec-refine-change CHG-001                    # detailed software requirements and tasks
 tspec-apply-change CHG-001                     # implement the refined tasks
 tspec-archive CHG-001                          # validate and close
 tspec-validate                                 # check the graph
 ----
 
-One existing feature ticket can link to many independent changes through shared
-`featureTicketId=<id>` metadata. `tspec-propose` does not author detailed
-software requirements or tasks; refine each change before creating its tasks.
+Related graph items may share optional `externalId=<id>` metadata when associated with the same external item. `tspec-new-change` requires applicable approved requirement anchors, but not an external ID; it does not author detailed software requirements or tasks.
 `tspec-track --read <feature-ticket-id>` reads the ticket. Its
 `--update-refinement` operation writes only the user-approved `TSPEC refinement`
 section; the ticket remains authoritative for backlog position, status, and

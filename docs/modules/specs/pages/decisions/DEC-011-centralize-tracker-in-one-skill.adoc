@@ -3,18 +3,18 @@
 Context:: Product feature refinement, detailed change refinement, and provider-specific ticket access have different responsibilities. Combining them makes the change-proposal step author details prematurely and spreads provider behavior through lifecycle skills.
 
 Options::
-* Put all work in `tspec-propose` and `tspec-track`.
+* Put all work in `tspec-new-change` and `tspec-track`.
 ** Good: fewer workflow entry points.
 ** Bad: proposal authors detailed software requirements/tasks before change refinement; ticket logic becomes lifecycle logic.
 * Separate feature refinement, change refinement, proposal, and tracker access.
-** Good: `tspec-refine-feature` handles product-level feature definition; `tspec-propose` proposes changes without detailed software requirements/tasks; `tspec-refine-change` elaborates an approved change and creates tasks; `tspec-track` owns the limited external ticket interaction.
+** Good: `tspec-refine-feature` handles product-level feature definition; `tspec-new-change` records a proposed change without detailed software requirements/tasks; `tspec-refine-change` elaborates a change and creates tasks; `tspec-track` owns limited ticket interactions.
 ** Bad: requires using distinct workflow skills for distinct stages.
 
 Decision:: Keep feature and change refinement separate, and centralize tracker access in `tspec-track`. Create tasks only after change refinement.
 
 Rationale:: The workflow keeps product behavior, proposed change scope, detailed software requirements, and provider-specific interaction at their correct boundaries.
 
-Consequences:: `tspec-track` reads an existing ticket via shared `featureTicketId` and, only after user approval, updates its unique `TSPEC refinement` section. It never creates/imports tickets, manages provider configuration, or writes status, backlog placement, or estimates.
+Consequences:: `tspec-track` reads an existing ticket when explicitly requested; related graph items may carry optional shared `externalId` metadata. It only updates the approved `TSPEC refinement` section and never creates/imports tickets or manages status, backlog placement, or estimates.
 
 tracer:links[]
 --

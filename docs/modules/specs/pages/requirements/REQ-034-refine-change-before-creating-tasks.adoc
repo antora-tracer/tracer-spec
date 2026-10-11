@@ -1,7 +1,8 @@
 [#REQ-034, item, role=requirement, level=component, status=draft, title="Refine one implementation change before creating execution tasks"]
 --
-WHEN a user refines one proposed implementation change, the workflow SHALL define testable software-level requirements and keep BDD examples within the relevant requirement items.
+WHEN a user refines one proposed implementation change with applicable approved product/component requirements linked through `addresses`, the workflow SHALL define testable software-level requirements and keep BDD examples within the relevant requirement items, without requiring an `externalId`.
 The workflow SHALL create that change's temporary task checklist only after the user confirms its scope and software requirements are sufficiently complete to estimate.
+If no applicable approved requirement anchor exists, the workflow SHALL stop and ask for the requirement to be established first; it SHALL NOT invent a link or create requirements to bypass this gate.
 
 tracer:links[]
 --

@@ -11,11 +11,11 @@ Options::
 ** Good: one ticket can connect to several independent changes; product requirements stay shared, while software requirements and tasks belong to one slice.
 ** Bad: users follow separate refinement stages.
 
-Decision:: Use `tspec-refine-feature` to refine an existing ticket into use cases and product/component requirements, `tspec-propose` to create one implementation change against those requirements, and `tspec-refine-change` to create testable software requirements and tasks only after that slice is estimatable.
+Decision:: Use `tspec-refine-feature` to refine an existing ticket into use cases and product/component requirements, `tspec-new-change` to record an implementation change against applicable approved requirements, and `tspec-refine-change` to create testable software requirements and tasks only after the slice is estimatable.
 
 Rationale:: Feature definition and implementation planning have different scope and readiness criteria. Separating them preserves one-to-many feature-to-change traceability without making any one change own the ticket's lifecycle.
 
-Consequences:: Related graph items share `featureTicketId` metadata; the ticket remains authoritative for estimate, backlog position, and status. BDD examples remain prose in requirement items, and epics/stories remain optional.
+Consequences:: Related graph items may share optional `externalId` metadata when linked to the same external item; a change without an external identifier still needs approved requirement anchors. BDD examples remain prose in requirement items, and epics/stories remain optional.
 
 tracer:links[]
 --

@@ -12,18 +12,18 @@ Git and pull requests provide review, authorization, and history; the graph prov
 
 [source,text]
 ----
-explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
+explore → refine feature → record change(s) → refine each change → accept → apply → archive
 ----
 
 * *Explore* shapes the feature's rationale, outcome, and scope before graph refinement.
-* *Refine feature* turns an existing ticket into product-level behavior, use cases, and requirements. The shared scalar `featureTicketId=<id>` associates canonical graph items with that external ticket; it is metadata, not a graph relation.
-* *Propose* creates an implementation change against the refined product-level specification. It does not create detailed software requirements or tasks.
+* *Refine feature* turns an existing ticket into product-level behavior, use cases, and requirements. Related graph items may carry shared optional `externalId=<id>` metadata for that ticket; this is metadata, not a graph relation.
+* *Record change* uses `tspec-new-change` to create one proposed implementation change against approved requirements. `externalId` is optional; detailed software requirements and tasks remain in change refinement.
 * *Refine change* defines detailed software requirements and the execution tasks for that particular change. Tasks therefore follow change refinement, not proposal.
 * *Accept* is a human gate, not a tool step. Validation enforces it structurally — an accepted change must address a requirement — but a person decides.
 * *Apply* implements tasks and records verification evidence against requirements.
 * *Archive* verifies conformance independently, then removes only the temporary task checklist.
 
-The relationship is intentionally one-to-many: one feature ticket can support several independent changes, and multiple graph items can share the same `featureTicketId`. This keeps product intent stable while allowing the implementation to be split into separately reviewed and delivered changes.
+The relationship is intentionally one-to-many: one external ticket can support several independent changes, and related graph items may share the same `externalId`. Local changes may omit the ID while retaining traceability through `addresses` links to approved requirements.
 
 == The acceptance gate
 
@@ -35,7 +35,7 @@ One structural rule — an accepted change addresses at least one requirement �
 
 `tspec-track` reads an existing feature ticket or updates only its unique `TSPEC refinement` section after the user approves the exact preview. For GitHub this is a heading; for Jira it is the equivalent ADF section. Everything outside that section is preserved. The workflow does not create or import tickets, update status or backlog position, or set estimates. It does not treat tracker status as graph lifecycle state.
 
-Existing unknown legacy `trackerId` metadata is preserved rather than automatically converted. New feature-ticket associations use the shared `featureTicketId` scalar on relevant graph items.
+Existing unknown legacy `trackerId` metadata is preserved rather than automatically converted. New external associations use optional shared `externalId` metadata on relevant graph items.
 
 == Temporary vs durable
 

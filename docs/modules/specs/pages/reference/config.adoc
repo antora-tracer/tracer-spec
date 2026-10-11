@@ -84,7 +84,7 @@ validation:
 
 | `extends` | Base the model on a preset. `minimal` supplies `requirement` and `test`, their guidance, requirement workflow, requirement-test relations, and the `requirements-tests` matrix. These inherited roles, workflows, relations, and matrices remain available alongside project additions.
 | `roles` | Additional roles declared by this project (`change`, `decision`, `use_case`); they do not replace inherited `requirement` and `test` roles.
-| `roleGuidance.<role>.page` | The guidance page that holds the role's item template — resolved by `tspec-propose`, refinement skills, and `tspec-write-item`.
+| `roleGuidance.<role>.page` | The page that holds the role's item template — resolved by `tspec-new-change`, refinement skills, and `tspec-write-item`.
 | `roleGuidance.<role>.idPrefix` | The role's ID prefix (`CHG`, `DEC`, `UC`; inherited roles use `REQ` and `TST`).
 | `relations` | Additional typed relation edges between roles, each with a `reverse` name. `use_case` uses `leads_to` for derived requirements (`is_derived_from` in reverse); `requirement` uses `refines` for more detailed requirements (`refined_by` in reverse). Inherited requirement and test relations are preserved.
 | `matrices` | Additional cross-role coverage matrices; `coverageRelations` names the relation that counts as coverage. The two refinement matrices cover use-case-to-requirement `leads_to` and requirement-to-requirement `refines`; inherited `requirements-tests` remains.
@@ -125,6 +125,6 @@ tracker:
 | `tracker.jira.project` | For `jira`: the project key associated with feature tickets.
 |===
 
-Feature-ticket association is item metadata, not a `tspec.yml` setting: refinement skills write shared `featureTicketId=<id>` metadata on relevant canonical graph items. One ticket may be associated with multiple items and independent changes.
+External-item association is optional item metadata, not a `tspec.yml` setting: related canonical graph items may share `externalId=<id>`. It is not a graph relation; one external item may be associated with multiple independent changes.
 
 `tspec-track --read <feature-ticket-id>` reads an existing ticket. `tspec-track --update-refinement <feature-ticket-id>` replaces only the unique `TSPEC refinement` section after the user approves the exact preview; content outside that section is preserved. The ticket is authoritative for backlog position, status, and estimate. The bridge does not create or import tickets or write those fields.

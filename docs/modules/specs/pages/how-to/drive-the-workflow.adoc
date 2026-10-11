@@ -18,16 +18,16 @@ Use `tspec-explore` to investigate the feature and shape its rationale, outcome,
 tspec-refine-feature <feature-ticket-id>
 ----
 
-Start from an existing GitHub or Jira feature ticket. Refine its product-level behavior, use cases, and requirements in the graph, associating related canonical items with the shared `featureTicketId=<id>` metadata. One feature ticket may support many independent implementation changes.
+Start from an existing feature ticket when refining product behavior, use cases, and requirements; related graph items may share optional `externalId=<id>` metadata. One feature ticket may support many independent implementation changes. A local change can omit `externalId` when it addresses applicable approved requirements.
 
-== 3. Propose an implementation change
+== 3. Record an implementation change
 
 [source,bash]
 ----
-tspec-propose CHG-001
+tspec-new-change "Save review filters"
 ----
 
-`tspec-propose` records the change and its decisions against the refined product-level requirements. It does not author detailed software requirements or tasks. Repeat this step for each independent implementation change linked to the feature ticket.
+`tspec-new-change` records one change and its necessary decisions against applicable approved product/component requirements. `externalId` is optional; the skill does not author detailed software requirements or tasks. Repeat for each independent change, then refine each before creating its checklist.
 
 == 4. Refine the change
 
@@ -77,7 +77,7 @@ tspec-track --read <feature-ticket-id>
 tspec-track --update-refinement <feature-ticket-id>
 ----
 
-The update preserves all content outside that section (a GitHub heading or equivalent Jira ADF section). The user must approve the exact section preview before it is written. The external ticket remains authoritative for backlog position, status, and estimate; this workflow does not create or import tickets, or change those fields. Graph items associate with the ticket through shared `featureTicketId=<id>` metadata, not a relation.
+The update preserves all content outside that section (a GitHub heading or equivalent Jira ADF section). The user must approve the exact section preview before it is written. The external ticket remains authoritative for backlog position, status, and estimate; this workflow does not create or import tickets, or change those fields. Graph items may associate with the ticket through shared optional `externalId=<id>` metadata, not a relation.
 
 == Write a single item
 

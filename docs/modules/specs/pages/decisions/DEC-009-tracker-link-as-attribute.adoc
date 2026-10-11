@@ -1,4 +1,4 @@
-[#DEC-009, item, role=decision, status=proposed, title="Use shared external feature-ticket metadata"]
+[#DEC-009, item, role=decision, status=proposed, title="Use optional shared external-item metadata"]
 --
 Context:: Canonical graph items need to reference an existing externally owned feature ticket without making that ticket part of graph traceability.
 
@@ -6,15 +6,15 @@ Options::
 * Put a tracker identifier on a change only.
 ** Good: narrow and simple.
 ** Bad: use cases and requirements cannot share a canonical feature-ticket reference, and independent changes cannot explicitly refer to the same ticket.
-* Use one shared `featureTicketId` scalar metadata field on canonical graph items.
-** Good: use cases, requirements, and changes can point to the same external ticket; the link adds no graph relation.
+* Use optional `externalId` scalar metadata on canonical graph items associated with the same external item.
+** Good: use cases, requirements, and changes can share an external identifier without adding a graph relation; local work can omit it.
 ** Bad: the reference is intentionally outside graph validation and traceability matrices.
 
-Decision:: Use shared `featureTicketId` scalar metadata on canonical graph items; treat the referenced ticket as external, not as a graph item or relation.
+Decision:: Use optional shared `externalId` scalar metadata on canonical graph items; treat the referenced external item as metadata, not a graph item or relation.
 
-Rationale:: One feature ticket can cover multiple independent changes and connect the feature's graph items without confusing tracker ownership with spec traceability.
+Rationale:: One external ticket can cover multiple graph items and independent changes. Local changes can omit the identifier without weakening traceability, which remains in graph relations.
 
-Consequences:: Many items MAY share a feature ticket ID. The workflow preserves unknown legacy `trackerId` metadata and does not auto-convert it.
+Consequences:: Related items MAY share an `externalId`. The reference remains outside graph validation and traceability matrices. Preserve unknown legacy `trackerId` metadata; do not auto-convert it.
 
 tracer:links[]
 --

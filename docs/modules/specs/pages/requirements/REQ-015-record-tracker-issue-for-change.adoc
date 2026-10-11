@@ -1,8 +1,8 @@
-[#REQ-015, item, role=requirement, status=draft, title="Associate graph items with a shared feature ticket"]
+[#REQ-015, item, role=requirement, status=draft, title="Associate graph items with optional external identifiers"]
 --
-The system SHALL allow canonical graph items, including use cases, requirements, and changes, to carry a scalar `featureTicketId` metadata field that references an existing externally owned feature ticket.
+The system SHALL allow canonical graph items, including use cases, requirements, and changes, to carry optional scalar `externalId` metadata referencing an existing external item.
 
-Items covering the same feature MAY share a `featureTicketId`, including multiple independent changes. The reference SHALL remain external metadata, not a traceability relation or a graph item.
+Items associated with the same external item MAY share an `externalId`. Items without an external association SHALL omit it. The reference SHALL remain metadata, not a traceability relation or graph item.
 
 tracer:links[]
 --

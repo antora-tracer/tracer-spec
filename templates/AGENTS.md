@@ -19,7 +19,7 @@ Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
 |-------|---------|
 | `tspec-explore` | Explore a feature idea and shape its change sketch |
 | `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items |
-| `tspec-propose` | Propose an implementation change from refined product requirements |
+| `tspec-new-change` | Record a context-first implementation change against approved requirements |
 | `tspec-refine-change` | Refine a change into detailed software requirements and tasks |
 | `tspec-track` | Read an existing ticket or update its user-approved refinement section |
 | `tspec-apply-change` | Implement the change's refined tasks and advance state |
@@ -30,11 +30,11 @@ Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
 ## Workflow
 
 ```
-tspec-explore → tspec-refine-feature → tspec-propose → tspec-refine-change → tspec-apply-change → tspec-archive
+tspec-explore → tspec-refine-feature → tspec-new-change → tspec-refine-change → tspec-apply-change → tspec-archive
 ```
 
 One existing feature ticket may be associated with many independent changes
-through shared `featureTicketId=<id>` metadata on graph items. `tspec-propose`
+through shared optional `externalId=<id>` metadata on graph items. `tspec-new-change`
 does not author detailed software requirements or tasks; run
 `tspec-refine-change` before creating a change's task checklist.
 

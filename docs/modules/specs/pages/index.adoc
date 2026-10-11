@@ -27,10 +27,10 @@ It will create durable artifacts.
 
 [source,text]
 ----
-explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
+explore → refine feature ticket → record change(s) → refine each change → accept → apply → archive
 ----
 
-The graph is the canonical specification; each graph item's `featureTicketId` references its existing feature ticket.
+The graph is the canonical specification; a graph item's optional `externalId` may reference an existing external item. Local changes may omit it while still addressing approved requirements.
 One ticket may link to multiple independent implementation changes.
 The ticket remains authoritative for backlog placement, status, and estimate.
 

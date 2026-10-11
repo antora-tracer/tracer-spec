@@ -32,18 +32,18 @@ Update the pages under `docs/modules/specs/pages/`:
 * `decisions.adoc` — durable domain and specification decisions.
 
 The existing feature ticket stays authoritative for estimate and backlog state.
-All related graph items use its shared `featureTicketId`.
+Related graph items may carry the optional shared `externalId` when linked to the same external item; local changes need no external ID.
 
 == 4. Use the workflow
 
-Explore the feature, refine its existing ticket into use cases and product/component requirements, then propose one or more independently deliverable changes.
+For feature work, refine the existing ticket into use cases and product/component requirements, then record one or more independently deliverable changes. Local changes without an external ticket can also be recorded when applicable approved graph requirements already exist.
 Refine each change into testable software requirements and a task checklist before accepting and applying it.
 
 [source,bash]
 ----
 pi tspec-explore "Add user authentication"           # sketch product intent
 pi tspec-refine-feature AUTH-001                      # feature ticket -> use cases and requirements
-pi tspec-propose CHG-001                              # one implementation slice
+pi tspec-new-change "Improve saved filters"         # one implementation slice
 pi tspec-refine-change CHG-001                        # software requirements and tasks
 # review, then accept
 pi tspec-apply-change CHG-001                         # implement tasks

@@ -24,7 +24,7 @@ cd my-project
 npm install
 pi tspec-explore "Your feature"
 pi tspec-refine-feature <feature-ticket-id>
-pi tspec-propose "Your first change"
+pi tspec-new-change "Your first change"
 ```
 
 **Best for:** Learning, reference, copying patterns.
@@ -45,7 +45,7 @@ GitHub: https://github.com/antora-tracer/tracer-spec-minimal
 - Antora structure with minimal pages
 - Nine Agent Skills
 
-**No example data:** start fresh by exploring your feature, refining its existing ticket with `tspec-refine-feature`, then proposing a change with `tspec-propose`.
+**No example data:** start fresh by exploring your feature, refining its existing ticket with `tspec-refine-feature`, then recording a change with `tspec-new-change`.
 
 **First steps:**
 ```bash
@@ -54,7 +54,7 @@ cd my-project
 npm install
 pi tspec-explore "Your first feature"
 pi tspec-refine-feature <feature-ticket-id>
-pi tspec-propose "Your first change"
+pi tspec-new-change "Your first change"
 ```
 
 **Best for:** New projects, starting from scratch, minimal noise.
@@ -69,7 +69,7 @@ Both templates use the same workflow:
 ----
 pi tspec-explore "your feature"                 # shape the feature intent
 pi tspec-refine-feature <feature-ticket-id>      # refine existing ticket to product-level graph items
-pi tspec-propose CHG-001                         # propose an implementation change
+pi tspec-new-change "Add reusable saved filters"   # topic; the skill generates the CHG ID
 pi tspec-refine-change CHG-001                   # detailed software requirements + tasks
 pi tspec-apply-change CHG-001                    # implement the refined tasks
 pi tspec-archive CHG-001                         # validate and close
@@ -77,6 +77,6 @@ pi tspec-validate                                # check the graph
 npm run build                                    # publish the site
 ----
 
-One feature ticket can link to multiple independent changes. `tspec-propose` does not write detailed software requirements or tasks; refine each change before creating its task checklist. The external ticket remains authoritative for backlog position, status, and estimate. `tspec-track --read` reads existing tickets; `tspec-track --update-refinement` updates only the user-approved `TSPEC refinement` section.
+One feature ticket can link to multiple independent changes through optional `externalId=<id>` metadata. Local changes may omit an external ID when they have applicable approved requirement anchors. `tspec-new-change` does not author detailed software requirements or tasks; refine each change before creating its task checklist. The external ticket remains authoritative for backlog position, status, and estimate. `tspec-track --read` reads existing tickets; `tspec-track --update-refinement` updates only the user-approved `TSPEC refinement` section.
 
 The only difference is whether you **start with examples** (tracer-spec) or a **blank slate** (tracer-spec-minimal).

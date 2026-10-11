@@ -84,7 +84,7 @@ Summary: 11 items, 10 relationships
 explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
 ----
 
-Explore the feature, then refine an existing external feature ticket into product-level behavior, use cases, and requirements before proposing implementation changes. A ticket can link to many independent changes. Refine each proposed change into detailed software requirements and tasks before accepting and applying it; `tspec-propose` does not author those detailed requirements or tasks.
+Explore the feature, then refine an existing external feature ticket into product-level behavior, use cases, and requirements before proposing implementation changes. A ticket can link to many independent changes. Refine each proposed change into detailed software requirements and tasks before accepting and applying it; `tspec-new-change` does not author those detailed requirements or tasks.
 
 The nine skills:
 
@@ -92,7 +92,7 @@ The nine skills:
 |-------|---------|
 | `tspec-explore` | Explore a feature idea and shape its change sketch |
 | `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items |
-| `tspec-propose` | Propose an implementation change linked to refined product requirements |
+| `tspec-new-change` | Record a context-first implementation change against approved requirements |
 | `tspec-refine-change` | Refine a change into detailed software requirements and tasks |
 | `tspec-apply-change` | Implement the change's tasks and advance its state |
 | `tspec-archive` | Validate and close a verified change |
@@ -100,7 +100,7 @@ The nine skills:
 | `tspec-write-item` | Write one item of any declared role |
 | `tspec-track` | Read a ticket or update its user-approved refinement section |
 
-The shared scalar metadata `featureTicketId=<id>` associates canonical graph items with the existing ticket; it is not a graph relation. `tspec-track --read <feature-ticket-id>` reads the ticket. `--update-refinement` writes only its unique `TSPEC refinement` section after the user approves the exact preview. The ticket remains authoritative for backlog position, status, and estimate; the workflow does not create/import tickets or update those fields.
+Related graph items may share optional `externalId=<id>` metadata for the same external item; local changes may omit it when linked to applicable approved requirements. `tspec-track --read <feature-ticket-id>` reads the ticket. `--update-refinement` writes only its unique `TSPEC refinement` section after the user approves the exact preview. The ticket remains authoritative for backlog position, status, and estimate; the workflow does not create/import tickets or update those fields.
 
 === Evaluate a workflow skill
 
@@ -181,7 +181,7 @@ tracer-spec/
 └── skills/                       # Agent Skills for the workflow
     ├── tspec-explore/
     ├── tspec-refine-feature/
-    ├── tspec-propose/
+    ├── tspec-new-change/
     ├── tspec-refine-change/
     ├── tspec-apply-change/
     ├── tspec-archive/

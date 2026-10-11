@@ -1,6 +1,6 @@
 [#REQ-016, item, role=requirement, status=draft, title="Read the existing feature ticket"]
 --
-WHEN an item has a `featureTicketId`, the system SHALL read the referenced existing ticket when tracker information is requested. It SHALL NOT create tracker tickets or import tickets into the graph.
+WHEN an item has an `externalId` that identifies an existing supported ticket, the system SHALL read that ticket when tracker information is requested. It SHALL NOT create tracker tickets or import tickets into the graph.
 
 tracer:links[]
 --

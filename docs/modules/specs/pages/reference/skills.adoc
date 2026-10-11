@@ -10,7 +10,7 @@ The `SKILL.md` files are the source of truth — this page mirrors their frontma
 
 | `tspec-explore` | Explore a feature idea and shape its change sketch. | `<topic>` | unrestricted (read-only)
 | `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items. | `<feature-ticket-id>` | `antora-tracer`, tracker CLI/API
-| `tspec-propose` | Propose an implementation change linked to refined product requirements. | `<change-id or title>` | `antora-tracer`
+| `tspec-new-change` | Record a context-first implementation change against approved requirements. | `<change idea>` | `antora-tracer`
 | `tspec-refine-change` | Refine a proposed change into detailed software requirements and tasks. | `<change-id>` | `antora-tracer`
 | `tspec-apply-change` | Implement a change's tasks and advance state. | `<change-id>` | `antora-tracer`
 | `tspec-archive` | Validate, verify, and close a change. | `<change-id>` | `antora-tracer`
@@ -53,12 +53,11 @@ Read-only by discipline: it may read files, search code, and run commands, but m
 
 == tspec-refine-feature
 
-Refine an existing feature ticket into product-level behavior, use cases, and requirements. Related canonical graph items carry shared scalar metadata `featureTicketId=<id>`; one ticket may be linked from many independent changes. The ticket remains authoritative for backlog position, status, and estimate.
+Refine an existing feature ticket into product-level behavior, use cases, and requirements. Related canonical graph items may carry shared scalar metadata `externalId=<id>`; one ticket may be associated with many independent changes. The ticket remains authoritative for backlog position, status, and estimate.
 
-== tspec-propose
+== tspec-new-change
 
-Propose an implementation change linked to the refined product-level graph. This skill writes the change and decisions it records; it does not author detailed software requirements or tasks. One feature ticket may lead to multiple independent changes.
-Generates the change ID, resolves role guidance templates, writes each item as its own file with a matching `include::` line, and validates before reporting.
+Record one proposed implementation change from conversation context and existing approved product/component requirements. `externalId` is optional; local changes still require applicable approved requirement links. The skill previews the item before writing, generates the ID, resolves role guidance, adds the collection include, and validates. It does not author detailed software requirements or tasks.
 
 
 == tspec-refine-change
@@ -97,7 +96,7 @@ Read an existing feature ticket or update its approved refinement section.
 | `--update-refinement <feature-ticket-id>` | After the user approves the exact preview, replace only the ticket's unique `TSPEC refinement` section (GitHub heading or equivalent Jira ADF section), preserving the rest of the ticket.
 |===
 
-The ticket must already exist; this skill does not create or import tickets, change ticket status or backlog position, or own estimates. The external ticket remains authoritative for those fields. Feature association is the shared `featureTicketId=<id>` item-header metadata written by refinement skills, not a graph relation; existing unknown legacy `trackerId` data is preserved and is not converted automatically.
+The ticket must already exist; this skill does not create or import tickets, change ticket status or backlog position, or own estimates. The external ticket remains authoritative for those fields. Related graph items may share optional `externalId=<id>` metadata; it is not a graph relation. Existing unknown legacy `trackerId` data is preserved and is not converted automatically.
 
 Configuration lives in `tspec.yml` under `tracker`.
 `provider: none` (the default) disables external ticket operations; `github` uses the `gh` CLI and `jira` uses REST against the configured `url` and `project`.
