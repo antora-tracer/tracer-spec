@@ -1,4 +1,4 @@
-[#REQ-007, item, role=requirement, status=draft, title="Resolve role guidance pages to existing files"]
+[#REQ-007, item, role=requirement, level=software, status=draft, title="Resolve role guidance pages to existing files"]
 --
 The system SHALL resolve each `roleGuidance.<role>.page` value to the guidance file that exists under `docs/modules/specs/pages/`.
 

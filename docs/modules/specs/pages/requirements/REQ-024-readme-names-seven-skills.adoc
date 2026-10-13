@@ -1,4 +1,4 @@
-[#REQ-024, item, role=requirement, status=draft, title="Name all nine skills in the README"]
+[#REQ-024, item, role=requirement, level=component, status=draft, title="Name all nine skills in the README"]
 --
 The system SHALL list all nine workflow skills, including `tspec-refine-feature` and `tspec-refine-change`, in the README wherever the skill set is enumerated.
 

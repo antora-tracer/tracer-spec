@@ -1,4 +1,4 @@
-[#REQ-006, item, role=requirement, status=approved, title="Enforce a human acceptance gate"]
+[#REQ-006, item, role=requirement, level=product, status=approved, title="Enforce a human acceptance gate"]
 --
 The system SHALL let a change reach the accepted state only on a human's instruction, and validation SHALL enforce the transition.
 

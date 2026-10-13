@@ -1,4 +1,4 @@
-[#REQ-015, item, role=requirement, status=draft, title="Associate graph items with optional external identifiers"]
+[#REQ-015, item, role=requirement, level=software, status=draft, title="Associate graph items with optional external identifiers"]
 --
 The system SHALL allow canonical graph items, including use cases, requirements, and changes, to carry optional scalar `externalId` metadata referencing an existing external item.
 

@@ -1,16 +1,95 @@
 = Requirements
 :traceability-links: true
 
-Add standalone requirements here using the `tspec-write-item` skill.
+Requirements are grouped first by declared scope level, then by topic. Status appears beside each item; each link opens the canonical traceability record.
 
-[source,asciidoc]
-----
-[#REQ-001, item, role=requirement, status=draft, title="Observable behaviour"]
---
-The system SHALL <observable behaviour>.
+== Product
 
-<boundary conditions or scope>
+=== Traceability foundations and governance
 
-tracer:links[]
---
-----
+* xref:requirements/REQ-001-changes-requirements-core.adoc[REQ-001] — Represent changes and requirements as the traceability core (approved)
+* xref:requirements/REQ-002-connect-changes-to-requirements.adoc[REQ-002] — Connect changes to addressed requirements (approved)
+* xref:requirements/REQ-003-preserve-decisions-durable.adoc[REQ-003] — Preserve decisions as durable items (approved)
+* xref:requirements/REQ-004-keep-execution-tasks-temporary.adoc[REQ-004] — Keep execution tasks temporary (approved)
+* xref:requirements/REQ-005-supersede-approved-requirements.adoc[REQ-005] — Supersede approved requirements instead of editing (approved)
+* xref:requirements/REQ-006-enforce-human-acceptance-gate.adoc[REQ-006] — Enforce a human acceptance gate (approved)
+* xref:requirements/REQ-020-record-requirements-as-behaviour-not-mechanisms.adoc[REQ-020] — Record requirements as observable behaviour, not mechanisms (draft)
+
+=== Feature refinement
+
+* xref:requirements/REQ-030-refine-ticket-into-traceable-feature-spec.adoc[REQ-030] — Refine an existing feature ticket into traceable product requirements (draft)
+* xref:requirements/REQ-031-preserve-partial-feature-refinement-gaps.adoc[REQ-031] — Preserve partial feature refinement and identify readiness gaps (draft)
+* xref:requirements/REQ-032-confirm-feature-readiness-before-approval.adoc[REQ-032] — Require user confirmation before approving feature requirements (draft)
+
+=== Change status reporting
+
+* xref:requirements/REQ-035-report-change-actionability-and-completion.adoc[REQ-035] — Report change actionability and completion (approved)
+
+== Component
+
+=== Agent workflow and skills
+
+* xref:requirements/REQ-010-archive-verifies-requirements.adoc[REQ-010] — Archive verifies addressed requirements are satisfied (draft)
+* xref:requirements/REQ-011-archive-refuses-unsatisfied.adoc[REQ-011] — Archive refuses to close an unsatisfied change (draft)
+* xref:requirements/REQ-012-archive-verification-read-only.adoc[REQ-012] — Archive verification is read-only (draft)
+* xref:requirements/REQ-028-derive-architecture-proposals-from-requirements.adoc[REQ-028] — Derive architecture proposals from change requirements (draft)
+* xref:requirements/REQ-029-clarify-and-record-architecture-decisions.adoc[REQ-029] — Clarify and trace architecture decisions (draft)
+* xref:requirements/REQ-033-propose-independent-feature-implementation-changes.adoc[REQ-033] — Propose independently deliverable changes against feature requirements (draft)
+* xref:requirements/REQ-034-refine-change-before-creating-tasks.adoc[REQ-034] — Refine one implementation change before creating execution tasks (draft)
+
+=== External tracker integration
+
+* xref:requirements/REQ-014-associate-issue-tracker-with-workflow.adoc[REQ-014] — Preserve existing tracker provider configuration (draft)
+* xref:requirements/REQ-016-create-or-link-tracker-issue.adoc[REQ-016] — Read the existing feature ticket (draft)
+* xref:requirements/REQ-018-keep-tracker-status-in-step.adoc[REQ-018] — Keep ticket-owned state outside the graph (draft)
+* xref:requirements/REQ-019-ignore-tracker-state-changes.adoc[REQ-019] — Do not write or pull ticket state and estimates (draft)
+
+=== Documentation site
+
+* xref:requirements/REQ-008-change-guidance-item-template.adoc[REQ-008] — Change guidance declares an item template (draft)
+* xref:requirements/REQ-009-decision-guidance-item-template.adoc[REQ-009] — Decision guidance declares an item template (draft)
+* xref:requirements/REQ-013-decision-guidance-madr-fields.adoc[REQ-013] — Decision guidance declares MADR-shaped item fields (draft)
+* xref:requirements/REQ-021-document-cli-in-site.adoc[REQ-021] — Document the workflow CLI in the site (draft)
+* xref:requirements/REQ-022-document-workflow-skills.adoc[REQ-022] — Document all nine workflow skills in the site (draft)
+* xref:requirements/REQ-023-one-page-one-diataxis-mode.adoc[REQ-023] — Assign each site page to exactly one Diátaxis mode (draft)
+* xref:requirements/REQ-024-readme-names-seven-skills.adoc[REQ-024] — Name all nine skills in the README (draft)
+
+=== Change status CLI
+
+* xref:requirements/REQ-036-classify-actionable-change-states.adoc[REQ-036] — Classify actionable change states (approved)
+* xref:requirements/REQ-037-classify-finished-changes.adoc[REQ-037] — Classify finished changes (approved)
+* xref:requirements/REQ-038-roll-up-parent-actionability.adoc[REQ-038] — Roll up parent change actionability (approved)
+* xref:requirements/REQ-039-limit-status-output-fields.adoc[REQ-039] — Limit change status output fields (approved)
+* xref:requirements/REQ-040-keep-change-status-query-read-only.adoc[REQ-040] — Keep change status queries read-only (approved)
+
+== Software
+
+=== Agent workflow and skills
+
+* xref:requirements/REQ-025-run-isolated-skill-evaluations.adoc[REQ-025] — Run skill scenarios with paired isolated workspaces (draft)
+* xref:requirements/REQ-026-report-skill-evaluation-evidence.adoc[REQ-026] — Report skill evaluation outcomes with evidence (draft)
+
+=== Project bootstrapper and harness integration
+
+* xref:requirements/REQ-007-resolve-role-guidance-pages.adoc[REQ-007] — Resolve role guidance pages to existing files (draft)
+
+=== Specification and traceability layer
+
+* xref:requirements/REQ-027-distinguish-architecture-decision-records.adoc[REQ-027] — Distinguish architecture decision records from business decisions (draft)
+
+=== External tracker integration
+
+* xref:requirements/REQ-015-record-tracker-issue-for-change.adoc[REQ-015] — Associate graph items with optional external identifiers (draft)
+* xref:requirements/REQ-017-import-tracker-first-issue.adoc[REQ-017] — Update only a user-approved ticket summary (draft)
+
+=== Change status CLI
+
+* xref:requirements/REQ-041-report-change-status-record.adoc[REQ-041] — Report one change status record (draft)
+* xref:requirements/REQ-042-reject-invalid-change-ids.adoc[REQ-042] — Reject IDs that do not identify changes (draft)
+* xref:requirements/REQ-043-classify-leaf-actionability.adoc[REQ-043] — Classify leaf change actionability (draft)
+* xref:requirements/REQ-044-classify-finished-state.adoc[REQ-044] — Classify finished change state (draft)
+* xref:requirements/REQ-045-aggregate-parent-actionability.adoc[REQ-045] — Aggregate parent change actionability (draft)
+* xref:requirements/REQ-046-keep-status-command-read-only.adoc[REQ-046] — Keep status command read-only (draft)
+* xref:requirements/REQ-047-reject-duplicate-item-ids-for-status.adoc[REQ-047] — Reject status results from duplicate item IDs (draft)
+* xref:requirements/REQ-048-resolve-status-paths-independently.adoc[REQ-048] — Resolve status graph paths independently (draft)
+* xref:requirements/REQ-049-reject-unreadable-status-paths.adoc[REQ-049] — Reject unreadable status input paths (draft)

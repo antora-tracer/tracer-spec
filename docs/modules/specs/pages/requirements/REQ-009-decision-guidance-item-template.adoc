@@ -1,4 +1,4 @@
-[#REQ-009, item, role=requirement, status=draft, title="Decision guidance declares an item template"]
+[#REQ-009, item, role=requirement, level=component, status=draft, title="Decision guidance declares an item template"]
 --
 The decision guidance page SHALL declare its item fields as an `Item template` block with the labeled-list fields Context, Decision, and Consequences.
 

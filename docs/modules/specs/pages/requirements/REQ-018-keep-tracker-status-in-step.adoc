@@ -1,4 +1,4 @@
-[#REQ-018, item, role=requirement, status=draft, title="Keep ticket-owned state outside the graph"]
+[#REQ-018, item, role=requirement, level=component, status=draft, title="Keep ticket-owned state outside the graph"]
 --
 The system SHALL treat the external ticket as authoritative for its backlog placement, status, and estimate. It SHALL NOT synchronize those values into graph state.
 

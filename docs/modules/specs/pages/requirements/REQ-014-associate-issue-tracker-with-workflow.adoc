@@ -1,4 +1,4 @@
-[#REQ-014, item, role=requirement, status=draft, title="Preserve existing tracker provider configuration"]
+[#REQ-014, item, role=requirement, level=component, status=draft, title="Preserve existing tracker provider configuration"]
 --
 The system SHALL use existing user-owned provider configuration to access feature tickets and SHALL preserve it. It SHALL NOT create, import, or rewrite provider configuration as part of feature-ticket refinement.
 

@@ -1,4 +1,4 @@
-[#REQ-022, item, role=requirement, status=draft, title="Document all nine workflow skills in the site"]
+[#REQ-022, item, role=requirement, level=component, status=draft, title="Document all nine workflow skills in the site"]
 --
 The system SHALL document every workflow skill — `tspec-explore`, `tspec-refine-feature`, `tspec-new-change`, `tspec-refine-change`, `tspec-apply-change`, `tspec-archive`, `tspec-validate`, `tspec-write-item`, and `tspec-track` — in the site, with a task-oriented how-to and exhaustive reference entry naming each skill's trigger, arguments, operations, and configuration.
 

@@ -1,4 +1,4 @@
-[#REQ-001, item, role=requirement, status=approved, title="Represent changes and requirements as the traceability core"]
+[#REQ-001, item, role=requirement, level=product, status=approved, title="Represent changes and requirements as the traceability core"]
 --
 The system SHALL represent changes and requirements as first-class traceable items.
 

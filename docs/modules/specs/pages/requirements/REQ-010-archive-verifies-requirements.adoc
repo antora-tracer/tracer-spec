@@ -1,4 +1,4 @@
-[#REQ-010, item, role=requirement, status=draft, title="Archive verifies addressed requirements are satisfied"]
+[#REQ-010, item, role=requirement, level=component, status=draft, title="Archive verifies addressed requirements are satisfied"]
 --
 The system SHALL verify that each requirement addressed by a change is satisfied by the implementation before the change reaches `closed`.
 

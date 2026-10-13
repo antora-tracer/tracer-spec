@@ -1,4 +1,4 @@
-[#REQ-002, item, role=requirement, status=approved, title="Connect changes to addressed requirements"]
+[#REQ-002, item, role=requirement, level=product, status=approved, title="Connect changes to addressed requirements"]
 --
 The system SHALL connect each change to the requirements it addresses.
 
