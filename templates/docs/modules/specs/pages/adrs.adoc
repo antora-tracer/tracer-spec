@@ -1,0 +1,6 @@
+= Architecture Decisions
+:traceability-links: true
+
+Use ADRs only for costly-to-reverse software architecture choices. Use `DEC` items for domain and business decisions.
+
+See xref:guidance/adr.adoc[Architecture Decision Record] for the item template. Link each ADR to its change, relevant requirements, and the architecture items it decides.

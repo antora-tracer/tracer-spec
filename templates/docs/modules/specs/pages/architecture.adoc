@@ -1,0 +1,52 @@
+= Architecture
+:traceability-links: true
+
+Use this tailored arc42 structure to describe the current system. Keep useful narrative in the section and add links to stable `ARC` items when an element needs its own identity, relations, or change-impact history. Sections and explanatory paragraphs do not automatically become graph items.
+
+== 1. Introduction and Goals
+
+Describe the system's purpose, stakeholders, and quality goals. Link the relevant product requirements.
+
+== 2. Constraints
+
+Record technical, organizational, regulatory, or external constraints that shape the architecture. Link constraints modeled as requirements.
+
+== 3. Context and Scope
+
+Describe the system boundary, external actors, neighboring systems, and their interfaces.
+
+== 4. Solution Strategy
+
+Summarize the key solution approaches. Use `kind=solution_strategy` ARC items for strategies that need explicit traceability.
+
+== 5. Building Block View
+
+Describe the important components and their responsibilities. Use `kind=building_block` ARC items for independently meaningful elements.
+
+== 6. Runtime View
+
+Describe important runtime scenarios or interactions. Link any stable runtime-scenario items.
+
+== 7. Deployment View
+
+Describe the deployment environment, nodes, and communication paths. Link deployment elements when they need change-impact tracking.
+
+== 8. Crosscutting Concepts
+
+Describe concepts that apply across the system, such as identity, data ownership, or error handling. Use ARC items for reusable concepts.
+
+== 9. Architecture Decisions
+
+Link to xref:adrs.adoc[Architecture Decisions]. Record domain and workflow decisions in xref:decisions.adoc[Decisions].
+
+== 10. Quality Requirements
+
+Describe important quality goals and scenarios; keep normative, testable obligations in `role=requirement` items.
+
+== 11. Risks and Technical Debt
+
+Record material architecture risks and technical debt, including their affected elements and mitigation plans.
+
+== 12. Glossary
+
+Define domain-specific terms and link glossary items when they need stable references.

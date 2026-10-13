@@ -11,9 +11,9 @@ The `SKILL.md` files are the source of truth — this page mirrors their frontma
 | `tspec-explore` | Explore a feature idea and shape its change sketch. | `<topic>` | unrestricted (read-only)
 | `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items. | `<feature-ticket-id>` | `antora-tracer`, tracker CLI/API
 | `tspec-new-change` | Record a context-first implementation change against approved requirements. | `<change idea>` | `antora-tracer`
-| `tspec-refine-change` | Refine a proposed change into detailed software requirements and tasks. | `<change-id>` | `antora-tracer`
-| `tspec-apply-change` | Implement a change's tasks and advance state. | `<change-id>` | `antora-tracer`
-| `tspec-archive` | Validate, verify, and close a change. | `<change-id>` | `antora-tracer`
+| `tspec-refine-change` | Refine a change into software requirements, a durable design item, and temporary tasks. | `<change-id>` | `antora-tracer`
+| `tspec-apply-change` | Implement tasks using the accepted design and architecture context. | `<change-id>` | `antora-tracer`
+| `tspec-archive` | Verify requirements and design, reconcile architecture, and close a change. | `<change-id>` | `antora-tracer`
 | `tspec-validate` | Validate the traceability graph. | — | `antora-tracer`
 | `tspec-write-item` | Write one item of any role. | `<role> [<id>]` | `antora-tracer`
 | `tspec-track` | Read or update an existing feature ticket. | `--read` or `--update-refinement` with `<feature-ticket-id>` | `antora-tracer`, `gh`, `curl`, `node`
@@ -57,22 +57,20 @@ Refine an existing feature ticket into product-level behavior, use cases, and re
 
 == tspec-new-change
 
-Record one proposed implementation change from conversation context and existing approved product/component requirements. `externalId` is optional; local changes still require applicable approved requirement links. The skill previews the item before writing, generates the ID, resolves role guidance, adds the collection include, and validates. It does not author detailed software requirements or tasks.
+Record one proposed implementation change from conversation context and approved requirements. Domain/business choices use `decision`; costly-to-reverse architecture choices are resolved during design refinement and recorded as ADRs. `externalId` is optional.
 
 
 == tspec-refine-change
 
-Refine a proposed change into detailed software requirements and an execution task checklist at `tspec/<change-id>/tasks.md`. Tasks are created only after the change is refined.
+Refine one proposed change into software requirements and a durable DSN design item linked to those requirements, affected ARC items, and ADRs. Create temporary tasks only after the design is approved and the change is marked `refined`.
 
 == tspec-apply-change
 
-Implement an accepted change: work the task checklist, tick `- [ ]` to `- [x]`, add verification evidence for each addressed requirement, and advance `accepted` → `implemented` → `verified`.
-Never modifies requirements in place — a changed meaning is a supersession.
+Implement an accepted change from its temporary task list and durable DSN design, using related ARC and ADR items as context. Record verification evidence for requirements; revise a materially changed design with user review and reconcile architecture at archive.
 
 == tspec-archive
 
-Close a verified change: validate, spawn an independent cold reviewer that verdicts each requirement SATISFIED/NOT, then delete `tspec/<change-id>/` and advance `verified` → `closed`.
-Stops on any NOT-satisfied verdict.
+Close a verified change after validation and an independent review of requirements, DSN design, ADRs, and affected architecture. Reconcile the arc42 baseline to the implemented system, retain durable items, remove `tspec/<change-id>/`, and advance the change to `closed`.
 
 == tspec-validate
 
@@ -81,8 +79,8 @@ Never changes state.
 
 == tspec-write-item
 
-Write one item of any declared role (`change`, `requirement`, `decision`, `test`, or a declared growth role) and wire its relations directly.
-Generates the next ID from the role's prefix and writes into the role's page.
+Write one item of any declared role (`change`, `requirement`, `decision`, `test`, `use_case`, `architecture`, `design`, or `adr`) and wire its configured relations.
+Resolve the collection, identifier prefix, status, and item template from role guidance.
 
 == tspec-track
 

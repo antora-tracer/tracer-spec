@@ -1,18 +1,21 @@
 = Changes
 :traceability-links: true
 
-Add your changes here using the `tspec-propose` skill.
+Add implementation changes using `tspec-new-change`.
 
 [source,asciidoc]
 ----
-[#CHG-001, item, role=change, status=proposed, title="Your feature"]
+[#CHG-NNN, item, role=change, status=proposed, title="<change>"]
 --
 Rationale:: Why this change is needed.
-Outcome:: What the change produces.
-Out-of-scope:: What the change excludes.
+Outcome:: What it produces.
+Out-of-scope:: What it excludes.
 
 addresses:REQ-NNN[]
 records:DEC-NNN[]
+records:DSN-NNN[]
+records:ADR-NNN[]
+updates:ARC-NNN[]
 tracer:links[]
 --
 ----

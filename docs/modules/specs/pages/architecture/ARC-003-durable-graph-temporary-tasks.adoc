@@ -1,0 +1,10 @@
+[#ARC-003, item, role=architecture, status=accepted, kind=crosscutting_concept, title="Durable graph items outlive execution tasks"]
+--
+Summary:: Requirements, decisions, architecture items, and change designs are durable; only the actionable task checklist is temporary.
+Description:: Archive removes `tspec/<change-id>/` after verification while durable graph items remain available for future changes and system understanding.
+
+realizes:REQ-003[]
+realizes:REQ-004[]
+updated_by:CHG-012[]
+tracer:links[]
+--

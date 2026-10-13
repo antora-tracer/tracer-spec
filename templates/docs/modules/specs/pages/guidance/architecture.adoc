@@ -1,0 +1,22 @@
+= Architecture Item
+
+Use a traceable architecture item for an independently meaningful solution strategy, building block, runtime or deployment element, or cross-cutting concept. Keep explanatory prose and section headings in the arc42 baseline; do not turn every paragraph into a graph item.
+
+The open `kind` metadata convention should describe the element consistently. Add typed links to requirements, related architecture items, decisions, and changes where they help explain structure or impact.
+
+== Item template
+
+[source,asciidoc]
+----
+[#ARC-NNN, item, role=architecture, status=accepted, kind=<kind>, title="<specific element>"]
+--
+Summary:: What the element is and its purpose.
+Description:: Relevant structure, responsibilities, or constraints.
+
+composes:ARC-NNN[]
+realizes:REQ-NNN[]
+decided_by:ADR-NNN[]
+updated_by:CHG-NNN[]
+tracer:links[]
+--
+----

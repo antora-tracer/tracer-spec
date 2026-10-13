@@ -1,7 +1,6 @@
 = Workflow Overview
 
-explore → refine feature ticket → propose change(s) → refine each change → accept → apply → archive
+explore → refine feature ticket → record change(s) → refine requirements and durable design → accept → apply → reconcile architecture → archive
 
-One feature ticket may link to multiple independently delivered changes.
-See `AGENTS.md` for the skills that drive this workflow.
-The user owns ticket status, backlog position, and estimate; TSPEC stores only the shared ticket ID and an explicitly approved refinement summary.
+Each refined change has a durable DSN design item before its temporary task list. ARC items belong to an arc42-aligned as-built baseline; ADRs record costly-to-reverse software architecture choices, while DEC items remain for domain and business decisions.
+Only task checklists are temporary; archive retains design, architecture, and decision items.

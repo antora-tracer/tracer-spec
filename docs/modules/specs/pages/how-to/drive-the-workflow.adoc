@@ -27,7 +27,7 @@ Start from an existing feature ticket when refining product behavior, use cases,
 tspec-new-change "Save review filters"
 ----
 
-`tspec-new-change` records one change and its necessary decisions against applicable approved product/component requirements. `externalId` is optional; the skill does not author detailed software requirements or tasks. Repeat for each independent change, then refine each before creating its checklist.
+`tspec-new-change` records one change against applicable approved product/component requirements. Domain or business choices are recorded as `DEC` items; costly-to-reverse architecture choices are handled as ADRs during design refinement.
 
 == 4. Refine the change
 
@@ -36,7 +36,7 @@ tspec-new-change "Save review filters"
 tspec-refine-change CHG-001
 ----
 
-Refine the change into detailed software requirements, then create its execution checklist at `tspec/CHG-001/tasks.md`. Tasks are created only after this change-refinement step.
+Refine the change into detailed software requirements and create one durable DSN design item that links the requirements, affected ARC items, and related ADRs. Record material trade-offs or state that the change has no architecture impact. Create the design before its execution checklist at `tspec/CHG-001/tasks.md`.
 `tracer-spec status CHG-001` reports the stored lifecycle state and actionable/finished results without changing the graph.
 
 == 5. Accept and apply the change
@@ -48,7 +48,7 @@ A human reviews the refined change and approves it before implementation. Valida
 tspec-apply-change CHG-001
 ----
 
-`tspec-apply-change` works through `tspec/CHG-001/tasks.md`, ticking each task and adding verification evidence for each addressed requirement. The change moves `accepted` → `implemented` → `verified`.
+`tspec-apply-change` works through `tspec/CHG-001/tasks.md`, uses the approved design and architecture context, ticks each task, and adds verification evidence for addressed requirements. The change moves `accepted` → `implemented` → `verified`.
 
 == 6. Archive the change
 
@@ -57,7 +57,7 @@ tspec-apply-change CHG-001
 tspec-archive CHG-001
 ----
 
-`tspec-archive` validates, verifies conformance against the requirements with an independent cold reviewer, removes `tspec/CHG-001/`, and closes the change. Durable items remain in the graph; only the temporary checklist is removed.
+`tspec-archive` validates and verifies requirements, the design, ADRs, and affected ARC items. For architecture-affecting changes, the arc42 baseline must describe the implemented system before close. Archive retains durable graph items and removes only `tspec/CHG-001/`.
 
 == 7. Validate at any point
 

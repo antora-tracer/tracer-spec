@@ -16,6 +16,9 @@ roles:
   - change
   - decision
   - use_case
+  - architecture
+  - design
+  - adr
 
 roleGuidance:
   change:
@@ -27,6 +30,15 @@ roleGuidance:
   use_case:
     page: docs/modules/specs/pages/guidance/use-case.adoc
     idPrefix: UC
+  architecture:
+    page: docs/modules/specs/pages/guidance/architecture.adoc
+    idPrefix: ARC
+  design:
+    page: docs/modules/specs/pages/guidance/design.adoc
+    idPrefix: DSN
+  adr:
+    page: docs/modules/specs/pages/guidance/adr.adoc
+    idPrefix: ADR
 
 relations:
   change:
@@ -36,6 +48,18 @@ relations:
     decision:
       records:
         reverse: recorded_by
+    design:
+      records:
+        reverse: recorded_by
+    adr:
+      records:
+        reverse: recorded_by
+    architecture:
+      updates:
+        reverse: updated_by
+    change:
+      refines:
+        reverse: refined_by
   use_case:
     requirement:
       leads_to:
@@ -44,6 +68,34 @@ relations:
     requirement:
       refines:
         reverse: refined_by
+  design:
+    requirement:
+      realizes:
+        reverse: realized_by
+    architecture:
+      affects:
+        reverse: affected_by
+    adr:
+      references:
+        reverse: referenced_by
+  architecture:
+    architecture:
+      composes:
+        reverse: part_of
+    requirement:
+      realizes:
+        reverse: realized_by
+  adr:
+    requirement:
+      addresses:
+        reverse: addressed_by
+    architecture:
+      decides:
+        reverse: decided_by
+  decision:
+    decision:
+      supersedes:
+        reverse: superseded_by
 
 matrices:
   - name: changes-to-requirements
@@ -61,17 +113,37 @@ matrices:
     columns: [requirement]
     coverageRelations:
       requirement: [refines]
+  - name: architecture-to-requirements
+    rows: architecture
+    columns: [requirement]
+    coverageRelations:
+      requirement: [realizes]
+  - name: designs-to-requirements
+    rows: design
+    columns: [requirement]
+    coverageRelations:
+      requirement: [realizes]
+
 workflow:
-  change:
-    states: [proposed, refined, accepted, implemented, verified, closed, rejected]
-    transitions: { ... }
-  requirement:
-    states: [draft, reviewed, approved, superseded, withdrawn]
-    transitions: { ... }
+  architecture:
+    states: [accepted, superseded]
+    transitions:
+      accepted: [superseded]
+  design:
+    states: [proposed, accepted, superseded]
+    transitions:
+      proposed: [accepted, superseded]
+      accepted: [superseded]
   decision:
     states: [proposed, accepted, rejected, superseded]
-    transitions: { ... }
-
+    transitions:
+      proposed: [accepted, rejected, superseded]
+      accepted: [superseded]
+  adr:
+    states: [proposed, accepted, rejected, superseded]
+    transitions:
+      proposed: [accepted, rejected, superseded]
+      accepted: [superseded]
 validation:
   change:
     accepted:
@@ -83,11 +155,11 @@ validation:
 | Key | Purpose
 
 | `extends` | Base the model on a preset. `minimal` supplies `requirement` and `test`, their guidance, requirement workflow, requirement-test relations, and the `requirements-tests` matrix. These inherited roles, workflows, relations, and matrices remain available alongside project additions.
-| `roles` | Additional roles declared by this project (`change`, `decision`, `use_case`); they do not replace inherited `requirement` and `test` roles.
-| `roleGuidance.<role>.page` | The page that holds the role's item template — resolved by `tspec-new-change`, refinement skills, and `tspec-write-item`.
-| `roleGuidance.<role>.idPrefix` | The role's ID prefix (`CHG`, `DEC`, `UC`; inherited roles use `REQ` and `TST`).
-| `relations` | Additional typed relation edges between roles, each with a `reverse` name. `use_case` uses `leads_to` for derived requirements (`is_derived_from` in reverse); `requirement` uses `refines` for more detailed requirements (`refined_by` in reverse). Inherited requirement and test relations are preserved.
-| `matrices` | Additional cross-role coverage matrices; `coverageRelations` names the relation that counts as coverage. The two refinement matrices cover use-case-to-requirement `leads_to` and requirement-to-requirement `refines`; inherited `requirements-tests` remains.
+| `roles` | Additional roles declared by this project (`change`, `decision`, `use_case`, `architecture`, `design`, `adr`); they do not replace inherited `requirement` and `test` roles.
+| `roleGuidance.<role>.page` | The page containing an item's role-specific template. `tspec-write-item` and refinement skills resolve it from `traceability.yml`.
+| `roleGuidance.<role>.idPrefix` | The identifier prefix (`CHG`, `DEC`, `UC`, `ARC`, `DSN`, `ADR`; inherited roles use `REQ` and `TST`).
+| `relations` | Typed edges between roles with reverse names. Changes record designs/decisions/ADRs and update architecture; designs realize requirements, affect ARC items, and reference ADRs; ADRs address requirements and decide architecture; architecture items compose and realize requirements.
+| `matrices` | Cross-role coverage views. In addition to changes and use cases, architecture items and change designs are traceable to the requirements they realize; inherited `requirements-tests` remains.
 | `workflow.<role>.states` | The ordered, declarative states a role may occupy; they do not enforce state transitions.
 | `workflow.<role>.transitions` | Configured state-to-state moves, available to consumers as metadata.
 | `validation` | Structural validation settings. Core does not enforce `requiresRoles` workflow gates.

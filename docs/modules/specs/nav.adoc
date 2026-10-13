@@ -4,3 +4,6 @@
 * xref:requirements.adoc[Requirements]
 * xref:use-cases.adoc[Use Cases]
 * xref:decisions.adoc[Decisions]
+* xref:architecture.adoc[Architecture]
+* xref:designs.adoc[Change Designs]
+* xref:adrs.adoc[Architecture Decisions]

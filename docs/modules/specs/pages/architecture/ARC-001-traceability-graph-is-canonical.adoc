@@ -1,0 +1,10 @@
+[#ARC-001, item, role=architecture, status=accepted, kind=solution_strategy, title="The traceability graph is canonical"]
+--
+Summary:: The traceability graph is the durable source of record for requirements, changes, decisions, architecture items, and change designs.
+Description:: Antora pages publish the items; `traceability.yml` declares their roles and typed relations. External tickets may be associated as metadata but do not replace the graph.
+
+realizes:REQ-001[]
+realizes:REQ-002[]
+updated_by:CHG-012[]
+tracer:links[]
+--

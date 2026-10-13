@@ -12,10 +12,10 @@ Write one item of any declared role.
 
 ## Behavior
 
-1. Confirm the role and include the shared `externalId` only when the item is associated with an existing external item. Declared core roles: `change`, `requirement`, `decision`, `test`; growth roles including `use_case` must first be declared in `traceability.yml`.
-2. Generate the next ID with `antora-tracer next-id --prefix <PREFIX> -i docs` (prefix from role guidance; core prefixes include CHG, REQ, DEC, TST, while `use_case` uses UC).
-3. Write the item block to its role collection with appropriate `status`; include `externalId=<id>` in the header only when the item belongs to an existing external item.
-4. Wire configured relations to existing IDs with `<relation>:<ID>[]` macros.
+1. Confirm the role is declared in `traceability.yml` and resolve its guidance page and ID prefix with `antora-tracer role-guidance <role> --config traceability.yml --content`. Declared roles include `change`, `requirement`, `decision`, `test`, `use_case`, `architecture`, `design`, and `adr`.
+2. Generate the next ID with `antora-tracer next-id --prefix <PREFIX> -i docs`; prefixes come from role guidance and are not reserved.
+3. Write the item under its role collection with the status and fields from that role's guidance. Include `externalId=<id>` only when it belongs to an existing external item.
+4. Add only configured relation macros to existing IDs. Use a configured reverse relation when the canonical edge points from another role.
 
 ## Roles, collections, prefixes, initial status
 
@@ -24,17 +24,27 @@ Write one item of any declared role.
 | requirement | requirements.adoc | REQ | draft |
 | decision | decisions.adoc | DEC | proposed |
 | use_case | use-cases.adoc | UC | none |
-| test | (any page) | TST | none |
+| architecture | architecture.adoc | ARC | accepted |
+| design | designs.adoc | DSN | proposed |
+| adr | adrs.adoc | ADR | proposed |
+| test | tests.adoc or a test page | TST | none |
+
 
 ## Relation macros
 
 - use_case → requirement: `leads_to:REQ-NNN[]`
 - change → requirement: `addresses:REQ-NNN[]`
-- change → decision: `records:DEC-NNN[]`
+- change → decision, design, or adr: `records:<ID>[]`
+- change → architecture: `updates:ARC-NNN[]`
+- architecture → architecture: `composes:ARC-NNN[]`; architecture → requirement: `realizes:REQ-NNN[]`
+- architecture → ADR and change → design reverse links: `decided_by:ADR-NNN[]`, `recorded_by:CHG-NNN[]`
+- design → requirement, architecture, or adr: `realizes:REQ-NNN[]`, `affects:ARC-NNN[]`, `references:ADR-NNN[]`
+- adr → requirement or architecture: `addresses:REQ-NNN[]`, `decides:ARC-NNN[]`; adr → change reverse link: `recorded_by:CHG-NNN[]`
+- decision → decision: `supersedes:DEC-NNN[]`
 - requirement → requirement: `refines:REQ-PARENT[]`, `supersedes:REQ-OLD[]`
 - test → requirement: `verifies:REQ-NNN[]`
 
-Use only relations enabled by the project's `traceability.yml`; the reverse name is derived and may be authored when configured.
+Use only relations enabled by the project's `traceability.yml`; configured reverse names may also be authored.
 
 ## Item format
 

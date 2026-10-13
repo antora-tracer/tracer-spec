@@ -2,20 +2,23 @@
 
 Your project documentation starts here.
 
-This is a Tracer Spec Workflow project. Add durable items to
-`docs/modules/specs/pages/` and they flow through the traceability graph.
+This project stores durable requirements, changes, architecture items, per-change designs, domain/business decisions, and ADRs as traceable Antora/AsciiDoc items under
+`docs/modules/specs/pages/`.
 
 == Getting started
 
 1. xref:changes.adoc[View changes]
 2. xref:requirements.adoc[Read requirements]
-3. xref:decisions.adoc[Review decisions]
-4. xref:use-cases.adoc[Review use cases]
+3. xref:architecture.adoc[Understand the architecture]
+4. xref:designs.adoc[Review change designs]
+5. xref:adrs.adoc[Review architecture decisions]
+6. xref:decisions.adoc[Review domain and business decisions]
+7. xref:use-cases.adoc[Review use cases]
 
 
 == Next steps
 
 * Use `tspec-explore`, then `tspec-refine-feature` for existing feature tickets
-* Use `tspec-propose` and `tspec-refine-change` for implementation slices
+* Use `tspec-new-change`, then `tspec-refine-change` to create software requirements, durable design, and temporary tasks
 * Validate with `npm run validate`
 * Build with `npm run build`

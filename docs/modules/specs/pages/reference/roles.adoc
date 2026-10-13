@@ -1,6 +1,6 @@
 = Roles Reference
 
-Every traceability item is a role with an ID prefix, a set of fields, and a state machine.
+Every traceability item has a role, ID prefix, item fields, and status conventions; architecture items also use open `kind` metadata.
 This page is the authoritative reference for authoring items.
 
 == Roles and prefixes
@@ -10,15 +10,17 @@ This page is the authoritative reference for authoring items.
 | Role | Prefix | Initial status | Purpose
 
 | `change` | `CHG` | `proposed` | The entry point: rationale, outcome, and scope of one change.
-| `requirement` | `REQ` | `draft` | One observable obligation; its `level` metadata identifies product, component, or software scope.
+| `requirement` | `REQ` | `draft` | One observable obligation at product, component, or software level.
 | `use_case` | `UC` | — | An actor goal and observable interaction leading to requirements.
-| `decision` | `DEC` | `proposed` | A durable record of a domain or specification choice.
+| `decision` | `DEC` | `proposed` | A durable domain or specification choice.
+| `architecture` | `ARC` | `accepted` | An independently meaningful system architecture element classified by `kind`.
+| `design` | `DSN` | `proposed` | The durable technical design for one implementation change.
+| `adr` | `ADR` | `proposed` | A decision record for a costly-to-reverse software architecture choice.
 | `test` | `TST` | — | Verification evidence carrying `verifies:REQ-NNN[]`.
 
 |===
 
-Other growth roles are available only when declared in `traceability.yml`.
-The `minimal` preset supplies the inherited `requirement` and `test` roles, requirement workflow, requirement relations, and `requirements-tests` matrix. This project adds `change`, `decision`, and `use_case`; inherited roles and coverage remain.
+Other growth roles are available only when declared in `traceability.yml`. The `minimal` preset supplies the inherited `requirement` and `test` roles, requirement workflow, requirement relations, and `requirements-tests` matrix. This project adds `change`, `decision`, `use_case`, `architecture`, `design`, and `adr`; inherited roles and coverage remain.
 
 == Requirements
 
@@ -52,17 +54,38 @@ Add the configured use-case-to-requirement relation when a relevant requirement 
 == Changes
 
 A change is the entry point.
-Its body carries `Rationale::`, `Outcome::`, and `Out-of-scope::` labeled-list fields, then typed relation macros.
+It carries `Rationale::`, `Outcome::`, and `Out-of-scope::` fields and links addressed requirements, its durable design, recorded decisions/ADRs, and updated architecture items.
 
 == Decisions
 
 A decision preserves a domain or specification choice.
 Decisions may additionally carry `Options::` (per-option pros and cons) and `Rationale::` fields, following the MADR shape documented in xref:guidance/decision.adoc[the decision guidance].
+Costly-to-reverse software architecture choices are recorded as ADRs; domain and business choices remain `decision` items.
+
+== Architecture items
+
+Use role `architecture` for independently meaningful elements such as solution strategies, building blocks, runtime or deployment elements, and cross-cutting concepts.
+Classify each with the open `kind` metadata convention and organize the items under the relevant sections of the arc42 baseline.
+Arc42 headings and explanatory prose remain documentation, not graph items by default.
+
+== Change designs
+
+Use one durable `design` item for each refined change.
+Create it after software requirements and before temporary tasks.
+Link it to the change, requirements it realizes, affected architecture items, and related ADRs.
+Keep it after the change closes; archive removes only the temporary checklist.
+
+== Architecture Decision Records
+
+Use `adr` only for costly-to-reverse software architecture choices.
+An ADR captures context, options, decision, rationale, and consequences, and links to its change, relevant requirements, and affected architecture items.
+Domain and business choices remain `decision` items.
+
 
 == Relation macros
 
 A relation macro `<relation>:<ID>[]` is written in the source item.
-The reverse name is derived for queries.
+The configured reverse name is available for queries and may be authored where listed.
 
 [width=100%, cols="30a,30a,20a,20a"]
 |===
@@ -70,8 +93,19 @@ The reverse name is derived for queries.
 | use_case → requirement | `leads_to:REQ-NNN[]` | `is_derived_from` | use_case
 | requirement → requirement | `refines:REQ-NNN[]` | `refined_by` | requirement
 | change → requirement | `addresses:REQ-NNN[]` | `addressed_by` | change
-| requirement → requirement | `depends_on:REQ-NNN[]` | `is_prerequisite_of` | requirement
 | change → decision | `records:DEC-NNN[]` | `recorded_by` | change
+| change → design | `records:DSN-NNN[]` | `recorded_by` | change
+| change → adr | `records:ADR-NNN[]` | `recorded_by` | change
+| change → architecture | `updates:ARC-NNN[]` | `updated_by` | change
+| design → requirement | `realizes:REQ-NNN[]` | `realized_by` | design
+| design → architecture | `affects:ARC-NNN[]` | `affected_by` | design
+| design → adr | `references:ADR-NNN[]` | `referenced_by` | design
+| architecture → architecture | `composes:ARC-NNN[]` | `part_of` | architecture
+| architecture → requirement | `realizes:REQ-NNN[]` | `realized_by` | architecture
+| adr → requirement | `addresses:REQ-NNN[]` | `addressed_by` | adr
+| adr → architecture | `decides:ARC-NNN[]` | `decided_by` | adr
+| decision → decision | `supersedes:DEC-NNN[]` | `superseded_by` | decision
+| requirement → requirement | `depends_on:REQ-NNN[]` | `is_prerequisite_of` | requirement
 | requirement → requirement | `supersedes:REQ-OLD[]` | `superseded_by` | requirement
 | test → requirement | `verifies:REQ-NNN[]` | `verified_by` | test
 |===
@@ -82,11 +116,13 @@ Use the `status` attribute to mark progression.
 
 [width=100%, cols="20h,80a"]
 |===
-| Role | States
+| Role | States or status convention
 | requirement | `draft` → `reviewed` → `approved` → `superseded` · `withdrawn`
 | test | No configured lifecycle states
 | change | `proposed` → `refined` → `accepted` → `implemented` → `verified` → `closed` · `rejected`
-| decision | `proposed` → `accepted` → `rejected` · `superseded`
+| decision, adr | `proposed` → `accepted` → `rejected` · `superseded`
+| architecture | `accepted` current element · `superseded` historical element
+| design | `proposed` → `accepted` · `superseded`
 |===
 
 The `accepted` gate is enforced by validation: an accepted change must address at least one requirement.

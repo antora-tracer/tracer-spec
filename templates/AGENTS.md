@@ -6,8 +6,8 @@ as pages under `docs/modules/specs/pages/`, validated with `antora-tracer`.
 
 ## Durable Artifacts Directory
 
-Durable artifacts (changes, requirements, decisions) are written to
-`docs/modules/specs/pages/`.
+Durable artifacts (requirements, changes, architecture items, change designs, decisions, and ADRs) are written to
+`docs/modules/specs/pages/`; temporary execution tasks go in `tspec/<change-id>/`.
 
 ## Skills
 
@@ -20,7 +20,7 @@ Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
 | `tspec-explore` | Explore a feature idea and shape its change sketch |
 | `tspec-refine-feature` | Refine an existing feature ticket into product-level graph items |
 | `tspec-new-change` | Record a context-first implementation change against approved requirements |
-| `tspec-refine-change` | Refine a change into detailed software requirements and tasks |
+| `tspec-refine-change` | Refine a change into software requirements, durable design, and tasks |
 | `tspec-track` | Read an existing ticket or update its user-approved refinement section |
 | `tspec-apply-change` | Implement the change's refined tasks and advance state |
 | `tspec-archive` | Validate and close a verified change |
@@ -33,15 +33,10 @@ Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
 tspec-explore → tspec-refine-feature → tspec-new-change → tspec-refine-change → tspec-apply-change → tspec-archive
 ```
 
-One existing feature ticket may be associated with many independent changes
-through shared optional `externalId=<id>` metadata on graph items. `tspec-new-change`
-does not author detailed software requirements or tasks; run
-`tspec-refine-change` before creating a change's task checklist.
-
-- The graph is the source of truth for specifications. The external feature
-  ticket remains authoritative for backlog position, status, and estimate.
-  Durable artifacts are pages in `docs/modules/specs/pages/`; temporary tasks
-  go in `tspec/<change-id>/`.
+One existing feature ticket may be associated with many independent changes through shared optional `externalId=<id>` metadata. `tspec-new-change` requires applicable approved requirements but does not author detailed software requirements or design items.
+Run `tspec-refine-change` to create software requirements and a durable design item before its temporary checklist.
+- The graph is the source of truth for specifications. It includes architecture items, change designs, ADRs, requirements, and decisions; the external feature ticket remains authoritative for ticket status, backlog position, and estimate.
+  Durable items are pages under `docs/modules/specs/pages/`; temporary tasks go in `tspec/<change-id>/`.
 - `tspec-track --read <feature-ticket-id>` reads an existing ticket.
   `--update-refinement` requires approval of the exact section preview and
   changes only the unique `TSPEC refinement` section, preserving all other

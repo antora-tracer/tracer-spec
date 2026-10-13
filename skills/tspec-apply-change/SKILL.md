@@ -17,15 +17,17 @@ Implement an accepted change.
 
 ## Behavior
 
-1. Read `tspec/<change-id>/tasks.md`.
-2. Implement each pending task, ticking `- [ ]` to `- [x]` as you go.
+1. Read the task checklist, the change's durable DSN design item, linked architecture items and ADRs, and the addressed requirements.
+2. Implement each pending task, ticking `- [ ]` to `- [x]` as work completes.
 3. For each requirement the change addresses, add verification: write a `test` item carrying `verifies:REQ-NNN[]` when a test exists, or note the verification.
-4. Advance the change status: `accepted` → `implemented` once tasks are done, then → `verified` once verification evidence is in place.
+4. If implementation materially changes the accepted approach, revise the DSN item with user review and record the ARC items that must be reconciled at archive.
+5. Advance the change status: `accepted` → `implemented` once tasks are done, then → `verified` once verification evidence is in place.
 
 ## Rules
 
+- Keep the design item and related ARC/ADR items as durable graph records; only the task checklist is temporary.
 - Do not modify requirements in place; if a requirement's meaning changes, supersede it.
-- Tasks in `tspec/` are temporary; nothing there is a durable item.
+- Do not mark the arc42 baseline as current until the implemented architecture has been reconciled during archive.
 
 ## Next
 

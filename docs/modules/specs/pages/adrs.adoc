@@ -1,0 +1,21 @@
+= Architecture Decisions
+:traceability-links: true
+
+ADRs preserve costly-to-reverse software architecture choices. Use `tspec-write-item adr` to add one; keep domain and workflow decisions in `decisions.adoc`.
+
+[source,asciidoc]
+----
+[#ADR-NNN, item, role=adr, status=proposed, title="<architecture decision>"]
+--
+Context:: Why this choice is needed.
+Options:: Material alternatives and their advantages and disadvantages.
+Decision:: The selected option.
+Rationale:: Why this option was selected.
+Consequences:: Resulting benefits and costs.
+
+recorded_by:CHG-NNN[]
+addresses:REQ-NNN[]
+decides:ARC-NNN[]
+tracer:links[]
+--
+----

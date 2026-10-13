@@ -12,16 +12,18 @@ Refine exactly one implementation change into a bounded, estimatable slice and t
 
 ## Process
 
-1. Read the selected change and relevant graph context. `externalId` is optional and does not determine readiness. Identify applicable approved `level=product` and `level=component` requirements through the change's `addresses` links. If no applicable approved requirement is linked or the links are ambiguous, stop and ask the user; do not guess or access tracker state.
-2. Work with the user to define this change's rationale, observable outcome, bounded scope, and out-of-scope items. Select only the approved product/component requirements this slice actually addresses; link them with `addresses:REQ-NNN[]`.
-3. Plan testable `role=requirement, level=software` items and relations to the applicable approved requirement they detail using `refines:REQ-NNN[]`. State observable behavior, boundaries, and BDD examples as prose within each requirement. Tests remain separate `test` items only when requested; do not create separate scenario-role items. Preserve `externalId` on the change and related requirements only when present on the change; never invent one when absent.
-4. Show the proposed change/requirement edits, relations, IDs, and paths. Ask before saving new or materially revised graph items. Save only this change's approved refinements and collection includes, then run `antora-tracer validate -i docs --config traceability.yml`.
-5. Ask whether the user considers this slice estimatable. Mark the change `refined` only when the user confirms its scope and testable requirements are sufficiently complete to estimate; otherwise leave its prior status, report concrete gaps, and create no checklist. Estimatable means the team can size this bounded slice, not that a tracker estimate was entered.
-6. Only after marking an estimatable change `refined`, create `tspec/<change-id>/tasks.md` as a temporary actionable checkbox list (`- [ ]`) derived from the refined requirements. No epic or story item is required.
+1. Read the selected change, relevant requirements, `traceability.yml`, the arc42 baseline, and linked architecture and decision items. Identify applicable approved product/component requirements through `addresses` links; stop if none apply.
+2. Work with the user to define rationale, outcome, bounded scope, and exclusions. Link only applicable approved product/component requirements with `addresses:REQ-NNN[]`.
+3. Plan testable software-level requirements, each refining its applicable approved requirement with `refines`. Read the arc42 baseline and linked architecture and ADR items, then create one durable DSN design item before the temporary task list. Record material alternatives and trade-offs, or state that the change has no architecture impact.
+If a costly-to-reverse architecture choice remains unresolved, ask the user to select an option; do not finalize the design or create tasks until the user decides. Record the selected choice as an ADR linked to the change, relevant requirements, and affected architecture items. Keep domain/business choices as `decision` items; do not create ADRs for routine choices.
+4. Show the proposed requirements, complete design item, and any ADR items with IDs, relations, and paths. Ask before saving. Save only the approved items, add their collection includes, then run `antora-tracer validate -i docs --config traceability.yml`.
+5. Ask whether the user considers the slice estimatable. Mark the change `refined` only when the user confirms the scope and testable requirements are complete enough to estimate; otherwise keep its prior status, report gaps, and create no checklist.
+6. Only after marking an estimatable change `refined`, create `tspec/<change-id>/tasks.md` from the accepted requirements and durable design. Tasks remain temporary; the design remains in the graph after archive.
+
 
 ## Rules
 
 - Handle one change per invocation. Never refine siblings or use ticket status as the change's readiness signal.
-- Create/refine software-level requirements only here; feature-level product/component requirements belong to `tspec-refine-feature`.
+- Create/refine software-level requirements only here; product/component requirements belong to feature refinement.
 - Do not create external tickets, update ticket descriptions/status/estimates, or require epics/stories.
-- Keep BDD examples in requirement prose; verification test items remain distinct from requirements.
+- Keep behavior scenarios in requirement prose; use distinct test items only when requested.

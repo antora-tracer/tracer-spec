@@ -1,0 +1,24 @@
+= Change Design
+
+A design item records the technical approach for one refined implementation change. Create it after refining software requirements and before creating temporary execution tasks. Keep the design after the change closes; tasks remain under `tspec/<change-id>/` and are removed by archive.
+
+Link the design to its change, relevant requirements, affected architecture items, and related ADRs. Record material alternatives and trade-offs or state explicitly that the change has no architecture impact.
+
+== Item template
+
+[source,asciidoc]
+----
+[#DSN-NNN, item, role=design, status=proposed, title="Design for CHG-NNN: <change>"]
+--
+Context:: Requirements and architectural context.
+Approach:: How the change realizes the requirements.
+Architecture impact:: Affected ARC items and proposed updates, or none.
+Alternatives and trade-offs:: Material choices and consequences.
+
+recorded_by:CHG-NNN[]
+realizes:REQ-NNN[]
+affects:ARC-NNN[]
+references:ADR-NNN[]
+tracer:links[]
+--
+----

@@ -1,8 +1,22 @@
 = Decision
 
-A *Decision* records a domain or specification choice: its context, the option chosen, and the consequences.
-
-* Change-scoped: a decision is `recorded_by` one change (`CHG`).
-* Durable: once accepted, a decision is immutable and superseded rather than edited.
+A *Decision* records a domain or specification choice: its context, the option chosen, and the consequences. Costly-to-reverse software architecture choices belong in an ADR instead.
 
 Status: `proposed` → `accepted` → `rejected` · `superseded`.
+
+== Item template
+
+[source,asciidoc]
+----
+[#DEC-NNN, item, role=decision, status=proposed, title="<decision>"]
+--
+Context:: Why this decision is needed.
+Options:: Material alternatives and their advantages and disadvantages.
+Decision:: What was decided.
+Rationale:: Why the chosen option was selected.
+Consequences:: What follows.
+
+recorded_by:CHG-NNN[]
+tracer:links[]
+--
+----

@@ -1,0 +1,26 @@
+= Architecture Decision Record
+
+An *ADR* records a costly-to-reverse software architecture choice, its context, alternatives, selected option, rationale, and consequences. Use `DEC` for domain or business decisions; do not create an ADR for every design choice.
+
+Link an ADR to the change that records it, the relevant requirements, and the architecture items it decides. An unresolved material choice must be put to the user before the ADR is finalized.
+
+== Item template
+
+[source,asciidoc]
+----
+[#ADR-NNN, item, role=adr, status=proposed, title="<architecture decision>"]
+--
+Context:: Why this architecture choice is needed.
+Options:: Each material option and its advantages and disadvantages.
+Decision:: The selected option.
+Rationale:: Why the selected option is preferred.
+Consequences:: The resulting benefits, costs, and constraints.
+
+recorded_by:CHG-NNN[]
+addresses:REQ-NNN[]
+decides:ARC-NNN[]
+tracer:links[]
+--
+----
+
+Status: `proposed` → `accepted` → `rejected` · `superseded`.

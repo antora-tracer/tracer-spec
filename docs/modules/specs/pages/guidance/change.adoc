@@ -1,10 +1,29 @@
 = Change
 
 A change is the entry point of the workflow.
-It records rationale, outcome, and out-of-scope fields, and links to the requirements it addresses and the decisions it records.
+It records rationale, outcome, and out-of-scope fields. It links the requirements it addresses, its durable design item, any ADRs it records, and architecture items it updates.
 
 Status: `proposed` → `refined` → `accepted` → `implemented` → `verified` → `closed` · `rejected`.
 
 An implementation change may carry the optional shared external `externalId=<existing-item-id>` metadata in its item header. Multiple related graph items may share that identifier; local changes need no external ID.
 
 An accepted change must address at least one requirement.
+
+== Item template
+
+[source,asciidoc]
+----
+[#CHG-NNN, item, role=change, status=proposed, title="<change>"]
+--
+Rationale:: Why this change is needed.
+Outcome:: What it produces.
+Out-of-scope:: What it excludes.
+
+addresses:REQ-NNN[]
+records:DEC-NNN[]
+records:DSN-NNN[]
+records:ADR-NNN[]
+updates:ARC-NNN[]
+tracer:links[]
+--
+----

@@ -1,16 +1,27 @@
 = Requirements
 :traceability-links: true
 
-Add your requirements here using the `tspec-propose` skill.
+Requirements describe observable obligations. Use `level=product`, `level=component`, or `level=software`; detailed requirements link to the broader requirement they refine.
+
+== Product
+
+Add product-level behavior requirements here.
+
+== Component
+
+Add component-level requirements here.
+
+== Software
+
+Add software-level requirements here.
 
 [source,asciidoc]
 ----
-[#REQ-001, item, role=requirement, status=draft, title="Observable behaviour"]
+[#REQ-NNN, item, role=requirement, level=component, status=draft, title="<observable obligation>"]
 --
-The system SHALL <observable behaviour>.
+The system SHALL <observable behavior>.
 
-<boundary conditions or scope>
-
+refines:REQ-PARENT[]
 tracer:links[]
 --
 ----

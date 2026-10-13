@@ -6,6 +6,9 @@ roles:
   - change
   - decision
   - use_case
+  - architecture
+  - design
+  - adr
 
 roleGuidance:
   change:
@@ -17,6 +20,15 @@ roleGuidance:
   use_case:
     page: docs/modules/specs/pages/guidance/use-case.adoc
     idPrefix: UC
+  architecture:
+    page: docs/modules/specs/pages/guidance/architecture.adoc
+    idPrefix: ARC
+  design:
+    page: docs/modules/specs/pages/guidance/design.adoc
+    idPrefix: DSN
+  adr:
+    page: docs/modules/specs/pages/guidance/adr.adoc
+    idPrefix: ADR
 
 relations:
   change:
@@ -26,6 +38,18 @@ relations:
     decision:
       records:
         reverse: recorded_by
+    design:
+      records:
+        reverse: recorded_by
+    adr:
+      records:
+        reverse: recorded_by
+    architecture:
+      updates:
+        reverse: updated_by
+    change:
+      refines:
+        reverse: refined_by
   use_case:
     requirement:
       leads_to:
@@ -34,6 +58,34 @@ relations:
     requirement:
       refines:
         reverse: refined_by
+  design:
+    requirement:
+      realizes:
+        reverse: realized_by
+    architecture:
+      affects:
+        reverse: affected_by
+    adr:
+      references:
+        reverse: referenced_by
+  architecture:
+    architecture:
+      composes:
+        reverse: part_of
+    requirement:
+      realizes:
+        reverse: realized_by
+  adr:
+    requirement:
+      addresses:
+        reverse: addressed_by
+    architecture:
+      decides:
+        reverse: decided_by
+  decision:
+    decision:
+      supersedes:
+        reverse: superseded_by
 
 matrices:
   - name: changes-to-requirements
@@ -54,7 +106,39 @@ matrices:
     columns: [requirement]
     coverageRelations:
       requirement: [refines]
+  - name: architecture-to-requirements
+    description: Architecture elements traced to realized requirements
+    rows: architecture
+    columns: [requirement]
+    coverageRelations:
+      requirement: [realizes]
+  - name: designs-to-requirements
+    description: Change designs traced to realized requirements
+    rows: design
+    columns: [requirement]
+    coverageRelations:
+      requirement: [realizes]
 
+workflow:
+  architecture:
+    states: [accepted, superseded]
+    transitions:
+      accepted: [superseded]
+  design:
+    states: [proposed, accepted, superseded]
+    transitions:
+      proposed: [accepted, superseded]
+      accepted: [superseded]
+  decision:
+    states: [proposed, accepted, rejected, superseded]
+    transitions:
+      proposed: [accepted, rejected, superseded]
+      accepted: [superseded]
+  adr:
+    states: [proposed, accepted, rejected, superseded]
+    transitions:
+      proposed: [accepted, rejected, superseded]
+      accepted: [superseded]
 validation:
   change:
     accepted:

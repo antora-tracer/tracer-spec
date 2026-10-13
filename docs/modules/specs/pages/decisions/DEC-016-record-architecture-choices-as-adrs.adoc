@@ -1,4 +1,4 @@
-[#DEC-016, item, role=decision, status=proposed, title="Model architecture elements, change designs, and ADRs"]
+[#DEC-016, item, role=decision, status=accepted, title="Model architecture elements, change designs, and ADRs"]
 --
 Context:: The current decision role and a separate ADR role preserve choices, but do not make architecture elements or change-specific design traceable.
 
@@ -19,6 +19,8 @@ Rationale:: A system architecture model explains how the system is structured; p
 Consequences:: The traceability model and templates need architecture, design, and ADR roles, guidance, relations, and collection pages.
 Each change's design remains after closure, and archive updates the architecture baseline to reflect the implemented system.
 The accepted DEC-003 policy that design is recorded only as `decision` must be superseded when this change is implemented.
+
+supersedes:DEC-003[]
 
 tracer:links[]
 --

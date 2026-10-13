@@ -1,0 +1,9 @@
+[#ARC-002, item, role=architecture, status=accepted, kind=building_block, title="Stage skills manage the change lifecycle"]
+--
+Summary:: The workflow separates exploration, feature refinement, change refinement, implementation, and archive into reviewable skill stages.
+Description:: Each stage consumes the durable graph and adds its own approved records. A human accepts a refined change before implementation begins.
+
+realizes:REQ-006[]
+updated_by:CHG-012[]
+tracer:links[]
+--

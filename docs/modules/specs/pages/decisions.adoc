@@ -1,16 +1,19 @@
 = Decisions
 :traceability-links: true
 
-Add standalone decisions here using the `tspec-write-item` skill.
+Use `decision` items for domain and specification choices. Use `adr` items for costly-to-reverse software architecture choices; see xref:adrs.adoc[Architecture Decisions].
 
 [source,asciidoc]
 ----
-[#DEC-001, item, role=decision, status=proposed, title="Decision title"]
+[#DEC-NNN, item, role=decision, status=proposed, title="<domain or specification choice>"]
 --
-Context:: Why is this decision needed?
-Decision:: What was decided?
-Consequences:: What follows?
+Context:: Why this decision is needed.
+Options:: Material alternatives and their advantages and disadvantages.
+Decision:: What was decided.
+Rationale:: Why the chosen option was selected.
+Consequences:: What follows.
 
+recorded_by:CHG-NNN[]
 tracer:links[]
 --
 ----

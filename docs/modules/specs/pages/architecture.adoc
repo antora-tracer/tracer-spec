@@ -1,0 +1,62 @@
+= Architecture
+:traceability-links: true
+
+This is a tailored arc42 baseline for the Tracer Spec Workflow. The headings organize the system description; stable architectural elements are separate `ARC` items linked from the relevant sections. Keep only useful detail here and avoid duplicating requirements or decision records.
+
+== 1. Introduction and Goals
+
+Tracer Spec provides a requirement-anchored workflow for proposing, refining, implementing, and verifying changes. The product outcome is captured in xref:requirements/REQ-051-understand-architecture-and-change-impact.adoc[REQ-051].
+
+== 2. Constraints
+
+The canonical graph is stored as AsciiDoc items under `docs/modules/specs/pages/` and validated by `antora-tracer`. `traceability.yml` declares project roles and relations; the project extends the `minimal` preset rather than defining a separate graph format.
+
+== 3. Context and Scope
+
+Project contributors and coding agents use the TSPEC skills. `antora-tracer` parses and validates the graph; Antora publishes its pages. Optional issue-tracker access is isolated in `tspec-track`; the tracker remains authoritative for ticket state and estimates.
+
+== 4. Solution Strategy
+
+include::architecture/ARC-001-traceability-graph-is-canonical.adoc[]
+
+== 5. Building Block View
+
+include::architecture/ARC-002-staged-change-lifecycle.adoc[]
+
+== 6. Runtime View
+
+The normal change flow is `tspec-explore` → `tspec-refine-feature` → `tspec-new-change` → `tspec-refine-change` → `tspec-apply-change` → `tspec-archive`. Refinement produces durable requirements and a design item before the temporary task list; apply and archive preserve the graph as the system changes.
+
+== 7. Deployment View
+
+The repository contains the Antora source and the scaffolding templates. `tracer-spec init` copies templates into a project and installs the selected workflow skills into the assistant's skill directory. Antora publishes the documentation site from those pages.
+
+== 8. Crosscutting Concepts
+
+include::architecture/ARC-003-durable-graph-temporary-tasks.adoc[]
+
+== 9. Architecture Decisions
+
+Costly-to-reverse software architecture choices are recorded as ADR items on xref:adrs.adoc[Architecture Decisions]. Domain and workflow choices remain in xref:decisions.adoc[Decisions].
+
+== 10. Quality Requirements
+
+Human review gates, requirement links, and graph validation are central quality properties. See approved xref:requirements/REQ-006-enforce-human-acceptance-gate.adoc[REQ-006] and xref:requirements/REQ-051-understand-architecture-and-change-impact.adoc[REQ-051].
+
+== 11. Risks and Technical Debt
+
+The traceability configuration, role guidance, skill instructions, and starter templates can drift apart. The graph validator checks configured item links; site builds and workflow smoke checks cover the published guidance and authoring path.
+
+== 12. Glossary
+
+[cols="20a,80a"]
+|===
+| Term | Meaning
+
+| ARC | Stable identifier for a traceable architecture item.
+| ADR | Architecture Decision Record for a costly-to-reverse software architecture choice.
+| CHG | Traceable implementation change.
+| DEC | Domain or specification decision.
+| DSN | Durable design record for one implementation change.
+| REQ | Observable product, component, or software requirement.
+|===

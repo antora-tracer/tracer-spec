@@ -1,16 +1,19 @@
 = Decisions
 :traceability-links: true
 
-Add your decisions here using the `tspec-propose` skill.
+Use `decision` items for domain and business choices. Use `adr` items for costly-to-reverse software architecture choices.
 
 [source,asciidoc]
 ----
-[#DEC-001, item, role=decision, status=proposed, title="Decision title"]
+[#DEC-NNN, item, role=decision, status=proposed, title="<decision>"]
 --
-Context:: Why is this decision needed?
-Decision:: What was decided?
-Consequences:: What follows?
+Context:: Why this decision is needed.
+Options:: Alternatives with advantages and disadvantages.
+Decision:: What was decided.
+Rationale:: Why this option was selected.
+Consequences:: What follows.
 
+recorded_by:CHG-NNN[]
 tracer:links[]
 --
 ----

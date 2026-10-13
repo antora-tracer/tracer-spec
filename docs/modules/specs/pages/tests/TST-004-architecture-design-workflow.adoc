@@ -1,0 +1,16 @@
+[#TST-004, item, role=test, title="Architecture, design, and ADR workflow smoke"]
+--
+Test method:: Run repository validation, Antora build, and Node tests. In a temporary scaffold, resolve ARC/DSN/ADR guidance and IDs, author linked REQ/CHG/ARC/DSN/ADR items, validate/build, then simulate archive by closing the temporary change and deleting only its task directory. Manually inspect the refinement and archive instructions for the user-choice/ADR and approved-baseline-update gates.
+Expected evidence:: Role guidance returns matching prefixes and templates; graph relations validate; the arc42 page and item collections render; simulated archive removes only temporary tasks and retains ARC/DSN/ADR items.
+Observed evidence:: Final root validation: 93 items, 130 relationships, no errors, one historical CHG-004 → superseded DEC-003 warning. Root Antora build passed; `node --test` passed 38/38. The starter smoke validated five linked items and ten relationships; the archive-state simulation closed its change, removed its task directory, retained durable items, and validated. Starter Antora build passed with the repository-configured UI bundle because the default remote bundle could not be downloaded in this environment. Manual review confirmed material architecture choices block design finalization until user selection and ADR recording, and archive previews as-built ARC updates for approval before cold review.
+
+verifies:REQ-027[]
+verifies:REQ-028[]
+verifies:REQ-029[]
+verifies:REQ-050[]
+verifies:REQ-051[]
+verifies:REQ-052[]
+verifies:REQ-053[]
+verifies:REQ-054[]
+tracer:links[]
+--

@@ -1,4 +1,4 @@
-[#REQ-027, item, role=requirement, level=software, status=draft, title="Distinguish architecture decision records from business decisions"]
+[#REQ-027, item, role=requirement, level=software, status=approved, title="Distinguish architecture decision records from business decisions"]
 --
 The system SHALL preserve software architecture decisions that are costly to reverse as distinct `adr` items, separate from domain or business `decision` items.
 Scenario:: Given a finalized change design contains a costly-to-reverse architecture choice, when the choice is resolved, then the graph records a distinct ADR linked to the change, relevant requirements, and affected architecture items.

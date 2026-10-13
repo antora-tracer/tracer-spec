@@ -13,6 +13,9 @@ Out-of-scope:: What the change excludes.
 
 addresses:REQ-NNN[]
 records:DEC-NNN[]
+records:DSN-NNN[]
+records:ADR-NNN[]
+updates:ARC-NNN[]
 tracer:links[]
 --
 ----

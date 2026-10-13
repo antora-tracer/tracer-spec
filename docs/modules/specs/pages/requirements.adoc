@@ -83,10 +83,10 @@ Requirements are grouped first by declared scope level, then by topic. Status ap
 
 === Specification and traceability layer
 
-* xref:requirements/REQ-027-distinguish-architecture-decision-records.adoc[REQ-027] — Distinguish architecture decision records from business decisions (draft)
-* xref:requirements/REQ-052-author-arc42-architecture-items.adoc[REQ-052] — Author traceable architecture elements (draft)
-* xref:requirements/REQ-053-create-durable-change-design-items.adoc[REQ-053] — Create durable change design items (draft)
-* xref:requirements/REQ-054-reconcile-architecture-baseline-on-archive.adoc[REQ-054] — Reconcile architecture baseline after implementation (draft)
+* xref:requirements/REQ-027-distinguish-architecture-decision-records.adoc[REQ-027] — Distinguish architecture decision records from business decisions (approved)
+* xref:requirements/REQ-052-author-arc42-architecture-items.adoc[REQ-052] — Author traceable architecture elements (approved)
+* xref:requirements/REQ-053-create-durable-change-design-items.adoc[REQ-053] — Create durable change design items (approved)
+* xref:requirements/REQ-054-reconcile-architecture-baseline-on-archive.adoc[REQ-054] — Reconcile architecture baseline after implementation (approved)
 
 === External tracker integration
 

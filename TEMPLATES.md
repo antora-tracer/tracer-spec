@@ -12,9 +12,9 @@ GitHub: https://github.com/antora-tracer/tracer-spec
 - You want to copy structure from an existing project
 
 **What it includes:**
-- Durable docs (changes, requirements, decisions)
-- One change (CHG-004) fully traced through the graph
-- Complete Antora documentation site with workflow guidance
+- Durable graph items for changes, requirements, decisions, ADRs, architecture elements, and per-change designs
+- Arc42-aligned architecture baseline and workflow documentation
+- One change fully traced through the graph
 - Nine Agent Skills
 
 **First steps:**
@@ -40,9 +40,9 @@ GitHub: https://github.com/antora-tracer/tracer-spec-minimal
 - You don't want to remove the example data first
 
 **What it includes:**
-- Empty docs with templates and examples
-- Tracer Spec configuration (extends minimal + change + decision)
-- Antora structure with minimal pages
+- Empty docs with role guidance, collection templates, and examples
+- Tracer Spec configuration (extends minimal + change, decision, use_case, architecture, design, and adr)
+- Arc42-aligned architecture baseline structure and durable design/ADR collections
 - Nine Agent Skills
 
 **No example data:** start fresh by exploring your feature, refining its existing ticket with `tspec-refine-feature`, then recording a change with `tspec-new-change`.
@@ -70,13 +70,13 @@ Both templates use the same workflow:
 pi tspec-explore "your feature"                 # shape the feature intent
 pi tspec-refine-feature <feature-ticket-id>      # refine existing ticket to product-level graph items
 pi tspec-new-change "Add reusable saved filters"   # topic; the skill generates the CHG ID
-pi tspec-refine-change CHG-001                   # detailed software requirements + tasks
+pi tspec-refine-change CHG-001                   # software requirements, durable design, and tasks
 pi tspec-apply-change CHG-001                    # implement the refined tasks
 pi tspec-archive CHG-001                         # validate and close
 pi tspec-validate                                # check the graph
 npm run build                                    # publish the site
 ----
 
-One feature ticket can link to multiple independent changes through optional `externalId=<id>` metadata. Local changes may omit an external ID when they have applicable approved requirement anchors. `tspec-new-change` does not author detailed software requirements or tasks; refine each change before creating its task checklist. The external ticket remains authoritative for backlog position, status, and estimate. `tspec-track --read` reads existing tickets; `tspec-track --update-refinement` updates only the user-approved `TSPEC refinement` section.
+Both workflows keep the graph canonical: requirements, architecture items, per-change designs, decisions, and ADRs remain durable; only task checklists are temporary. Refinement creates the design before tasks, and archive reconciles the arc42 baseline to the implemented architecture.
 
 The only difference is whether you **start with examples** (tracer-spec) or a **blank slate** (tracer-spec-minimal).

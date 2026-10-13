@@ -1,4 +1,4 @@
-[#REQ-052, item, role=requirement, level=software, status=draft, title="Author traceable architecture elements"]
+[#REQ-052, item, role=requirement, level=software, status=approved, title="Author traceable architecture elements"]
 --
 The system SHALL let authors record each independently meaningful architecture element as a durable `architecture` item with a unique `ARC` identifier, a `kind` value, and links to related requirements, changes, and ADRs.
 The architecture documentation SHALL present those items within the applicable arc42 section.

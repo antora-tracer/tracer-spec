@@ -1,0 +1,26 @@
+= Change Design
+
+A *Design* records the technical approach for one implementation change. It is durable and remains with the change after closure; execution tasks remain temporary under `tspec/<change-id>/`.
+
+Create one design item during `tspec-refine-change`, after the software requirements and before the task list. Link the change, relevant requirements, affected architecture items, and any related ADRs. Record material alternatives and trade-offs; for a change with no architecture impact, say so explicitly.
+
+== Item template
+
+[source,asciidoc]
+----
+[#DSN-NNN, item, role=design, status=proposed, title="Design for CHG-NNN: <change>"]
+--
+Context:: The requirements and architectural context for this change.
+Approach:: How the change realizes its requirements.
+Architecture impact:: The affected ARC items and proposed updates, or none.
+Alternatives and trade-offs:: Material options and their consequences.
+
+recorded_by:CHG-NNN[]
+realizes:REQ-NNN[]
+affects:ARC-NNN[]
+references:ADR-NNN[]
+tracer:links[]
+--
+----
+
+Keep details proportional to the change. Revise the design with the user's review when implementation changes its approach.

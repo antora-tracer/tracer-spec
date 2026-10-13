@@ -11,6 +11,9 @@ This is a Tracer Spec Workflow project. Add durable items to
 2. xref:requirements.adoc[Read requirements]
 3. xref:decisions.adoc[Review decisions]
 4. xref:use-cases.adoc[Review use cases]
+5. xref:architecture.adoc[Understand the architecture]
+6. xref:designs.adoc[Review change designs]
+7. xref:adrs.adoc[Review architecture decisions]
 
 
 == Next steps

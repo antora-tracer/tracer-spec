@@ -1,0 +1,21 @@
+[#DSN-001, item, role=design, status=accepted, title="Design for CHG-012: Trace architecture elements and change designs"]
+--
+Context:: CHG-012 adds a current-system architecture model and a per-change technical design artifact without conflating either with requirements or decision records.
+Approach:: Declare one `architecture` role with a `kind` attribute for independently meaningful elements and organize those elements under arc42 sections. Use one durable `design` item per refined change. Keep ADRs separate for costly-to-reverse architecture decisions and keep domain or workflow choices as `DEC` items.
+Architecture impact:: The traceability strategy, staged change lifecycle, and durable-versus-temporary artifact concept are represented by ARC-001 through ARC-003. The new design and ADR relations link future changes to those items.
+Alternatives and trade-offs:: One role with `kind` metadata avoids a role for every arc42 section while retaining typed links. This leaves kind values as documented conventions rather than a validator-enforced enum.
+
+recorded_by:CHG-012[]
+realizes:REQ-028[]
+realizes:REQ-029[]
+realizes:REQ-050[]
+realizes:REQ-051[]
+realizes:REQ-027[]
+realizes:REQ-052[]
+realizes:REQ-053[]
+realizes:REQ-054[]
+affects:ARC-001[]
+affects:ARC-002[]
+affects:ARC-003[]
+tracer:links[]
+--

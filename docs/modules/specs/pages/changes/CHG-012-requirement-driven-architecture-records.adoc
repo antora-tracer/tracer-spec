@@ -1,4 +1,4 @@
-[#CHG-012, item, role=change, status=refined, trackerId=2, title="Trace architecture elements and change designs"]
+[#CHG-012, item, role=change, status=verified, trackerId=2, title="Trace architecture elements and change designs"]
 --
 Rationale:: ADRs preserve consequential choices but do not describe the system's architecture or a change's technical design.
 The workflow needs traceable architectural elements and a durable design record for each implementation change.
@@ -19,5 +19,6 @@ addresses:REQ-029[]
 addresses:REQ-050[]
 addresses:REQ-051[]
 records:DEC-016[]
+records:DSN-001[]
 tracer:links[]
 --

@@ -1,0 +1,28 @@
+= Architecture Item
+
+An *Architecture item* represents one independently meaningful element of the system architecture, not an entire arc42 section or an explanatory paragraph.
+
+Use stable `ARC` identifiers for solution strategies, building blocks, runtime or deployment elements, cross-cutting concepts, quality scenarios, risks, and glossary terms when they need links or change-impact history.
+
+The `kind` attribute classifies the element. Use concise, consistent values such as `solution_strategy`, `building_block`, `runtime_scenario`, `deployment_element`, and `crosscutting_concept`; other specific values are valid when needed.
+
+The arc42 baseline in xref:architecture.adoc[Architecture] groups these items by section. Keep supporting prose in that page and link each item to the requirements, other architecture items, decisions, or changes it affects.
+
+== Item template
+
+[source,asciidoc]
+----
+[#ARC-NNN, item, role=architecture, status=accepted, kind=<kind>, title="<specific element>"]
+--
+Summary:: What the element is and its architectural purpose.
+Description:: The relevant structure, responsibilities, or constraints.
+
+composes:ARC-NNN[]
+realizes:REQ-NNN[]
+decided_by:ADR-NNN[]
+updated_by:CHG-NNN[]
+tracer:links[]
+--
+----
+
+Use only the relation macros relevant to the item.
