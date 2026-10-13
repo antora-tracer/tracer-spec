@@ -3,3 +3,8 @@ version: ~
 title: {{title}}
 nav:
   - modules/specs/nav.adoc
+
+asciidoc:
+  attributes:
+    traceability-links: true
+    traceability-collapsible: true
