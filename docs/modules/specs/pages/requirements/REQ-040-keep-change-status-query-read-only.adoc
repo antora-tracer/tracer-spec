@@ -1,0 +1,7 @@
+[#REQ-040, item, role=requirement, level=component, status=approved, title="Keep change status queries read-only"]
+--
+The change status query SHALL NOT modify traceability graph items or external tracker state.
+
+refines:REQ-035[]
+tracer:links[]
+--

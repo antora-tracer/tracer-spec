@@ -3,4 +3,6 @@
 Test items record observable verification evidence for requirements.
 
 include::tests/TST-001-skill-evaluation-runner.adoc[]
+include::tests/TST-002-change-status-command.adoc[]
+include::tests/TST-003-status-path-overrides.adoc[]
 

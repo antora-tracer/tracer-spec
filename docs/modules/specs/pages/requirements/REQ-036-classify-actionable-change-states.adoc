@@ -1,0 +1,7 @@
+[#REQ-036, item, role=requirement, level=component, status=approved, title="Classify actionable change states"]
+--
+The system SHALL report a leaf change as actionable exactly when its lifecycle status is `refined` or `accepted`.
+
+refines:REQ-035[]
+tracer:links[]
+--

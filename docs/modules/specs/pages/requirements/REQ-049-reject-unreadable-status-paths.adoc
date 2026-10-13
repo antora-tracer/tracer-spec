@@ -1,0 +1,9 @@
+[#REQ-049, item, role=requirement, level=software, status=draft, title="Reject unreadable status input paths"]
+--
+IF the selected configuration or docs path cannot be read, THEN the command SHALL exit nonzero without printing a status line.
+
+Example: Given an explicit docs path that does not exist, when the user requests a change status, the command exits nonzero and standard output contains no status line.
+
+refines:REQ-039[]
+tracer:links[]
+--

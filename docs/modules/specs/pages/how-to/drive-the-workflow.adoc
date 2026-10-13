@@ -37,6 +37,7 @@ tspec-refine-change CHG-001
 ----
 
 Refine the change into detailed software requirements, then create its execution checklist at `tspec/CHG-001/tasks.md`. Tasks are created only after this change-refinement step.
+`tracer-spec status CHG-001` reports the stored lifecycle state and actionable/finished results without changing the graph.
 
 == 5. Accept and apply the change
 

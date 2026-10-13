@@ -1,0 +1,9 @@
+[#REQ-046, item, role=requirement, level=software, status=draft, title="Keep status command read-only"]
+--
+The status query SHALL NOT write to traceability graph files, temporary task files, or external tracker state.
+
+Example: Running the status command leaves the project's graph and task files unchanged and performs no tracker operation.
+
+refines:REQ-040[]
+tracer:links[]
+--

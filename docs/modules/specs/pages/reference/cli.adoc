@@ -6,7 +6,7 @@ The traceability model itself is the `antora-tracer` CLI, covered for the comman
 == tracer-spec
 
 `tracer-spec` scaffolds a project and installs the workflow skills.
-It ships one command.
+It ships two commands.
 
 === init
 
@@ -68,6 +68,29 @@ When omitted and the terminal is interactive, shows a picker; when not a termina
 Slash commands are installed only for harnesses that define a command convention: Oh My Pi (`.omp/commands/tspec-<id>.md`) and Claude Code (`.claude/commands/tspec/<id>.md`).
 Codex, Pi, and the shared `.agents` directory install skills only.
 Slash commands remain project-local for either skill installation scope.
+
+=== status
+
+Report the lifecycle and derived readiness of one change. Run from a Tracer Spec project root.
+
+[source,bash]
+----
+tracer-spec status <change-id> [options]
+----
+
+[cols="25a,75a"]
+|===
+| Option | Description
+
+| `-c, --config <path>` | Traceability configuration file. Defaults to `traceability.yml`.
+| `--docs <path>` | AsciiDoc source directory. Defaults to `docs/`.
+|===
+
+Both paths resolve independently relative to the command's current working directory. When running outside the project root, pass both paths.
+
+The command reads the selected configuration and AsciiDoc source paths and prints one line containing only the change ID, its stored lifecycle status, and `actionable` and `finished` results. It never writes graph or task files or contacts a tracker.
+
+A leaf is actionable when its status is `refined` or `accepted`; it is finished only when `closed`. A closed or rejected parent is not actionable. An unclosed parent is actionable when every child linked through `refines:CHG-parent[]` is actionable; this is evaluated recursively. Any cycle in change refinement links, duplicate item IDs in the scanned graph, or an ID that does not resolve to a change exit nonzero with an error and no status line.
 
 == antora-tracer
 

@@ -1,0 +1,17 @@
+[#CHG-014, item, role=change, status=closed, title="Report actionable and finished change status in the CLI"]
+--
+Rationale:: Change owners need to know whether an implementation change is ready for planning or finished without manually inspecting its graph and task history.
+
+Outcome:: A read-only `tracer-spec status <change-id>` command reports the target change's lifecycle status, actionable state, and finished state. Leaf changes are actionable when refined or accepted; a change is finished when closed. An unclosed upper-level change is actionable when all child changes linked through `refines` are actionable.
+
+Out-of-scope:: Changing lifecycle status, reading or updating tracker state, showing requirement or task details, and listing all changes.
+
+addresses:REQ-035[]
+addresses:REQ-036[]
+addresses:REQ-037[]
+addresses:REQ-038[]
+addresses:REQ-039[]
+addresses:REQ-040[]
+addresses:REQ-047[]
+tracer:links[]
+--

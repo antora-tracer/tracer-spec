@@ -1,0 +1,13 @@
+[#CHG-015, item, role=change, status=closed, title="Run status queries against explicit graph paths"]
+--
+Rationale:: The status command currently assumes it is invoked from the project root, preventing callers in another directory from selecting the project configuration and documentation sources.
+
+Outcome:: `tracer-spec status <change-id>` accepts `-c, --config <path>` and `--docs <path>` independently. Without either option, it uses `traceability.yml` and `docs/` relative to the current working directory. Explicit relative paths also resolve from the current working directory. Status output and read-only behavior remain unchanged.
+
+Out-of-scope:: Automatic project-root discovery, changing path behavior for other commands, or tracker access.
+
+addresses:REQ-035[]
+addresses:REQ-039[]
+addresses:REQ-040[]
+tracer:links[]
+--

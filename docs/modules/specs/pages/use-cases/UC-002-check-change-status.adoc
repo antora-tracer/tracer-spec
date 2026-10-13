@@ -1,0 +1,31 @@
+[#UC-002, item, role=use_case, title="Change owner checks actionability and completion"]
+--
+.Use Case: Change owner checks actionability and completion
+[width=100%, cols="25h,75a"]
+|===
+| ID | UC-002
+| Title | Change owner checks actionability and completion
+| Goal | Change owner determines whether an implementation change is actionable or finished.
+| Primary Actor | Implementation change owner (assumption)
+| Preconditions | The local traceability graph contains the target change.
+| Trigger | The change owner needs to check readiness or completion.
+| Basic Flow |
+. The change owner requests status for a change ID.
+. The CLI reports the change's lifecycle status and whether it is actionable or finished.
+. For an upper-level change, the CLI derives actionability from its linked child changes.
+| Alternate Flows |
+. At least one linked child change is not actionable: the upper-level change is not reported as actionable.
+| Postconditions | The CLI reports status fields without changing graph or tracker state.
+| Priority | Unspecified by the source request
+| Frequency | During planning or status review
+| Notes | The initial user request is the local feature source. No external ticket or externalId was supplied. Assumptions: accepted changes are actionable; closed changes are finished; a child change links to its parent through `refines`.
+|===
+
+leads_to:REQ-035[]
+leads_to:REQ-036[]
+leads_to:REQ-037[]
+leads_to:REQ-038[]
+leads_to:REQ-039[]
+leads_to:REQ-040[]
+tracer:links[]
+--

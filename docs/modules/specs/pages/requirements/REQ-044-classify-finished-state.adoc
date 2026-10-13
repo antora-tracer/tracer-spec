@@ -1,0 +1,9 @@
+[#REQ-044, item, role=requirement, level=software, status=draft, title="Classify finished change state"]
+--
+The system SHALL report a change as finished exactly when its persisted lifecycle status is `closed`.
+
+Example: A change with status `verified` is reported with `finished=false`; a change with status `closed` is reported with `finished=true`.
+
+refines:REQ-037[]
+tracer:links[]
+--

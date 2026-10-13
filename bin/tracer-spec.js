@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import { readFileSync } from "node:fs";
 import { stdin as input } from "node:process";
-import { checkbox, select } from "@inquirer/prompts";
 import { Option, program } from "commander";
 import {
   scaffold,
@@ -11,6 +10,8 @@ import {
   DEFAULT_TOOLS,
   parseTools,
 } from "../src/scaffold.js";
+
+import { readChangeStatus } from "../src/change-status.js";
 
 const pkg = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8"),
@@ -27,6 +28,7 @@ async function resolveTools(options) {
     value,
     checked: DEFAULT_TOOLS.includes(value),
   }));
+  const { checkbox } = await import("@inquirer/prompts");
   return checkbox({
     message: "Select agent harnesses to install skills for",
     choices,
@@ -36,6 +38,7 @@ async function resolveTools(options) {
 async function resolveScope(options) {
   if (options.scope !== undefined) return options.scope;
   if (!input.isTTY) return "project";
+  const { select } = await import("@inquirer/prompts");
   return select({
     message: "Where should workflow skills be installed?",
     choices: [
@@ -159,6 +162,18 @@ program
       "  3. Validate:             antora-tracer validate -i docs --config traceability.yml",
     );
     console.log("  4. Build docs:           npm run build");
+  });
+
+program
+  .command("status <changeId>")
+  .description("Report a change's lifecycle status and readiness")
+  .option("-c, --config <path>", "Traceability config path (default: traceability.yml)")
+  .option("--docs <path>", "AsciiDoc source directory (default: docs)")
+  .action((changeId, options) => {
+    const result = readChangeStatus(process.cwd(), changeId, options);
+    console.log(
+      `${result.id} status=${result.status} actionable=${result.actionable} finished=${result.finished}`,
+    );
   });
 
 try {

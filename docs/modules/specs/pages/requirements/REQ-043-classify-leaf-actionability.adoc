@@ -1,0 +1,9 @@
+[#REQ-043, item, role=requirement, level=software, status=draft, title="Classify leaf change actionability"]
+--
+WHEN a change has no child changes linked to it by `refines`, the system SHALL report it as actionable exactly when its persisted lifecycle status is `refined` or `accepted`.
+
+Example: A leaf change with status `accepted` is reported with `actionable=true`; a leaf change with status `implemented` is reported with `actionable=false`.
+
+refines:REQ-036[]
+tracer:links[]
+--

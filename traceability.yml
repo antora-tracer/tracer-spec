@@ -26,6 +26,9 @@ relations:
     decision:
       records:
         reverse: recorded_by
+    change:
+      refines:
+        reverse: refined_by
   use_case:
     requirement:
       leads_to:

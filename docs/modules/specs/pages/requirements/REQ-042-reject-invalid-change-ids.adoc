@@ -1,0 +1,10 @@
+[#REQ-042, item, role=requirement, level=software, status=draft, title="Reject IDs that do not identify changes"]
+--
+IF the supplied ID does not resolve to exactly one item with role `change`, THEN the command SHALL exit with a nonzero status and write an error to standard error without writing a status line to standard output.
+
+Example: Given `REQ-035` exists but no change has that ID, when the user runs `tracer-spec status REQ-035`, the command exits nonzero and standard output contains no status line.
+
+refines:REQ-035[]
+refines:REQ-039[]
+tracer:links[]
+--

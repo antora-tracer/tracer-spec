@@ -1,0 +1,9 @@
+[#REQ-038, item, role=requirement, level=component, status=approved, title="Roll up parent change actionability"]
+--
+WHEN an upper-level change is not `closed` or `rejected` and has one or more child changes linked to it by `refines`, the system SHALL report it as actionable exactly when every linked child change is actionable.
+
+The same rule SHALL apply recursively to child changes that have their own refined children.
+
+refines:REQ-035[]
+tracer:links[]
+--

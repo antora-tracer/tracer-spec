@@ -1,0 +1,12 @@
+[#TST-003, item, role=test, title="Status command graph path overrides"]
+--
+Test method: Run `node --test test/change-status.test.js` from the repository root. The path override test invokes the status command from a separate caller directory using relative configuration and docs paths, each option independently and both together; another test checks unreadable paths.
+
+Expected evidence: Path overrides resolve independently from the caller's working directory, omitted options retain the `traceability.yml` and `docs/` defaults, and unreadable paths exit nonzero without a status line.
+
+Automated test path: `test/change-status.test.js`.
+
+verifies:REQ-048[]
+verifies:REQ-049[]
+tracer:links[]
+--

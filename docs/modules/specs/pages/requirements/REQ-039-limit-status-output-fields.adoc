@@ -1,0 +1,7 @@
+[#REQ-039, item, role=requirement, level=component, status=approved, title="Limit change status output fields"]
+--
+WHEN a user requests a change's status, the CLI SHALL report only the change ID, stored lifecycle status, actionable result, and finished result.
+
+refines:REQ-035[]
+tracer:links[]
+--

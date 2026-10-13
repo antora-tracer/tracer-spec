@@ -1,0 +1,9 @@
+[#REQ-048, item, role=requirement, level=software, status=draft, title="Resolve status graph paths independently"]
+--
+WHEN a user invokes `tracer-spec status`, the system SHALL resolve `--config` or `-c` and `--docs` independently relative to the invocation's working directory, defaulting to `traceability.yml` and `docs/` when each is omitted.
+
+Example: From outside the project, when the user runs `tracer-spec status CHG-004 --config project/traceability.yml --docs project/docs`, the result matches running the command from the project root with defaults.
+
+refines:REQ-039[]
+tracer:links[]
+--

@@ -1,0 +1,9 @@
+[#REQ-047, item, role=requirement, level=software, status=draft, title="Reject status results from duplicate item IDs"]
+--
+IF the project graph contains more than one definition for any item ID, THEN the status command SHALL exit nonzero and emit no status line.
+
+Example: Given a child change is defined twice in one document and the second definition contains a parent link, when the parent status is queried, the command exits nonzero without a status line.
+
+refines:REQ-039[]
+tracer:links[]
+--
