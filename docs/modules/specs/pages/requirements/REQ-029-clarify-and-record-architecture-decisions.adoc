@@ -1,6 +1,9 @@
-[#REQ-029, item, role=requirement, level=component, status=draft, title="Clarify and trace architecture decisions"]
+[#REQ-029, item, role=requirement, level=component, status=approved, title="Resolve and trace architecture decisions"]
 --
-When a material architecture choice in a proposed ADR remains unresolved, the system SHALL request the user's decision before finalizing the ADR and SHALL record the resolution in an ADR linked to its change and each relevant requirement.
+When a change design leaves a material architecture choice unresolved, the workflow SHALL request the user's decision before finalizing the design.
+The chosen option SHALL be recorded in an ADR linked to the change, relevant requirements, and affected architecture items.
+
+refines:REQ-051[]
 
 tracer:links[]
 --

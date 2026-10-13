@@ -1,0 +1,10 @@
+[#REQ-054, item, role=requirement, level=software, status=draft, title="Reconcile architecture baseline after implementation"]
+--
+When an implemented change alters architecture, the workflow SHALL ensure the arc42 baseline and current architecture items reflect the as-built system before the change is closed.
+If an architecture item is materially replaced, its prior record and trace links SHALL remain available; archiving SHALL retain design and ADR items while removing temporary tasks.
+
+Scenario:: Given an implemented change materially replaces an architecture element, when the change is archived, then the baseline reflects the implemented element, the prior item remains traceable, and the design and ADR records remain available.
+
+refines:REQ-050[]
+tracer:links[]
+--

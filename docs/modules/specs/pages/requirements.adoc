@@ -21,6 +21,10 @@ Requirements are grouped first by declared scope level, then by topic. Status ap
 * xref:requirements/REQ-031-preserve-partial-feature-refinement-gaps.adoc[REQ-031] — Preserve partial feature refinement and identify readiness gaps (draft)
 * xref:requirements/REQ-032-confirm-feature-readiness-before-approval.adoc[REQ-032] — Require user confirmation before approving feature requirements (draft)
 
+=== Architecture understanding
+
+* xref:requirements/REQ-051-understand-architecture-and-change-impact.adoc[REQ-051] — Understand architecture and change impact (approved)
+
 === Change status reporting
 
 * xref:requirements/REQ-035-report-change-actionability-and-completion.adoc[REQ-035] — Report change actionability and completion (approved)
@@ -32,10 +36,14 @@ Requirements are grouped first by declared scope level, then by topic. Status ap
 * xref:requirements/REQ-010-archive-verifies-requirements.adoc[REQ-010] — Archive verifies addressed requirements are satisfied (draft)
 * xref:requirements/REQ-011-archive-refuses-unsatisfied.adoc[REQ-011] — Archive refuses to close an unsatisfied change (draft)
 * xref:requirements/REQ-012-archive-verification-read-only.adoc[REQ-012] — Archive verification is read-only (draft)
-* xref:requirements/REQ-028-derive-architecture-proposals-from-requirements.adoc[REQ-028] — Derive architecture proposals from change requirements (draft)
-* xref:requirements/REQ-029-clarify-and-record-architecture-decisions.adoc[REQ-029] — Clarify and trace architecture decisions (draft)
+* xref:requirements/REQ-028-derive-architecture-proposals-from-requirements.adoc[REQ-028] — Require a durable design item for each change (approved)
+* xref:requirements/REQ-029-clarify-and-record-architecture-decisions.adoc[REQ-029] — Resolve and trace architecture decisions (approved)
 * xref:requirements/REQ-033-propose-independent-feature-implementation-changes.adoc[REQ-033] — Propose independently deliverable changes against feature requirements (draft)
 * xref:requirements/REQ-034-refine-change-before-creating-tasks.adoc[REQ-034] — Refine one implementation change before creating execution tasks (draft)
+
+=== Architecture model
+
+* xref:requirements/REQ-050-model-arc42-architecture-items.adoc[REQ-050] — Represent architecture elements in an arc42-aligned baseline (approved)
 
 === External tracker integration
 
@@ -76,6 +84,9 @@ Requirements are grouped first by declared scope level, then by topic. Status ap
 === Specification and traceability layer
 
 * xref:requirements/REQ-027-distinguish-architecture-decision-records.adoc[REQ-027] — Distinguish architecture decision records from business decisions (draft)
+* xref:requirements/REQ-052-author-arc42-architecture-items.adoc[REQ-052] — Author traceable architecture elements (draft)
+* xref:requirements/REQ-053-create-durable-change-design-items.adoc[REQ-053] — Create durable change design items (draft)
+* xref:requirements/REQ-054-reconcile-architecture-baseline-on-archive.adoc[REQ-054] — Reconcile architecture baseline after implementation (draft)
 
 === External tracker integration
 

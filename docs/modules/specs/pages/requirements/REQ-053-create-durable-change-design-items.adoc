@@ -1,0 +1,12 @@
+[#REQ-053, item, role=requirement, level=software, status=draft, title="Create durable change design items"]
+--
+Each refined change SHALL have a durable `design` item with a unique `DSN` identifier before its temporary task list is created.
+The design SHALL link the change, relevant software requirements, and affected architecture items and ADRs; describe the proposed approach and material trade-offs, or explicitly state that there is no architecture impact.
+The design item SHALL remain available after the change is closed.
+
+Scenario:: Given a refined change with architecture impact, when its design is recorded, then the durable DSN item links to the change, addressed requirements, affected ARC items, and relevant ADRs before tasks are created.
+
+refines:REQ-028[]
+refines:REQ-029[]
+tracer:links[]
+--

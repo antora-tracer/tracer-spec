@@ -1,0 +1,11 @@
+[#REQ-050, item, role=requirement, level=component, status=approved, title="Represent architecture elements in an arc42-aligned baseline"]
+--
+The workflow SHALL represent independently meaningful architectural elements, such as solution strategies, building blocks, runtime or deployment elements, and cross-cutting concepts, as durable, typed architecture items with stable identifiers.
+An arc42-aligned baseline SHALL organize and describe those items and reflect the implemented architecture.
+When an element is materially replaced, its prior record SHALL remain traceable rather than being silently repurposed.
+Headings and explanatory prose alone do not require graph items.
+
+refines:REQ-051[]
+
+tracer:links[]
+--

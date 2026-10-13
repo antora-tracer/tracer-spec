@@ -1,6 +1,10 @@
-[#REQ-028, item, role=requirement, level=component, status=draft, title="Derive architecture proposals from change requirements"]
+[#REQ-028, item, role=requirement, level=component, status=approved, title="Require a durable design item for each change"]
 --
-When change requirements imply a software architecture decision that is costly to reverse, the system SHALL produce an architecture proposal grounded in the relevant requirements and identify the material options and trade-offs.
+Each refined implementation change SHALL have a durable, reviewable design item before its execution tasks are created.
+The design SHALL explain how the relevant software requirements are addressed, identify affected architecture items, and record material alternatives and trade-offs.
+If the change has no architecture impact, the design SHALL state that explicitly.
+
+refines:REQ-051[]
 
 tracer:links[]
 --

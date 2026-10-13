@@ -1,0 +1,10 @@
+[#REQ-052, item, role=requirement, level=software, status=draft, title="Author traceable architecture elements"]
+--
+The system SHALL let authors record each independently meaningful architecture element as a durable `architecture` item with a unique `ARC` identifier, a `kind` value, and links to related requirements, changes, and ADRs.
+The architecture documentation SHALL present those items within the applicable arc42 section.
+
+Scenario:: Given a contributor records a cross-cutting concept, when it is published, then it appears as an ARC item classified as a cross-cutting concept in the arc42-aligned baseline and its links resolve.
+
+refines:REQ-050[]
+tracer:links[]
+--
