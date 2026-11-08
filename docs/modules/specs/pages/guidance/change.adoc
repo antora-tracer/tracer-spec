@@ -19,6 +19,17 @@ Rationale:: Why this change is needed.
 Outcome:: What it produces.
 Out-of-scope:: What it excludes.
 
+Added Requirements::
+
+* List all
+* added requirements
+
+Superseded Requirements::
+
+* List all
+* superseded requirements
+
+
 addresses:REQ-NNN[]
 records:DEC-NNN[]
 records:DSN-NNN[]
@@ -27,3 +38,8 @@ updates:ARC-NNN[]
 tracer:links[]
 --
 ----
+
+== Changed Requirements
+
+* *Never* delete existing requirements
+*

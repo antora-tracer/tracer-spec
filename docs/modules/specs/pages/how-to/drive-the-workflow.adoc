@@ -37,7 +37,7 @@ tspec-refine-change CHG-001
 ----
 
 Refine the change into detailed software requirements and create one durable DSN design item that links the requirements, affected ARC items, and related ADRs. Record material trade-offs or state that the change has no architecture impact. Create the design before its execution checklist at `tspec/CHG-001/tasks.md`.
-`tracer-spec status CHG-001` reports the stored lifecycle state and actionable/finished results without changing the graph.
+`tspec status CHG-001` reports the stored lifecycle state and actionable/finished results without changing the graph.
 
 == 5. Accept and apply the change
 

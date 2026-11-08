@@ -59,7 +59,7 @@ function describeTools(ids, scope = "project") {
 }
 
 program
-  .name("tracer-spec")
+  .name("tspec")
   .description(
     "Tracer Spec Workflow - scaffold a project and install the workflow skills",
   )

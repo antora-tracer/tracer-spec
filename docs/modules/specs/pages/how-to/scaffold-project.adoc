@@ -6,7 +6,7 @@ This guide turns an empty directory into a Tracer Spec Workflow project with a s
 
 [source,bash]
 ----
-npm install -g @antora-tracer/tracer-spec
+npm install -g git+https://github.com/antora-tracer/tracer-spec.git
 ----
 
 The CLI needs Node.js 20+.
@@ -16,7 +16,7 @@ The CLI needs Node.js 20+.
 [source,bash]
 ----
 cd my-project
-tracer-spec init "My Project"
+tspec init "My Project"
 npm install
 ----
 
@@ -40,10 +40,10 @@ Pass `--tools` to choose:
 
 [source,bash]
 ----
-tracer-spec init --tools oh-my-pi,claude   # pick specific harnesses
-tracer-spec init --tools all               # every supported harness
-tracer-spec init --tools none              # scaffold only, no skills
-tracer-spec init --tools omp,codex,pi      # omp aliases oh-my-pi
+tspec init --tools oh-my-pi,claude   # pick specific harnesses
+tspec init --tools all               # every supported harness
+tspec init --tools none              # scaffold only, no skills
+tspec init --tools omp,codex,pi      # omp aliases oh-my-pi
 ----
 
 When you omit `--tools` and run interactively, `init` shows a picker.

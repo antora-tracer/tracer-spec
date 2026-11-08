@@ -11,9 +11,9 @@ Durable artifacts (requirements, changes, architecture items, change designs, de
 
 ## Skills
 
-`tracer-spec init` installs the workflow skills into your agent harness
+`tspec init` installs the workflow skills into your agent harness
 directories (`.omp/skills/`, `.claude/skills/`, `.agents/skills/`).
-Re-run `tracer-spec init --tools <ids>` to add or refresh them. The skills:
+Re-run `tspec init --tools <ids>` to add or refresh them. The skills:
 
 | Skill | Purpose |
 |-------|---------|

@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import test from 'node:test'
 
-const cli = fileURLToPath(new URL('../bin/tracer-spec.js', import.meta.url))
+const cli = fileURLToPath(new URL('../bin/tspec.js', import.meta.url))
 const sourceSkill = fileURLToPath(new URL('../skills/tspec-new-change/SKILL.md', import.meta.url))
 
 test('init installs the renamed change skill and command', (t) => {

@@ -3,9 +3,9 @@
 This page documents every command and option of the Tracer Spec Workflow CLI.
 The traceability model itself is the `antora-tracer` CLI, covered for the commands the workflow uses.
 
-== tracer-spec
+== tspec
 
-`tracer-spec` scaffolds a project and installs the workflow skills.
+`tspec` scaffolds a project and installs the workflow skills.
 It ships two commands.
 
 === init
@@ -14,7 +14,7 @@ Initialize a Tracer Spec Workflow project in the current directory.
 
 [source,bash]
 ----
-tracer-spec init [name] [options]
+tspec init [name] [options]
 ----
 
 [cols="30a,70a"]
@@ -75,7 +75,7 @@ Report the lifecycle and derived readiness of one change. Run from a Tracer Spec
 
 [source,bash]
 ----
-tracer-spec status <change-id> [options]
+tspec status <change-id> [options]
 ----
 
 [cols="25a,75a"]

@@ -32,7 +32,7 @@ npm install --silent
 echo "✅ Dependencies installed"
 echo ""
 
-# Skills for a new project are installed by `tracer-spec init --tools <ids>`
+# Skills for a new project are installed by `tspec init --tools <ids>`
 # (default: oh-my-pi, claude, agents). The cloned example ships them in
 # ./skills/ for reference.
 echo ""

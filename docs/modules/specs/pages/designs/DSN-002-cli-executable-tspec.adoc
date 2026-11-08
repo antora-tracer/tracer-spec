@@ -1,0 +1,14 @@
+[#DSN-002, item, role=design, status=accepted, title="Expose the workflow CLI as tspec"]
+--
+Context:: REQ-055 establishes `tspec` as the workflow CLI name. The package is private, lacks an npm executable mapping, and does not declare all CLI imports as runtime dependencies.
+
+Approach:: Rename the entry file from `bin/tracer-spec.js` to `bin/tspec.js`, set the Commander display name and npm `bin` mapping to `tspec`. Keep the package name and `private` setting unchanged. Move `@antora-tracer/core` to runtime dependencies and add Commander `^14.0.3` and `@inquirer/prompts` `^7.3.2` as direct runtime dependencies for the existing CLI imports on the documented Node 20+ range. Install from the existing GitHub repository URL and update current command references to `tspec`, without a `tracer-spec` alias.
+
+Alternatives and trade-offs:: A display-label-only change does not install a command. A compatibility alias preserves old invocations but leaves two executables. Public npm publication requires changing the package release policy and is outside this change; GitHub installation preserves the private package.
+
+Architecture impact:: No component boundary or architecture-item change. Update deployment-view prose and current CLI guidance to match the executable name; no ARC or ADR item is affected.
+
+recorded_by:CHG-016[]
+realizes:REQ-056[]
+tracer:links[]
+--

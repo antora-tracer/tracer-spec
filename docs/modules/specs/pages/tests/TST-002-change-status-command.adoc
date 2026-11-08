@@ -1,6 +1,6 @@
 [#TST-002, item, role=test, title="Change status command behavior"]
 --
-Test method: Run `node --test test/change-status.test.js`, which invokes `tracer-spec status` against temporary projects containing leaf and parent change graphs, duplicate and invalid IDs, and cyclic refinement links both within and outside the queried hierarchy.
+Test method: Run `node --test test/change-status.test.js`, which invokes `tspec status` against temporary projects containing leaf and parent change graphs, duplicate and invalid IDs, and cyclic refinement links both within and outside the queried hierarchy.
 
 Expected evidence: All nine tests pass. The output contains only the target change's ID, stored status, actionability, and finished state. Parent actionability requires every descendant to be actionable. Duplicate item IDs anywhere in the project graph, invalid change IDs, and any refinement cycle exit nonzero without status records; the query leaves graph and task files unchanged.
 

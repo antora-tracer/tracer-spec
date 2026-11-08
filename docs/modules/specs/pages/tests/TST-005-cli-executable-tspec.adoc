@@ -1,0 +1,11 @@
+[#TST-005, item, role=test, title="Expose the CLI as tspec"]
+--
+Test method: Run `node --test test/cli-name.test.js`. Install the package from the repository into an isolated npm prefix and invoke the installed `tspec --help`.
+
+Expected evidence: The test passes; the installed executable exits successfully and reports `Usage: tspec` with the existing `init` and `status` commands.
+
+Automated test path: `test/cli-name.test.js`.
+
+verifies:REQ-056[]
+tracer:links[]
+--

@@ -4,3 +4,4 @@
 Each refined implementation change has one durable design item created before its temporary task list. Add new designs with `tspec-refine-change` and link them to the change, the requirements they realize, affected architecture items, and related ADRs.
 
 include::designs/DSN-001-chg-012-architecture-records.adoc[]
+include::designs/DSN-002-cli-executable-tspec.adoc[]

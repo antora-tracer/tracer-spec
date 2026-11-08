@@ -1,8 +1,8 @@
 [#REQ-041, item, role=requirement, level=software, status=draft, title="Report one change status record"]
 --
-WHEN a user runs `tracer-spec status <change-id>` from a project root and the ID resolves to a change, the system SHALL emit one status line containing only the change ID, persisted lifecycle status, actionable result, and finished result.
+WHEN a user runs `tspec status <change-id>` from a project root and the ID resolves to a change, the system SHALL emit one status line containing only the change ID, persisted lifecycle status, actionable result, and finished result.
 
-Example: Given `CHG-014` has status `proposed`, when the user runs `tracer-spec status CHG-014`, the output is `CHG-014 status=proposed actionable=false finished=false`.
+Example: Given `CHG-014` has status `proposed`, when the user runs `tspec status CHG-014`, the output is `CHG-014 status=proposed actionable=false finished=false`.
 
 refines:REQ-035[]
 refines:REQ-039[]

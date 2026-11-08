@@ -29,7 +29,7 @@ The normal change flow is `tspec-explore` → `tspec-refine-feature` → `tspec-
 
 == 7. Deployment View
 
-The repository contains the Antora source and the scaffolding templates. `tracer-spec init` copies templates into a project and installs the selected workflow skills into the assistant's skill directory. Antora publishes the documentation site from those pages.
+The repository contains the Antora source and the scaffolding templates. `tspec init` copies templates into a project and installs the selected workflow skills into the assistant's skill directory. Antora publishes the documentation site from those pages.
 
 == 8. Crosscutting Concepts
 

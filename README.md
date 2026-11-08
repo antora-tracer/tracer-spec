@@ -22,7 +22,7 @@ tspec-refine-feature <feature-ticket-id>       # refine existing ticket into pro
 tspec-new-change "Your first change"           # record one requirement-anchored change
 tspec-refine-change CHG-001                    # software requirements, durable design, and temporary tasks
 tspec-apply-change CHG-001                     # implement the refined tasks
-tracer-spec status CHG-001                   # report lifecycle, actionable, finished
+tspec status CHG-001                   # report lifecycle, actionable, finished
 tspec-archive CHG-001                          # validate and close
 tspec-validate                                 # check the graph
 ----

@@ -19,3 +19,6 @@ updates:ARC-NNN[]
 tracer:links[]
 --
 ----
+
+include::changes/CHG-016-cli-executable-tspec.adoc[]
+

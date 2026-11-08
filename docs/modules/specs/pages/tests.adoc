@@ -6,4 +6,5 @@ include::tests/TST-001-skill-evaluation-runner.adoc[]
 include::tests/TST-002-change-status-command.adoc[]
 include::tests/TST-003-status-path-overrides.adoc[]
 include::tests/TST-004-architecture-design-workflow.adoc[]
+include::tests/TST-005-cli-executable-tspec.adoc[]
 

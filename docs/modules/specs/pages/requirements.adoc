@@ -52,6 +52,10 @@ Requirements are grouped first by declared scope level, then by topic. Status ap
 * xref:requirements/REQ-018-keep-tracker-status-in-step.adoc[REQ-018] — Keep ticket-owned state outside the graph (draft)
 * xref:requirements/REQ-019-ignore-tracker-state-changes.adoc[REQ-019] — Do not write or pull ticket state and estimates (draft)
 
+=== Workflow CLI
+
+* xref:requirements/REQ-055-cli-invoked-as-tspec.adoc[REQ-055] — Invoke the workflow CLI as tspec (approved)
+
 === Documentation site
 
 * xref:requirements/REQ-008-change-guidance-item-template.adoc[REQ-008] — Change guidance declares an item template (draft)
@@ -80,6 +84,10 @@ Requirements are grouped first by declared scope level, then by topic. Status ap
 === Project bootstrapper and harness integration
 
 * xref:requirements/REQ-007-resolve-role-guidance-pages.adoc[REQ-007] — Resolve role guidance pages to existing files (draft)
+
+=== Workflow CLI
+
+* xref:requirements/REQ-056-cli-executable-as-tspec.adoc[REQ-056] — Expose the CLI as tspec when installed (approved)
 
 === Specification and traceability layer
 

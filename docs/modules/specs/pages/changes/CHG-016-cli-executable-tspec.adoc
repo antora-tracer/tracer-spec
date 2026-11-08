@@ -1,0 +1,12 @@
+[#CHG-016, item, role=change, status=closed, title="Invoke the workflow CLI as tspec"]
+--
+Rationale:: The CLI currently uses `tracer-spec`, while workflow command names use the `tspec` prefix.
+
+Outcome:: The package exposes `tspec` as its executable; the install guide uses the existing GitHub repository source, and `init` and `status` behavior stays unchanged.
+
+Out-of-scope:: Renaming product, repository, or npm package identity; enabling public npm publication; retaining a `tracer-spec` alias; changing subcommand behavior.
+
+addresses:REQ-055[]
+records:DSN-002[]
+tracer:links[]
+--
