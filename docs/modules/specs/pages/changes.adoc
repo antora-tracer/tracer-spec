@@ -20,5 +20,6 @@ tracer:links[]
 --
 ----
 
-include::changes/CHG-016-cli-executable-tspec.adoc[]
+include::partial$changes/CHG-016-cli-executable-tspec.adoc[]
 
+include::partial$changes/superseded.adoc[opts=optional]

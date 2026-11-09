@@ -5,7 +5,7 @@ This is a tailored arc42 baseline for the Tracer Spec Workflow. The headings org
 
 == 1. Introduction and Goals
 
-Tracer Spec provides a requirement-anchored workflow for proposing, refining, implementing, and verifying changes. The product outcome is captured in xref:requirements/REQ-051-understand-architecture-and-change-impact.adoc[REQ-051].
+Tracer Spec provides a requirement-anchored workflow for proposing, refining, implementing, and verifying changes. The product outcome is captured in xref:requirements.adoc#REQ-051[REQ-051].
 
 == 2. Constraints
 
@@ -17,11 +17,11 @@ Project contributors and coding agents use the TSPEC skills. `antora-tracer` par
 
 == 4. Solution Strategy
 
-include::architecture/ARC-001-traceability-graph-is-canonical.adoc[]
+include::partial$architecture/ARC-001-traceability-graph-is-canonical.adoc[]
 
 == 5. Building Block View
 
-include::architecture/ARC-002-staged-change-lifecycle.adoc[]
+include::partial$architecture/ARC-002-staged-change-lifecycle.adoc[]
 
 == 6. Runtime View
 
@@ -33,7 +33,7 @@ The repository contains the Antora source and the scaffolding templates. `tspec 
 
 == 8. Crosscutting Concepts
 
-include::architecture/ARC-003-durable-graph-temporary-tasks.adoc[]
+include::partial$architecture/ARC-003-durable-graph-temporary-tasks.adoc[]
 
 == 9. Architecture Decisions
 
@@ -41,7 +41,7 @@ Costly-to-reverse software architecture choices are recorded as ADR items on xre
 
 == 10. Quality Requirements
 
-Human review gates, requirement links, and graph validation are central quality properties. See approved xref:requirements/REQ-006-enforce-human-acceptance-gate.adoc[REQ-006] and xref:requirements/REQ-051-understand-architecture-and-change-impact.adoc[REQ-051].
+Human review gates, requirement links, and graph validation are central quality properties. See approved xref:requirements.adoc#REQ-006[REQ-006] and xref:requirements.adoc#REQ-051[REQ-051].
 
 == 11. Risks and Technical Debt
 
@@ -60,3 +60,5 @@ The traceability configuration, role guidance, skill instructions, and starter t
 | DSN | Durable design record for one implementation change.
 | REQ | Observable product, component, or software requirement.
 |===
+
+include::partial$architecture/superseded.adoc[opts=optional]
