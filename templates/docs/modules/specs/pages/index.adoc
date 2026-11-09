@@ -2,8 +2,8 @@
 
 Your project documentation starts here.
 
-This project stores durable requirements, changes, architecture items, per-change designs, domain/business decisions, and ADRs as traceable Antora/AsciiDoc items under
-`docs/modules/specs/pages/`.
+This project stores durable requirements, changes, architecture items, per-change designs, domain/business decisions, and ADRs as traceable Antora/AsciiDoc partials under
+`docs/modules/specs/partials/`, each included by its role page.
 
 == Getting started
 

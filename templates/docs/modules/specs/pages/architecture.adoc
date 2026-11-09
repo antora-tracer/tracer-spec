@@ -50,3 +50,11 @@ Record material architecture risks and technical debt, including their affected 
 == 12. Glossary
 
 Define domain-specific terms and link glossary items when they need stable references.
+
+
+
+== Items
+
+Add each item's `include::partial$architecture/<file>.adoc[]` line below.
+
+include::partial$architecture/superseded.adoc[opts=optional]

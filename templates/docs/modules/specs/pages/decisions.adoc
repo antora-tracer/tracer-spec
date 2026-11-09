@@ -17,3 +17,11 @@ recorded_by:CHG-NNN[]
 tracer:links[]
 --
 ----
+
+
+
+== Items
+
+Add each item's `include::partial$decisions/<file>.adoc[]` line below.
+
+include::partial$decisions/superseded.adoc[opts=optional]

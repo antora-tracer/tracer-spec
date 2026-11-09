@@ -25,3 +25,11 @@ refines:REQ-PARENT[]
 tracer:links[]
 --
 ----
+
+
+
+== Items
+
+Add each item's `include::partial$requirements/<file>.adoc[]` line below.
+
+include::partial$requirements/superseded.adoc[opts=optional]

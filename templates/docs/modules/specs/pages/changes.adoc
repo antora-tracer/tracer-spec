@@ -19,3 +19,11 @@ updates:ARC-NNN[]
 tracer:links[]
 --
 ----
+
+
+
+== Items
+
+Add each item's `include::partial$changes/<file>.adoc[]` line below.
+
+include::partial$changes/superseded.adoc[opts=optional]

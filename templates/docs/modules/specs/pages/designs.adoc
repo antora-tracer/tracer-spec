@@ -4,3 +4,11 @@
 Create one durable `design` item for each refined change before its temporary task list. Link the change, relevant requirements, affected architecture items, and related ADRs. Keep the design after closure; archive removes only the temporary task directory.
 
 See xref:guidance/design.adoc[Change Design] for the item template.
+
+
+
+== Items
+
+Add each item's `include::partial$designs/<file>.adoc[]` line below.
+
+include::partial$designs/superseded.adoc[opts=optional]

@@ -29,3 +29,11 @@ leads_to:REQ-NNN[]
 tracer:links[]
 --
 ----
+
+
+
+== Items
+
+Add each item's `include::partial$use-cases/<file>.adoc[]` line below.
+
+include::partial$use-cases/superseded.adoc[opts=optional]

@@ -1,13 +1,14 @@
 # AGENTS.md
 
 This project uses the **Tracer Spec Workflow** (spec-driven development on
-Antora Tracer). Durable artifacts are traceable Antora/AsciiDoc items published
-as pages under `docs/modules/specs/pages/`, validated with `antora-tracer`.
+Antora Tracer). Durable artifacts are traceable Antora/AsciiDoc items written
+as partials under `docs/modules/specs/partials/`, included by their role page
+under `docs/modules/specs/pages/`, and validated with `antora-tracer`.
 
 ## Durable Artifacts Directory
 
 Durable artifacts (requirements, changes, architecture items, change designs, decisions, and ADRs) are written to
-`docs/modules/specs/pages/`; temporary execution tasks go in `tspec/<change-id>/`.
+`docs/modules/specs/partials/<role>/` and included by `docs/modules/specs/pages/<role>.adoc`; temporary execution tasks go in `tspec/<change-id>/`.
 
 ## Skills
 
@@ -36,7 +37,7 @@ tspec-explore → tspec-refine-feature → tspec-new-change → tspec-refine-cha
 One existing feature ticket may be associated with many independent changes through shared optional `externalId=<id>` metadata. `tspec-new-change` requires applicable approved requirements but does not author detailed software requirements or design items.
 Run `tspec-refine-change` to create software requirements and a durable design item before its temporary checklist.
 - The graph is the source of truth for specifications. It includes architecture items, change designs, ADRs, requirements, and decisions; the external feature ticket remains authoritative for ticket status, backlog position, and estimate.
-  Durable items are pages under `docs/modules/specs/pages/`; temporary tasks go in `tspec/<change-id>/`.
+  Durable items are partials under `docs/modules/specs/partials/<role>/`; temporary tasks go in `tspec/<change-id>/`.
 - `tspec-track --read <feature-ticket-id>` reads an existing ticket.
   `--update-refinement` requires approval of the exact section preview and
   changes only the unique `TSPEC refinement` section, preserving all other

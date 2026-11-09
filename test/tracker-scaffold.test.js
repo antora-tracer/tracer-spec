@@ -79,3 +79,54 @@ test('init does not write tracker helpers through a symlinked directory', (t) =>
   assert.equal(existsSync(join(external, 'forgejo-issue.js')), false)
   assert.equal(existsSync(join(external, 'update-ticket-refinement.js')), false)
 })
+
+test('init scaffolds a partials layout consistent with the workflow skills', (t) => {
+  const directory = projectDir(t)
+  const result = init(directory, ['--link'])
+  assert.equal(result.status, 0, result.stderr)
+
+  const specs = join(directory, 'docs/modules/specs')
+
+  // Every writable role has a partials/ directory so the skills' hardcoded
+  // destinations exist without the agent having to create them.
+  for (const role of ['changes', 'decisions', 'use-cases', 'architecture', 'designs', 'adrs', 'requirements']) {
+    assert.ok(
+      existsSync(join(specs, 'partials', role)),
+      `expected partials/${role}/ to be scaffolded`
+    )
+  }
+
+  // Role pages are wired to their partials so a written item renders.
+  const changes = readFileSync(join(specs, 'pages/changes.adoc'), 'utf8')
+  assert.match(changes, /include::partial\$changes\/[A-Za-z0-9-]*\.adoc\[opts=optional\]/)
+
+  // Guidance tells the agent partials are the destination.
+  const agents = readFileSync(join(directory, 'AGENTS.md'), 'utf8')
+  assert.match(agents, /partials\//)
+  assert.doesNotMatch(agents, /items are pages under/)
+})
+
+test('scaffolded role pages build without include errors', (t) => {
+  const directory = projectDir(t)
+  const result = init(directory, ['--link'])
+  assert.equal(result.status, 0, result.stderr)
+
+  // The example include lines in the role pages must be illustrative, not
+  // live: a bare `include::partial$<role>/<file>.adoc[]` would be preprocessed
+  // even inside a listing block and fail the build.
+  for (const page of ['changes', 'requirements', 'decisions', 'use-cases', 'architecture', 'designs', 'adrs']) {
+    const body = readFileSync(
+      join(directory, 'docs/modules/specs/pages', `${page}.adoc`),
+      'utf8'
+    )
+    for (const line of body.split('\n')) {
+      if (!line.startsWith('include::partial$')) continue
+      const target = line.slice('include::'.length, line.indexOf('['))
+      assert.doesNotMatch(
+        target,
+        /<|>/,
+        `${page}.adoc has a live placeholder include: ${line}`
+      )
+    }
+  }
+})
