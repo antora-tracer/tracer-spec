@@ -1,3 +1,5 @@
+= REQ-053 — Create durable change design items
+
 [#REQ-053, item, role=requirement, level=software, status=approved, title="Create durable change design items"]
 --
 Each refined change SHALL have a durable `design` item with a unique `DSN` identifier before its temporary task list is created.

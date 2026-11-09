@@ -1,3 +1,5 @@
+= CHG-010 — Complete Diátaxis site structure with CLI and skills documentation
+
 [#CHG-010, item, role=change, status=closed, title="Complete Diátaxis site structure with CLI and skills documentation"]
 --
 Rationale:: The site explains the workflow and its traceability.

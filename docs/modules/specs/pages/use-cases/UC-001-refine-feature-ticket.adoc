@@ -1,3 +1,5 @@
+= UC-001 — Feature owner refines an existing ticket into traceable product requirements
+
 [#UC-001, item, role=use_case, title="Feature owner refines an existing ticket into traceable product requirements"]
 --
 .Use Case: Feature owner refines an existing ticket into traceable product requirements

@@ -1,3 +1,5 @@
+= CHG-006 — Verify change conformance in archive, not a separate skill
+
 [#CHG-006, item, role=change, status=closed, title="Verify change conformance in archive, not a separate skill"]
 --
 Rationale:: `tspec-archive` closes a change after running only structural validation with `antora-tracer validate`.

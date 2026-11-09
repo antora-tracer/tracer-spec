@@ -1,3 +1,5 @@
+= CHG-011 — Evaluate workflow skills with paired, repeatable scenarios
+
 [#CHG-011, item, role=change, status=verified, title="Evaluate workflow skills with paired, repeatable scenarios"]
 --
 Rationale:: The skills guide exploration, traceability edits, and validation, but the repository has no repeatable way to check whether they deliver the expected behavior.

@@ -1,3 +1,5 @@
+= CHG-004 — Redesign the tspec workflow: minimal grammar, stage skills, and thin tooling
+
 [#CHG-004, item, role=change, status=closed, title="Redesign the tspec workflow: minimal grammar, stage skills, and thin tooling"]
 --
 Rationale:: The traceability grammar came from the presets and grew through hand edits, without a clear set of workflow questions to guide it.

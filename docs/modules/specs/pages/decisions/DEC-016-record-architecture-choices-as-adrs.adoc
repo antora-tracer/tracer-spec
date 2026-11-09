@@ -1,3 +1,5 @@
+= DEC-016 — Model architecture elements, change designs, and ADRs
+
 [#DEC-016, item, role=decision, status=accepted, title="Model architecture elements, change designs, and ADRs"]
 --
 Context:: The current decision role and a separate ADR role preserve choices, but do not make architecture elements or change-specific design traceable.

@@ -1,3 +1,5 @@
+= DEC-004 — Approved requirements are immutable, gated on meaning
+
 [#DEC-004, item, role=decision, status=accepted, title="Approved requirements are immutable, gated on meaning"]
 --
 Context:: In-place edits break the referential integrity of the traceability graph.

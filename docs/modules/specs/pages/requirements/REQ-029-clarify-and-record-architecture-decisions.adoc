@@ -1,3 +1,5 @@
+= REQ-029 — Resolve and trace architecture decisions
+
 [#REQ-029, item, role=requirement, level=component, status=approved, title="Resolve and trace architecture decisions"]
 --
 When a change design leaves a material architecture choice unresolved, the workflow SHALL request the user's decision before finalizing the design.

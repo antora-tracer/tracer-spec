@@ -1,3 +1,5 @@
+= CHG-009 — Gate proposed requirements against implementation detail
+
 [#CHG-009, item, role=change, status=proposed, title="Gate proposed requirements against implementation detail"]
 --
 Rationale:: The propose skill tells authors that requirements should state what the system does, not how it does it.

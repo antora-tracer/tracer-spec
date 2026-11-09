@@ -1,3 +1,5 @@
+= CHG-014 — Report actionable and finished change status in the CLI
+
 [#CHG-014, item, role=change, status=closed, title="Report actionable and finished change status in the CLI"]
 --
 Rationale:: Change owners need to know whether an implementation change is ready for planning or finished without manually inspecting its graph and task history.

@@ -1,3 +1,5 @@
+= REQ-049 — Reject unreadable status input paths
+
 [#REQ-049, item, role=requirement, level=software, status=draft, title="Reject unreadable status input paths"]
 --
 IF the selected configuration or docs path cannot be read, THEN the command SHALL exit nonzero without printing a status line.

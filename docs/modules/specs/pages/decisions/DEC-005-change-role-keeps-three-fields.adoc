@@ -1,3 +1,5 @@
+= DEC-005 — tracer-spec change role keeps three fields, not the core preset's five
+
 [#DEC-005, item, role=decision, status=proposed, title="tracer-spec change role keeps three fields, not the core preset's five"]
 --
 Context:: The core `spec-driven-development` preset's `change.adoc` now carries a five-field template (Rationale, Outcome, Out of Scope, Open Questions, Notes), but tracer-spec extends `minimal` and owns its own guidance.

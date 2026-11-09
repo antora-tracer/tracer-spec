@@ -1,3 +1,5 @@
+= REQ-045 — Aggregate parent change actionability
+
 [#REQ-045, item, role=requirement, level=software, status=draft, title="Aggregate parent change actionability"]
 --
 WHEN an unclosed, unrejected change has one or more child changes linked to it by `refines` and the hierarchy is acyclic, the system SHALL report it as actionable exactly when every linked child change is actionable, applying the same rule recursively. A cycle produces a nonzero error without a status line.

@@ -1,3 +1,5 @@
+= REQ-042 — Reject IDs that do not identify changes
+
 [#REQ-042, item, role=requirement, level=software, status=draft, title="Reject IDs that do not identify changes"]
 --
 IF the supplied ID does not resolve to exactly one item with role `change`, THEN the command SHALL exit with a nonzero status and write an error to standard error without writing a status line to standard output.

@@ -1,3 +1,5 @@
+= DEC-007 — Nest per-option pros and cons inside Options, not a separate field
+
 [#DEC-007, item, role=decision, status=proposed, title="Nest per-option pros and cons inside Options, not a separate field"]
 --
 Context:: MADR structures per-option advantages and disadvantages as a separate "Pros and Cons of the Options" section, but tracer-spec decisions are flat AsciiDoc labeled lists.

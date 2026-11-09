@@ -1,3 +1,5 @@
+= REQ-027 — Distinguish architecture decision records from business decisions
+
 [#REQ-027, item, role=requirement, level=software, status=approved, title="Distinguish architecture decision records from business decisions"]
 --
 The system SHALL preserve software architecture decisions that are costly to reverse as distinct `adr` items, separate from domain or business `decision` items.

@@ -1,3 +1,5 @@
+= DEC-017 — Separate feature-ticket refinement from implementation-change refinement
+
 [#DEC-017, item, role=decision, status=proposed, title="Separate feature-ticket refinement from implementation-change refinement"]
 --
 Context:: Product scope and use cases are refined from an existing external feature ticket, while several implementation changes may be delivered independently.

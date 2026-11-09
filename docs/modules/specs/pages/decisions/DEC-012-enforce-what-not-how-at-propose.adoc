@@ -1,3 +1,5 @@
+= DEC-012 — Enforce what-not-how at propose, not in validation
+
 [#DEC-012, item, role=decision, status=proposed, title="Enforce what-not-how at propose, not in validation"]
 --
 Context:: Requirement statements leak implementation detail.

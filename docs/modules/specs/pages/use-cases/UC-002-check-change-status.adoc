@@ -1,3 +1,5 @@
+= UC-002 — Change owner checks actionability and completion
+
 [#UC-002, item, role=use_case, title="Change owner checks actionability and completion"]
 --
 .Use Case: Change owner checks actionability and completion

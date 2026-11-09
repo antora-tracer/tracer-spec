@@ -1,3 +1,5 @@
+= CHG-015 — Run status queries against explicit graph paths
+
 [#CHG-015, item, role=change, status=closed, title="Run status queries against explicit graph paths"]
 --
 Rationale:: The status command currently assumes it is invoked from the project root, preventing callers in another directory from selecting the project configuration and documentation sources.

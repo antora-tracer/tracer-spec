@@ -1,3 +1,5 @@
+= DEC-003 — Design is recorded as decisions, not ADRs or design concepts
+
 [#DEC-003, item, role=decision, status=superseded, title="Design is recorded as decisions, not ADRs or design concepts"]
 --
 Context:: Most choices are domain or specification clarifications, not architecture.

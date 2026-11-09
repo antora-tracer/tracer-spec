@@ -1,3 +1,5 @@
+= DEC-001 — Change is the entry point; requirement is the Tier-1 spec unit
+
 [#DEC-001, item, role=decision, status=accepted, title="Change is the entry point; requirement is the Tier-1 spec unit"]
 --
 Context:: The workflow needed an entry point and a minimal traceability core.

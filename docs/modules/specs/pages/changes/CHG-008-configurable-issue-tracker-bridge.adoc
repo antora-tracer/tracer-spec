@@ -1,3 +1,5 @@
+= CHG-008 — Configurable issue tracker bridge for the workflow
+
 [#CHG-008, item, role=change, status=verified, title="Configurable issue tracker bridge for the workflow"]
 --
 Rationale:: Changes belong in the traceability graph; backlog, assignment, priority, and reporting belong in an issue tracker such as Jira or GitHub.

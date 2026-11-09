@@ -1,3 +1,5 @@
+= DEC-015 — Start skill evaluation with a local Claude Code runner
+
 [#DEC-015, item, role=decision, status=proposed, title="Start skill evaluation with a local Claude Code runner"]
 --
 Context:: The workflow skills need repeatable behavioral checks and with-skill versus baseline comparisons.

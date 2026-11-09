@@ -1,3 +1,5 @@
+= REQ-028 — Require a durable design item for each change
+
 [#REQ-028, item, role=requirement, level=component, status=approved, title="Require a durable design item for each change"]
 --
 Each refined implementation change SHALL have a durable, reviewable design item before its execution tasks are created.

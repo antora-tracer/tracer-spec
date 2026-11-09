@@ -1,3 +1,5 @@
+= REQ-047 — Reject status results from duplicate item IDs
+
 [#REQ-047, item, role=requirement, level=software, status=draft, title="Reject status results from duplicate item IDs"]
 --
 IF the project graph contains more than one definition for any item ID, THEN the status command SHALL exit nonzero and emit no status line.

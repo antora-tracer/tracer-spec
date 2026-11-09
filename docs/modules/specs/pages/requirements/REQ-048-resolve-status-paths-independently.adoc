@@ -1,3 +1,5 @@
+= REQ-048 — Resolve status graph paths independently
+
 [#REQ-048, item, role=requirement, level=software, status=draft, title="Resolve status graph paths independently"]
 --
 WHEN a user invokes `tspec status`, the system SHALL resolve `--config` or `-c` and `--docs` independently relative to the invocation's working directory, defaulting to `traceability.yml` and `docs/` when each is omitted.

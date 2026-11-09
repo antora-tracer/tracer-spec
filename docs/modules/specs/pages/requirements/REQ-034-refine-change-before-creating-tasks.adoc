@@ -1,3 +1,5 @@
+= REQ-034 — Refine one implementation change before creating execution tasks
+
 [#REQ-034, item, role=requirement, level=component, status=draft, title="Refine one implementation change before creating execution tasks"]
 --
 WHEN a user refines one proposed implementation change with applicable approved product/component requirements linked through `addresses`, the workflow SHALL define testable software-level requirements and keep BDD examples within the relevant requirement items, without requiring an `externalId`.

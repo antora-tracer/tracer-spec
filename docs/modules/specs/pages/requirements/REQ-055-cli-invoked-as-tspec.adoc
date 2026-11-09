@@ -1,3 +1,5 @@
+= REQ-055 — Invoke the workflow CLI as tspec
+
 [#REQ-055, item, role=requirement, level=component, status=approved, title="Invoke the workflow CLI as tspec"]
 --
 The workflow CLI SHALL be invokable using the `tspec` command.

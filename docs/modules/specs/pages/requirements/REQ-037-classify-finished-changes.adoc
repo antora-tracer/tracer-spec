@@ -1,3 +1,5 @@
+= REQ-037 — Classify finished changes
+
 [#REQ-037, item, role=requirement, level=component, status=approved, title="Classify finished changes"]
 --
 The system SHALL report a change as finished exactly when its lifecycle status is `closed`.

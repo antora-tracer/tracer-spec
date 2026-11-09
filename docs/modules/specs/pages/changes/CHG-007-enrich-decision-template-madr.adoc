@@ -1,3 +1,5 @@
+= CHG-007 — Enrich the decision template with MADR-style fields
+
 [#CHG-007, item, role=change, status=closed, title="Enrich the decision template with MADR-style fields"]
 --
 Rationale:: The decision role records context, the selected option, and consequences.

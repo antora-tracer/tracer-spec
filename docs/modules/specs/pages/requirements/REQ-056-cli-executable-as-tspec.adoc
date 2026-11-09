@@ -1,3 +1,5 @@
+= REQ-056 — Expose the CLI as tspec when installed
+
 [#REQ-056, item, role=requirement, level=software, status=approved, title="Expose the CLI as tspec when installed"]
 --
 WHEN the workflow CLI package is installed, the system SHALL expose a `tspec` executable that provides the existing `init` and `status` subcommands.

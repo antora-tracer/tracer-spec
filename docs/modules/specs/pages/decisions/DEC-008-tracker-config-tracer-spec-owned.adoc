@@ -1,3 +1,5 @@
+= DEC-008 — Keep provider selection in tspec.yml without storing credentials
+
 [#DEC-008, item, role=decision, status=proposed, title="Keep provider selection in tspec.yml without storing credentials"]
 --
 Context:: Feature-ticket refinement needs a provider selector to choose how to read an existing ticket and publish an explicitly approved summary. Credentials and ticket lifecycle state are owned by the user and provider tooling, not by the graph workflow.

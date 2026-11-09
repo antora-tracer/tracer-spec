@@ -1,3 +1,5 @@
+= CHG-005 — Make role guidance resolvable and template-driven
+
 [#CHG-005, item, role=change, status=closed, title="Make role guidance resolvable and template-driven"]
 --
 Rationale:: The tspec skills need to read item fields from role guidance, but `antora-tracer role-guidance <role> --config traceability.yml --content` currently fails.

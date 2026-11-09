@@ -1,3 +1,5 @@
+= REQ-041 — Report one change status record
+
 [#REQ-041, item, role=requirement, level=software, status=draft, title="Report one change status record"]
 --
 WHEN a user runs `tspec status <change-id>` from a project root and the ID resolves to a change, the system SHALL emit one status line containing only the change ID, persisted lifecycle status, actionable result, and finished result.
