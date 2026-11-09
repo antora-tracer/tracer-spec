@@ -80,7 +80,7 @@ Never changes state.
 == tspec-write-item
 
 Write one item of any declared role (`change`, `requirement`, `decision`, `test`, `use_case`, `architecture`, `design`, or `adr`) and wire its configured relations.
-Resolve the collection, identifier prefix, status, and item template from role guidance.
+Resolve the collection directory, listing page, identifier prefix, status, and item template from role guidance; items are written as partials and included by their listing page.
 
 == tspec-track
 

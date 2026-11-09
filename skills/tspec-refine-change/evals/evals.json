@@ -10,7 +10,7 @@
       "expectations": [
         { "configuration": "with_skill", "type": "workspace_changed_under", "path": "docs/modules/specs/pages", "text": "Change refinement writes only its own change and software requirements." },
         { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "level=software", "text": "A new detailed behavior requirement is software-level." },
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/requirements", "value": "externalId=FEAT-42", "text": "New change requirements retain the shared external ID." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/partials/requirements", "value": "externalId=FEAT-42", "text": "New change requirements retain the shared external ID." },
         { "configuration": "with_skill", "type": "file_exists", "path": "tspec/CHG-001/tasks.md", "text": "An estimatable refined slice receives its temporary checklist." },
         { "configuration": "with_skill", "type": "file_contains", "path": "tspec/CHG-001/tasks.md", "value": "- [ ]", "text": "Checklist items are actionable checkboxes." }
       ]
@@ -33,8 +33,8 @@
       "expected_output": "Refines CHG-002 from REQ-003 without requiring or inventing an externalId, saves the user-approved software-level requirement, and creates tasks only after the change is refined.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/requirements", "value": "level=software", "text": "Ticketless refinement records a software-level requirement." },
-        { "configuration": "with_skill", "type": "file_contains", "path": "docs/modules/specs/pages/changes/CHG-002-local.adoc", "value": "status=refined", "text": "The change becomes refined after the user approves its estimatable scope." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/partials/requirements", "value": "level=software", "text": "Ticketless refinement records a software-level requirement." },
+        { "configuration": "with_skill", "type": "file_contains", "path": "docs/modules/specs/partials/changes/CHG-002-local.adoc", "value": "status=refined", "text": "The change becomes refined after the user approves its estimatable scope." },
         { "configuration": "with_skill", "type": "file_exists", "path": "tspec/CHG-002/tasks.md", "text": "An estimatable ticketless change receives its task checklist." }
       ]
     },

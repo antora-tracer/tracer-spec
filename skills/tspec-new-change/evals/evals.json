@@ -8,8 +8,8 @@
       "expected_output": "Creates exactly one proposed CHG from context, retains externalId=FEAT-42, addresses REQ-002, and creates no requirements or tasks.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/changes", "value": "externalId=FEAT-42", "text": "The external item identifier is included when supplied." },
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/changes", "value": "addresses:REQ-002[]", "text": "The change links to the applicable approved requirement." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/partials/changes", "value": "externalId=FEAT-42", "text": "The external item identifier is included when supplied." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/partials/changes", "value": "addresses:REQ-002[]", "text": "The change links to the applicable approved requirement." },
         { "configuration": "with_skill", "type": "workspace_unchanged", "path": "tspec", "text": "Creation does not create a task checklist." }
       ]
     },
@@ -20,7 +20,7 @@
       "expected_output": "Creates one proposed ticketless change anchored to REQ-003 without asking for or inventing an externalId.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages/changes", "value": "addresses:REQ-003[]", "text": "The local change remains anchored to its approved requirement." },
+        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/partials/changes", "value": "addresses:REQ-003[]", "text": "The local change remains anchored to its approved requirement." },
         { "configuration": "with_skill", "type": "workspace_unchanged", "path": "tspec", "text": "Creation does not create a task checklist." }
       ]
     },

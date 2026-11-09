@@ -1,13 +1,14 @@
 # AGENTS.md
 
 This project uses the **Tracer Spec Workflow** (spec-driven development on
-Antora Tracer). Durable artifacts are traceable Antora/AsciiDoc items published
-as pages under `docs/modules/specs/pages/`, validated with `antora-tracer`.
+Antora Tracer). Durable artifacts are traceable Antora/AsciiDoc items written
+as partials under `docs/modules/specs/partials/` and included by their role's
+listing page, validated with `antora-tracer`.
 
 ## Durable Artifacts Directory
 
 Durable artifacts (requirements, changes, architecture items, change designs, decisions, and ADRs) are written to
-`docs/modules/specs/pages/`.
+`docs/modules/specs/partials/<role>/` and included by `docs/modules/specs/pages/<role>.adoc`.
 
 ## Skills
 
@@ -36,7 +37,7 @@ tspec-explore → tspec-refine-feature → tspec-new-change → tspec-refine-cha
 Related graph items may share optional `externalId=<id>` metadata when associated with the same external item. `tspec-new-change` records one CHG against applicable approved product/component requirements, but does not author software requirements, design items, or tasks; `tspec-refine-change` creates the durable DSN design before its temporary checklist.
 
 - The graph is the source of truth for specifications. It includes the arc42-aligned architecture baseline, stable architecture items, per-change design items, requirements, decisions, and ADRs. The external feature ticket remains authoritative for backlog position, status, and estimate.
-  Durable items are pages under `docs/modules/specs/pages/`; temporary tasks go in `tspec/<change-id>/`.
+  Durable items are partials under `docs/modules/specs/partials/<role>/`; temporary tasks go in `tspec/<change-id>/`.
 - `tspec-track --read <feature-ticket-id>` reads an existing ticket.
   `--update-refinement` requires approval of the exact section preview and
   changes only the unique `TSPEC refinement` section, preserving all other

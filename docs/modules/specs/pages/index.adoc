@@ -2,8 +2,8 @@
 
 Your project documentation starts here.
 
-This is a Tracer Spec Workflow project. Add durable items to
-`docs/modules/specs/pages/` and they flow through the traceability graph.
+This is a Tracer Spec Workflow project. Add durable items as partials under
+`docs/modules/specs/partials/` and they flow through the traceability graph, rendered on the role's listing page.
 
 == Getting started
 
