@@ -1,0 +1,24 @@
+[#CHG-020, item, role=change, status=implemented, title="State one obligation per requirement and split the harness-install requirements"]
+--
+Rationale:: The requirement guidance already said "one SHALL per block", but every approved multi-SHALL item passed validation because each block held one SHALL. REQ-059 stated four obligations, REQ-058 and REQ-060 each paired a positive SHALL with a prohibition, and REQ-057 absorbed child detail. The conformance reviewer then had to return one verdict per multi-obligation item. No authoring surface enforced the rule, so new items repeated the defect.
+
+Outcome:: The rule is one obligation per item: same-level obligations split into separate items, different-level obligations become a parent and a refining child. Core requirement guidance, this repo's write/refine skills, and the shipped conformance reviewer state it. REQ-057, REQ-058, REQ-059, and REQ-060 are superseded by atomic successors that keep their trace links.
+
+Out-of-scope:: Adding a validation or lint rule for SHALL counts; changing the approved REQ-028, REQ-029, REQ-066, REQ-067, or REQ-068 bodies; changing the supersession or archive lifecycle.
+
+addresses:REQ-069[]
+addresses:REQ-070[]
+addresses:REQ-071[]
+addresses:REQ-072[]
+addresses:REQ-073[]
+addresses:REQ-074[]
+addresses:REQ-075[]
+addresses:REQ-076[]
+addresses:REQ-077[]
+addresses:REQ-078[]
+addresses:REQ-079[]
+addresses:REQ-080[]
+records:DEC-020[]
+records:DSN-006[]
+tracer:links[]
+--

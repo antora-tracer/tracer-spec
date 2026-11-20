@@ -1,0 +1,14 @@
+[#DSN-006, item, role=design, status=accepted, title="Design for CHG-020: State one obligation per requirement"]
+--
+Context:: The atomicity rule existed in the inherited requirement guidance but was read per block, so a multi-paragraph body with one SHALL per paragraph passed. Nothing applied the rule at authoring time or at review time, and four approved items carried several obligations each.
+
+Approach:: Restate the rule as one obligation per item, with the split/refine decision stated in the same sentence. Place it once in the core requirement guidance's Atomicity section and reference it from the authoring skills rather than restating it in each. Add an atomicity check to the shipped conformance reviewer so a multi-obligation item surfaces as an ambiguous verdict at the archive gate. Add a requirements-writing eval case for the paired positive-and-prohibition shape. Supersede the four offenders with atomic successors instead of editing them, and repoint their trace links to the successors.
+
+Architecture impact:: No ARC item changes. The change touches the guidance text, two skills, three shipped agent definitions, and one eval case set.
+
+Alternatives and trade-offs:: A validation rule counting SHALLs per item is deterministic and would catch every future offender, but it cannot tell "and" joining one outcome from two obligations, so it would fail approved items that join aspects of a single outcome. It would also shift enforcement away from authoring, against DEC-012's decision to catch requirement defects where requirements are written. Editing the approved bodies in place is a smaller diff but breaks the referential integrity DEC-004 protects. Grandfathering all offenders avoids the supersession churn but leaves the reviewer's one-verdict-per-item ambiguity in place.
+
+recorded_by:CHG-020[]
+realizes:REQ-069[]
+tracer:links[]
+--

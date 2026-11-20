@@ -1,0 +1,14 @@
+[#DSN-007, item, role=design, status=accepted, title="Design for CHG-021: Split the grandfathered multi-obligation requirements"]
+--
+Context:: Twelve approved requirements each stated two or three obligations. DEC-004 makes approved items immutable, so the fix is supersession, not editing. Their obligations also sit at different levels: REQ-050 and REQ-053 restate child detail at the parent level, while REQ-005, REQ-038, and the diagram trio mix a positive obligation with a prohibition.
+
+Approach:: Split each offender into atomic successors at the level its obligation actually belongs to. Parent items that absorbed child detail lose the child obligation: REQ-086, REQ-087, and REQ-088 keep only the component-level architecture obligations, and the software-level detail moves to REQ-089, REQ-090, REQ-096, REQ-097, and REQ-098. The design pair collapses the duplicate design obligation stated at both component and software level: REQ-091 states design-before-tasks once and supersedes both REQ-028 and REQ-053; REQ-092 and REQ-093 refine it. Positive obligations and prohibitions separate into distinct items. Historical bodies move verbatim into the superseded partial, retargeted so no historical edge points at a superseded item. The eleven draft offenders are mutable under DEC-004, so they are split in place: each keeps its primary obligation and its extra obligations move to a sibling draft at the same level, with the changes and use cases that addressed the parent addressing the siblings too. Every live edge — changes, designs, tests, use cases, and the architecture page — repoints to a successor.
+
+Architecture impact:: No ARC item or component boundary changes. The architecture page's quality-requirements reference repoints from REQ-006 to REQ-083.
+
+Alternatives and trade-offs:: Keeping the design obligation at both levels would have produced two successors stating the same requirement, which is the duplication this change removes; the cost is that REQ-091 now supersedes two items and both successors' lineage is one level up. Retargeting historical edges to active successors rewrites history's targets rather than leaving them dangling; the alternative — leaving them pointed at superseded items — produces eight advisory warnings and leaves the reader following a dead end. Splitting the diagram trio into four items inflates the graph by two items over the minimum, but each maps to a separate verifiable outcome.
+
+recorded_by:CHG-021[]
+realizes:REQ-069[]
+tracer:links[]
+--

@@ -12,18 +12,18 @@ Refine exactly one implementation change into a bounded, estimatable slice and t
 
 ## Process
 
-1. Read the selected change, relevant requirements, `traceability.yml`, the arc42 baseline, and linked architecture and decision items. Identify applicable approved product/component requirements through `addresses` links; stop if none apply.
-2. Work with the user to define rationale, outcome, bounded scope, and exclusions. Link only applicable approved product/component requirements with `addresses:REQ-NNN[]`.
-3. Plan testable software-level requirements, each refining its applicable approved requirement with `refines`. Read the arc42 baseline and linked architecture and ADR items, then create one durable DSN design item before the temporary task list. Record material alternatives and trade-offs, or state that the change has no architecture impact.
-If a costly-to-reverse architecture choice remains unresolved, ask the user to select an option; do not finalize the design or create tasks until the user decides. Record the selected choice as an ADR linked to the change, relevant requirements, and affected architecture items. Keep domain/business choices as `decision` items; do not create ADRs for routine choices.
-4. Show the proposed requirements, complete design item, and any ADR items with IDs, relations, and paths. Ask before saving. Save only the approved items as partials under `docs/modules/specs/partials/<role>/`, add their `include::partial$<role>/<file>.adoc[]` lines to the role listing pages, then run `antora-tracer validate -i docs --config traceability.yml`.
-5. Ask whether the user considers the slice estimatable. Mark the change `refined` only when the user confirms the scope and testable requirements are complete enough to estimate; otherwise keep its prior status, report gaps, and create no checklist.
-6. Only after marking an estimatable change `refined`, create `tspec/<change-id>/tasks.md` from the accepted requirements and durable design. Tasks remain temporary; the design remains in the graph after archive.
-
+0. Read tspec-write-item skill and follow the instructions.
+1. Work with the user to define rationale, outcome, bounded scope, and exclusions. Link only applicable approved product/component requirements with `addresses:REQ-NNN[]`.
+2. Plan testable software-level requirements, each refining its applicable approved requirement with `refines`. Read the arc42 baseline and linked architecture and ADR items, then create one durable DSN design item before the temporary task list. Record material alternatives and trade-offs, or state that the change has no architecture impact.
+If a costly-to-reverse architecture choice remains unresolved, ask the user to select an option; do not finalize the design or create tasks until the user decides. Record the selected choice as an ADR linked to the change, relevant requirements, and affected architecture items. Keep domain/business choices as `decision` items; do not create ADRs for routine or implementation details choices.
+3. Show the proposed requirements, complete design item, and any ADR items with IDs, relations, and paths. Ask before saving. Save only the approved items to the resolved location.
+4. Ask whether the user considers the slice estimatable. Mark the change `refined` only when the user confirms the scope and testable requirements are complete enough to estimate; otherwise keep its prior status, report gaps, and create no checklist.
+5. Only after marking an estimatable change `refined`, create `tspec/<change-id>/tasks.md` from the accepted requirements and durable design. Tasks remain temporary; the design remains in the graph after archive.
 
 ## Rules
 
 - Handle one change per invocation. Never refine siblings or use ticket status as the change's readiness signal.
 - Create/refine software-level requirements only here; product/component requirements belong to feature refinement.
+- Each planned requirement states one SHALL: one obligation, one observable behaviour. Split obligations that sit at the same level; when they sit at different levels, refine the broader approved requirement instead of restating it.
 - Do not create external tickets, update ticket descriptions/status/estimates, or require epics/stories.
 - Keep behavior scenarios in requirement prose; use distinct test items only when requested.

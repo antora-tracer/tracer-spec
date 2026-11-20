@@ -14,12 +14,18 @@ Write one item of any declared role.
 
 1. Confirm the role is declared in `traceability.yml` and resolve its guidance page and ID prefix with `antora-tracer role-guidance <role> --config traceability.yml --content`. Declared roles include `change`, `requirement`, `decision`, `test`, `use_case`, `architecture`, `design`, and `adr`.
 2. Generate the next ID with `antora-tracer next-id --prefix <PREFIX> -i docs`; prefixes come from role guidance and are not reserved.
-3. Write the item as a partial under `docs/modules/specs/partials/<role>/` with the status and fields from that role's guidance, then add its `include::partial$<role>/<file>.adoc[]` line to the role's listing page. Include `externalId=<id>` only when it belongs to an existing external item.
-4. Add only configured relation macros to existing IDs. Use a configured reverse relation when the canonical edge points from another role.
+3. Locate destination of the item:
+  * if antora-tracer query by-role <role> --json -i docs returns items, use the directory of their sourceFile; 
+  * otherwise use the destination named in antora-tracer role-guidance <role> --config traceability.yml --content; 
+  * otherwise default to docs/modules/specs/partials/<role>/ and its listing page docs/modules/specs/pages/<role>.adoc. Add include::partial$<role>/<file>.adoc[] to the listing page (blank line before it).
+4. Write the item under the resolved location with the status and fields from that role's guidance. Group related items together: append to the grouped partial that matches the item's level and functional area, and add an `include::partial$<role>/<file>.adoc[]` line to the listing page only when that group file is new. For `requirement`, the listing page nests areas under container headings (`==` container, `===` area) — place a new area include under the container from the xref:architecture.adoc[Building Block View] that the item belongs to, and name the file `<level>-<area>.adoc`. Do not split one area across files.
+5. Add only configured relation macros to existing IDs. Use a configured reverse relation when the canonical edge points from another role.
 
 ## Roles, prefixes, initial status
 
+
 | Role | Collection directory | Listing page | Prefix | Initial status |
+|------|----------------------|--------------|--------|----------------|
 | change | partials/changes/ | pages/changes.adoc | CHG | proposed |
 | requirement | partials/requirements/ | pages/requirements.adoc | REQ | draft |
 | decision | partials/decisions/ | pages/decisions.adoc | DEC | proposed |
@@ -61,3 +67,4 @@ tracer:links[]
 ## Guidelines
 
 - One sentence per line.
+- A `requirement` item states one SHALL: one obligation, one observable behaviour. Split obligations that sit at the same level into separate items; when they sit at different levels, state the broader one in a parent requirement and `refines` it. A prohibition is its own item. See the role guidance's Atomicity section.

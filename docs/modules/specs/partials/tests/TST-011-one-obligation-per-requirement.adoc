@@ -1,0 +1,11 @@
+[#TST-011, item, role=test, title="Requirement items carry one obligation"]
+--
+Test method: Run `npx antora-tracer validate -i docs --config traceability.yml` and `npx antora antora-playbook.yml`; then count SHALL occurrences in each addressed requirement's body and read the shipped guidance and reviewer text.
+
+Expected evidence: Validation and the site build pass with no errors; no requirement in the graph states more than one SHALL; REQ-070 through REQ-120 each state one SHALL and no positive SHALL paired with a SHALL NOT; the requirement guidance's Atomicity section states one obligation per item and the split/refine decision; the `tspec-write-item`, `tspec-refine-change`, and `tspec-refine-feature` skills repeat the rule; each shipped `tspec-conformance-reviewer` definition flags a multi-obligation addressed requirement; `evals/requirements-writing/cases.json` contains the paired positive-and-prohibition case.
+
+Automated test path: `npx antora-tracer validate -i docs --config traceability.yml`; `npx antora antora-playbook.yml`; a SHALL count over `docs/modules/specs/{pages,partials}/requirements/` excluding `superseded.adoc`.
+
+verifies:REQ-069[]
+tracer:links[]
+--

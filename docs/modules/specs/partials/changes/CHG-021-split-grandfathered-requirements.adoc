@@ -1,0 +1,12 @@
+[#CHG-021, item, role=change, status=implemented, title="Split the grandfathered multi-obligation requirements"]
+--
+Rationale:: CHG-020 enforced one obligation per requirement but left twelve earlier approved items carrying several SHALLs each. The conformance reviewer therefore still had to return one verdict per multi-obligation item, and the oldest product requirements — the ones most changes address — carried the ambiguity.
+
+Outcome:: Every requirement in the graph states one obligation. The twelve grandfathered approved items are superseded by twenty-four atomic successors that keep their trace links, and the successors are wired into the changes, designs, tests, use cases, and architecture items that referenced the originals. The eleven draft multi-obligation items are split in place into fifteen atomic siblings, and the changes and use cases that addressed them address the siblings.
+
+Out-of-scope:: Changing the meaning of any requirement; adding a validation rule for SHALL counts; editing approved bodies in place.
+
+addresses:REQ-069[]
+records:DSN-007[]
+tracer:links[]
+--

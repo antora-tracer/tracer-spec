@@ -8,11 +8,39 @@
       "expected_output": "Refines only CHG-001, preserves externalId=FEAT-42, addresses existing approved product/component requirements, creates software requirements that refines their applicable parent requirement, and creates tasks only after marking the estimatable slice refined.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
-        { "configuration": "with_skill", "type": "workspace_changed_under", "path": "docs/modules/specs/pages", "text": "Change refinement writes only its own change and software requirements." },
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/pages", "value": "level=software", "text": "A new detailed behavior requirement is software-level." },
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/partials/requirements", "value": "externalId=FEAT-42", "text": "New change requirements retain the shared external ID." },
-        { "configuration": "with_skill", "type": "file_exists", "path": "tspec/CHG-001/tasks.md", "text": "An estimatable refined slice receives its temporary checklist." },
-        { "configuration": "with_skill", "type": "file_contains", "path": "tspec/CHG-001/tasks.md", "value": "- [ ]", "text": "Checklist items are actionable checkboxes." }
+        {
+          "configuration": "with_skill",
+          "type": "workspace_changed_under",
+          "path": "docs/modules/specs/partials",
+          "text": "Change refinement writes only its own change and software requirements."
+        },
+        {
+          "configuration": "with_skill",
+          "type": "new_file_contains",
+          "path": "docs/modules/specs/partials",
+          "value": "level=software",
+          "text": "A new detailed behavior requirement is software-level."
+        },
+        {
+          "configuration": "with_skill",
+          "type": "new_file_contains",
+          "path": "docs/modules/specs/partials/requirements",
+          "value": "externalId=FEAT-42",
+          "text": "New change requirements retain the shared external ID."
+        },
+        {
+          "configuration": "with_skill",
+          "type": "file_exists",
+          "path": "tspec/CHG-001/tasks.md",
+          "text": "An estimatable refined slice receives its temporary checklist."
+        },
+        {
+          "configuration": "with_skill",
+          "type": "file_contains",
+          "path": "tspec/CHG-001/tasks.md",
+          "value": "- [ ]",
+          "text": "Checklist items are actionable checkboxes."
+        }
       ]
     },
     {
@@ -22,8 +50,18 @@
       "expected_output": "Records only the agreed draft refinement; CHG-001 remains proposed, no temporary checklist exists, and the unresolved integration decision is explicit.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
-        { "configuration": "with_skill", "type": "file_not_exists", "path": "tspec/CHG-001/tasks.md", "text": "No temporary checklist is created before estimatable readiness." },
-        { "configuration": "with_skill", "type": "assistant_contains", "value": "integration", "text": "The unresolved decision remains explicit." }
+        {
+          "configuration": "with_skill",
+          "type": "file_not_exists",
+          "path": "tspec/CHG-001/tasks.md",
+          "text": "No temporary checklist is created before estimatable readiness."
+        },
+        {
+          "configuration": "with_skill",
+          "type": "assistant_contains",
+          "value": "integration",
+          "text": "The unresolved decision remains explicit."
+        }
       ]
     },
     {
@@ -33,9 +71,26 @@
       "expected_output": "Refines CHG-002 from REQ-003 without requiring or inventing an externalId, saves the user-approved software-level requirement, and creates tasks only after the change is refined.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
-        { "configuration": "with_skill", "type": "new_file_contains", "path": "docs/modules/specs/partials/requirements", "value": "level=software", "text": "Ticketless refinement records a software-level requirement." },
-        { "configuration": "with_skill", "type": "file_contains", "path": "docs/modules/specs/partials/changes/CHG-002-local.adoc", "value": "status=refined", "text": "The change becomes refined after the user approves its estimatable scope." },
-        { "configuration": "with_skill", "type": "file_exists", "path": "tspec/CHG-002/tasks.md", "text": "An estimatable ticketless change receives its task checklist." }
+        {
+          "configuration": "with_skill",
+          "type": "new_file_contains",
+          "path": "docs/modules/specs/partials/requirements",
+          "value": "level=software",
+          "text": "Ticketless refinement records a software-level requirement."
+        },
+        {
+          "configuration": "with_skill",
+          "type": "file_contains",
+          "path": "docs/modules/specs/partials/changes/CHG-002-local.adoc",
+          "value": "status=refined",
+          "text": "The change becomes refined after the user approves its estimatable scope."
+        },
+        {
+          "configuration": "with_skill",
+          "type": "file_exists",
+          "path": "tspec/CHG-002/tasks.md",
+          "text": "An estimatable ticketless change receives its task checklist."
+        }
       ]
     },
     {
@@ -45,8 +100,17 @@
       "expected_output": "Asks for an applicable approved requirement anchor and leaves the graph and task directory unchanged.",
       "fixture": "evals/fixtures/refinement-project",
       "expectations": [
-        { "configuration": "with_skill", "type": "workspace_unchanged", "text": "No graph or task files are written without an approved requirement anchor." },
-        { "configuration": "with_skill", "type": "assistant_contains", "value": "requirement", "text": "The user is asked to establish the missing requirement anchor." }
+        {
+          "configuration": "with_skill",
+          "type": "workspace_unchanged",
+          "text": "No graph or task files are written without an approved requirement anchor."
+        },
+        {
+          "configuration": "with_skill",
+          "type": "assistant_contains",
+          "value": "requirement",
+          "text": "The user is asked to establish the missing requirement anchor."
+        }
       ]
     }
   ]
