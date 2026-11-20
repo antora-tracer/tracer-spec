@@ -1,0 +1,24 @@
+[#DEC-018, item, role=decision, status=proposed, title="Default architecture notation is C4, with traditional UML as a project option"]
+--
+Context:: Architecture diagrams need a notation. C4 (context, container, component) maps directly onto arc42 views; traditional UML (class, sequence, component) fits component hierarchies, which suits some products and not others.
+
+Options::
+* C4 only.
+** Good: one notation, matches arc42's view structure.
+** Bad: forces C4 on projects whose architecture is a component hierarchy.
+* Traditional UML only.
+** Good: familiar to teams with a UML background.
+** Bad: weaker fit for the context and container views.
+* Document C4 as the default and traditional UML as a project option.
+** Good: new projects get a working default; projects with a hierarchy model document their own choice.
+** Bad: notation is a convention the graph does not enforce.
+
+Decision:: The architecture authoring guidance documents C4 as the default notation and traditional UML as a documented alternative a project may adopt.
+
+Rationale:: The fit between notation and product is project-specific, so the default should be the one that maps cleanly onto arc42 while leaving the choice explicit rather than implicit.
+
+Consequences:: Each project states its notation in its guidance; reviewers check diagrams against the stated choice. The graph carries no notation field.
+
+recorded_by:CHG-018[]
+tracer:links[]
+--

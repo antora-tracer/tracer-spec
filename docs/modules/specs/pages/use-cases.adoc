@@ -29,3 +29,11 @@ leads_to:REQ-NNN[]
 tracer:links[]
 --
 ----
+
+== Items
+
+include::partial$use-cases/UC-001-refine-feature-ticket.adoc[]
+
+include::partial$use-cases/UC-002-check-change-status.adoc[]
+
+include::partial$use-cases/superseded.adoc[opts=optional]

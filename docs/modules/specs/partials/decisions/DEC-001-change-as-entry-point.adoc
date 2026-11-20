@@ -1,0 +1,8 @@
+[#DEC-001, item, role=decision, status=accepted, title="Change is the entry point; requirement is the Tier-1 spec unit"]
+--
+Context:: The workflow needed an entry point and a minimal traceability core.
+Decision:: The change is the entry point, and the requirement is the spec unit; both belong to the Tier-1 core. Use cases and goals are deferred to growth roles.
+Consequences:: No mandatory use-case ceremony; the requirement is the durable contract a change addresses.
+
+tracer:links[]
+--

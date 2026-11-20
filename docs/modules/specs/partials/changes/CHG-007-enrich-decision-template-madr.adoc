@@ -1,0 +1,21 @@
+[#CHG-007, item, role=change, status=closed, title="Enrich the decision template with MADR-style fields"]
+--
+Rationale:: The decision role records context, the selected option, and consequences.
+It leaves out the alternatives and the reasons for choosing one, so readers cannot reconstruct the decision.
+MADR's body structure records the options considered, their pros and cons, the selected option, and the rationale.
+It applies to decisions beyond architecture.
+Use MADR's fields in the AsciiDoc labeled-list template.
+Leave out the Status, Deciders, Date, and Technical Story header; the item's status attribute, its `recorded_by` relation, and `git` already express them.
+
+Outcome:: The decision guidance template lists Context, Options (with each option's good and bad points nested beneath it), Decision, Rationale, and Consequences.
+Future decisions will record the options considered, the option chosen, why it was chosen, and the trade-offs.
+
+Out-of-scope:: Markdown files.
+The core repository's `adr.adoc`.
+Rewriting the existing DEC-001 to DEC-006 items, which remain historical records.
+A Drivers field can wait until decisions need an explicit force list.
+
+addresses:REQ-013[]
+records:DEC-007[]
+tracer:links[]
+--

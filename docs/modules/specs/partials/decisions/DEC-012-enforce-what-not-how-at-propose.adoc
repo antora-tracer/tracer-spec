@@ -1,0 +1,24 @@
+[#DEC-012, item, role=decision, status=proposed, title="Enforce what-not-how at propose, not in validation"]
+--
+Context:: Requirement statements leak implementation detail.
+Candidates: strengthen the propose skill, add a validation rule, or add a reviewer.
+
+Options::
+* Strengthen the propose skill's Rules with a self-check.
+** Good: catches the leak where requirements are authored; cheap.
+** Bad: advisory — the authoring agent must apply it.
+* A validation or lint rule.
+** Good: automatic and always-on.
+** Bad: "what not how" is semantic, so no structural linter can catch it.
+* A dedicated review skill.
+** Good: an independent check.
+** Bad: another skill and step for a one-bullet problem.
+
+Decision:: Strengthen the propose skill's Rules with a self-check that references the requirement guidance's "Solution prescription" list.
+
+Rationale:: Semantic leakage cannot be linted; the cheapest effective lever is a self-check at authoring time, reusing the flag list the guidance already defines.
+
+Consequences:: Reduces but does not eliminate leakage; the human accept gate and the archive cold reviewer remain the backstops.
+
+tracer:links[]
+--

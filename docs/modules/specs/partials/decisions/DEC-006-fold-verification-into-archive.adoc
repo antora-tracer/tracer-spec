@@ -1,0 +1,8 @@
+[#DEC-006, item, role=decision, status=proposed, title="Fold conformance verification into archive, not a verify-change skill"]
+--
+Context:: Conformance verification has no home in the workflow: `validate` is structural, and `apply` self-reports its own evidence.
+Decision:: Fold the conformance check into `tspec-archive` as a gate before close, performed by a cold, read-only reviewer. Do not add a dedicated `verify-change` skill.
+Consequences:: The skill count stays at six, and verification is always and only a precondition to close, so the `verified` state remains self-claimed by `apply`.
+
+tracer:links[]
+--

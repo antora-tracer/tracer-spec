@@ -1,0 +1,62 @@
+[#CHG-004, item, role=change, status=closed, title="Redesign the tspec workflow: minimal grammar, stage skills, and thin tooling"]
+--
+Rationale:: The traceability grammar came from the presets and grew through hand edits, without a clear set of workflow questions to guide it.
+OpenSpec provides a useful workflow model, but its store and engine cannot reach antora-tracer.
+This workflow therefore uses antora-tracer directly.
+Both belong to Tier 1: the change is the entry point, and the requirement is the specification unit.
+Scenarios stay as prose inside requirements, and tests verify requirements.
+Most choices concern the domain or specification, not software architecture, so record them as decisions rather than ADRs.
+Approved requirements stay immutable.
+If a change alters a requirement's meaning, create a new requirement that supersedes it.
+Stage skills manage the change lifecycle.
+A human acceptance gate and validation require review before implementation.
+Only execution tasks stay temporary.
+
+Outcome:: The grammar has three tiers and can grow as the workflow needs more roles.
+Tier 1 holds the change and requirement roles.
+Tier 2 holds decisions, tests, and optional roles for understanding, such as use_case; Tier 3 holds temporary execution tasks.
+Initial relations connect changes to requirements through `addresses`, changes to decisions through `records`, requirements to other requirements through `supersedes`, and tests to requirements through `verifies`.
+Feature refinement adds `leads_to` links from use cases to requirements and `refines` links between requirements; configured reverse names are derived.
+The initial matrices are changes-to-requirements and requirements-tests.
+Feature refinement adds use-cases-to-requirements and requirements-refinement.
+Changes carry structured rationale, outcome, and out-of-scope fields.
+An accepted change must address at least one requirement.
+The grammar extends `minimal`: it keeps that preset's requirement and test roles and adds change, decision, and use_case.
+Workflow skills cover exploration, feature refinement, proposal of one implementation slice, change refinement, apply, archive, validation, generic item writing, and ticket access.
+Feature refinement creates use cases and product/component requirements.
+Proposal creates an implementation change and its links.
+Change refinement adds software requirements, followed by temporary tasks.
+The human gate accepts a change only after its refined requirements are ready.
+The existing apply/archive lifecycle follows.
+The command-line tool stays thin: `init` scaffolds the project and installs its skills.
+No command drives the workflow; the antora-tracer CLI handles validation and matrix generation.
+The anchor block `[#ID, item, role=<role>, status=<state>, title="..."]` opens an item with a `--`-delimited body for prose and relation macros, ending with `tracer:links[]`.
+The source item carries each relation as `<relation>:<ID>[]`.
+Changes carry labeled-list fields for Rationale, Outcome, and Out-of-scope.
+The changes-to-requirements matrix uses changes as rows, requirements as columns, and the addresses coverage relation.
+The minimal preset's requirements-tests matrix uses requirements as rows and tests as columns.
+Its coverage relations are the verified_by and covers relations.
+Explore reads code and returns a change sketch without writing.
+Apply ticks off tasks, adds test evidence, and advances a change from accepted to implemented and then to verified.
+Archive runs validation, deletes the `tspec` directory, and advances a verified change to `closed`.
+Validate runs the antora-tracer check without changing state.
+Write-item creates one item of any declared role and wires its relations.
+
+Out-of-scope:: Resetting the example content to the new grammar.
+Field-level enforcement and matrix presentation details.
+The `skip-specs` escape for requirement-free changes remains unenforced.
+
+addresses:REQ-001[]
+addresses:REQ-002[]
+addresses:REQ-003[]
+addresses:REQ-004[]
+addresses:REQ-081[]
+addresses:REQ-082[]
+addresses:REQ-083[]
+addresses:REQ-084[]
+records:DEC-001[]
+records:DEC-002[]
+records:DEC-003[]
+records:DEC-004[]
+tracer:links[]
+--
