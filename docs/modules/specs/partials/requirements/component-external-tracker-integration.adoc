@@ -46,3 +46,19 @@ The system SHALL NOT synchronize the ticket's backlog placement, status, or esti
 
 tracer:links[]
 --
+
+[#REQ-121, item, role=requirement, level=component, status=approved, title="Keep tracker credentials out of the repository and command text"]
+--
+The system SHALL read tracker credentials only from the process environment or the user's existing credential store, never from project files, command arguments, or generated output.
+
+Example: Given `FORGEJO_TOKEN` is set, when `tspec-track` reads a ticket, then the token appears in no project file, no command line, and no printed output.
+
+tracer:links[]
+--
+
+[#REQ-122, item, role=requirement, level=component, status=approved, title="Reject a tracker URL that carries credentials or is not HTTPS"]
+--
+IF a tracker URL contains embedded credentials, a query, or a fragment, or uses a scheme other than HTTPS on a non-loopback host, THEN the system SHALL reject it with a nonzero exit and a diagnostic naming the offending part.
+
+tracer:links[]
+--

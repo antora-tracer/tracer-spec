@@ -103,3 +103,13 @@ supersedes:REQ-060[]
 refines:REQ-070[]
 tracer:links[]
 --
+
+[#REQ-123, item, role=requirement, level=software, status=approved, title="Write nothing outside the selected harness directories, even with force"]
+--
+The system SHALL write only inside the selected harness directories, so that no `--force` run reaches a project file through a symlinked destination.
+
+Example: Given a harness destination is a symlink to a project file, when `tspec install --force` runs, then the linked file is unchanged and the harness file is written in its place.
+
+refines:REQ-070[]
+tracer:links[]
+--

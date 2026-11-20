@@ -68,11 +68,51 @@ Costly-to-reverse software architecture choices are recorded as ADR items on xre
 
 == 10. Quality Requirements
 
+Quality requirements are `role=requirement` items like any other; the ISO 25010 characteristic is noted per group.
 Human review gates, requirement links, and graph validation are central quality properties. See approved xref:requirements.adoc#REQ-083[REQ-083] and xref:requirements.adoc#REQ-051[REQ-051].
+
+=== Security
+
+_ISO 25010: Security — degree to which a product protects information so that persons have the degree of data access appropriate to their types and levels of authorization._
+
+* xref:requirements.adoc#REQ-121[REQ-121] — Keep tracker credentials out of the repository and command text
+* xref:requirements.adoc#REQ-122[REQ-122] — Reject a tracker URL that carries credentials or is not HTTPS
+
+=== Reliability
+
+_ISO 25010: Reliability — degree to which a system performs specified functions under specified conditions for a specified period._
+
+* xref:requirements.adoc#REQ-125[REQ-125] — Report a malformed configuration with a nonzero exit and its location
+
+=== Performance Efficiency
+
+_ISO 25010: Performance Efficiency — performance relative to the amount of resources used._
+
+* xref:requirements.adoc#REQ-126[REQ-126] — Validate a thousand-item graph within one second
+
+=== Safety
+
+_ISO 25010: Safety — degree to which a product under defined conditions avoids a state in which human life, health, property, or the environment is endangered._
+
+* xref:requirements.adoc#REQ-123[REQ-123] — Write nothing outside the selected harness directories, even with force
+
+=== Maintainability
+
+_ISO 25010: Maintainability — degree of effectiveness and efficiency with which a product or system can be modified._
+
+* xref:requirements.adoc#REQ-069[REQ-069] — State one obligation per requirement
+* xref:requirements.adoc#REQ-023[REQ-023] — Assign each site page to exactly one Diátaxis mode
+
+=== Gap
+
+No requirement yet covers usability (error-message quality, discoverability) or flexibility (extensibility, configurability).
+These groups are absent rather than satisfied; record them when a concrete need is stated.
 
 == 11. Risks and Technical Debt
 
 The traceability configuration, role guidance, skill instructions, and starter templates can drift apart. The graph validator checks configured item links; site builds and workflow smoke checks cover the published guidance and authoring path.
+
+Duplicate item IDs are a live defect in the `antora-tracer` parser, not in this project's graph: it keeps the first block and silently discards the rest, so validation reports success on a graph that lost items. Fixing it belongs upstream; tracked as https://github.com/rattermeyer/antora-tracer/issues/18[antora-tracer#18].
 
 == 12. Glossary
 

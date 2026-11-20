@@ -76,7 +76,20 @@ Link to xref:adrs.adoc[Architecture Decisions]. Record domain and workflow decis
 
 == 10. Quality Requirements
 
-Describe important quality goals and scenarios; keep normative, testable obligations in `role=requirement` items.
+Record quality requirements as `role=requirement` items like any other, and group them here by ISO 25010 characteristic.
+Name the characteristic and link the requirement, for example:
+
+[source,asciidoc]
+----
+=== Performance Efficiency
+
+_ISO 25010: Performance Efficiency — performance relative to the amount of resources used._
+
+* xref:requirements.adoc#REQ-NNN[REQ-NNN] — <measurable quality obligation>
+----
+
+Keep each obligation testable: state the condition and a measurable target, not an adjective.
+Name a group that is genuinely absent as a gap rather than leaving it out silently.
 
 == 11. Risks and Technical Debt
 

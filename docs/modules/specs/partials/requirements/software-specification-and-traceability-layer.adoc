@@ -88,3 +88,19 @@ supersedes:REQ-054[]
 refines:REQ-091[]
 tracer:links[]
 --
+
+[#REQ-125, item, role=requirement, level=software, status=approved, title="Report a malformed configuration with a nonzero exit and its location"]
+--
+IF `traceability.yml` is malformed or references an undeclared role, THEN the system SHALL exit nonzero and report the offending location.
+
+tracer:links[]
+--
+
+[#REQ-126, item, role=requirement, level=software, status=approved, title="Validate a thousand-item graph within one second"]
+--
+WHEN validation runs on a graph of 1000 items, the system SHALL report its result within one second on a developer machine.
+
+Example: Given a graph of 1000 items, when `antora-tracer validate` runs, then it completes in under one second.
+
+tracer:links[]
+--
