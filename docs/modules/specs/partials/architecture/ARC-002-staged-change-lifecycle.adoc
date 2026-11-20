@@ -3,7 +3,13 @@
 Summary:: The workflow separates exploration, feature refinement, change refinement, implementation, and archive into reviewable skill stages.
 Description:: Each stage consumes the durable graph and adds its own approved records. A human accepts a refined change before implementation begins.
 
-realizes:REQ-006[]
+[plantuml]
+----
+include::example$diagrams/ARC-002-stage-flow.puml[]
+----
+
+realizes:REQ-083[]
 updated_by:CHG-012[]
+updated_by:CHG-018[]
 tracer:links[]
 --

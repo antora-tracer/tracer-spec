@@ -1,0 +1,48 @@
+[#REQ-008, item, role=requirement, level=component, status=draft, title="Change guidance declares an item template"]
+--
+The change guidance page SHALL declare its item fields as an `Item template` block with the labeled-list fields Rationale, Outcome, and Out-of-scope.
+
+tracer:links[]
+--
+
+[#REQ-009, item, role=requirement, level=component, status=draft, title="Decision guidance declares an item template"]
+--
+The decision guidance page SHALL declare its item fields as an `Item template` block with the labeled-list fields Context, Decision, and Consequences.
+
+tracer:links[]
+--
+
+[#REQ-013, item, role=requirement, level=component, status=draft, title="Decision guidance declares MADR-shaped item fields"]
+--
+The decision guidance page SHALL declare an `Item template` whose labeled-list fields are Context, Options (each alternative with its advantages and disadvantages), Decision, Rationale (why the chosen option won), and Consequences.
+
+tracer:links[]
+--
+
+[#REQ-021, item, role=requirement, level=component, status=draft, title="Document the workflow CLI in the site"]
+--
+The system SHALL document the `tspec init` command and the `antora-tracer validate` invocation in the Antora site, covering every flag, option, and argument.
+
+tracer:links[]
+--
+
+[#REQ-022, item, role=requirement, level=component, status=draft, title="Document all nine workflow skills in the site"]
+--
+The system SHALL document every workflow skill — `tspec-explore`, `tspec-refine-feature`, `tspec-new-change`, `tspec-refine-change`, `tspec-apply-change`, `tspec-archive`, `tspec-validate`, `tspec-write-item`, and `tspec-track` — in the site, with a task-oriented how-to and exhaustive reference entry naming each skill's trigger, arguments, operations, and configuration.
+
+tracer:links[]
+--
+
+[#REQ-023, item, role=requirement, level=component, status=draft, title="Assign each site page to exactly one Diátaxis mode"]
+--
+The system SHALL organise every site page into exactly one Diátaxis mode — tutorial, how-to, reference, explanation, or self-traceability — with the tutorial linking out to no other mode.
+
+tracer:links[]
+--
+
+[#REQ-024, item, role=requirement, level=component, status=draft, title="Name all nine skills in the README"]
+--
+The system SHALL list all nine workflow skills, including `tspec-refine-feature` and `tspec-refine-change`, in the README wherever the skill set is enumerated.
+
+tracer:links[]
+--

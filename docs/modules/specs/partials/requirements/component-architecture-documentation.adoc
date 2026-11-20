@@ -1,0 +1,17 @@
+[#REQ-101, item, role=requirement, level=component, status=approved, title="Keep each diagram's source in its own file"]
+--
+The workflow SHALL keep each architecture diagram's source in its own file under the module's `examples/` family, so the source is discoverable and reviewable independently of the page.
+
+supersedes:REQ-067[]
+refines:REQ-086[]
+tracer:links[]
+--
+
+[#REQ-102, item, role=requirement, level=component, status=approved, title="Reference each diagram's source from the view with an include"]
+--
+The workflow SHALL reference each diagram's external source from the view that describes it, using an include.
+
+supersedes:REQ-067[]
+refines:REQ-086[]
+tracer:links[]
+--

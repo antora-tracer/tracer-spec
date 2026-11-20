@@ -1,0 +1,43 @@
+[#REQ-015, item, role=requirement, level=software, status=draft, title="Associate graph items with optional external identifiers"]
+--
+The system SHALL allow canonical graph items, including use cases, requirements, and changes, to carry optional scalar `externalId` metadata referencing an existing external item.
+
+Items associated with the same external item MAY share an `externalId`.
+
+tracer:links[]
+--
+
+[#REQ-017, item, role=requirement, level=software, status=draft, title="Update only a user-approved ticket summary"]
+--
+WHEN the user approves a proposed summary update, the system SHALL update only the unique `TSPEC refinement` section of the existing ticket description (a GitHub or Forgejo Markdown heading, or the equivalent Jira ADF section).
+
+tracer:links[]
+--
+
+[#REQ-106, item, role=requirement, level=software, status=draft, title="Omit externalId when there is no external association"]
+--
+Items without an external association SHALL omit `externalId`.
+
+tracer:links[]
+--
+
+[#REQ-107, item, role=requirement, level=software, status=draft, title="Keep externalId as metadata, not a relation"]
+--
+The `externalId` reference SHALL remain metadata, not a traceability relation or graph item.
+
+tracer:links[]
+--
+
+[#REQ-109, item, role=requirement, level=software, status=draft, title="Preserve the rest of the ticket description"]
+--
+The system SHALL preserve the rest of the ticket description when it updates the refinement section.
+
+tracer:links[]
+--
+
+[#REQ-110, item, role=requirement, level=software, status=draft, title="Write nothing when the refinement section is not unique"]
+--
+IF the `TSPEC refinement` section cannot be identified uniquely, THEN the system SHALL NOT write to the ticket.
+
+tracer:links[]
+--

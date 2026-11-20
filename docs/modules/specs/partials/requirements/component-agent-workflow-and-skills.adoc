@@ -1,0 +1,87 @@
+[#REQ-010, item, role=requirement, level=component, status=draft, title="Archive verifies addressed requirements are satisfied"]
+--
+The system SHALL verify that each requirement addressed by a change is satisfied by the implementation before the change reaches `closed`.
+
+tracer:links[]
+--
+
+[#REQ-011, item, role=requirement, level=component, status=draft, title="Archive refuses to close an unsatisfied change"]
+--
+The system SHALL NOT advance a change to `closed` when any requirement the change addresses is not satisfied.
+
+tracer:links[]
+--
+
+[#REQ-012, item, role=requirement, level=component, status=draft, title="Archive verification is read-only"]
+--
+The archive conformance verification SHALL be read-only.
+
+tracer:links[]
+--
+
+[#REQ-094, item, role=requirement, level=component, status=approved, title="Request the user's decision before finalizing the design"]
+--
+WHEN a change design leaves a material architecture choice unresolved, the workflow SHALL request the user's decision before finalizing the design.
+
+supersedes:REQ-029[]
+refines:REQ-051[]
+tracer:links[]
+--
+
+[#REQ-095, item, role=requirement, level=component, status=approved, title="Record the chosen option in an ADR"]
+--
+The chosen option SHALL be recorded in an ADR linked to the change, the relevant requirements, and the affected architecture items.
+
+supersedes:REQ-029[]
+refines:REQ-051[]
+tracer:links[]
+--
+
+[#REQ-033, item, role=requirement, level=component, status=draft, title="Propose independently deliverable changes against feature requirements"]
+--
+WHEN a feature has approved product/component requirements, the workflow SHALL allow a user to propose multiple independently deliverable changes that link with `addresses` only to applicable approved requirements. Changes and related graph items associated with an external ticket MAY share its `externalId`; local changes need no external ID.
+
+tracer:links[]
+--
+
+[#REQ-034, item, role=requirement, level=component, status=draft, title="Define testable software requirements for one change"]
+--
+WHEN a user refines one proposed implementation change with applicable approved product/component requirements linked through `addresses`, the workflow SHALL define testable software-level requirements and keep BDD examples within the relevant requirement items, without requiring an `externalId`.
+
+tracer:links[]
+--
+
+[#REQ-116, item, role=requirement, level=component, status=draft, title="Proposing a change creates no software requirements or tasks"]
+--
+Proposing a change SHALL NOT create its detailed software requirements or execution tasks.
+
+tracer:links[]
+--
+
+[#REQ-117, item, role=requirement, level=component, status=draft, title="Create the task checklist only after confirmation"]
+--
+The workflow SHALL create a change's temporary task checklist only after the user confirms its scope and software requirements are sufficiently complete to estimate.
+
+tracer:links[]
+--
+
+[#REQ-118, item, role=requirement, level=component, status=draft, title="Stop when no approved requirement anchor exists"]
+--
+IF no applicable approved requirement anchor exists, THEN the workflow SHALL stop and ask for the requirement to be established first.
+
+tracer:links[]
+--
+
+[#REQ-119, item, role=requirement, level=component, status=draft, title="Never invent a link or requirement to bypass the gate"]
+--
+The workflow SHALL NOT invent a requirement link or create requirements to bypass the approved-anchor gate.
+
+tracer:links[]
+--
+
+[#REQ-120, item, role=requirement, level=component, status=draft, title="Archive verification alters no durable item"]
+--
+The archive conformance verification SHALL NOT alter any durable item.
+
+tracer:links[]
+--

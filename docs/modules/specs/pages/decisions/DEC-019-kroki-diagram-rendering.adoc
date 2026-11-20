@@ -1,0 +1,29 @@
+= DEC-019 — Render architecture diagrams from text at build time with Kroki
+
+[#DEC-019, item, role=decision, status=proposed, title="Render architecture diagrams from text at build time with Kroki"]
+--
+Context:: The architecture views need diagrams. Four mechanisms were considered; only one keeps diagram source diffable while leaving the published site self-contained.
+
+Options::
+* Committed SVG/PNG images.
+** Good: no dependency; build and viewing both work offline.
+** Bad: not text-diffable; every change needs a hand-run generator.
+* Kroki fetched at build and embedded.
+** Good: text source; published pages carry local SVGs; no runtime network.
+** Bad: the build needs network or a local Kroki.
+* Remote Kroki image links.
+** Good: build stays offline.
+** Bad: the reader's browser fetches the service; pages break without network.
+* Extend the core extension's Kroki encoder.
+** Good: reuses existing code.
+** Bad: changes a different repository for a documentation need.
+
+Decision:: Add `asciidoctor-kroki` to the playbook's `asciidoc.extensions` with `kroki-fetch-diagram: true`, pinning `0.18.2`. Version 2.0.0 requires `@asciidoctor/core >=4`, while Antora 3.2 uses `~2.2`.
+
+Rationale:: Text source stays reviewable in pull requests, and fetching at build embeds the diagram so the published site is self-contained. Pinning the major version avoids the incompatible 2.x line.
+
+Consequences:: The documentation build depends on a rendering service at build time, configurable through `kroki-server-url`, which also lets an air-gapped build use a local service. The build already fetches the UI bundle from a URL, so this adds no new class of network dependency. An unreachable service degrades to showing the diagram source with a warning rather than failing the build.
+
+recorded_by:CHG-018[]
+tracer:links[]
+--

@@ -1,0 +1,91 @@
+[#REQ-041, item, role=requirement, level=software, status=draft, title="Report one change status record"]
+--
+WHEN a user runs `tspec status <change-id>` from a project root and the ID resolves to a change, the system SHALL emit one status line containing only the change ID, persisted lifecycle status, actionable result, and finished result.
+
+Example: Given `CHG-014` has status `proposed`, when the user runs `tspec status CHG-014`, the output is `CHG-014 status=proposed actionable=false finished=false`.
+
+refines:REQ-035[]
+refines:REQ-039[]
+tracer:links[]
+--
+
+[#REQ-042, item, role=requirement, level=software, status=draft, title="Reject IDs that do not identify changes"]
+--
+IF the supplied ID does not resolve to exactly one item with role `change`, THEN the command SHALL exit with a nonzero status and write an error to standard error without writing a status line to standard output.
+
+Example: Given `REQ-035` exists but no change has that ID, when the user runs `tspec status REQ-035`, the command exits nonzero and standard output contains no status line.
+
+refines:REQ-035[]
+refines:REQ-039[]
+tracer:links[]
+--
+
+[#REQ-043, item, role=requirement, level=software, status=draft, title="Classify leaf change actionability"]
+--
+WHEN a change has no child changes linked to it by `refines`, the system SHALL report it as actionable exactly when its persisted lifecycle status is `refined` or `accepted`.
+
+Example: A leaf change with status `accepted` is reported with `actionable=true`; a leaf change with status `implemented` is reported with `actionable=false`.
+
+refines:REQ-036[]
+tracer:links[]
+--
+
+[#REQ-044, item, role=requirement, level=software, status=draft, title="Classify finished change state"]
+--
+The system SHALL report a change as finished exactly when its persisted lifecycle status is `closed`.
+
+Example: A change with status `verified` is reported with `finished=false`; a change with status `closed` is reported with `finished=true`.
+
+refines:REQ-037[]
+tracer:links[]
+--
+
+[#REQ-045, item, role=requirement, level=software, status=draft, title="Aggregate parent change actionability"]
+--
+WHEN an unclosed, unrejected change has one or more child changes linked to it by `refines` and the hierarchy is acyclic, the system SHALL report it as actionable exactly when every linked child change is actionable, applying the same rule recursively. A cycle produces a nonzero error without a status line.
+
+Example: An unclosed parent whose children are all `refined` or `accepted` is reported with `actionable=true`; if any child is `proposed`, it is reported with `actionable=false`.
+
+refines:REQ-085[]
+tracer:links[]
+--
+
+[#REQ-046, item, role=requirement, level=software, status=draft, title="Keep status command read-only"]
+--
+The status query SHALL NOT write to traceability graph files, temporary task files, or external tracker state.
+
+Example: Running the status command leaves the project's graph and task files unchanged and performs no tracker operation.
+
+refines:REQ-040[]
+tracer:links[]
+--
+
+[#REQ-047, item, role=requirement, level=software, status=draft, title="Reject status results from duplicate item IDs"]
+--
+IF the project graph contains more than one definition for any item ID, THEN the status command SHALL exit nonzero and emit no status line.
+
+Example: Given a child change is defined twice in one document and the second definition contains a parent link, when the parent status is queried, the command exits nonzero without a status line.
+
+refines:REQ-039[]
+tracer:links[]
+--
+
+[#REQ-048, item, role=requirement, level=software, status=draft, title="Resolve status graph paths independently"]
+--
+WHEN a user invokes `tspec status`, the system SHALL resolve `--config` or `-c` and `--docs` independently relative to the invocation's working directory, defaulting to `traceability.yml` and `docs/` when each is omitted.
+
+Example: From outside the project, when the user runs `tspec status CHG-004 --config project/traceability.yml --docs project/docs`, the result matches running the command from the project root with defaults.
+
+refines:REQ-039[]
+tracer:links[]
+--
+
+[#REQ-049, item, role=requirement, level=software, status=draft, title="Reject unreadable status input paths"]
+--
+IF the selected configuration or docs path cannot be read, THEN the command SHALL exit nonzero without printing a status line.
+
+Example: Given an explicit docs path that does not exist, when the user requests a change status, the command exits nonzero and standard output contains no status line.
+
+refines:REQ-039[]
+tracer:links[]
+--

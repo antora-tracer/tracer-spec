@@ -1,0 +1,48 @@
+[#REQ-014, item, role=requirement, level=component, status=draft, title="Preserve existing tracker provider configuration"]
+--
+The system SHALL preserve existing user-owned provider configuration when accessing feature tickets.
+
+tracer:links[]
+--
+
+[#REQ-016, item, role=requirement, level=component, status=draft, title="Read the existing feature ticket"]
+--
+WHEN an item has an `externalId` that identifies an existing supported ticket, the system SHALL read that ticket when tracker information is requested.
+
+tracer:links[]
+--
+
+[#REQ-018, item, role=requirement, level=component, status=draft, title="Keep ticket-owned state outside the graph"]
+--
+The system SHALL treat the external ticket as authoritative for its backlog placement, status, and estimate.
+
+tracer:links[]
+--
+
+[#REQ-019, item, role=requirement, level=component, status=draft, title="Do not write or pull ticket state and estimates"]
+--
+The system SHALL NOT change a feature ticket's status, backlog placement, or estimate, or pull those values into graph state. Tracker interaction is limited to reading the existing ticket and, after user approval, updating its unique `TSPEC refinement` description section.
+
+tracer:links[]
+--
+
+[#REQ-105, item, role=requirement, level=component, status=draft, title="Never create or rewrite provider configuration"]
+--
+The system SHALL NOT create, import, or rewrite provider configuration as part of feature-ticket refinement.
+
+tracer:links[]
+--
+
+[#REQ-108, item, role=requirement, level=component, status=draft, title="Never create or import tracker tickets"]
+--
+The system SHALL NOT create tracker tickets or import tickets into the graph.
+
+tracer:links[]
+--
+
+[#REQ-111, item, role=requirement, level=component, status=draft, title="Do not synchronize ticket state into the graph"]
+--
+The system SHALL NOT synchronize the ticket's backlog placement, status, or estimate into graph state.
+
+tracer:links[]
+--

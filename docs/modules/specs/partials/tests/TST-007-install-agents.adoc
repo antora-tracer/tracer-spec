@@ -1,0 +1,15 @@
+[#TST-007, item, role=test, title="Install agent definitions per harness"]
+--
+Test method: Run `node --test test/tspec-install.test.js`. Install with `--tools oh-my-pi,claude,codex --link` and inspect each harness's agent directory; install with `--tools pi,agents` to cover harnesses without an agent convention; install with `--scope user` against a temporary `HOME`.
+
+Expected evidence: The agent appears under `.omp/agents/` and `.claude/agents/` as Markdown and under `.codex/agents/` as TOML defining `name` and `developer_instructions`; symlinks resolve to the package sources; Pi and the shared `.agents` directory write no agent file; user scope writes agents under `HOME` while slash commands stay project-local; shipped agent names collide with no bundled agent; `--force` replaces an existing or dangling symlink instead of writing through it, creating no file outside the harness directories.
+
+Automated test path: `test/tspec-install.test.js`.
+
+verifies:REQ-074[]
+verifies:REQ-075[]
+verifies:REQ-076[]
+verifies:REQ-080[]
+verifies:REQ-077[]
+tracer:links[]
+--

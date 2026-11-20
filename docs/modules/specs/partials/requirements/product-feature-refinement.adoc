@@ -1,0 +1,48 @@
+[#REQ-030, item, role=requirement, level=product, status=draft, title="Refine an existing feature ticket into traceable product requirements"]
+--
+WHEN a feature owner refines an existing feature ticket, the workflow SHALL record the ticket's product intent as one or more traceable use cases and testable product/component requirements, associating those graph items with the ticket through shared `externalId` metadata.
+
+tracer:links[]
+--
+
+[#REQ-031, item, role=requirement, level=product, status=draft, title="Preserve partial feature refinement"]
+--
+WHEN a feature ticket has unresolved material questions, the workflow SHALL allow user-approved partial use cases and requirements to remain in `draft`.
+
+tracer:links[]
+--
+
+[#REQ-032, item, role=requirement, level=product, status=draft, title="Require user confirmation before approving feature requirements"]
+--
+WHEN feature refinement is complete and the user confirms the feature is estimatable, the workflow SHALL let the user advance the reviewed product/component requirements to `approved`.
+
+tracer:links[]
+--
+
+[#REQ-112, item, role=requirement, level=product, status=draft, title="Link use cases to their derived requirements"]
+--
+The use cases SHALL link to their derived requirements through `leads_to`.
+
+tracer:links[]
+--
+
+[#REQ-113, item, role=requirement, level=product, status=draft, title="Link a refined requirement to the requirement it refines"]
+--
+A more detailed requirement SHALL link to the requirement it refines through `refines`.
+
+tracer:links[]
+--
+
+[#REQ-114, item, role=requirement, level=product, status=draft, title="Identify the questions that block readiness"]
+--
+WHEN a feature ticket has unresolved material questions, the workflow SHALL identify the unanswered questions that prevent an estimation-readiness recommendation.
+
+tracer:links[]
+--
+
+[#REQ-115, item, role=requirement, level=product, status=draft, title="Never infer estimatability or approve without confirmation"]
+--
+The workflow SHALL NOT infer estimatability or approve requirements without the user's confirmation.
+
+tracer:links[]
+--

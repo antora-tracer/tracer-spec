@@ -1,0 +1,40 @@
+[#REQ-036, item, role=requirement, level=component, status=approved, title="Classify actionable change states"]
+--
+The system SHALL report a leaf change as actionable exactly when its lifecycle status is `refined` or `accepted`.
+
+refines:REQ-035[]
+tracer:links[]
+--
+
+[#REQ-037, item, role=requirement, level=component, status=approved, title="Classify finished changes"]
+--
+The system SHALL report a change as finished exactly when its lifecycle status is `closed`.
+
+refines:REQ-035[]
+tracer:links[]
+--
+
+[#REQ-085, item, role=requirement, level=component, status=approved, title="Roll up parent change actionability"]
+--
+WHEN an upper-level change is not closed or rejected and has one or more child changes linked by `refines`, the system SHALL report it as actionable exactly when every linked child change is actionable, applying the same rule recursively.
+
+supersedes:REQ-038[]
+refines:REQ-035[]
+tracer:links[]
+--
+
+[#REQ-039, item, role=requirement, level=component, status=approved, title="Limit change status output fields"]
+--
+WHEN a user requests a change's status, the CLI SHALL report only the change ID, stored lifecycle status, actionable result, and finished result.
+
+refines:REQ-035[]
+tracer:links[]
+--
+
+[#REQ-040, item, role=requirement, level=component, status=approved, title="Keep change status queries read-only"]
+--
+The change status query SHALL NOT modify traceability graph items or external tracker state.
+
+refines:REQ-035[]
+tracer:links[]
+--

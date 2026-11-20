@@ -1,0 +1,13 @@
+[#TST-009, item, role=test, title="Scaffolded project configures diagram rendering and view slots"]
+--
+Test method: Run `tspec init "Demo"` in an empty directory, then `npm install` and `npx antora antora-playbook.yml`. Inspect `antora-playbook.yml`, `package.json`, and `docs/modules/specs/pages/architecture.adoc`.
+
+Expected evidence: The playbook registers `asciidoctor-kroki` with `kroki-fetch-diagram: true`, `package.json` lists `asciidoctor-kroki`, and each of the five architecture views carries an authoring slot; after adding a diagram to a slot the project builds and embeds it.
+
+Automated test path: manual scaffold verification.
+
+verifies:REQ-064[]
+verifies:REQ-099[]
+verifies:REQ-100[]
+tracer:links[]
+--

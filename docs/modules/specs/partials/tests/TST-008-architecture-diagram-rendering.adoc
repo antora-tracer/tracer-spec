@@ -1,0 +1,12 @@
+[#TST-008, item, role=test, title="Architecture views render embedded diagrams"]
+--
+Test method: Run `npx antora antora-playbook.yml` in the repository and in a freshly scaffolded project after `npm install`. Open a built architecture view and inspect the page source. To check degradation, set `kroki-server-url` to an unreachable address and rebuild.
+
+Expected evidence: The build exits 0 and writes one diagram asset per view under the published site's image directory; the built page embeds each diagram and contains no runtime reference to the rendering service; with an unreachable service the build still exits 0 and each diagram block falls back to its source text with a warning.
+
+Automated test path: manual build verification (documentation site).
+
+verifies:REQ-062[]
+verifies:REQ-063[]
+tracer:links[]
+--

@@ -1,0 +1,21 @@
+[#DSN-004, item, role=design, status=accepted, title="Design for CHG-018: Architecture diagrams in the arc42 views"]
+--
+Context:: The arc42 baseline is prose-only. Diagram source must stay reviewable in a pull request, and the published page must not depend on a diagram service at view time. `asciidoctor-kroki` renders diagram blocks; its 0.18.2 line accepts `@asciidoctor/core >=2.2 <4.0`, matching Antora 3.2's `~2.2`, while 2.0.0 requires core 4 and fails here. Antora reads `asciidoc.extensions` from the playbook, not from the component descriptor, so the extension cannot be registered in `docs/antora.yml`.
+
+Approach:: Register `asciidoctor-kroki` in the playbook under `asciidoc.extensions` with the attribute `kroki-fetch-diagram: true`, and add it to the package's development dependencies pinned to the 0.18.2 line. Author one diagram per view as a diagram block in `architecture.adoc`: a C4 level-1 system context in §3 naming the contributor, the coding agent, the git host, the optional issue tracker, and the build-time rendering service; a C4 level-2 container diagram in §5 showing the traceability graph, the stage skills, the `tspec` CLI, and the published site, with ARC-001, ARC-002, and ARC-003 as its components; a UML sequence diagram in §6 for the stage flow from explore through archive, including graph validation and the conformance gate; a deployment diagram in §7 for the repository, the harness directories, the documentation build, and the published site; and a concept diagram in §8 for the durable-versus-temporary artifact split and identifier allocation. Place one additional diagram inside the ARC-002 partial, since the stage set has internal structure worth drawing. Document the default notation (C4) and the traditional-UML alternative in the architecture authoring guidance. Mirror the playbook configuration, the dependency, the guidance, and the per-view authoring slots into the scaffold template.
+
+Architecture impact:: No ARC item is added or changed. The deployment view (§7) gains the build-time diagram rendering step and the published-site asset directory; ARC-002 gains a diagram and its `updated_by` link.
+
+Alternatives and trade-offs:: DEC-019 records the rendering choice and its alternatives; DEC-018 records the notation default. One diagram per view rather than a single overview keeps each diagram beside the structure it explains, at the cost of more source blocks to maintain. Section-level diagrams cover every view; per-element diagrams are limited to ARC-002 because ARC-001 and ARC-003 have no internal structure that a diagram would show better than their prose. The build already fetches the UI bundle from a URL, so a build-time rendering service adds no new class of network dependency; a local rendering service configured through `kroki-server-url` covers an air-gapped build, and an unreachable service degrades to showing the diagram source with a warning rather than failing the build.
+
+recorded_by:CHG-018[]
+realizes:REQ-101[]
+realizes:REQ-102[]
+realizes:REQ-103[]
+realizes:REQ-104[]
+realizes:REQ-063[]
+realizes:REQ-064[]
+realizes:REQ-099[]
+realizes:REQ-100[]
+tracer:links[]
+--

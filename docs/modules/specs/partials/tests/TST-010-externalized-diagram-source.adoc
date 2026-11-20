@@ -1,0 +1,14 @@
+[#TST-010, item, role=test, title="Architecture diagram source is externalized and included"]
+--
+Test method: Run `npx antora antora-playbook.yml` in the repository and confirm each architecture diagram renders from a file under `docs/modules/specs/examples/diagrams/`. Run the diagram reviewer's discovery command, `find . -type f -name "*.puml" ! -path "*/node_modules/*" ! -path "*/.git/*"`, and confirm it lists the diagram sources.
+
+Expected evidence: The build exits 0 and embeds one asset per view; each page carries no runtime reference to the rendering service; the discovery command lists the six diagram sources under `docs/` plus the five template placeholders under `templates/`, so a file-oriented reviewer can find them.
+
+Automated test path: manual build verification (documentation site).
+
+verifies:REQ-101[]
+verifies:REQ-102[]
+verifies:REQ-103[]
+verifies:REQ-104[]
+tracer:links[]
+--

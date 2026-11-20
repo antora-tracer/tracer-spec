@@ -1,0 +1,29 @@
+[#DSN-003, item, role=design, status=accepted, title="Design for CHG-017: Install only harness files without scaffolding"]
+--
+Context:: `tspec init` always calls `scaffold()` before installing harness files, so refreshing skills or agent definitions on an existing project requires a scaffold pass; with `--force` that pass overwrites `traceability.yml`, `docs/`, and `AGENTS.md`. `installSkills()` and `installCommands()` are already standalone in `src/scaffold.js` and are coupled to scaffolding only by the `init` action in `bin/tspec.js`. No agent definitions ship today.
+
+Approach:: Add a `tspec install` subcommand that runs only the harness installers and never calls `scaffold()`, rejecting the invocation with a nonzero error when no harness is selected. Reuse `installSkills()` and `installCommands()` unchanged so `--force`, `--link`, `--scope`, `--tools`, and `--dry-run` apply to harness files alone. All three installers share one write path that unlinks any existing destination before writing, so neither a symlink nor a hardlink leaf can carry a write to another file, and they skip any destination whose ancestor directory is a symlink, so `--force` cannot reach a project file through a symlinked harness directory. The ancestor guard applies at every scope: a user-scope harness directory can itself be a symlink into a project tree, and REQ-058's guarantee is unconditional, so a dotfile-managed harness directory is skipped rather than written through. Ship per-harness agent sources under a package-root `agents/<harness>/` directory; extend each `TOOLS` entry with `agentDir`, `userAgentDir`, and an agent file extension (Oh My Pi: `.omp/agents`, `~/.omp/agent/agents`, `.md`; Claude Code: `.claude/agents`, `~/.claude/agents`, `.md`; Codex: `.codex/agents`, `~/.codex/agents`, `.toml`), and add `installAgents()` mirroring `installSkills()`. Ship one read-only conformance reviewer per harness under the unique name `tspec-conformance-reviewer` and update `tspec-archive` to spawn it by that name.
+
+Architecture impact:: No component boundary or ARC item change; the deployment view (`architecture.adoc` §7) and the CLI reference gain the harness-only installation command and the agent payload. No ARC item is affected; ADR-001 records the command-surface choice.
+
+Alternatives and trade-offs:: A `--skip-scaffold` flag on `init` mirrors the existing `--skip-skills` flag and is a smaller diff, but it grows `init` with a second mode and keeps harness installation under a name that means scaffolding. The subcommand states the intent, hosts future `uninstall` or `list` operations, and costs one documented surface. Relying on `--link` alone avoids new surface but cannot refresh an edited copy, because refreshing needs `--force`, which is entangled with scaffolding.
+
+Per-harness agent sources duplicate one prompt across three files instead of rendering one canonical source into each harness's format. A renderer would keep one source of truth, but Codex requires TOML with `developer_instructions` while Oh My Pi and Claude Code take Markdown frontmatter, and the harnesses disagree on tool names and on whether `model` is honored; a translation table is exactly the part that fails silently, producing a reviewer with write tools or lost model routing. Three files that a human can diff against each harness's documentation are cheaper to verify and to maintain at this payload size; add a renderer only when the payload outgrows a handful of agents.
+
+The shipped agent is named `tspec-conformance-reviewer` rather than `reviewer` because agent discovery is first-wins by frontmatter name and a project definition replaces a bundled one whole. A file named `reviewer` would silently displace the harness's own reviewer, so a namespaced name is required; the cost is that `tspec-archive` must name the agent it spawns.
+
+Read-only enforcement differs per harness and the difference is a documented ceiling, not a gap to close. Oh My Pi and Claude Code restrict the agent to read/search tools in their frontmatter. Codex exposes no per-agent patch or write toggle: `features.shell_tool = false` disables the shell, but its file-editing capability cannot be removed from a custom agent, so read-only is instruction-bound there. The archive gate therefore rests on the reviewer's instructions on Codex and on the tool list elsewhere; an unsupported capability key would be silently ignored, so none is invented.
+
+recorded_by:CHG-017[]
+realizes:REQ-071[]
+realizes:REQ-072[]
+realizes:REQ-073[]
+realizes:REQ-074[]
+realizes:REQ-075[]
+realizes:REQ-076[]
+realizes:REQ-080[]
+realizes:REQ-077[]
+realizes:REQ-078[]
+realizes:REQ-079[]
+tracer:links[]
+--

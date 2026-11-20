@@ -1,0 +1,17 @@
+[#CHG-018, item, role=change, status=verified, title="Add architecture diagrams to the arc42 views"]
+--
+Rationale:: The arc42 baseline describes the architecture in prose only. Sections 3, 5, 6, 7, and 8 are exactly where a diagram conveys structure that prose states weakly: readers currently reconstruct the change flow and the harness layout from text, and the building-block relationships have no visual form at all.
+
+Outcome:: Each architecture view carries a diagram where one aids understanding, authored as text and rendered at build time into the published site so a built page needs no runtime network. Authoring guidance documents a default notation and a project alternative, and the scaffold template carries the same diagram slots so new projects inherit them.
+
+Out-of-scope:: Changing the traceability model's roles or relations; adding a second preset; diagrams on non-architecture pages (requirements, changes, designs); a committed-image authoring workflow; localizing the rendering service.
+
+addresses:REQ-086[]
+addresses:REQ-087[]
+addresses:REQ-088[]
+addresses:REQ-051[]
+records:DEC-018[]
+records:DEC-019[]
+records:DSN-004[]
+tracer:links[]
+--

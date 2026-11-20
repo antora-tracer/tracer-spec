@@ -15,6 +15,11 @@ The canonical graph is stored as AsciiDoc items under `docs/modules/specs/pages/
 
 Project contributors and coding agents use the TSPEC skills. `antora-tracer` parses and validates the graph; Antora publishes its pages. Optional issue-tracker access is isolated in `tspec-track`; the tracker remains authoritative for ticket state and estimates.
 
+[c4plantuml]
+----
+include::example$diagrams/view-context.puml[]
+----
+
 == 4. Solution Strategy
 
 include::partial$architecture/ARC-001-traceability-graph-is-canonical.adoc[]
@@ -23,17 +28,39 @@ include::partial$architecture/ARC-001-traceability-graph-is-canonical.adoc[]
 
 include::partial$architecture/ARC-002-staged-change-lifecycle.adoc[]
 
+[c4plantuml]
+----
+include::example$diagrams/view-building-block.puml[]
+----
+
+The graph is ARC-001, the stage skills are ARC-002, and the durable-versus-temporary split that governs what the graph holds is ARC-003.
+
 == 6. Runtime View
 
 The normal change flow is `tspec-explore` → `tspec-refine-feature` → `tspec-new-change` → `tspec-refine-change` → `tspec-apply-change` → `tspec-archive`. Refinement produces durable requirements and a design item before the temporary task list; apply and archive preserve the graph as the system changes.
 
+[plantuml]
+----
+include::example$diagrams/view-runtime.puml[]
+----
+
 == 7. Deployment View
 
-The repository contains the Antora source and the scaffolding templates. `tspec init` copies templates into a project and installs the selected workflow skills into the assistant's skill directory. Antora publishes the documentation site from those pages.
+The repository contains the Antora source and the scaffolding templates. `tspec init` copies templates into a project and installs the selected workflow skills, slash commands, and agent definitions into the assistant's harness directories; `tspec install` installs those harness files alone, without scaffolding, so an existing project can refresh them. Harnesses with a declared agent convention receive skills and agents in their own directory and format; the rest receive skills only. Antora publishes the documentation site from those pages.
+
+[plantuml]
+----
+include::example$diagrams/view-deployment.puml[]
+----
 
 == 8. Crosscutting Concepts
 
 include::partial$architecture/ARC-003-durable-graph-temporary-tasks.adoc[]
+
+[plantuml]
+----
+include::example$diagrams/view-crosscutting.puml[]
+----
 
 == 9. Architecture Decisions
 
@@ -41,7 +68,7 @@ Costly-to-reverse software architecture choices are recorded as ADR items on xre
 
 == 10. Quality Requirements
 
-Human review gates, requirement links, and graph validation are central quality properties. See approved xref:requirements.adoc#REQ-006[REQ-006] and xref:requirements.adoc#REQ-051[REQ-051].
+Human review gates, requirement links, and graph validation are central quality properties. See approved xref:requirements.adoc#REQ-083[REQ-083] and xref:requirements.adoc#REQ-051[REQ-051].
 
 == 11. Risks and Technical Debt
 

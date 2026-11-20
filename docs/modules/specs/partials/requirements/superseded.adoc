@@ -1,0 +1,192 @@
+== Superseded items
+
+
+[#REQ-065, item, role=requirement, level=software, status=superseded, title="Scaffold projects with working diagram rendering"]
+--
+WHEN a project is scaffolded, the system SHALL include the diagram rendering configuration, its dependency, and the architecture page's diagram sections, so a new project renders diagrams after installing dependencies.
+
+refines:REQ-101[]
+tracer:links[]
+--
+
+[#REQ-061, item, role=requirement, level=component, status=superseded, title="Document each architecture view with a diagram"]
+--
+The workflow SHALL document each arc42 view — Context and Scope, Building Block View, Runtime View, Deployment View, and Crosscutting Concepts — with a diagram that shows the structure the view describes, and SHALL keep each diagram's source with the item it describes.
+
+refines:REQ-086[]
+tracer:links[]
+--
+
+[#REQ-062, item, role=requirement, level=software, status=superseded, title="Present a diagram in each architecture view"]
+--
+WHEN the arc42 baseline is published, the system SHALL present a rendered diagram in each of the Context and Scope, Building Block, Runtime, Deployment, and Crosscutting Concepts sections.
+
+Example: Given the site is built, when a reader opens the Building Block View, then it shows a diagram of the building blocks and not only prose.
+
+refines:REQ-101[]
+tracer:links[]
+--
+
+[#REQ-057, item, role=requirement, level=component, status=superseded, title="Install harness files without scaffolding"]
+--
+The system SHALL install the workflow skills and agent definitions into the selected agent harnesses without writing any scaffold file, so an existing project can refresh its harness files without changing project content.
+
+The system SHALL ship agent definitions alongside the workflow skills and install them under the same harness selection, installation scope, linking, overwrite, and preview options as the skills.
+
+tracer:links[]
+--
+
+[#REQ-058, item, role=requirement, level=software, status=superseded, title="Install harness files with a command that scaffolds nothing"]
+--
+WHEN the user runs `tspec install`, the system SHALL install the workflow skills, slash commands, and agent definitions for the selected harnesses and SHALL NOT write or overwrite any scaffold file, including when `--force` is set.
+
+IF no harness is selected, THEN the command SHALL exit nonzero with an error and write nothing.
+
+Example: Given an initialized project whose `traceability.yml` and `docs/` were edited, when `tspec install --tools oh-my-pi --force` runs, the harness files are refreshed and `traceability.yml` and `docs/` are byte-identical afterwards.
+
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-059, item, role=requirement, level=software, status=superseded, title="Install shipped agent definitions into harness agent directories"]
+--
+The system SHALL ship agent definitions and install them, in each selected harness's own agent format and directory, with the same harness selection, installation scope, linking, overwrite, and preview options it applies to skills.
+
+The system SHALL support the agent directories of Oh My Pi, Claude Code, and Codex, and SHALL install agent definitions only for harnesses that declare an agent convention.
+
+The system SHALL name every shipped agent so that it never replaces a harness's own or bundled agent.
+
+Example: Given `--tools oh-my-pi,claude,codex --link`, when `tspec install` runs, the shipped agent appears under `.omp/agents/`, `.claude/agents/`, and `.codex/agents/` in that harness's format, and no harness's bundled agent is replaced.
+
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-060, item, role=requirement, level=software, status=superseded, title="Preview harness-only installation without writing"]
+--
+WHEN `tspec install` runs with `--dry-run`, the system SHALL list only the harness files that would be created and SHALL write nothing.
+
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-005, item, role=requirement, level=product, status=superseded, title="Supersede approved requirements instead of editing"]
+--
+WHEN an approved requirement's meaning must change, the system SHALL supersede it with a new requirement and SHALL NOT edit it in place.
+A non-semantic fix such as a typo MAY be edited in place.
+
+tracer:links[]
+--
+
+[#REQ-006, item, role=requirement, level=product, status=superseded, title="Enforce a human acceptance gate"]
+--
+The system SHALL let a change reach the accepted state only on a human's instruction, and validation SHALL enforce the transition.
+
+tracer:links[]
+--
+
+[#REQ-038, item, role=requirement, level=component, status=superseded, title="Roll up parent change actionability"]
+--
+WHEN an upper-level change is not `closed` or `rejected` and has one or more child changes linked to it by `refines`, the system SHALL report it as actionable exactly when every linked child change is actionable.
+
+The same rule SHALL apply recursively to child changes that have their own refined children.
+
+refines:REQ-035[]
+tracer:links[]
+--
+
+[#REQ-050, item, role=requirement, level=component, status=superseded, title="Represent architecture elements in an arc42-aligned baseline"]
+--
+The workflow SHALL represent independently meaningful architectural elements, such as solution strategies, building blocks, runtime or deployment elements, and cross-cutting concepts, as durable, typed architecture items with stable identifiers.
+An arc42-aligned baseline SHALL organize and describe those items and reflect the implemented architecture.
+When an element is materially replaced, its prior record SHALL remain traceable rather than being silently repurposed.
+Headings and explanatory prose alone do not require graph items.
+
+refines:REQ-051[]
+
+tracer:links[]
+--
+
+[#REQ-052, item, role=requirement, level=software, status=superseded, title="Author traceable architecture elements"]
+--
+The system SHALL let authors record each independently meaningful architecture element as a durable `architecture` item with a unique `ARC` identifier, a `kind` value, and links to related requirements, changes, and ADRs.
+The architecture documentation SHALL present those items within the applicable arc42 section.
+
+Scenario:: Given a contributor records a cross-cutting concept, when it is published, then it appears as an ARC item classified as a cross-cutting concept in the arc42-aligned baseline and its links resolve.
+
+refines:REQ-086[]
+tracer:links[]
+--
+
+[#REQ-053, item, role=requirement, level=software, status=superseded, title="Create durable change design items"]
+--
+Each refined change SHALL have a durable `design` item with a unique `DSN` identifier before its temporary task list is created.
+The design SHALL link the change, relevant software requirements, and affected architecture items and ADRs; describe the proposed approach and material trade-offs, or explicitly state that there is no architecture impact.
+The design item SHALL remain available after the change is closed.
+
+Scenario:: Given a refined change with architecture impact, when its design is recorded, then the durable DSN item links to the change, addressed requirements, affected ARC items, and relevant ADRs before tasks are created.
+
+refines:REQ-051[]
+tracer:links[]
+--
+
+[#REQ-054, item, role=requirement, level=software, status=superseded, title="Reconcile architecture baseline after implementation"]
+--
+When an implemented change alters architecture, the workflow SHALL ensure the arc42 baseline and current architecture items reflect the as-built system before the change is closed.
+If an architecture item is materially replaced, its prior record and trace links SHALL remain available; archiving SHALL retain design and ADR items while removing temporary tasks.
+
+Scenario:: Given an implemented change materially replaces an architecture element, when the change is archived, then the baseline reflects the implemented element, the prior item remains traceable, and the design and ADR records remain available.
+
+refines:REQ-086[]
+tracer:links[]
+--
+
+[#REQ-028, item, role=requirement, level=component, status=superseded, title="Require a durable design item for each change"]
+--
+Each refined implementation change SHALL have a durable, reviewable design item before its execution tasks are created.
+The design SHALL explain how the relevant software requirements are addressed, identify affected architecture items, and record material alternatives and trade-offs.
+If the change has no architecture impact, the design SHALL state that explicitly.
+
+refines:REQ-051[]
+
+tracer:links[]
+--
+
+[#REQ-029, item, role=requirement, level=component, status=superseded, title="Resolve and trace architecture decisions"]
+--
+When a change design leaves a material architecture choice unresolved, the workflow SHALL request the user's decision before finalizing the design.
+The chosen option SHALL be recorded in an ADR linked to the change, relevant requirements, and affected architecture items.
+
+refines:REQ-051[]
+
+tracer:links[]
+--
+
+[#REQ-066, item, role=requirement, level=software, status=superseded, title="Scaffold projects with diagram rendering configured and slots ready"]
+--
+WHEN a project is scaffolded, the system SHALL include the diagram rendering configuration and its dependency, and SHALL provide an authoring slot in each architecture view where a diagram is added, so a new project renders diagrams once an author adds one.
+
+supersedes:REQ-065[]
+refines:REQ-101[]
+tracer:links[]
+--
+
+[#REQ-067, item, role=requirement, level=component, status=superseded, title="Keep architecture diagram source in external files"]
+--
+The workflow SHALL keep each architecture diagram's source in its own file under the module's `examples/` family and SHALL reference it from the view with an include, so the source is discoverable and reviewable independently of the page.
+
+supersedes:REQ-061[]
+refines:REQ-086[]
+tracer:links[]
+--
+
+[#REQ-068, item, role=requirement, level=software, status=superseded, title="Present one or more diagrams in each architecture view"]
+--
+WHEN the arc42 baseline is published, the system SHALL present at least one rendered diagram in each of the Context and Scope, Building Block, Runtime, Deployment, and Crosscutting Concepts sections, and SHALL allow more than one where the view needs them.
+
+Example: Given a Building Block View that holds a container diagram and a component diagram, when the site is built, then both render in that section.
+
+supersedes:REQ-062[]
+refines:REQ-101[]
+tracer:links[]
+--

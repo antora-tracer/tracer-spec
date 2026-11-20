@@ -1,0 +1,17 @@
+[#DSN-005, item, role=design, status=accepted, title="Design for CHG-019: Externalize diagram source"]
+--
+Context:: CHG-018 renders diagrams from blocks embedded in `architecture.adoc` and `ARC-002-staged-change-lifecycle.adoc`. The diagram reviewer shipped in `antora-tracer` finds diagram files by extension, so inline source is invisible to it. Antora resolves `example$` to `docs/modules/<module>/examples/`, which a partial can reference just as a page can. Three include forms were tested against a real build: a diagram block whose body is `include::example$diagrams/<file>.puml[]` renders; the `c4plantuml::<target>[]` block macro renders; `[c4plantuml, <target>, <format>]` followed by a bare `include::` renders as a paragraph of raw source and must not be used.
+
+Approach:: Move each diagram's source to `docs/modules/specs/examples/diagrams/<file>.puml` and replace each inline block with `[<notation>]` followed by a delimited block whose body is the include. Name files on two axes: `view-<section>.puml` for a section diagram and `<ARC-id>-<slug>.puml` for an element diagram. Migrate the six existing diagrams: `view-context.puml`, `view-building-block.puml`, `view-runtime.puml`, `view-deployment.puml`, `view-crosscutting.puml`, and `ARC-002-stage-flow.puml`. The ARC-002 diagram's source moves to the same directory and its partial includes it. Update the scaffold template to create `examples/diagrams/`, to replace the inline commented slots with the include form, and to document the convention in the architecture guidance.
+
+Architecture impact:: No ARC item is added or changed. The architecture page and the ARC-002 partial change only in how they reference diagram source.
+
+Alternatives and trade-offs:: Naming by section alone cannot express a second diagram in the same section, which the Building Block and Runtime views are expected to need; the two-axis scheme keeps the section role in the name and gives element diagrams the same identity as their ARC item. Naming by purpose alone reads better in a listing but loses the explicit link to the section or element a diagram belongs to. Keeping source inline is the smallest change and renders identically, but leaves every diagram undiscoverable to the reviewer and to any file-oriented tooling, which is the problem this change exists to solve. The include form inside a delimited block is preferred over the block macro because it keeps the notation and the source visibly adjacent in the page.
+
+recorded_by:CHG-019[]
+realizes:REQ-101[]
+realizes:REQ-102[]
+realizes:REQ-103[]
+realizes:REQ-104[]
+tracer:links[]
+--

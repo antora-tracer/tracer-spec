@@ -1,0 +1,15 @@
+[#CHG-019, item, role=change, status=closed, title="Externalize architecture diagram source"]
+--
+Rationale:: CHG-018 embedded each architecture diagram inline in `architecture.adoc` and the ARC partials. Inline source is invisible to the diagram-review tooling that ships with `antora-tracer` (its `review-architecture-diagrams` skill discovers `.puml`, `.mmd`, and `.d2` files), and it cannot be linted, reviewed as a unit, or reused across pages.
+
+Outcome:: Each architecture diagram's source lives in `docs/modules/specs/examples/diagrams/` as a `.puml` file, included from its section or ARC partial with a diagram block whose body is `include::example$diagrams/<file>.puml[]`. Naming follows two axes: `view-<section>.puml` for a section diagram and `<ARC-id>-<slug>.puml` for an element diagram. The scaffold template carries the same directory, include form, and naming convention.
+
+Out-of-scope:: Installing or invoking a diagram reviewer; moving diagrams in other projects; changing the rendering stack or the diagram service; diagram content or layout.
+
+addresses:REQ-101[]
+addresses:REQ-102[]
+addresses:REQ-103[]
+addresses:REQ-104[]
+records:DSN-005[]
+tracer:links[]
+--

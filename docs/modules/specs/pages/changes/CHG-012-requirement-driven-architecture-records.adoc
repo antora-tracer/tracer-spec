@@ -16,9 +16,14 @@ Duplicating requirements or decisions in architecture items.
 Reclassifying domain or business decisions as ADRs.
 Automatically extracting architecture items from source code.
 
-addresses:REQ-028[]
-addresses:REQ-029[]
-addresses:REQ-050[]
+addresses:REQ-091[]
+addresses:REQ-092[]
+addresses:REQ-093[]
+addresses:REQ-094[]
+addresses:REQ-095[]
+addresses:REQ-086[]
+addresses:REQ-087[]
+addresses:REQ-088[]
 addresses:REQ-051[]
 records:DEC-016[]
 records:DSN-001[]

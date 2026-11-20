@@ -22,6 +22,7 @@ The `verified` to `closed` transition stays as it is; archive adds the gate with
 addresses:REQ-010[]
 addresses:REQ-011[]
 addresses:REQ-012[]
+addresses:REQ-120[]
 records:DEC-006[]
 tracer:links[]
 --

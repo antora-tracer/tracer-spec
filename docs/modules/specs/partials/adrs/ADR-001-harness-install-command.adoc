@@ -1,0 +1,18 @@
+[#ADR-001, item, role=adr, status=accepted, title="Harness files install through a dedicated command, not an init flag"]
+--
+Context:: `tspec init` scaffolds a project and installs harness files in one command. Refreshing harness files on an existing project must not write scaffold files, so the workflow needs a surface that installs harness files alone.
+
+Options:: A `--skip-scaffold` flag on `init` mirrors the existing `--skip-skills` flag and is a smaller diff, but grows `init` with a second mode and keeps harness installation under a name that means scaffolding. A dedicated `tspec install` subcommand states the intent and hosts future `uninstall` or `list` operations at the cost of one documented surface. Relying on `--link` alone adds no surface but cannot refresh an edited copy, because refreshing requires `--force`, which is entangled with scaffolding.
+
+Decision:: Install harness files through a dedicated `tspec install` subcommand that never scaffolds. Keep `init` behavior unchanged.
+
+Rationale:: The command name carries the intent, keeps the scaffold path free of a second mode, and gives later harness operations a home; the surface cost is one command.
+
+Consequences:: The CLI reference and deployment view document a second command. `init` remains the only command that writes scaffold files. Harness-only operations such as `uninstall` or `list` extend `install`'s sibling set rather than `init`.
+
+recorded_by:CHG-017[]
+addresses:REQ-070[]
+addresses:REQ-071[]
+addresses:REQ-072[]
+tracer:links[]
+--

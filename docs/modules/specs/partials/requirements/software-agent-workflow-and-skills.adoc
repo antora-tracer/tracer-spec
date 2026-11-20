@@ -1,0 +1,13 @@
+[#REQ-025, item, role=requirement, level=software, status=draft, title="Run skill scenarios with paired isolated workspaces"]
+--
+WHEN an evaluation is run for a selected skill, the system SHALL execute each selected scenario once with that skill available and once without it, using equivalent isolated project fixtures and retaining both transcripts and workspace-change summaries.
+
+tracer:links[]
+--
+
+[#REQ-026, item, role=requirement, level=software, status=draft, title="Report skill evaluation outcomes with evidence"]
+--
+The system SHALL report each declared expectation's pass or fail result and evidence by scenario and run configuration, together with aggregate results, execution time, and runtime errors.
+
+tracer:links[]
+--

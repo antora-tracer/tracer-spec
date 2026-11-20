@@ -1,0 +1,105 @@
+[#REQ-056, item, role=requirement, level=software, status=approved, title="Expose the CLI as tspec when installed"]
+--
+WHEN the workflow CLI package is installed, the system SHALL expose a `tspec` executable that provides the existing `init` and `status` subcommands.
+
+Example: Given the package is installed from the project repository, when the user runs `tspec --help`, the command exits successfully and lists `init` and `status`.
+
+refines:REQ-055[]
+tracer:links[]
+--
+
+[#REQ-071, item, role=requirement, level=software, status=approved, title="Install workflow files for the selected harnesses"]
+--
+WHEN the user runs `tspec install`, the system SHALL install the workflow skills, slash commands, and agent definitions for the selected harnesses.
+
+Example: Given a project initialized with `--tools oh-my-pi`, when `tspec install --tools oh-my-pi` runs, the skills, slash commands, and agent definition are refreshed in that harness's directories.
+
+supersedes:REQ-058[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-072, item, role=requirement, level=software, status=approved, title="Install writes no scaffold file, even with force"]
+--
+IF `tspec install` runs, THEN the system SHALL NOT write or overwrite any scaffold file, including when `--force` is set.
+
+Example: Given an initialized project whose `traceability.yml` and `docs/` were edited, when `tspec install --tools oh-my-pi --force` runs, `traceability.yml` and `docs/` are byte-identical afterwards.
+
+supersedes:REQ-058[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-073, item, role=requirement, level=software, status=approved, title="Reject install with no harness selected"]
+--
+IF no harness is selected, THEN the command SHALL exit nonzero with an error and write nothing.
+
+supersedes:REQ-058[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-074, item, role=requirement, level=software, status=approved, title="Ship agent definitions with the workflow"]
+--
+The system SHALL ship agent definitions alongside the workflow skills.
+
+supersedes:REQ-059[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-075, item, role=requirement, level=software, status=approved, title="Install agent definitions in each harness's own format and directory"]
+--
+The system SHALL install each shipped agent definition in each selected harness's own agent format and directory, with the same harness selection, installation scope, linking, overwrite, and preview options it applies to skills.
+
+Example: Given `--tools oh-my-pi,claude,codex --link`, when `tspec install` runs, the shipped agent appears under `.omp/agents/`, `.claude/agents/`, and `.codex/agents/` in that harness's format.
+
+supersedes:REQ-059[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-076, item, role=requirement, level=software, status=approved, title="Support the agent directories of Oh My Pi, Claude Code, and Codex"]
+--
+The system SHALL support the agent directories of Oh My Pi, Claude Code, and Codex.
+
+supersedes:REQ-059[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-080, item, role=requirement, level=software, status=approved, title="Install agent definitions only for harnesses that declare an agent convention"]
+--
+IF a selected harness declares no agent convention, THEN the system SHALL NOT install an agent definition for it.
+
+supersedes:REQ-059[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-077, item, role=requirement, level=software, status=approved, title="Name shipped agents so they replace no bundled agent"]
+--
+The system SHALL name every shipped agent so that installing it never replaces a harness's own or bundled agent.
+
+supersedes:REQ-059[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-078, item, role=requirement, level=software, status=approved, title="List the harness files a dry run would create"]
+--
+WHEN `tspec install` runs with `--dry-run`, the system SHALL list only the harness files that would be created.
+
+supersedes:REQ-060[]
+refines:REQ-070[]
+tracer:links[]
+--
+
+[#REQ-079, item, role=requirement, level=software, status=approved, title="Write nothing on a dry run"]
+--
+IF `tspec install` runs with `--dry-run`, THEN the system SHALL write nothing.
+
+supersedes:REQ-060[]
+refines:REQ-070[]
+tracer:links[]
+--

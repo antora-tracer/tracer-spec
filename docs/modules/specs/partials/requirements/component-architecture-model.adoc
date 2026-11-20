@@ -1,0 +1,28 @@
+[#REQ-086, item, role=requirement, level=component, status=approved, title="Represent architectural elements as durable items"]
+--
+The workflow SHALL represent each independently meaningful architectural element as a durable, typed architecture item with a stable identifier.
+
+Headings and explanatory prose do not require graph items.
+
+supersedes:REQ-050[]
+refines:REQ-051[]
+tracer:links[]
+--
+
+[#REQ-087, item, role=requirement, level=component, status=approved, title="Organize architecture items in an arc42-aligned baseline"]
+--
+The workflow SHALL organize and describe the architecture items in an arc42-aligned baseline that reflects the implemented architecture.
+
+supersedes:REQ-050[]
+refines:REQ-051[]
+tracer:links[]
+--
+
+[#REQ-088, item, role=requirement, level=component, status=approved, title="Retain the record of a materially replaced element"]
+--
+WHEN an architecture element is materially replaced, the workflow SHALL keep its prior record traceable rather than silently repurposing it.
+
+supersedes:REQ-050[]
+refines:REQ-051[]
+tracer:links[]
+--

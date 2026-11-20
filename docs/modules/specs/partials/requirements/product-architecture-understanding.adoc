@@ -1,0 +1,6 @@
+[#REQ-051, item, role=requirement, level=product, status=approved, title="Understand architecture and change impact"]
+--
+The system SHALL enable project contributors to understand the current system architecture and trace how proposed changes relate to requirements, architectural elements, and decisions.
+
+tracer:links[]
+--

@@ -1,0 +1,6 @@
+[#REQ-035, item, role=requirement, level=product, status=approved, title="Report change actionability and completion"]
+--
+WHEN a change owner requests a change's status, the system SHALL report its lifecycle status and whether it is actionable or finished.
+
+tracer:links[]
+--

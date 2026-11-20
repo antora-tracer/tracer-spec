@@ -18,10 +18,17 @@ Comment mirroring.
 Providers beyond GitHub and Jira.
 
 addresses:REQ-014[]
+addresses:REQ-105[]
 addresses:REQ-015[]
+addresses:REQ-106[]
+addresses:REQ-107[]
 addresses:REQ-016[]
+addresses:REQ-108[]
 addresses:REQ-017[]
+addresses:REQ-109[]
+addresses:REQ-110[]
 addresses:REQ-018[]
+addresses:REQ-111[]
 addresses:REQ-019[]
 records:DEC-008[]
 records:DEC-009[]

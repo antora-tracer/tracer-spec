@@ -8,4 +8,14 @@ include::partial$tests/TST-003-status-path-overrides.adoc[]
 include::partial$tests/TST-004-architecture-design-workflow.adoc[]
 include::partial$tests/TST-005-cli-executable-tspec.adoc[]
 
+include::partial$tests/TST-006-install-harness-files.adoc[]
+include::partial$tests/TST-007-install-agents.adoc[]
+
+include::partial$tests/TST-008-architecture-diagram-rendering.adoc[]
+include::partial$tests/TST-009-scaffold-diagram-slots.adoc[]
+
+include::partial$tests/TST-010-externalized-diagram-source.adoc[]
+
+include::partial$tests/TST-011-one-obligation-per-requirement.adoc[]
+
 include::partial$tests/superseded.adoc[opts=optional]

@@ -11,7 +11,7 @@ Out-of-scope:: Changing lifecycle status, reading or updating tracker state, sho
 addresses:REQ-035[]
 addresses:REQ-036[]
 addresses:REQ-037[]
-addresses:REQ-038[]
+addresses:REQ-085[]
 addresses:REQ-039[]
 addresses:REQ-040[]
 addresses:REQ-047[]

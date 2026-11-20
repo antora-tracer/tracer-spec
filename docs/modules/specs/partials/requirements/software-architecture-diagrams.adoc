@@ -1,0 +1,55 @@
+[#REQ-103, item, role=requirement, level=software, status=approved, title="Present at least one rendered diagram in each architecture view"]
+--
+WHEN the arc42 baseline is published, the system SHALL present at least one rendered diagram in each of the Context and Scope, Building Block, Runtime, Deployment, and Crosscutting Concepts sections.
+
+supersedes:REQ-068[]
+refines:REQ-101[]
+tracer:links[]
+--
+
+[#REQ-104, item, role=requirement, level=software, status=approved, title="Render every diagram a view contains"]
+--
+WHEN a view holds more than one diagram, the system SHALL render all of them in that section.
+
+Example: Given a Building Block View that holds a container diagram and a component diagram, when the site is built, then both render in that section.
+
+supersedes:REQ-068[]
+refines:REQ-101[]
+tracer:links[]
+--
+
+[#REQ-063, item, role=requirement, level=software, status=approved, title="Render diagrams into the published page without a runtime service"]
+--
+WHEN the documentation site is built, the system SHALL embed each architecture diagram in the published page output so a reader can view it without network access to a diagram service.
+
+Example: Given the site is built, when a reader opens an architecture view with no network access, then the diagram is visible.
+
+refines:REQ-101[]
+tracer:links[]
+--
+
+[#REQ-064, item, role=requirement, level=software, status=approved, title="Document the default diagram notation and a project alternative"]
+--
+The system SHALL document, in the architecture authoring guidance, a default diagram notation and at least one alternative notation a project may adopt instead.
+
+refines:REQ-101[]
+tracer:links[]
+--
+
+[#REQ-099, item, role=requirement, level=software, status=approved, title="Scaffold projects with diagram rendering configured"]
+--
+WHEN a project is scaffolded, the system SHALL include the diagram rendering configuration and its dependency.
+
+supersedes:REQ-066[]
+refines:REQ-101[]
+tracer:links[]
+--
+
+[#REQ-100, item, role=requirement, level=software, status=approved, title="Scaffold an authoring slot in each architecture view"]
+--
+WHEN a project is scaffolded, the system SHALL provide an authoring slot in each architecture view where a diagram is added, so a new project renders diagrams once an author adds one.
+
+supersedes:REQ-066[]
+refines:REQ-101[]
+tracer:links[]
+--

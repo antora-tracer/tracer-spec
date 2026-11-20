@@ -1,0 +1,90 @@
+[#REQ-027, item, role=requirement, level=software, status=approved, title="Distinguish architecture decision records from business decisions"]
+--
+The system SHALL preserve software architecture decisions that are costly to reverse as distinct `adr` items, separate from domain or business `decision` items.
+Scenario:: Given a finalized change design contains a costly-to-reverse architecture choice, when the choice is resolved, then the graph records a distinct ADR linked to the change, relevant requirements, and affected architecture items.
+
+refines:REQ-095[]
+
+tracer:links[]
+--
+
+[#REQ-089, item, role=requirement, level=software, status=approved, title="Record architecture elements as traceable items"]
+--
+The system SHALL let authors record each independently meaningful architecture element as a durable `architecture` item with a unique `ARC` identifier and a `kind` value.
+
+supersedes:REQ-052[]
+refines:REQ-086[]
+tracer:links[]
+--
+
+[#REQ-090, item, role=requirement, level=software, status=approved, title="Present architecture items in their arc42 section"]
+--
+The architecture documentation SHALL present each recorded architecture item within the applicable arc42 section.
+
+Scenario:: Given a contributor records a cross-cutting concept, when it is published, then it appears as an ARC item classified as a cross-cutting concept in the arc42-aligned baseline and its links resolve.
+
+supersedes:REQ-052[]
+refines:REQ-087[]
+tracer:links[]
+--
+
+[#REQ-091, item, role=requirement, level=software, status=approved, title="Create the design before the execution tasks"]
+--
+Each refined change SHALL have a durable design item before its execution tasks are created.
+
+supersedes:REQ-028[]
+supersedes:REQ-053[]
+refines:REQ-051[]
+tracer:links[]
+--
+
+[#REQ-092, item, role=requirement, level=software, status=approved, title="State the approach, impact, and trade-offs in the design"]
+--
+The design SHALL explain how the relevant software requirements are addressed, name the affected architecture items and ADRs, and record the material alternatives and trade-offs.
+
+Scenario:: Given a refined change with architecture impact, when its design is recorded, then the durable DSN item links the change, addressed requirements, affected ARC items, and relevant ADRs.
+
+supersedes:REQ-028[]
+supersedes:REQ-053[]
+refines:REQ-091[]
+tracer:links[]
+--
+
+[#REQ-093, item, role=requirement, level=software, status=approved, title="Declare when a change has no architecture impact"]
+--
+IF a change has no architecture impact, THEN the design SHALL state that explicitly.
+
+supersedes:REQ-028[]
+supersedes:REQ-053[]
+refines:REQ-091[]
+tracer:links[]
+--
+
+[#REQ-096, item, role=requirement, level=software, status=approved, title="Reconcile the baseline with the as-built system"]
+--
+WHEN an implemented change alters architecture, the workflow SHALL ensure the arc42 baseline and current architecture items reflect the as-built system before the change is closed.
+
+supersedes:REQ-054[]
+refines:REQ-087[]
+tracer:links[]
+--
+
+[#REQ-097, item, role=requirement, level=software, status=approved, title="Retain trace links when an element is replaced"]
+--
+IF an architecture element is materially replaced, THEN its prior record and trace links SHALL remain available.
+
+supersedes:REQ-054[]
+refines:REQ-088[]
+tracer:links[]
+--
+
+[#REQ-098, item, role=requirement, level=software, status=approved, title="Keep design and ADR records after archive"]
+--
+Archiving SHALL retain the design and ADR items while consuming the temporary task list.
+
+Scenario:: Given an implemented change materially replaces an architecture element, when the change is archived, then the baseline reflects the element, the prior record stays traceable, and the design and ADR records remain available.
+
+supersedes:REQ-054[]
+refines:REQ-091[]
+tracer:links[]
+--

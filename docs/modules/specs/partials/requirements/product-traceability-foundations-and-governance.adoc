@@ -1,0 +1,77 @@
+[#REQ-001, item, role=requirement, level=product, status=approved, title="Represent changes and requirements as the traceability core"]
+--
+The system SHALL represent changes and requirements as first-class traceable items.
+
+tracer:links[]
+--
+
+[#REQ-002, item, role=requirement, level=product, status=approved, title="Connect changes to addressed requirements"]
+--
+The system SHALL connect each change to the requirements it addresses.
+
+tracer:links[]
+--
+
+[#REQ-003, item, role=requirement, level=product, status=approved, title="Preserve decisions as durable items"]
+--
+The system SHALL preserve domain and specification decisions as durable items recorded by the change that made them.
+
+tracer:links[]
+--
+
+[#REQ-004, item, role=requirement, level=product, status=approved, title="Keep execution tasks temporary"]
+--
+The system SHALL keep execution tasks as temporary Markdown under tspec/, never as durable graph items.
+
+tracer:links[]
+--
+
+[#REQ-081, item, role=requirement, level=product, status=approved, title="Supersede an approved requirement when its meaning changes"]
+--
+WHEN an approved requirement's meaning must change, the system SHALL supersede it with a new requirement.
+
+supersedes:REQ-005[]
+tracer:links[]
+--
+
+[#REQ-082, item, role=requirement, level=product, status=approved, title="Never edit an approved requirement in place"]
+--
+IF an approved requirement's meaning must change, THEN the system SHALL NOT edit it in place.
+
+A non-semantic fix such as a typo MAY be edited in place.
+
+supersedes:REQ-005[]
+tracer:links[]
+--
+
+[#REQ-083, item, role=requirement, level=product, status=approved, title="Accept a change only on a human's instruction"]
+--
+The system SHALL let a change reach the accepted state only on a human's instruction.
+
+supersedes:REQ-006[]
+tracer:links[]
+--
+
+[#REQ-084, item, role=requirement, level=product, status=approved, title="Enforce the acceptance gate in validation"]
+--
+The system SHALL enforce the accepted-state transition during validation.
+
+supersedes:REQ-006[]
+tracer:links[]
+--
+
+[#REQ-020, item, role=requirement, level=product, status=draft, title="Record requirements as observable behaviour, not mechanisms"]
+--
+The system SHALL record each proposed requirement as observable behaviour, with any mechanism it names recorded as a decision instead.
+
+tracer:links[]
+--
+
+[#REQ-069, item, role=requirement, level=product, status=approved, title="State one obligation per requirement"]
+--
+The system SHALL record each requirement with exactly one obligation, so that one pass/fail verdict decides it.
+
+Obligations at different levels are recorded as a parent requirement and a refining child; obligations at the same level are separate items.
+
+tracer:links[]
+--

@@ -1,0 +1,22 @@
+[#CHG-017, item, role=change, status=closed, title="Install only harness files without scaffolding"]
+--
+Rationale:: `tspec init` always scaffolds the project and installs harness files together. Testing edits to the workflow skills or agent definitions on an existing project therefore requires a redundant scaffold pass or `--force`, which also overwrites `traceability.yml`, `docs/`, and `AGENTS.md`. There is no way to refresh harness files alone.
+
+Outcome:: A `tspec install` command installs the workflow skills and agent definitions into the selected harnesses without writing any scaffold file, so an existing project refreshes its harness files without touching project content. The package also ships agent definitions and installs them alongside skills, with the same `--tools`, `--scope`, `--link`, `--force`, and `--dry-run` semantics. `init` behavior is unchanged.
+
+Out-of-scope:: Changing the behavior of `init`; renaming or replacing `init`; an uninstall, list, or prune operation; scaffolding an `agents/` directory into new projects; adding agent conventions for harnesses that have none.
+
+addresses:REQ-070[]
+addresses:REQ-071[]
+addresses:REQ-072[]
+addresses:REQ-073[]
+addresses:REQ-074[]
+addresses:REQ-075[]
+addresses:REQ-076[]
+addresses:REQ-077[]
+addresses:REQ-078[]
+addresses:REQ-079[]
+records:DSN-003[]
+records:ADR-001[]
+tracer:links[]
+--

@@ -6,4 +6,14 @@ Each refined implementation change has one durable design item created before it
 include::partial$designs/DSN-001-chg-012-architecture-records.adoc[]
 include::partial$designs/DSN-002-cli-executable-tspec.adoc[]
 
+include::partial$designs/DSN-003-install-only-harness-files.adoc[]
+
+include::partial$designs/DSN-004-architecture-diagrams.adoc[]
+
+include::partial$designs/DSN-005-externalize-diagram-source.adoc[]
+
+include::partial$designs/DSN-006-one-obligation-per-requirement.adoc[]
+
+include::partial$designs/DSN-007-split-grandfathered-requirements.adoc[]
+
 include::partial$designs/superseded.adoc[opts=optional]

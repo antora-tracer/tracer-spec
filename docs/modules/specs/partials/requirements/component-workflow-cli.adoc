@@ -1,0 +1,14 @@
+[#REQ-055, item, role=requirement, level=component, status=approved, title="Invoke the workflow CLI as tspec"]
+--
+The workflow CLI SHALL be invokable using the `tspec` command.
+
+tracer:links[]
+--
+
+[#REQ-070, item, role=requirement, level=component, status=approved, title="Install harness files without scaffolding"]
+--
+The system SHALL install the workflow skills and agent definitions into the selected agent harnesses without writing any scaffold file, so an existing project can refresh its harness files without changing project content.
+
+supersedes:REQ-057[]
+tracer:links[]
+--

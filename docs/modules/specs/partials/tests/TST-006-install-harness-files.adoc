@@ -1,0 +1,15 @@
+[#TST-006, item, role=test, title="Install harness files without scaffolding"]
+--
+Test method: Run `node --test test/tspec-install.test.js`. Initialize a project, edit `traceability.yml` and a skill copy, then run `tspec install --tools oh-my-pi --force`. Also run `install` in an empty directory and with no harness selected.
+
+Expected evidence: Harness files refresh while the edited `traceability.yml`, `docs/`, `AGENTS.md`, and `package.json` stay byte-identical; installing in an empty directory writes only harness files; `--tools none`, an empty `--tools`, and `--tools none --dry-run` each exit nonzero and leave the directory empty; `--dry-run` lists only harness paths and writes nothing. A harness destination that is a symlink, dangling or live, is replaced rather than written through, and a symlinked harness directory is skipped instead of redirecting writes onto project files.
+
+Automated test path: `test/tspec-install.test.js`.
+
+verifies:REQ-071[]
+verifies:REQ-072[]
+verifies:REQ-073[]
+verifies:REQ-078[]
+verifies:REQ-079[]
+tracer:links[]
+--

@@ -14,6 +14,14 @@ Mandatory epic or story items.
 Rewriting verified historical change records.
 
 addresses:REQ-030[]
+addresses:REQ-112[]
+addresses:REQ-113[]
+addresses:REQ-114[]
+addresses:REQ-115[]
+addresses:REQ-116[]
+addresses:REQ-117[]
+addresses:REQ-118[]
+addresses:REQ-119[]
 records:DEC-017[]
 tracer:links[]
 --

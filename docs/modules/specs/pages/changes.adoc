@@ -22,4 +22,14 @@ tracer:links[]
 
 include::partial$changes/CHG-016-cli-executable-tspec.adoc[]
 
+include::partial$changes/CHG-017-install-only-harness-files.adoc[]
+
+include::partial$changes/CHG-018-architecture-diagrams.adoc[]
+
+include::partial$changes/CHG-019-externalize-diagram-source.adoc[]
+
+include::partial$changes/CHG-020-one-obligation-per-requirement.adoc[]
+
+include::partial$changes/CHG-021-split-grandfathered-requirements.adoc[]
+
 include::partial$changes/superseded.adoc[opts=optional]
