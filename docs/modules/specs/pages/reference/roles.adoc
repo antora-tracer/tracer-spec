@@ -22,6 +22,15 @@ This page is the authoritative reference for authoring items.
 
 Other growth roles are available only when declared in `traceability.yml`. The `minimal` preset supplies the inherited `requirement` and `test` roles, requirement workflow, requirement relations, and `requirements-tests` matrix. This project adds `change`, `decision`, `use_case`, `architecture`, `design`, and `adr`; inherited roles and coverage remain.
 
+== Item placement
+
+Every item is a partial under `docs/modules/specs/partials/<role>/`, included from its role's listing page under `== Items`.
+A superseded item lives in `partials/<role>/superseded.adoc`, included with `[opts=optional]`, never among the live items.
+
+Requirements group further: one partial per level and functional area, named `<level>-<area>.adoc`, and the requirements listing nests those areas under the architectural container headings of the xref:architecture.adoc[Building Block View].
+When a use case leads to requirements in an area, that area names the use case in a `*Goals served:*` line, so the actor goal is visible beside the requirements it produced.
+Other roles keep one partial per item.
+
 == Requirements
 
 A requirement states what the system must do — never how.

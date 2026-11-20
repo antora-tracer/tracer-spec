@@ -11,6 +11,15 @@ A requirement may refine a more general requirement with `refines:REQ-NNN[]`; th
 Use only configured relations and real target IDs; omit a link when no relevant target exists yet.
 Put `tracer:links[]` in the item body when its links should be displayed.
 
+== Placement
+
+Write each use case as its own partial under `docs/modules/specs/partials/use-cases/` and include it from `docs/modules/specs/pages/use-cases.adoc` under `== Items`.
+A superseded use case moves to `partials/use-cases/superseded.adoc` instead of staying among the live items.
+
+A use case leads to requirements rather than being filed with them; keep it out of the requirement areas.
+When it leads to requirements in a functional area, name it in that area's `*Goals served:*` line on the requirements page, so the goal is visible beside the requirements it produced.
+An area with no use case leading to it carries no `Goals served` line.
+
 == Writing a use case
 
 Identify a specific primary actor, preferably one defined by a project persona; generic labels such as "User" or "Author" hide important context.

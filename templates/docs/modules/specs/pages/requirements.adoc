@@ -6,10 +6,12 @@ Requirements describe observable obligations. Use `level=product`, `level=compon
 Group requirements by architectural container, then by functional area.
 Each area is one grouped partial named `<level>-<area>.adoc`; an area present at two levels keeps one heading with the broader level first.
 Take the containers from the xref:architecture.adoc[Building Block View]; add a new area include under the container its requirements belong to.
+When a use case leads to requirements in an area, that area names the use case in a `*Goals served:*` line, so the actor goal sits beside the requirements it produced.
 
 == <Container>
 
 Give the container a one-line description, then one `===` area heading per functional area, each with a single include line, for example `include::partial$requirements/component-workflow-cli.adoc[]`.
+An area with a use case leading to it carries a `*Goals served:*` line above its include, for example `*Goals served:* \xref:use-cases.adoc#UC-001[UC-001 — <actor goal>]`.
 
 == Requirement template
 

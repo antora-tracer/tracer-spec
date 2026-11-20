@@ -19,7 +19,8 @@ Write one item of any declared role.
   * otherwise use the destination named in antora-tracer role-guidance <role> --config traceability.yml --content; 
   * otherwise default to docs/modules/specs/partials/<role>/ and its listing page docs/modules/specs/pages/<role>.adoc. Add include::partial$<role>/<file>.adoc[] to the listing page (blank line before it).
 4. Write the item under the resolved location with the status and fields from that role's guidance. Group related items together: append to the grouped partial that matches the item's level and functional area, and add an `include::partial$<role>/<file>.adoc[]` line to the listing page only when that group file is new. For `requirement`, the listing page nests areas under container headings (`==` container, `===` area) — place a new area include under the container from the xref:architecture.adoc[Building Block View] that the item belongs to, and name the file `<level>-<area>.adoc`. Do not split one area across files.
-5. Add only configured relation macros to existing IDs. Use a configured reverse relation when the canonical edge points from another role.
+5. Route a superseded item to `docs/modules/specs/partials/<role>/superseded.adoc` instead of leaving it among the live items, and include that file from the listing page with `[opts=optional]`. Never keep a `status=superseded` item in a normal collection partial.
+6. Add only configured relation macros to existing IDs. Use a configured reverse relation when the canonical edge points from another role.
 
 ## Roles, prefixes, initial status
 

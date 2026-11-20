@@ -2,7 +2,8 @@
 :traceability-links: true
 
 Requirements are grouped by architectural container, then by functional area.
-The containers are those of the xref:architecture.adoc[Building Block View]; each area is one grouped partial, and an area that appears at two levels keeps one heading with the broader level first.
+The containers are those of the xref:architecture.adoc[Building Block View]; each area is one grouped partial.
+An area whose requirements are led to by a use case names it under *Goals served*.
 
 == Traceability Graph
 
@@ -30,6 +31,8 @@ The workflow stages an agent runs, one change per stage.
 
 === Feature refinement
 
+*Goals served:* xref:use-cases.adoc#UC-001[UC-001 — Feature owner refines an existing ticket into traceable product requirements]
+
 include::partial$requirements/product-feature-refinement.adoc[]
 
 === Agent workflow and skills
@@ -44,9 +47,13 @@ The command surface: scaffolding, harness installation, and change status.
 
 === Change status reporting
 
+*Goals served:* xref:use-cases.adoc#UC-002[UC-002 — Change owner checks actionability and completion]
+
 include::partial$requirements/product-change-status-reporting.adoc[]
 
 === Change status CLI
+
+*Goals served:* xref:use-cases.adoc#UC-002[UC-002 — Change owner checks actionability and completion]
 
 include::partial$requirements/component-change-status-cli.adoc[]
 
