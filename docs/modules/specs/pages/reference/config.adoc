@@ -169,6 +169,33 @@ Use one `requirement` role for each abstraction level. `level=product`, `level=c
 Link a more detailed requirement to the broader requirement it refines with `refines`; behavior scenarios remain prose in requirement items, and verification evidence remains separate `test` items.
 
 
+== antora-playbook.yml
+
+The site build playbook. It registers the diagram renderer and holds the rendering attributes.
+
+[source,yaml]
+----
+asciidoc:
+  extensions:
+    - asciidoctor-kroki
+  attributes:
+    kroki-fetch-diagram: true
+----
+
+[cols="30a,70a"]
+|===
+| Key | Purpose
+
+| `asciidoc.extensions` | AsciiDoc processor extensions, loaded from the playbook. Antora ignores this key in a component descriptor such as `docs/antora.yml`, so a diagram extension must be registered here.
+| `kroki-fetch-diagram` | When `true`, the build fetches each rendered diagram and embeds it in the published page, so a reader needs no network access to the rendering service. When absent, the page carries a link to the service and the reader's browser fetches it.
+| `kroki-server-url` | The rendering service base URL. Defaults to `https://kroki.io`. Set it to a local service (for example a Kroki container) for an air-gapped build.
+| `kroki-http-method` | `adaptive` (default), `get`, or `post`. Large diagram source is sent as a `POST` in adaptive mode.
+|===
+
+`asciidoctor-kroki` is pinned to the `0.18.2` line: the `2.x` line requires `@asciidoctor/core` 4, while Antora 3.2 uses `~2.2`.
+
+An unreachable rendering service does not fail the build: the diagram block renders as its source text with a warning.
+
 == tspec.yml
 
 The `tracer-spec` selector for the user's issue-ticket provider.

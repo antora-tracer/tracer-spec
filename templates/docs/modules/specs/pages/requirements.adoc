@@ -3,17 +3,15 @@
 
 Requirements describe observable obligations. Use `level=product`, `level=component`, or `level=software`; detailed requirements link to the broader requirement they refine.
 
-== Product
+Group requirements by architectural container, then by functional area.
+Each area is one grouped partial named `<level>-<area>.adoc`; an area present at two levels keeps one heading with the broader level first.
+Take the containers from the xref:architecture.adoc[Building Block View]; add a new area include under the container its requirements belong to.
 
-Add product-level behavior requirements here.
+== <Container>
 
-== Component
+Give the container a one-line description, then one `===` area heading per functional area, each with a single include line, for example `include::partial$requirements/component-workflow-cli.adoc[]`.
 
-Add component-level requirements here.
-
-== Software
-
-Add software-level requirements here.
+== Requirement template
 
 [source,asciidoc]
 ----
@@ -25,11 +23,5 @@ refines:REQ-PARENT[]
 tracer:links[]
 --
 ----
-
-
-
-== Items
-
-Add each item's `include::partial$requirements/<file>.adoc[]` line below.
 
 include::partial$requirements/superseded.adoc[opts=optional]

@@ -1,0 +1,15 @@
+@startuml
+!include <C4/C4_Context>
+title System Context — Tracer Spec Workflow
+Person(contributor, "Project Contributor", "Records and reviews changes")
+System_Ext(agent, "Coding Agent", "Runs the workflow skills")
+System(tracer, "Tracer Spec Workflow", "Requirement-anchored change workflow over a traceable graph")
+System_Ext(git, "Git Host", "Stores the graph and templates")
+System_Ext(tracker, "Issue Tracker", "Owns ticket state and estimates (optional)")
+System_Ext(kroki, "Diagram Service", "Renders diagram source during the documentation build")
+Rel(contributor, tracer, "authors changes with")
+Rel(agent, tracer, "drives the workflow with")
+Rel(tracer, git, "reads and writes the graph in")
+Rel(tracer, tracker, "associates items with", "optional")
+Rel(tracer, kroki, "renders diagrams through", "build time")
+@enduml

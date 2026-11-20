@@ -1,0 +1,17 @@
+@startuml
+!include <C4/C4_Container>
+title Container View — Tracer Spec Workflow
+Person(contributor, "Project Contributor")
+System_Boundary(system, "Tracer Spec Workflow") {
+  ContainerDb(graph, "Traceability Graph", "AsciiDoc under docs/", "Durable requirements, changes, designs, architecture items, and decisions")
+  Container(skills, "Stage Skills", "Agent skills", "Explore, refine, propose, apply, and archive one change per stage")
+  Container(cli, "tspec CLI", "Node.js", "Scaffolds a project and installs harness files")
+  Container(site, "Published Site", "Antora", "Renders the graph, matrices, and diagrams")
+}
+System_Ext(tracker, "Issue Tracker", "Optional external tickets")
+Rel(contributor, skills, "drives")
+Rel(skills, graph, "reads and writes")
+Rel(cli, graph, "scaffolds a project that holds")
+Rel(graph, site, "is published as")
+Rel(skills, tracker, "reads and updates via tspec-track")
+@enduml

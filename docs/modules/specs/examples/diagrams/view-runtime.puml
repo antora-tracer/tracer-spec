@@ -1,0 +1,28 @@
+@startuml
+title Runtime View — one change through the stages
+participant "Contributor" as U
+participant "Stage Skills" as S
+participant "Traceability Graph" as G
+participant "tspec-conformance-reviewer" as R
+
+U -> S : explore
+S -> G : read existing items
+U -> S : refine-feature
+S -> G : write product and component requirements
+U -> S : new-change
+S -> G : write one proposed change
+U -> S : refine-change
+S -> G : write software requirements and a design item
+U -> S : accept
+U -> S : apply
+S -> G : write items, tick tasks, advance to verified
+U -> S : archive
+S -> G : validate
+S -> R : spawn cold reviewer
+R --> S : SATISFIED or NOT per requirement
+alt every requirement satisfied
+  S -> G : close the change
+else any NOT satisfied
+  S -> U : stop and report
+end
+@enduml

@@ -6,6 +6,7 @@ import {
   scaffold,
   installSkills,
   installCommands,
+  installAgents,
   TOOLS,
   DEFAULT_TOOLS,
   parseTools,
@@ -58,6 +59,41 @@ function describeTools(ids, scope = "project") {
     .join(", ");
 }
 
+/** Install skills, commands, and agent definitions for the selected harnesses. */
+function installHarness(tools, scope, options) {
+  const shared = {
+    scope,
+    tools,
+    force: options.force === true,
+    link: options.link === true,
+    dryRun: options.dryRun === true,
+  };
+  return {
+    skills: installSkills(shared),
+    commands: installCommands({ ...shared, directory: process.cwd() }),
+    agents: installAgents(shared),
+  };
+}
+
+/** Print what a harness installation created or skipped. */
+function reportHarnessInstall({ skills, commands, agents }, tools, scope) {
+  if (tools.length > 0 && skills.created.length > 0) {
+    console.log(`Installed skills for: ${describeTools(tools, scope)}`);
+  }
+  if (agents.created.length > 0) {
+    console.log(`Installed ${agents.created.length} agent definition(s).`);
+  }
+  if (commands.created.length > 0) {
+    console.log(
+      `Installed ${commands.created.length} slash command(s) (tspec:...).`,
+    );
+  }
+  const skipped = skills.skipped.length + commands.skipped.length + agents.skipped.length;
+  if (skipped > 0) {
+    console.log(`Skipped ${skipped} existing harness file(s) (use --force to overwrite).`);
+  }
+}
+
 program
   .name("tspec")
   .description(
@@ -97,24 +133,8 @@ program
 
     const installed =
       tools.length > 0
-        ? installSkills({
-            scope,
-            tools,
-            force: options.force === true,
-            link: options.link === true,
-            dryRun: options.dryRun === true,
-          })
-        : { created: [], skipped: [] };
-
-    const installedCommands =
-      tools.length > 0
-        ? installCommands({
-            directory: process.cwd(),
-            tools,
-            force: options.force === true,
-            dryRun: options.dryRun === true,
-          })
-        : { created: [], skipped: [] };
+        ? installHarness(tools, scope, options)
+        : { skills: { created: [], skipped: [] }, commands: { created: [], skipped: [] }, agents: { created: [], skipped: [] } };
 
     if (options.dryRun === true) {
       console.log("[DRY RUN] Would initialize project:");
@@ -126,8 +146,9 @@ program
       console.log("  Files that would be created:");
       for (const f of [
         ...result.created,
-        ...installed.created,
-        ...installedCommands.created,
+        ...installed.skills.created,
+        ...installed.commands.created,
+        ...installed.agents.created,
       ]) {
         console.log(`    - ${f}`);
       }
@@ -136,22 +157,10 @@ program
 
     console.log(`Initialized Tracer Spec Workflow project '${result.name}'.`);
     console.log(`Created ${result.created.length} file(s).`);
-    if (tools.length > 0) {
-      console.log(`Installed skills for: ${describeTools(tools, scope)}`);
-    }
-    if (installedCommands.created.length > 0) {
-      console.log(
-        `Installed ${installedCommands.created.length} slash command(s) (tspec:...).`,
-      );
-    }
+    if (tools.length > 0) reportHarnessInstall(installed, tools, scope);
     if (result.skipped.length > 0) {
       console.log(
         `Skipped ${result.skipped.length} existing file(s) (use --force to overwrite).`,
-      );
-    }
-    if (installed.skipped.length > 0) {
-      console.log(
-        `Skipped ${installed.skipped.length} existing skill file(s) (use --force to overwrite).`,
       );
     }
     console.log("");
@@ -162,6 +171,48 @@ program
       "  3. Validate:             antora-tracer validate -i docs --config traceability.yml",
     );
     console.log("  4. Build docs:           npm run build");
+  });
+
+program
+  .command("install")
+  .description(
+    "Install the workflow skills, slash commands, and agent definitions into harnesses without scaffolding",
+  )
+  .option("--force", "Overwrite existing harness files")
+  .option("--link", "Link installed harness files to the package source")
+  .addOption(
+    new Option("--scope <scope>", "Choose project or user installation").choices(["project", "user"]),
+  )
+  .option("--dry-run", "Preview actions without writing files")
+  .option(
+    "--tools <ids>",
+    `Agent harnesses to install for (comma-separated, 'all', 'none'). Valid: ${TOOL_IDS}`,
+  )
+  .action(async (options) => {
+    const tools = await resolveTools(options);
+    if (tools.length === 0) {
+      throw new Error(
+        "No harness selected. Pass --tools <ids> (or 'all'); 'none' installs nothing.",
+      );
+    }
+    const scope = await resolveScope(options);
+    const installed = installHarness(tools, scope, options);
+
+    if (options.dryRun === true) {
+      console.log("[DRY RUN] Would install harness files:");
+      console.log(`  Skills for: ${describeTools(tools, scope)}`);
+      console.log("  Files that would be created:");
+      for (const f of [
+        ...installed.skills.created,
+        ...installed.commands.created,
+        ...installed.agents.created,
+      ]) {
+        console.log(`    - ${f}`);
+      }
+      return;
+    }
+
+    reportHarnessInstall(installed, tools, scope);
   });
 
 program

@@ -14,7 +14,9 @@ Durable artifacts (requirements, changes, architecture items, change designs, de
 
 `tspec init` installs the workflow skills into your agent harness
 directories (`.omp/skills/`, `.claude/skills/`, `.agents/skills/`).
-Re-run `tspec init --tools <ids>` to add or refresh them. The skills:
+Re-run `tspec install --tools <ids>` to add or refresh harness files without
+re-scaffolding the project; `tspec init --tools <ids>` does the same but also
+writes scaffold files. The skills:
 
 | Skill | Purpose |
 |-------|---------|

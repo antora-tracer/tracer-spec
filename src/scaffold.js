@@ -118,15 +118,25 @@ export const TOOLS = {
     label: "Oh My Pi",
     dir: ".omp/skills",
     userDir: ".omp/agent/skills",
+    agentDir: ".omp/agents",
+    userAgentDir: ".omp/agent/agents",
     commands: { dir: ".omp/commands", name: (id) => `tspec-${id}.md` },
   },
   claude: {
     label: "Claude Code",
     dir: ".claude/skills",
     userDir: ".claude/skills",
+    agentDir: ".claude/agents",
+    userAgentDir: ".claude/agents",
     commands: { dir: ".claude/commands/tspec", name: (id) => `${id}.md` },
   },
-  codex: { label: "Codex", dir: ".agents/skills", userDir: ".agents/skills" },
+  codex: {
+    label: "Codex",
+    dir: ".agents/skills",
+    userDir: ".agents/skills",
+    agentDir: ".codex/agents",
+    userAgentDir: ".codex/agents",
+  },
   pi: { label: "Pi", dir: ".pi/skills", userDir: ".agents/skills" },
   agents: { label: "Shared .agents", dir: ".agents/skills", userDir: ".agents/skills" },
 };
@@ -156,6 +166,35 @@ export function parseTools(input) {
 }
 
 /**
+ * True when any directory between `dest` and `target` is a symlink. Such a
+ * destination would redirect writes onto files outside its harness directory,
+ * so the installers skip it rather than write through it. This applies at every
+ * scope: a symlinked user harness directory can point into a project tree.
+ */
+function hasSymlinkedParent(dest, target) {
+  for (let parent = dirname(dest); parent !== target && parent !== dirname(parent); parent = dirname(parent)) {
+    if (lstatSync(parent, { throwIfNoEntry: false })?.isSymbolicLink()) return true;
+  }
+  return false;
+}
+
+/**
+ * Write one harness file to `dest`, replacing an existing symlink instead of
+ * writing through it, so `--force` cannot clobber a file outside the project.
+ */
+function writeInstalled(dest, source, opts, present) {
+  if (opts.link) {
+    if (present) unlinkSync(dest);
+    symlinkSync(source, dest, "file");
+    return;
+  }
+  // Unlink any existing entry first: a symlink would be written through, and a
+  // hardlink shares its inode, so writing would truncate the other reference.
+  if (present) unlinkSync(dest);
+  writeFileSync(dest, readFileSync(source, "utf8"), "utf8");
+}
+
+/**
  * Install skills into the selected harnesses' project or user directories.
  */
 export function installSkills(opts = {}) {
@@ -172,21 +211,60 @@ export function installSkills(opts = {}) {
       if (!existsSync(skillFile)) continue;
       const rel = join(dir, entry.name, "SKILL.md");
       const dest = join(target, rel);
-      const present = opts.link
-        ? lstatSync(dest, { throwIfNoEntry: false }) !== undefined
-        : existsSync(dest);
+      // lstatSync, not existsSync: a dangling symlink is present and must be
+      // replaced rather than written through.
+      const present = lstatSync(dest, { throwIfNoEntry: false }) !== undefined;
       if (present && !opts.force) {
         skipped.push(rel);
         continue;
       }
       if (!opts.dryRun) {
-        mkdirSync(dirname(dest), { recursive: true });
-        if (opts.link) {
-          if (present) unlinkSync(dest);
-          symlinkSync(skillFile, dest, "file");
-        } else {
-          writeFileSync(dest, readFileSync(skillFile, "utf8"), "utf8");
+        if (hasSymlinkedParent(dest, target)) {
+          skipped.push(rel);
+          continue;
         }
+        mkdirSync(dirname(dest), { recursive: true });
+        writeInstalled(dest, skillFile, opts, present);
+      }
+      created.push(rel);
+    }
+  }
+  return { created, skipped };
+}
+
+/**
+ * Install shipped agent definitions into each selected harness's agent
+ * directory. Sources live under `agents/<harness>/`; a harness without an
+ * agent convention (`agentDir`) receives skills only.
+ */
+export function installAgents(opts = {}) {
+  const target = resolve(opts.directory ?? (opts.scope === "user" ? homedir() : process.cwd()));
+  const agentsDir = join(__dirname, "..", "agents");
+  const created = [];
+  const skipped = [];
+  if (!existsSync(agentsDir)) return { created, skipped };
+  for (const id of opts.tools ?? []) {
+    const tool = TOOLS[id];
+    if (!tool.agentDir) continue;
+    const source = join(agentsDir, id);
+    if (!existsSync(source)) continue;
+    const dir = opts.scope === "user" ? tool.userAgentDir : tool.agentDir;
+    for (const entry of readdirSync(source, { withFileTypes: true })) {
+      if (!entry.isFile()) continue;
+      const rel = join(dir, entry.name);
+      const dest = join(target, rel);
+      const present = lstatSync(dest, { throwIfNoEntry: false }) !== undefined;
+      if (present && !opts.force) {
+        skipped.push(rel);
+        continue;
+      }
+      if (!opts.dryRun) {
+        if (hasSymlinkedParent(dest, target)) {
+          skipped.push(rel);
+          continue;
+        }
+        mkdirSync(dirname(dest), { recursive: true });
+        writeInstalled(dest, join(source, entry.name), opts, present);
       }
       created.push(rel);
     }
@@ -214,12 +292,20 @@ export function installCommands(opts = {}) {
       const base = entry.name.replace(/\.md$/, "");
       const rel = join(tool.commands.dir, tool.commands.name(base));
       const dest = join(target, rel);
-      if (existsSync(dest) && !opts.force) {
+      const present = lstatSync(dest, { throwIfNoEntry: false }) !== undefined;
+      if (present && !opts.force) {
         skipped.push(rel);
         continue;
       }
       if (!opts.dryRun) {
+        // Slash commands always target the project root, regardless of skill
+        // scope, so this guard is never scope-exempt.
+        if (hasSymlinkedParent(dest, target)) {
+          skipped.push(rel);
+          continue;
+        }
         mkdirSync(dirname(dest), { recursive: true });
+        if (present) unlinkSync(dest);
         writeFileSync(dest, readFileSync(join(commandsDir, entry.name), "utf8"), "utf8");
       }
       created.push(rel);

@@ -6,7 +6,7 @@ The traceability model itself is the `antora-tracer` CLI, covered for the comman
 == tspec
 
 `tspec` scaffolds a project and installs the workflow skills.
-It ships two commands.
+It ships three commands: `init`, `install`, and `status`.
 
 === init
 
@@ -29,23 +29,24 @@ Defaults to the current directory name.
 |===
 | Option | Description
 
-| `--force` | Overwrite existing files instead of skipping them.
-With `--link`, it replaces existing harness skill files with symlinks without writing through them.
+| `--force` | Overwrite existing files instead of skipping them, including scaffold files.
+Existing symlinks are replaced rather than written through.
 
-| `--skip-skills` | Do not install the workflow skills into any harness.
+| `--skip-skills` | Do not install the workflow skills, slash commands, or agent definitions into any harness.
 Installs nothing, regardless of `--tools`.
 
-| `--link` | Install harness `SKILL.md` files as symlinks to the package's `skills/` sources instead of copies.
+| `--link` | Install skills and agent definitions as symlinks to the package's sources instead of copies.
 Run the CLI from a repository checkout to link to working-tree files; a globally installed CLI links to its installed package.
+Slash commands are always copies.
 
-| `--scope <scope>` | Select `project` or `user` skill installation.
+| `--scope <scope>` | Select `project` or `user` installation.
 When omitted in a terminal, prompts with `project` selected; without a TTY, defaults to `project`.
-This option only changes skill destinations; scaffolding and slash commands remain project-local.
+This option changes skill and agent destinations; scaffolding and slash commands remain project-local.
 
 | `--dry-run` | Preview actions without writing any file.
 Prints the component name, title, selected harnesses, and every file that would be created.
 
-| `--tools <ids>` | Agent harnesses to install skills for: a comma-separated list, `all`, or `none`.
+| `--tools <ids>` | Agent harnesses to install for: a comma-separated list, `all`, or `none`.
 When omitted and the terminal is interactive, shows a picker; when not a terminal, defaults to `oh-my-pi,claude,agents`.
 |===
 
@@ -66,8 +67,60 @@ When omitted and the terminal is interactive, shows a picker; when not a termina
 `codex` and `agents` share `.agents/skills` at project scope; `codex`, `pi`, and `agents` share `~/.agents/skills` at user scope.
 
 Slash commands are installed only for harnesses that define a command convention: Oh My Pi (`.omp/commands/tspec-<id>.md`) and Claude Code (`.claude/commands/tspec/<id>.md`).
-Codex, Pi, and the shared `.agents` directory install skills only.
 Slash commands remain project-local for either skill installation scope.
+
+==== Agents
+
+Harnesses that declare an agent convention also receive the shipped agent definitions.
+Each agent is installed in its harness's own format and directory.
+
+[width=100%, cols="20a,25a,27a,28a"]
+|===
+| ID | Project agent directory | User agent directory | Format
+
+| `oh-my-pi` | `.omp/agents` | `~/.omp/agent/agents` | Markdown with YAML frontmatter
+| `claude` | `.claude/agents` | `~/.claude/agents` | Markdown with YAML frontmatter
+| `codex` | `.codex/agents` | `~/.codex/agents` | TOML
+|===
+
+Pi and the shared `.agents` directory have no agent convention and install skills only.
+Shipped agents are named with a `tspec-` prefix so they never replace a harness's own or bundled agent.
+The shipped conformance reviewer is read-only by tool list on Oh My Pi and Claude Code; Codex offers no per-agent write toggle, so read-only there rests on the agent's instructions.
+
+=== install
+
+Install the workflow skills, slash commands, and agent definitions into the selected harnesses without writing any scaffold file.
+Run it from an existing project root to refresh harness files while leaving project content untouched.
+
+[source,bash]
+----
+tspec install [options]
+----
+
+[cols="25a,75a"]
+|===
+| Option | Description
+
+| `--force` | Overwrite existing harness files instead of skipping them.
+Existing symlinks are replaced rather than written through.
+
+| `--link` | Install skills and agent definitions as symlinks to the package's sources instead of copies.
+Run the CLI from a repository checkout to link to working-tree files.
+Slash commands are always copies.
+
+| `--scope <scope>` | Select `project` or `user` installation.
+When omitted in a terminal, prompts with `project` selected; without a TTY, defaults to `project`.
+
+| `--dry-run` | Preview actions without writing any file.
+Prints the selected harnesses and every harness file that would be created.
+
+| `--tools <ids>` | Agent harnesses to install for: a comma-separated list, `all`, or `none`.
+When omitted and the terminal is interactive, shows a picker; when not a terminal, defaults to `oh-my-pi,claude,agents`.
+Passing `none`, or leaving no harness selected, exits nonzero and writes nothing.
+|===
+
+Unlike `init`, `install` never scaffolds: it writes no `traceability.yml`, `docs/`, `AGENTS.md`, or other project file.
+With `--force` it refreshes harness files without overwriting project content.
 
 === status
 

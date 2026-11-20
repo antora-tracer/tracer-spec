@@ -13,6 +13,11 @@ antora:
         configPath: traceability.yml
         generateMatrices: true
         generateCoverage: true
+asciidoc:
+  extensions:
+    - asciidoctor-kroki
+  attributes:
+    kroki-fetch-diagram: true
 ui:
   bundle:
     url: https://github.com/opendevise/antora-ui-default/releases/download/v2.1.2/ui-bundle-2.1.2.zip

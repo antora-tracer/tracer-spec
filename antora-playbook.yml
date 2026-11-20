@@ -13,6 +13,11 @@ antora:
         configPath: traceability.yml
         generateMatrices: true
         generateCoverage: true
+asciidoc:
+  extensions:
+    - asciidoctor-kroki
+  attributes:
+    kroki-fetch-diagram: true
 ui:
   bundle:
     url: https://github.com/rattermeyer/antora-ui-conemso/releases/download/v1.2.1/ui-bundle.zip

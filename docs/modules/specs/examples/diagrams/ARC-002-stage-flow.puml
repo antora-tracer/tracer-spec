@@ -1,0 +1,16 @@
+@startuml
+title Stage skills and the records they add
+skinparam defaultTextAlignment center
+[tspec-explore] as E
+[tspec-refine-feature] as RF
+[tspec-new-change] as NC
+[tspec-refine-change] as RC
+[tspec-apply-change] as AP
+[tspec-archive] as AR
+
+E --> RF : feature sketch
+RF --> NC : product and component requirements
+NC --> RC : one proposed change
+RC --> AP : software requirements and design
+AP --> AR : verified change
+@enduml

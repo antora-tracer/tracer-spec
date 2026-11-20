@@ -1,0 +1,27 @@
+@startuml
+title Deployment View — repository, harnesses, and the published site
+node "Developer Machine" {
+  folder "Project Repository" as repo {
+    artifact "traceability.yml" as cfg
+    folder "docs/ (graph source)" as src
+    artifact "antora-playbook.yml" as pb
+  }
+  folder "Harness Directories" as harness {
+    artifact ".omp/skills, .omp/agents" as omp
+    artifact ".claude/skills, .claude/agents" as claude
+    artifact ".codex/agents" as codex
+    artifact ".agents/skills" as agents
+  }
+}
+cloud "Diagram Service" as kroki
+node "Antora Build" as build {
+  artifact "Published Site" as site
+}
+repo --> harness : tspec init / tspec install
+pb --> build : npx antora
+src --> build
+cfg --> build
+build --> kroki : renders diagram source
+kroki --> build : SVG
+build --> site
+@enduml

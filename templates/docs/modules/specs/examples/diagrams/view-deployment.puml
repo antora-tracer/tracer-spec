@@ -1,0 +1,5 @@
+@startuml
+node "Node" {
+  artifact "Deployed Unit"
+}
+@enduml

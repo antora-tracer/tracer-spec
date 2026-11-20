@@ -1,0 +1,24 @@
+@startuml
+title Crosscutting Concepts — durable artifacts and temporary tasks
+package "Durable graph (survives the change)" as durable {
+  artifact "requirements" as req
+  artifact "changes" as chg
+  artifact "designs" as dsn
+  artifact "architecture items" as arc
+  artifact "decisions and ADRs" as dec
+}
+package "Temporary (removed at archive)" as temp {
+  artifact "tspec/<change-id>/tasks.md" as tasks
+}
+chg --> req : addresses
+chg --> dsn : records
+chg --> dec : records
+dsn --> arc : affects
+arc --> req : realizes
+chg --> tasks : drives
+tasks -[hidden]-> durable : consumed
+note right of temp
+  Identifier allocation reads the durable graph
+  and picks the next free <PREFIX>-NNN.
+end note
+@enduml

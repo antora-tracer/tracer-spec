@@ -15,6 +15,13 @@ Record technical, organizational, regulatory, or external constraints that shape
 
 Describe the system boundary, external actors, neighboring systems, and their interfaces.
 
+// Diagram slot: replace this comment with a diagram.
+// The source lives in examples/diagrams/view-context.puml.
+// [c4plantuml]
+// ----
+// include::example$diagrams/view-context.puml[]
+// ----
+
 == 4. Solution Strategy
 
 Summarize the key solution approaches. Use `kind=solution_strategy` ARC items for strategies that need explicit traceability.
@@ -23,17 +30,45 @@ Summarize the key solution approaches. Use `kind=solution_strategy` ARC items fo
 
 Describe the important components and their responsibilities. Use `kind=building_block` ARC items for independently meaningful elements.
 
+// Diagram slot: replace this comment with a diagram.
+// The source lives in examples/diagrams/view-building-block.puml.
+// [c4plantuml]
+// ----
+// include::example$diagrams/view-building-block.puml[]
+// ----
+
 == 6. Runtime View
 
 Describe important runtime scenarios or interactions. Link any stable runtime-scenario items.
+
+// Diagram slot: replace this comment with a diagram.
+// The source lives in examples/diagrams/view-runtime.puml.
+// [plantuml]
+// ----
+// include::example$diagrams/view-runtime.puml[]
+// ----
 
 == 7. Deployment View
 
 Describe the deployment environment, nodes, and communication paths. Link deployment elements when they need change-impact tracking.
 
+// Diagram slot: replace this comment with a diagram.
+// The source lives in examples/diagrams/view-deployment.puml.
+// [plantuml]
+// ----
+// include::example$diagrams/view-deployment.puml[]
+// ----
+
 == 8. Crosscutting Concepts
 
 Describe concepts that apply across the system, such as identity, data ownership, or error handling. Use ARC items for reusable concepts.
+
+// Diagram slot: replace this comment with a diagram.
+// The source lives in examples/diagrams/view-crosscutting.puml.
+// [plantuml]
+// ----
+// include::example$diagrams/view-crosscutting.puml[]
+// ----
 
 == 9. Architecture Decisions
 

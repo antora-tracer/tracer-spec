@@ -86,6 +86,9 @@ relations:
     decision:
       supersedes:
         reverse: superseded_by
+    requirement:
+      leads_to:
+        reverse: influenced_by
 
 matrices:
   - name: changes-to-requirements

@@ -48,14 +48,24 @@ tspec init --tools omp,codex,pi      # omp aliases oh-my-pi
 
 When you omit `--tools` and run interactively, `init` shows a picker.
 When `stdin` is not a terminal, it falls back to the default set.
-Pass `--scope user` to install skills for all projects, or `--scope project` for the current repository.
+Pass `--scope user` to install harness files for all projects, or `--scope project` for the current repository.
 Omitting `--scope` prompts in an interactive terminal and defaults to project scope otherwise.
-The scope applies only to skills; project scaffolding and slash commands stay local.
-Use `--link` when developing skills to make harness `SKILL.md` files symlinks to the package source.
-Run the CLI from a checkout to follow working-tree edits; use `--force` to replace existing skill files.
+The scope applies to skills and agents; project scaffolding and slash commands stay local.
+Use `--link` when developing skills or agent definitions to make them symlinks to the package sources; slash commands are always copies.
+Run the CLI from a checkout to follow working-tree edits; use `--force` to replace existing harness files.
 `--force` also overwrites existing scaffold files, so avoid it in a populated project unless intended.
 
-Every harness reads the same `SKILL.md` files; only the target directory differs.
+== 3a. Refresh harness files without re-scaffolding
+
+Once the project exists, refresh skills, slash commands, and agent definitions without touching project content:
+
+[source,bash]
+----
+tspec install --tools oh-my-pi,claude,codex --force
+----
+
+`install` never scaffolds: it writes no `traceability.yml`, `docs/`, or `AGENTS.md`, so `--force` is safe here.
+Every harness reads the same `SKILL.md` files and receives agents in its own directory and format.
 See xref:reference/cli.adoc[CLI reference] for the full flag list.
 
 == 4. Confirm the result

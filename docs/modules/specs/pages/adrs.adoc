@@ -19,3 +19,7 @@ decides:ARC-NNN[]
 tracer:links[]
 --
 ----
+
+include::partial$adrs/ADR-001-harness-install-command.adoc[]
+
+include::partial$adrs/superseded.adoc[opts=optional]
