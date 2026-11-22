@@ -1,6 +1,102 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "asciidoctor@latest": {
+      "last_modified": "2026-10-02T22:55:44Z",
+      "resolved": "github:NixOS/nixpkgs/55ba7f49ef2962b42cbd126522b7df5f95037679#asciidoctor",
+      "source": "devbox-search",
+      "version": "2.0.26",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/5v9j0fbvnlndszmalf50xriihyckar7j-asciidoctor-2.0.26",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/5v9j0fbvnlndszmalf50xriihyckar7j-asciidoctor-2.0.26"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ia9fsakp0slk6ma8fv5286gj2ry1jkv7-asciidoctor-2.0.26",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ia9fsakp0slk6ma8fv5286gj2ry1jkv7-asciidoctor-2.0.26"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/dz8mi3mnjb5x1wpxikr3pnc7abanja31-asciidoctor-2.0.26",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/dz8mi3mnjb5x1wpxikr3pnc7abanja31-asciidoctor-2.0.26"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/k81k10c06jnxybyhk82hrcs28xvif9i0-asciidoctor-2.0.26",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/k81k10c06jnxybyhk82hrcs28xvif9i0-asciidoctor-2.0.26"
+        }
+      }
+    },
+    "bundler@latest": {
+      "last_modified": "2026-10-02T22:55:44Z",
+      "resolved": "github:NixOS/nixpkgs/55ba7f49ef2962b42cbd126522b7df5f95037679#bundler",
+      "source": "devbox-search",
+      "version": "2.7.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/k3rrgkbpgyk4zwmyrij1gwkq0imily54-bundler-2.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/k3rrgkbpgyk4zwmyrij1gwkq0imily54-bundler-2.7.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/kkakqd1alc1dv4fgsv8jv9g1j846ya92-bundler-2.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/kkakqd1alc1dv4fgsv8jv9g1j846ya92-bundler-2.7.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ww85ffrswh2lmmg7fi7jngx34mg5hp5v-bundler-2.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/ww85ffrswh2lmmg7fi7jngx34mg5hp5v-bundler-2.7.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/85byxy4gxnyhmbjc45avxsihgd2s5hq2-bundler-2.7.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/85byxy4gxnyhmbjc45avxsihgd2s5hq2-bundler-2.7.2"
+        }
+      }
+    },
     "curl@latest": {
       "last_modified": "2025-12-05T15:03:55Z",
       "resolved": "github:NixOS/nixpkgs/a672be65651c80d3f592a89b3945466584a22069#curl",
@@ -311,6 +407,95 @@
             }
           ],
           "store_path": "/nix/store/9z1v3wyrxp6fpyzw21lcakd5w7aknzyc-nodejs-24.12.0"
+        }
+      }
+    },
+    "ruby@latest": {
+      "last_modified": "2026-10-02T22:55:44Z",
+      "plugin_version": "0.0.2",
+      "resolved": "github:NixOS/nixpkgs/55ba7f49ef2962b42cbd126522b7df5f95037679#ruby_4_0",
+      "source": "devbox-search",
+      "version": "4.0.7",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/x97lzcs9p6xm3ahr0byvl0cy984fn3s8-ruby-4.0.7",
+              "default": true
+            },
+            {
+              "name": "devdoc",
+              "path": "/nix/store/a8fv48c4g267d6hg9af7vfsbmfl8j3w5-ruby-4.0.7-devdoc"
+            }
+          ],
+          "store_path": "/nix/store/x97lzcs9p6xm3ahr0byvl0cy984fn3s8-ruby-4.0.7"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/xzil3idw6rcac514kl6l7s2m0r3ih90v-ruby-4.0.7",
+              "default": true
+            },
+            {
+              "name": "devdoc",
+              "path": "/nix/store/q8sh9xlr8892xx8y1a0qxb3kfbq16ryi-ruby-4.0.7-devdoc"
+            }
+          ],
+          "store_path": "/nix/store/xzil3idw6rcac514kl6l7s2m0r3ih90v-ruby-4.0.7"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/ywm6wgj3q4cvrvqiknwmp22nqsxsx2gb-ruby-4.0.7",
+              "default": true
+            },
+            {
+              "name": "devdoc",
+              "path": "/nix/store/d1lx0c2svxsv3hxxr30iwp4ib0hds83y-ruby-4.0.7-devdoc"
+            }
+          ],
+          "store_path": "/nix/store/ywm6wgj3q4cvrvqiknwmp22nqsxsx2gb-ruby-4.0.7"
+        }
+      }
+    },
+    "vale@latest": {
+      "last_modified": "2026-10-02T22:55:44Z",
+      "resolved": "github:NixOS/nixpkgs/55ba7f49ef2962b42cbd126522b7df5f95037679#vale",
+      "source": "devbox-search",
+      "version": "3.17.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/mrmni66h6cidf02g2p8d3k2451vy0xgf-vale-3.17.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/mrmni66h6cidf02g2p8d3k2451vy0xgf-vale-3.17.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/hji656gck71a6gcvhsn6nkzmr84inr29-vale-3.17.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/hji656gck71a6gcvhsn6nkzmr84inr29-vale-3.17.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/1cjx7gc7if8ivg0wpsckqyrbvrn1ghas-vale-3.17.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/1cjx7gc7if8ivg0wpsckqyrbvrn1ghas-vale-3.17.1"
         }
       }
     }

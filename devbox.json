@@ -4,7 +4,11 @@
     "nodejs@24",
     "git@latest",
     "gh@latest",
-    "curl@latest"
+    "curl@latest",
+    "ruby@latest",
+    "bundler@latest",
+    "asciidoctor@latest",
+    "vale@latest"
   ],
   "shell": {
     "init_hook": [
