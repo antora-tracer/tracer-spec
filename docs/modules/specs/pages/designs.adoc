@@ -3,16 +3,33 @@
 
 Each refined implementation change has one durable design item created before its temporary task list. Add new designs with `tspec-refine-change` and link them to the change, the requirements they realize, affected architecture items, and related ADRs.
 
+Designs exist from CHG-012 onward; earlier changes predate the design role, so this page lists a subset of the changes.
+
+== CHG-012 — Trace architecture elements and change designs
+
 include::partial$designs/DSN-001-chg-012-architecture-records.adoc[]
+
+== CHG-016 — Invoke the workflow CLI as tspec
+
 include::partial$designs/DSN-002-cli-executable-tspec.adoc[]
+
+== CHG-017 — Install only harness files without scaffolding
 
 include::partial$designs/DSN-003-install-only-harness-files.adoc[]
 
+== CHG-018 — Add architecture diagrams to the arc42 views
+
 include::partial$designs/DSN-004-architecture-diagrams.adoc[]
+
+== CHG-019 — Externalize architecture diagram source
 
 include::partial$designs/DSN-005-externalize-diagram-source.adoc[]
 
+== CHG-020 — State one obligation per requirement and split the harness-install requirements
+
 include::partial$designs/DSN-006-one-obligation-per-requirement.adoc[]
+
+== CHG-021 — Split the grandfathered multi-obligation requirements
 
 include::partial$designs/DSN-007-split-grandfathered-requirements.adoc[]
 

@@ -5,10 +5,9 @@ Create one durable `design` item for each refined change before its temporary ta
 
 See xref:guidance/design.adoc[Change Design] for the item template.
 
+== CHG-NNN — <change>
 
-
-== Items
-
-Add each item's `include::partial$designs/<file>.adoc[]` line below.
+Add one `== CHG-NNN — <change>` section per design, titled with the change it records, and put that design's `include::partial$designs/<file>.adoc[]` line under it.
+Titling each section with the change makes the design reachable from the page's contents list, since an item's own title renders as a block title rather than a heading.
 
 include::partial$designs/superseded.adoc[opts=optional]

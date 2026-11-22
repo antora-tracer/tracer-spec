@@ -4,6 +4,13 @@ A design item records the technical approach for one refined implementation chan
 
 Link the design to its change, relevant requirements, affected architecture items, and related ADRs. Record material alternatives and trade-offs or state explicitly that the change has no architecture impact.
 
+== Placement
+
+Write each design as its own partial under `docs/modules/specs/partials/designs/` and include it from `docs/modules/specs/pages/designs.adoc`.
+That page gives each design its own `== CHG-NNN — <change>` section, titled with the change the design records, so the design appears in the page's contents list.
+Titling the section with the change rather than the design keeps the page keyed by the change a reader arrives with; the design's own title renders as a block title and does not reach the contents list.
+A superseded design moves to `partials/designs/superseded.adoc` instead of staying among the live items.
+
 == Item template
 
 [source,asciidoc]
