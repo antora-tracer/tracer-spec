@@ -59,6 +59,8 @@ include::partial$decisions/DEC-019-kroki-diagram-rendering.adoc[]
 
 include::partial$decisions/DEC-020-enforce-atomicity-at-authoring-and-review.adoc[]
 
+include::partial$decisions/DEC-021-devbox-development-shell.adoc[]
+
 == Proposed
 
 include::partial$decisions/DEC-012-enforce-what-not-how-at-propose.adoc[]

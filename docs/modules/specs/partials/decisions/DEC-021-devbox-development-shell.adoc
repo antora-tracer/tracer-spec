@@ -1,0 +1,28 @@
+[#DEC-021, item, role=decision, status=accepted, title="Declare the development toolchain with a devbox Nix shell"]
+--
+Context:: The repository needs Node.js to install dependencies, validate the graph, run the tests, and build the site, and it needs git for the Antora content source and the bootstrap script.
+Nothing in the repository declared which Node.js major or which auxiliary tools a contributor must have, so the environment was implicit machine state: the installed Node.js major was 26, while the transitive Antora dependencies declare `node >=20`.
+
+Options::
+* Commit a `devbox.json` declaring the toolchain as a Nix shell.
+** Good: one declared source for the Node.js major and the auxiliary tools; reproducible across machines once the lockfile is committed; `devbox run` names the common tasks.
+** Bad: adds a devbox and Nix prerequisite; the generated `devbox.lock` must be committed or the reproducibility claim is empty; the tool is not shipped in the scaffold templates, so it covers this repository only.
+* Pin Node.js with `.nvmrc` or Volta and document the rest in the README.
+** Good: no new prerequisite; Node.js version managers are already common.
+** Bad: pins only Node.js; git, gh, and curl stay undeclared and unverified.
+* Provide a Nix flake or `shell.nix` driven by the already-installed direnv.
+** Good: reuses the contributor's existing Nix and direnv setup with no additional tool.
+** Bad: a flake carries more concepts than this repository needs, for the same declared set.
+* Declare nothing and document the prerequisites in the README.
+** Good: no new files.
+** Bad: the declaration drifts from the installed versions, and nothing checks it.
+Decision:: Add a `devbox.json` declaring `nodejs@24`, `git`, `gh`, and `curl`, with `install`, `validate`, `build`, and `test` scripts and an `init_hook` that installs npm dependencies when `node_modules` is absent.
+Rationale:: The toolchain then has one declared source instead of implicit machine state, and the Node.js major is pinned to an LTS line rather than following whatever a contributor happened to install.
+The declared set is exactly what the repository's own commands need: Node.js and git for install, validation, and build, and `gh` and `curl` for the optional `tspec-track` providers.
+Consequences:: The devbox shell must be entered, or `devbox run` must wrap a command, before the declared tools are on `PATH`.
+`devbox.lock` must be committed for the pin to be reproducible; the repository's `*.lock` ignore rule would otherwise exclude it, so `.gitignore` carries a `!devbox.lock` exception.
+The declaration is not part of the scaffold templates, so it reaches no project created by `tspec init`.
+No requirement is recorded for this choice: a requirement needs one pass/fail verdict, and nothing yet asserts that the declared environment resolves, so a maintainability requirement should wait for a check that decides it.
+
+tracer:links[]
+--

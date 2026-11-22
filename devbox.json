@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.17.2/.schema/devbox.schema.json",
+  "packages": [
+    "nodejs@24",
+    "git@latest",
+    "gh@latest",
+    "curl@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "if [ ! -d node_modules ]; then npm install; fi"
+    ],
+    "scripts": {
+      "install": "npm install",
+      "validate": "antora-tracer validate -i docs --config traceability.yml",
+      "build": "npx antora antora-playbook.yml",
+      "test": "node --test"
+    }
+  }
+}
