@@ -22,6 +22,7 @@ pb --> build : npx antora
 src --> build
 cfg --> build
 build --> kroki : renders diagram source
-kroki --> build : SVG
-build --> site
+kroki --> build : SVG, fetched and embedded
+build --> site : page carries the rendered diagram,\nso a reader needs no network
+build --> site : service unreachable — block skipped,\nsource shown with a warning, build exits 0
 @enduml

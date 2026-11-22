@@ -38,7 +38,7 @@ A project whose architecture is a component hierarchy MAY adopt traditional UML 
 
 === Rendering
 
-Rendering runs during the documentation build through `asciidoctor-kroki`, configured in `antora-playbook.yml`; see xref:reference/config.adoc[Configuration Reference] for the rendering attributes.
+Rendering runs during the documentation build through `asciidoctor-kroki`, configured in `antora-playbook.yml`; see xref:reference/config.adoc[Configuration Reference] for the rendering attributes. With `kroki-fetch-diagram: true` the build fetches each rendered diagram and embeds it, so a reader needs no network access; an unreachable service skips the block, the page falls back to the diagram source with a warning, and the build still exits 0.
 
 == Item template
 
