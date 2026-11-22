@@ -20,8 +20,14 @@ tracer:links[]
 
 
 
-== Items
+== Accepted
 
-Add each item's `include::partial$decisions/<file>.adoc[]` line below.
+Add each accepted decision's `include::partial$decisions/<file>.adoc[]` line below.
+An `accepted` decision governs the current workflow.
+
+== Proposed
+
+Add each not-yet-in-force decision's `include::partial$decisions/<file>.adoc[]` line below.
+A `proposed` decision is recorded but does not govern yet; move it to Accepted when it takes effect.
 
 include::partial$decisions/superseded.adoc[opts=optional]

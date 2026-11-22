@@ -5,6 +5,13 @@ Use an ADR for a costly-to-reverse software architecture choice.
 
 Status: `proposed` → `accepted` → `rejected` · `superseded`.
 
+== Placement
+
+Write each decision as its own partial under `docs/modules/specs/partials/decisions/` and include it from `docs/modules/specs/pages/decisions.adoc`.
+That page groups items by status: an `accepted` decision sits under `== Accepted` and governs the current workflow; a `proposed` one sits under `== Proposed`.
+Write a decision as `proposed`, and move it to `== Accepted` and `status=accepted` once it takes effect.
+A superseded decision moves to `partials/decisions/superseded.adoc` instead of staying among the live items.
+
 == Item template
 
 [source,asciidoc]
