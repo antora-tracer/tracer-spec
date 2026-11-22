@@ -66,7 +66,7 @@ test('install never writes a scaffold file and writes nothing on dry-run', (t) =
   assert.equal(readdirSync(directory).length, 0)
 
   assert.equal(run(directory, ['install', '--tools', 'oh-my-pi,codex']).status, 0)
-  for (const scaffold of ['traceability.yml', 'tspec.yml', 'package.json', 'AGENTS.md', 'README.md', 'antora-playbook.yml', 'docs', 'plans', 'scripts']) {
+  for (const scaffold of ['traceability.yml', 'tspec.yml', 'package.json', 'AGENTS.md', 'README.adoc', 'antora-playbook.yml', 'docs', 'plans', 'scripts']) {
     assert.equal(existsSync(join(directory, scaffold)), false, `${scaffold} must not be scaffolded`)
   }
 })

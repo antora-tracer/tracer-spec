@@ -10,6 +10,23 @@ npm install
 antora-tracer validate -i docs --config traceability.yml
 ----
 
+== Development environment (devbox)
+
+Node.js, git, gh, and curl are provided by `devbox.json` (Nix). Enter the shell
+and use the packaged scripts:
+
+[source,bash]
+----
+devbox shell                # node 24, git, gh, curl on PATH
+devbox run install          # npm install
+devbox run validate         # antora-tracer validate -i docs --config traceability.yml
+devbox run build            # npx antora antora-playbook.yml
+devbox run test             # node --test
+----
+
+The shell's `init_hook` runs `npm install` automatically when `node_modules` is
+missing, so `devbox shell` is usually enough.
+
 == Workflow
 
 The workflow skills live in `skills/`. Install them into your AI assistant's
