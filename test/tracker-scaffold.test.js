@@ -111,9 +111,12 @@ test('scaffolded role pages build without include errors', (t) => {
   const result = init(directory, ['--link'])
   assert.equal(result.status, 0, result.stderr)
 
-  // The example include lines in the role pages must be illustrative, not
-  // live: a bare `include::partial$<role>/<file>.adoc[]` would be preprocessed
-  // even inside a listing block and fail the build.
+  // Example lines must be illustrative, not live. Measured behaviour:
+  //   macro      backticks   listing block
+  //   include::  safe        live unless escaped with a backslash
+  //   xref:      live        safe
+  // So an include is checked on every line, and an xref only outside a
+  // listing block; a placeholder is a target or link text holding <...>.
   for (const page of ['changes', 'requirements', 'decisions', 'use-cases', 'architecture', 'designs', 'adrs']) {
     const body = readFileSync(
       join(directory, 'docs/modules/specs/pages', `${page}.adoc`),
@@ -127,6 +130,15 @@ test('scaffolded role pages build without include errors', (t) => {
         /<|>/,
         `${page}.adoc has a live placeholder include: ${line}`
       )
+    }
+    for (const line of body.replace(/\n-{4,}\n[\s\S]*?\n-{4,}\n/g, '\n').split('\n')) {
+      for (const m of line.matchAll(/(^|[^\\])xref:([^\[]*)\[([^\]]*)\]/g)) {
+        assert.doesNotMatch(
+          m[2] + m[3],
+          /<|>/,
+          `${page}.adoc has a live placeholder xref: ${m[0]}. Escape it as \\xref:.`
+        )
+      }
     }
   }
 })

@@ -24,12 +24,25 @@ Other growth roles are available only when declared in `traceability.yml`. The `
 
 == Item placement
 
-Every item is a partial under `docs/modules/specs/partials/<role>/`, included from its role's listing page under `== Items`.
+Every item is a partial under `docs/modules/specs/partials/<role>/`, included from its role's listing page.
 A superseded item lives in `partials/<role>/superseded.adoc`, included with `[opts=optional]`, never among the live items.
 
-Requirements group further: one partial per level and functional area, named `<level>-<area>.adoc`, and the requirements listing nests those areas under the architectural container headings of the xref:architecture.adoc[Building Block View].
+The listing page's section structure depends on the role:
+
+[cols="22a,78a"]
+|===
+| Role | Listing sections
+
+| requirement | One `==` section per architectural container, each holding one `===` section per functional area. An area present at two levels keeps one heading, with the broader level's partial included first.
+| use_case, change | One `== Items` section holding every item.
+| test, adr | No section heading; items sit directly under the page title.
+| decision | `== Accepted` and `== Proposed`, so an item reads as governing or not yet in force.
+| design | One `== CHG-NNN — <change>` section per item, titled with the change the design records, so each design reaches the page's contents list.
+|===
+
+Requirements group further into one partial per level and functional area, named `<level>-<area>.adoc`.
 When a use case leads to requirements in an area, that area names the use case in a `*Goals served:*` line, so the actor goal is visible beside the requirements it produced.
-Other roles keep one partial per item.
+Every other role keeps one partial per item.
 
 == Requirements
 
@@ -136,3 +149,11 @@ Use the `status` attribute to mark progression.
 
 The `accepted` gate is enforced by validation: an accepted change must address at least one requirement.
 Other transitions are declarative and reviewed via Git.
+
+== Guidance pairs
+
+Each role's authoring guidance exists twice: under `docs/modules/specs/pages/guidance/` and, for the scaffold, under `templates/docs/modules/specs/pages/guidance/`.
+
+The two copies are not mirrors, and neither is derived from the other.
+The repository copy carries this project's specific wording; the template copy carries generic wording a new project adapts.
+Edit the copy that owns the rule and, when the rule also applies to a fresh project, write it into the other in that copy's own voice rather than copying the file.

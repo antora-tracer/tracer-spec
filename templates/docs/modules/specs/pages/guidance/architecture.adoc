@@ -24,6 +24,8 @@ Name files on three axes: `view-<section>.puml` for a diagram that belongs to an
 
 Do not write the notation and target as block attributes above a bare `include::`. A block such as `[c4plantuml, view-context, svg]` followed by `include::example$diagrams/view-context.puml[]` renders the source as a paragraph instead of a diagram. Put the include inside the delimited block, as shown above.
 
+When an example must not be live, escape the macro according to its kind. `include::` is a block macro, so backticks are enough: `` `include::partial$<role>/<file>.adoc[]` `` stays inert. `xref:` is an inline macro and is preprocessed even inside backticks, so it needs a backslash: `` `\xref:requirements.adoc#REQ-NNN[REQ-NNN]` ``. An unescaped `xref:` in a template renders as a link to an anchor that does not exist.
+
 The default notation is C4, written with PlantUML's C4 includes (`C4_Context`, `C4_Container`, `C4_Component`). A project whose architecture is a component hierarchy MAY adopt traditional UML instead — class, component, sequence, and state diagrams — and SHOULD state that choice here.
 
 Rendering runs during the documentation build through `asciidoctor-kroki`, registered in `antora-playbook.yml`. With `kroki-fetch-diagram: true` the build fetches each rendered diagram and embeds it, so a reader needs no network access; an unreachable service skips the block, the page falls back to the diagram source with a warning, and the build still exits 0.
