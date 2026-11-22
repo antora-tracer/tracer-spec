@@ -1,4 +1,4 @@
-[#DEC-011, item, role=decision, status=proposed, title="Separate feature and change refinement from ticket access"]
+[#DEC-011, item, role=decision, status=accepted, title="Separate feature and change refinement from ticket access"]
 --
 Context:: Product feature refinement, detailed change refinement, and provider-specific ticket access have different responsibilities. Combining them makes the change-proposal step author details prematurely and spreads provider behavior through lifecycle skills.
 

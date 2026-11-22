@@ -1,4 +1,4 @@
-[#DEC-019, item, role=decision, status=proposed, title="Render architecture diagrams from text at build time with Kroki"]
+[#DEC-019, item, role=decision, status=accepted, title="Render architecture diagrams from text at build time with Kroki"]
 --
 Context:: The architecture views need diagrams. Four mechanisms were considered; only one keeps diagram source diffable while leaving the published site self-contained.
 

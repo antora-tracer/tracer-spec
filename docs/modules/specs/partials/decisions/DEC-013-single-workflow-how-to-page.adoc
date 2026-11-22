@@ -1,4 +1,4 @@
-[#DEC-013, item, role=decision, status=proposed, title="One how-to page for the nine-skill workflow"]
+[#DEC-013, item, role=decision, status=accepted, title="One how-to page for the nine-skill workflow"]
 --
 Context:: Each skill could have its own how-to page, or the workflow could be documented as one task. The workflow has nine skills across feature refinement, implementation-change refinement, ticket access, and execution.
 

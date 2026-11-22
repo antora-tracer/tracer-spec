@@ -1,4 +1,4 @@
-[#DEC-015, item, role=decision, status=proposed, title="Start skill evaluation with a local Claude Code runner"]
+[#DEC-015, item, role=decision, status=accepted, title="Start skill evaluation with a local Claude Code runner"]
 --
 Context:: The workflow skills need repeatable behavioral checks and with-skill versus baseline comparisons.
 The skill-creator tooling defines useful scenario, expectation, and benchmark conventions, but its task runs depend on interactive subagents and its trigger evaluator is specific to Claude Code.

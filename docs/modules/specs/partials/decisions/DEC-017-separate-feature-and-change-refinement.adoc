@@ -1,4 +1,4 @@
-[#DEC-017, item, role=decision, status=proposed, title="Separate feature-ticket refinement from implementation-change refinement"]
+[#DEC-017, item, role=decision, status=accepted, title="Separate feature-ticket refinement from implementation-change refinement"]
 --
 Context:: Product scope and use cases are refined from an existing external feature ticket, while several implementation changes may be delivered independently.
 A single workflow stage that writes the feature specification, change-specific software requirements, and task checklists makes the scope and readiness of each artifact unclear.

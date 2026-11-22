@@ -1,4 +1,4 @@
-[#DEC-010, item, role=decision, status=proposed, title="Keep ticket state external and limit writes to approved summaries"]
+[#DEC-010, item, role=decision, status=accepted, title="Keep ticket state external and limit writes to approved summaries"]
 --
 Context:: The external ticket owns its estimate, backlog placement, and status. Refinement needs a limited way to publish a summary without taking over ticket workflow state.
 

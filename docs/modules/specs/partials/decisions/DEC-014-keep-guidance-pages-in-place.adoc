@@ -1,4 +1,4 @@
-[#DEC-014, item, role=decision, status=proposed, title="Keep role guidance pages in place, fold duplicates into reference"]
+[#DEC-014, item, role=decision, status=accepted, title="Keep role guidance pages in place, fold duplicates into reference"]
 --
 Context:: `guidance/change.adoc` and `guidance/decision.adoc` are targets of `traceability.yml` `roleGuidance`, and their template content overlaps `workflow/authoring.adoc`.
 Candidates: move them into `reference/`, or keep them and fold the overlap.

@@ -1,4 +1,4 @@
-[#DEC-009, item, role=decision, status=proposed, title="Use optional shared external-item metadata"]
+[#DEC-009, item, role=decision, status=accepted, title="Use optional shared external-item metadata"]
 --
 Context:: Canonical graph items need to reference an existing externally owned feature ticket without making that ticket part of graph traceability.
 

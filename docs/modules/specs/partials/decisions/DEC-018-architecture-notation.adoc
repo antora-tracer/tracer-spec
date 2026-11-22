@@ -1,4 +1,4 @@
-[#DEC-018, item, role=decision, status=proposed, title="Default architecture notation is C4, with traditional UML as a project option"]
+[#DEC-018, item, role=decision, status=accepted, title="Default architecture notation is C4, with traditional UML as a project option"]
 --
 Context:: Architecture diagrams need a notation. C4 (context, container, component) maps directly onto arc42 views; traditional UML (class, sequence, component) fits component hierarchies, which suits some products and not others.
 
