@@ -1,0 +1,46 @@
+@startuml
+title Install write path — the guards before one harness file is written
+skinparam defaultTextAlignment center
+
+start
+:for each harness directory, and each file to install;
+:resolve the destination;
+:probe it with lstat, so a dangling
+symlink counts as present;
+
+if (destination present and no --force?) then (yes)
+  :skip: the existing file is kept;
+  stop
+else (no)
+endif
+
+if (--dry-run given?) then (yes)
+  :record the path as would-be-created
+  and write nothing;
+  stop
+else (no)
+endif
+
+if (an ancestor directory is a symlink?) then (yes)
+  :skip: never write through a
+  symlinked harness directory,
+  at project or user scope;
+  stop
+else (no)
+endif
+
+:create the parent directories;
+
+if (--link given?) then (yes)
+  :unlink the existing entry, if present;
+  :create a symlink to the package source;
+else (no)
+  :unlink the existing entry, if present
+  (a symlink would be written through,
+  a hardlink shares its inode);
+  :write the file contents;
+endif
+
+:harness file installed;
+stop
+@enduml

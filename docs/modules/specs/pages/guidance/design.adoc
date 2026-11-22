@@ -11,6 +11,10 @@ That page gives each design its own `== CHG-NNN — <change>` section, titled wi
 Titling the section with the change rather than the design keeps the page keyed by the change a reader arrives with; the design's own title renders as a block title and does not reach the contents list.
 A superseded design moves to `partials/designs/superseded.adoc` instead of staying among the live items.
 
+A design MAY carry a diagram when its approach is structural — an ordered pipeline, a branch, or a guard sequence that prose forces a reader to reconstruct.
+Add it only then, not as decoration: keep a design whose approach is three mechanical steps or a considered trade-off as prose.
+Keep the source as `<DSN-id>-<slug>.puml` under `docs/modules/specs/examples/diagrams/` and reference it from the design body with a diagram block whose body is the include, matching the architecture guidance.
+
 == Item template
 
 [source,asciidoc]

@@ -14,6 +14,13 @@ The shipped agent is named `tspec-conformance-reviewer` rather than `reviewer` b
 
 Read-only enforcement differs per harness and the difference is a documented ceiling, not a gap to close. Oh My Pi and Claude Code restrict the agent to read/search tools in their frontmatter. Codex exposes no per-agent patch or write toggle: `features.shell_tool = false` disables the shell, but its file-editing capability cannot be removed from a custom agent, so read-only is instruction-bound there. The archive gate therefore rests on the reviewer's instructions on Codex and on the tool list elsewhere; an unsupported capability key would be silently ignored, so none is invented.
 
+The guards and their order are the design.
+
+[plantuml]
+----
+include::example$diagrams/DSN-003-install-write-path.puml[]
+----
+
 recorded_by:CHG-017[]
 realizes:REQ-071[]
 realizes:REQ-072[]

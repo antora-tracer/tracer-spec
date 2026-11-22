@@ -26,7 +26,7 @@ Keep each diagram's source in its own file under `docs/modules/specs/examples/di
 ----
 -----
 
-Name files on two axes: `view-<section>.puml` for a diagram that belongs to an arc42 section, and `<ARC-id>-<slug>.puml` for a diagram that describes one architecture item. A section may carry more than one diagram; give each its own file and its own include.
+Name files on three axes: `view-<section>.puml` for a diagram that belongs to an arc42 section, `<ARC-id>-<slug>.puml` for a diagram that describes one architecture item, and `<DSN-id>-<slug>.puml` for a diagram that explains one change design. A section may carry more than one diagram; give each its own file and its own include.
 
 Do not write the notation and target as block attributes above a bare `include::`. A block such as `[c4plantuml, view-context, svg]` followed by `include::example$diagrams/view-context.puml[]` renders the source as a paragraph instead of a diagram. Put the include inside the delimited block, as shown above.
 
