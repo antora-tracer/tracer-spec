@@ -5,17 +5,11 @@ The change guidance page SHALL declare its item fields as an `Item template` blo
 tracer:links[]
 --
 
-[#REQ-009, item, role=requirement, level=component, status=draft, title="Decision guidance declares an item template"]
---
-The decision guidance page SHALL declare its item fields as an `Item template` block with the labeled-list fields Context, Decision, and Consequences.
-
-tracer:links[]
---
-
 [#REQ-013, item, role=requirement, level=component, status=draft, title="Decision guidance declares MADR-shaped item fields"]
 --
 The decision guidance page SHALL declare an `Item template` whose labeled-list fields are Context, Options (each alternative with its advantages and disadvantages), Decision, Rationale (why the chosen option won), and Consequences.
 
+supersedes:REQ-009[]
 tracer:links[]
 --
 

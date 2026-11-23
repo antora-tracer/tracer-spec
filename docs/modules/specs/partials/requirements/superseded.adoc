@@ -190,3 +190,10 @@ supersedes:REQ-062[]
 refines:REQ-101[]
 tracer:links[]
 --
+
+[#REQ-009, item, role=requirement, level=component, status=superseded, title="Decision guidance declares an item template"]
+--
+The decision guidance page SHALL declare its item fields as an `Item template` block with the labeled-list fields Context, Decision, and Consequences.
+
+tracer:links[]
+--
