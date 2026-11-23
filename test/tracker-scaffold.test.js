@@ -106,6 +106,28 @@ test('init scaffolds a partials layout consistent with the workflow skills', (t)
   assert.doesNotMatch(agents, /items are pages under/)
 })
 
+test('a scaffolded project validates with no items and no errors', (t) => {
+  const directory = projectDir(t)
+  const result = init(directory, ['--link'])
+  assert.equal(result.status, 0, result.stderr)
+
+  // A template file is copied verbatim into every new project, so anything
+  // live in it becomes the new project's problem. An uncommented item block
+  // carrying a `documents:` (or any relation) macro writes a dangling
+  // reference into the scaffold: the requirement it names belongs to this
+  // repository, not to the project being created. Measured: such a stamp
+  // makes every scaffolded project exit 1 with a dangling-reference error.
+  // Item examples inside a listing block are inert and stay allowed.
+  const tracer = fileURLToPath(new URL('../node_modules/.bin/antora-tracer', import.meta.url))
+  const validate = spawnSync(tracer, ['validate', '-i', 'docs', '--config', 'traceability.yml'], {
+    cwd: directory,
+    encoding: 'utf8'
+  })
+  assert.notEqual(validate.status, null, 'antora-tracer did not run')
+  assert.equal(validate.status, 0, `scaffolded project failed validation:\n${validate.stdout}${validate.stderr}`)
+  assert.match(validate.stdout, /Summary: 0 items, 0 relationships/)
+})
+
 test('scaffolded role pages build without include errors', (t) => {
   const directory = projectDir(t)
   const result = init(directory, ['--link'])

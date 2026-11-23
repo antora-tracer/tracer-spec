@@ -1,0 +1,6 @@
+////
+[#DOC-010, item, role=documentation, title="Decision"]
+--
+documents:REQ-013[]
+--
+////

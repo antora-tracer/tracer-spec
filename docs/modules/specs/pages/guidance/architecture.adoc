@@ -1,5 +1,7 @@
 = Architecture Item
 
+include::partial$documentation/DOC-008-architecture-guidance.adoc[]
+
 An *Architecture item* represents one independently meaningful element of the system architecture, not an entire arc42 section or an explanatory paragraph.
 
 Use stable `ARC` identifiers for solution strategies, building blocks, runtime or deployment elements, cross-cutting concepts, quality scenarios, risks, and glossary terms when they need links or change-impact history.

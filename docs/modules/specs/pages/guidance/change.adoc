@@ -1,5 +1,7 @@
 = Change
 
+include::partial$documentation/DOC-009-change-guidance.adoc[]
+
 A change is the entry point of the workflow.
 It records rationale, outcome, and out-of-scope fields. It links the requirements it addresses, its durable design item, any ADRs it records, and architecture items it updates.
 

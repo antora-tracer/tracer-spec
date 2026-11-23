@@ -1,0 +1,6 @@
+////
+[#DOC-008, item, role=documentation, title="Architecture Item"]
+--
+documents:REQ-064[]
+--
+////
