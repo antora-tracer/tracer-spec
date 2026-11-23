@@ -1,5 +1,7 @@
 = How to Drive the Workflow
 
+include::partial$documentation/DOC-002-drive-the-workflow.adoc[]
+
 Move from feature intent to one or more implemented changes. Refine product behavior from an existing feature ticket first; refine each implementation change before creating its tasks.
 
 == 1. Explore the feature

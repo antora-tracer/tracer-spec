@@ -1,5 +1,7 @@
 = Roles Reference
 
+include::partial$documentation/DOC-006-roles-reference.adoc[]
+
 Every traceability item has a role, ID prefix, item fields, and status conventions; architecture items also use open `kind` metadata.
 This page is the authoritative reference for authoring items.
 

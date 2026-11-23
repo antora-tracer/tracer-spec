@@ -1,5 +1,7 @@
 = CLI Reference
 
+include::partial$documentation/DOC-004-cli-reference.adoc[]
+
 This page documents every command and option of the Tracer Spec Workflow CLI.
 The traceability model itself is the `antora-tracer` CLI, covered for the commands the workflow uses.
 

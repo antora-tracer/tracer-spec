@@ -1,5 +1,7 @@
 = Configuration Reference
 
+include::partial$documentation/DOC-005-configuration-reference.adoc[]
+
 Two configuration files drive the workflow, owned by different tools.
 `antora-tracer` owns `traceability.yml`; `tracer-spec` owns `tspec.yml`.
 

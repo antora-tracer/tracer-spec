@@ -1,5 +1,7 @@
 = Skills Reference
 
+include::partial$documentation/DOC-007-skills-reference.adoc[]
+
 The Tracer Spec Workflow ships nine skills.
 Each is a self-contained instruction file; this page catalogs every skill's trigger, argument, and tool access.
 The `SKILL.md` files are the source of truth — this page mirrors their frontmatter.

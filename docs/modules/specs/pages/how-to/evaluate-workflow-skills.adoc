@@ -1,5 +1,7 @@
 = How to Evaluate Workflow Skills
 
+include::partial$documentation/DOC-003-evaluate-workflow-skills.adoc[]
+
 This guide runs a skill's scenario suite with and without the skill in isolated copies of the same project fixture.
 
 == Prerequisites

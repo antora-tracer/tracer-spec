@@ -1,5 +1,7 @@
 = How to Scaffold a Project
 
+include::partial$documentation/DOC-001-scaffold-project.adoc[]
+
 This guide turns an empty directory into a Tracer Spec Workflow project with a self-tracing Antora site.
 
 == 1. Install the CLI
