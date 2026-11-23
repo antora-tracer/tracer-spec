@@ -9,6 +9,7 @@ roles:
   - architecture
   - design
   - adr
+  - documentation
 
 roleGuidance:
   change:
@@ -29,6 +30,9 @@ roleGuidance:
   adr:
     page: docs/modules/specs/pages/guidance/adr.adoc
     idPrefix: ADR
+  documentation:
+    page: docs/modules/specs/pages/guidance/documentation.adoc
+    idPrefix: DOC
 
 relations:
   change:
@@ -89,6 +93,10 @@ relations:
     requirement:
       leads_to:
         reverse: influenced_by
+  documentation:
+    requirement:
+      documents:
+        reverse: documented_by
 
 matrices:
   - name: changes-to-requirements

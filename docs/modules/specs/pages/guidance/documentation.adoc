@@ -1,0 +1,63 @@
+= Writing Documentation Items
+
+A `documentation` item identifies a prose page and the requirements it documents.
+It carries no user-facing prose of its own: it records which implemented behaviour a how-to, reference, or explanation page describes, so that a change to that behaviour surfaces the page for review.
+
+== Why it exists
+
+The graph covers items, not prose.
+Guides, operating instructions, and reference pages describe behaviour that requirements govern, but nothing otherwise connects a page to the requirements behind the behaviour it explains.
+A `documentation` item closes that gap with a single relation to each requirement it describes.
+When one of those requirements is superseded, `antora-tracer validate` reports the stale link and names the page that needs a recheck.
+
+This is the only mechanism that finds a stale guide.
+A superseded requirement's own successors and links say nothing about the prose that documents the old behaviour.
+
+== Traceability
+
+A documentation item links to each requirement whose behaviour the page describes, with `documents:REQ-NNN[]`.
+The reverse relation is `documented_by`, shown on the requirement's links.
+Use only configured relations and real target IDs, and link a requirement only when the page genuinely describes its behaviour.
+
+`documents` is deliberately absent from every coverage matrix.
+It is an engineering-hygiene trace — it tells an author which page to recheck — not a design-control artifact, so it must not enter a coverage or compliance figure.
+The relation still lives in the graph and still triggers the stale-link warning; it simply counts toward no coverage percentage.
+
+== Placement
+
+Write each documentation item as its own partial under `docs/modules/specs/partials/documentation/` and include it near the top of the prose page it documents, before that page's sections.
+
+An item block cannot contain section headings, so it never wraps the page it stamps; it is a sibling that closes before the page's first `==` section.
+Keep the item body to relationship macros alone — no heading, no explanatory prose.
+Include it once, from the prose page itself.
+
+[source,asciidoc]
+----
+= How to Scaffold a Project
+
+\include::partial$documentation/DOC-001-scaffold-project.adoc[]
+
+== 1. Install the CLI
+----
+
+When a page's sections document different requirements, stamp each section with its own item placed directly beneath that section's heading, so the stale link lands the reader in the right section.
+
+== Writing a documentation item
+
+Stamp one item per documented page, or one per section when the page covers several areas.
+Name the page's subject in the title, so a stale-link warning identifies the reader-facing page.
+Link every requirement the page describes, and no others.
+
+[source,asciidoc]
+----
+[#DOC-NNN, item, role=documentation, title="<the page's subject>"]
+--
+documents:REQ-NNN[]
+tracer:links[]
+--
+----
+
+The item carries no `status`: the page it stamps is edited in place, and the recheck is driven by the requirements it links, not by a lifecycle of its own.
+
+Do not invent relations or target IDs.
+When a page describes behaviour with no requirement behind it, either add the missing requirement or leave the page unstamped; never link a requirement the page does not describe.

@@ -16,11 +16,12 @@ This page is the authoritative reference for authoring items.
 | `architecture` | `ARC` | `accepted` | An independently meaningful system architecture element classified by `kind`.
 | `design` | `DSN` | `proposed` | The durable technical design for one implementation change.
 | `adr` | `ADR` | `proposed` | A decision record for a costly-to-reverse software architecture choice.
+| `documentation` | `DOC` | — | A prose page and the requirements whose behaviour it documents.
 | `test` | `TST` | — | Verification evidence carrying `verifies:REQ-NNN[]`.
 
 |===
 
-Other growth roles are available only when declared in `traceability.yml`. The `minimal` preset supplies the inherited `requirement` and `test` roles, requirement workflow, requirement relations, and `requirements-tests` matrix. This project adds `change`, `decision`, `use_case`, `architecture`, `design`, and `adr`; inherited roles and coverage remain.
+Other growth roles are available only when declared in `traceability.yml`. The `minimal` preset supplies the inherited `requirement` and `test` roles, requirement workflow, requirement relations, and `requirements-tests` matrix. This project adds `change`, `decision`, `use_case`, `architecture`, `design`, `adr`, and `documentation`; inherited roles and coverage remain.
 
 == Item placement
 
@@ -38,11 +39,12 @@ The listing page's section structure depends on the role:
 | test, adr | No section heading; items sit directly under the page title.
 | decision | `== Accepted` and `== Proposed`, so an item reads as governing or not yet in force.
 | design | One `== CHG-NNN — <change>` section per item, titled with the change the design records, so each design reaches the page's contents list.
+| documentation | No listing page. Each item is included from the prose page it stamps, near the top, or beneath the section that documents its requirements.
 |===
 
 Requirements group further into one partial per level and functional area, named `<level>-<area>.adoc`.
 When a use case leads to requirements in an area, that area names the use case in a `*Goals served:*` line, so the actor goal is visible beside the requirements it produced.
-Every other role keeps one partial per item.
+Every other role keeps one partial per item, except `documentation`, whose items live with the prose they describe.
 
 == Requirements
 
@@ -103,6 +105,17 @@ Use `adr` only for costly-to-reverse software architecture choices.
 An ADR captures context, options, decision, rationale, and consequences, and links to its change, relevant requirements, and affected architecture items.
 Domain and business choices remain `decision` items.
 
+== Documentation items
+
+Use `documentation` to connect a prose page — a how-to, reference, or explanation page — to the requirements whose behaviour it describes.
+The item carries no user-facing prose of its own; its page holds the prose and includes the item.
+
+This is the only trace that finds a stale guide.
+Requirements and their successors say nothing about the prose documenting the old behaviour, so without a `documentation` item a superseded requirement leaves the page silently wrong.
+
+A `documentation` item has no listing page and no lifecycle status: it is included from the prose page it stamps, which is edited in place.
+Link each requirement the page describes with `documents:REQ-NNN[]`; see xref:guidance/documentation.adoc[the documentation guidance].
+
 
 == Relation macros
 
@@ -130,7 +143,10 @@ The configured reverse name is available for queries and may be authored where l
 | requirement → requirement | `depends_on:REQ-NNN[]` | `is_prerequisite_of` | requirement
 | requirement → requirement | `supersedes:REQ-OLD[]` | `superseded_by` | requirement
 | test → requirement | `verifies:REQ-NNN[]` | `verified_by` | test
+| documentation → requirement | `documents:REQ-NNN[]` | `documented_by` | documentation
 |===
+
+`documents` is excluded from every coverage matrix by design: it records which prose page needs a recheck when a requirement changes, not design control, so it must not enter a coverage figure. The edge still lives in the graph and still raises the stale-link warning.
 
 == Workflow states
 
@@ -145,6 +161,7 @@ Use the `status` attribute to mark progression.
 | decision, adr | `proposed` → `accepted` → `rejected` · `superseded`
 | architecture | `accepted` current element · `superseded` historical element
 | design | `proposed` → `accepted` · `superseded`
+| documentation | No configured lifecycle states; a page is edited in place and rechecked via the requirements it documents.
 |===
 
 The `accepted` gate is enforced by validation: an accepted change must address at least one requirement.
@@ -157,3 +174,6 @@ Each role's authoring guidance exists twice: under `docs/modules/specs/pages/gui
 The two copies are not mirrors, and neither is derived from the other.
 The repository copy carries this project's specific wording; the template copy carries generic wording a new project adapts.
 Edit the copy that owns the rule and, when the rule also applies to a fresh project, write it into the other in that copy's own voice rather than copying the file.
+
+A role this project declares but the scaffold does not — `documentation` — has a repository guidance page only.
+The scaffold declares no such role and ships no prose page for one to stamp, so a template copy would be unreachable there.
