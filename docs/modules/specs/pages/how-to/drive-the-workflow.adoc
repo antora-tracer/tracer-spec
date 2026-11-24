@@ -21,6 +21,7 @@ tspec-refine-feature <feature-ticket-id>
 ----
 
 Start from an existing feature ticket when refining product behavior, use cases, and requirements; related graph items may share optional `externalId=<id>` metadata. One feature ticket may support many independent implementation changes. A local change can omit `externalId` when it addresses applicable approved requirements.
+See xref:how-to/refine-a-feature.adoc[How to Refine a Feature] for partial refinement, unresolved questions, and the confirmation that precedes approval.
 
 == 3. Record an implementation change
 

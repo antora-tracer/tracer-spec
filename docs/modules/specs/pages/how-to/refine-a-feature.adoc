@@ -1,0 +1,48 @@
+= How to Refine a Feature
+
+include::partial$documentation/DOC-017-refine-a-feature.adoc[]
+
+This guide turns an existing feature ticket into traceable product-level graph items: use cases, and the requirements they imply.
+
+== 1. Start from the ticket
+
+[source,bash]
+----
+tspec-refine-feature <feature-ticket-id>
+----
+
+`tspec-refine-feature` reads an existing feature ticket and records its product intent as use cases and testable product/component requirements.
+Every item it creates is associated with the ticket through the shared optional `externalId=<id>` metadata, so one ticket may be associated with many independent changes.
+
+Requirements are written at product or component level.
+Software-level requirements belong to a change, not to a feature; they appear later, in `tspec-refine-change`.
+
+== 2. Refine what is settled, and only that
+
+A feature ticket often arrives with open questions.
+Record the part you can settle and leave the rest unresolved rather than inventing an answer.
+
+User-approved partial refinement is the expected state, not a failure: use cases and requirements may remain in `draft` while material questions are open.
+Mark each open question explicitly.
+The workflow's own vocabulary for this is the *unanswered question* — the item that prevents an estimation-readiness recommendation — and listing those questions is part of the refinement, not an afterthought.
+
+Do not infer estimatability.
+A requirement is not "probably estimatable"; either the questions blocking an estimate are answered, or they are recorded as open.
+Approval is never automatic: requirements advance to `approved` only when the user confirms the feature is estimatable, and they stay in `draft` until then.
+
+== 3. Link what leads where
+
+Use cases link to the requirements they produce with `leads_to:REQ-NNN[]`; from the requirement's side that reads as `is_derived_from`.
+A more detailed requirement links to the broader one it refines with `refines:REQ-NNN[]`.
+
+When a use case leads to requirements in one functional area, name it in that area's `*Goals served:*` line on the requirements page, so the actor goal is visible beside the requirements it produced.
+
+== 4. Confirm and approve
+
+When the open questions are answered and the user confirms the feature is estimatable, advance the reviewed product/component requirements to `approved`.
+This is the user's decision, recorded in the graph; the workflow does not make it.
+
+== Next
+
+Identify the independent implementation changes the feature implies, then record the first one with `tspec-new-change`.
+One feature ticket routinely supports several independent changes.
