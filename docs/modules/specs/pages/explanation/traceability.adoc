@@ -1,5 +1,7 @@
 = How Traceability Works
 
+include::partial$documentation/DOC-014-how-traceability-works.adoc[]
+
 This page explains how items and their relations become the matrices, coverage reports, and self-tracing site.
 
 == Items carry relations in their source

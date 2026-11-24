@@ -1,5 +1,7 @@
 = Why the Workflow Works This Way
 
+include::partial$documentation/DOC-015-why-the-workflow-works-this-way.adoc[]
+
 The Tracer Spec Workflow connects product intent from an existing feature ticket to one or more independently delivered implementation changes. This page explains why product refinement, change refinement, and ticket tracking are separate.
 
 == The graph is the source of truth for the specification
