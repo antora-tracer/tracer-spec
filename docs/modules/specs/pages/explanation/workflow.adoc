@@ -17,6 +17,10 @@ Git and pull requests provide review, authorization, and history; the graph prov
 explore → refine feature → record change(s) → refine each change → accept → apply → archive
 ----
 
+Each refined change has a durable DSN design item before its temporary task list.
+The arc42 baseline describes the current system, and ARC items are updated when implementation changes architecture.
+ADRs preserve costly-to-reverse software architecture choices, while DEC items remain for domain and workflow decisions.
+
 * *Explore* shapes the feature's rationale, outcome, and scope before graph refinement.
 * *Refine feature* turns an existing ticket into product-level behavior, use cases, and requirements. Related graph items may carry shared optional `externalId=<id>` metadata for that ticket; this is metadata, not a graph relation.
 * *Record change* uses `tspec-new-change` to create one proposed implementation change against approved requirements. `externalId` is optional; detailed software requirements and tasks remain in change refinement.

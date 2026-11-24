@@ -1,5 +1,27 @@
 * xref:index.adoc[Home]
-* xref:workflow/overview.adoc[Workflow]
+
+.Tutorial
+* xref:tutorial/getting-started.adoc[Getting Started]
+
+.How-to guides
+* xref:how-to/scaffold-project.adoc[Scaffold a Project]
+* xref:how-to/refine-a-feature.adoc[Refine a Feature]
+* xref:how-to/drive-the-workflow.adoc[Drive the Workflow]
+* xref:how-to/evaluate-workflow-skills.adoc[Evaluate Workflow Skills]
+
+.Reference
+* xref:reference/cli.adoc[CLI]
+* xref:reference/config.adoc[Configuration]
+* xref:reference/roles.adoc[Roles]
+* xref:reference/skills.adoc[Skills]
+* xref:reference/validation.adoc[Validation]
+
+.Explanation
+* xref:explanation/workflow.adoc[Why the Workflow Works This Way]
+* xref:explanation/traceability.adoc[How Traceability Works]
+* xref:explanation/architecture-impact.adoc[Architecture and Change Impact]
+
+.Project items
 * xref:changes.adoc[Changes]
 * xref:requirements.adoc[Requirements]
 * xref:use-cases.adoc[Use Cases]
@@ -7,3 +29,13 @@
 * xref:architecture.adoc[Architecture]
 * xref:designs.adoc[Change Designs]
 * xref:adrs.adoc[Architecture Decisions]
+* xref:tests.adoc[Tests]
+
+.Role guidance
+* xref:guidance/change.adoc[Writing Changes]
+* xref:guidance/use-case.adoc[Writing Use Cases]
+* xref:guidance/decision.adoc[Writing Decisions]
+* xref:guidance/architecture.adoc[Writing Architecture Items]
+* xref:guidance/design.adoc[Writing Change Designs]
+* xref:guidance/adr.adoc[Writing ADRs]
+* xref:guidance/documentation.adoc[Writing Documentation Items]
