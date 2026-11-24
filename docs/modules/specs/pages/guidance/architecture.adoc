@@ -44,6 +44,17 @@ A project whose architecture is a component hierarchy MAY adopt traditional UML 
 
 Rendering runs during the documentation build through `asciidoctor-kroki`, configured in `antora-playbook.yml`; see xref:reference/config.adoc[Configuration Reference] for the rendering attributes. With `kroki-fetch-diagram: true` the build fetches each rendered diagram and embeds it, so a reader needs no network access; an unreachable service skips the block, the page falls back to the diagram source with a warning, and the build still exits 0.
 
+== Replacing an element
+
+When an architectural element is materially replaced, keep the prior `ARC` item rather than repurposing it.
+
+Write the successor as a new item with its own identifier, and retire the old one to `partials/architecture/superseded.adoc` with `status=superseded`, the same way a superseded requirement moves.
+A superseded element keeps its identifier, its description, and its inbound trace links, so a reader can still follow why the current design looks the way it does; `validate` reports any relation that still points at it, for review.
+
+Do not edit the old item into a new meaning and do not delete it.
+This applies only to a material replacement: correcting a typo, sharpening a summary, or fixing a link is an ordinary edit.
+The rule exists because a silently repurposed element breaks every link and decision that referred to the old design, leaving the record of why the change happened unrecoverable.
+
 == Item template
 
 [source,asciidoc]
