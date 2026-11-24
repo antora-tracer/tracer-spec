@@ -42,6 +42,7 @@ tspec-apply-change CHG-001                     # implement the refined tasks
 tspec status CHG-001                   # report lifecycle, actionable, finished
 tspec-archive CHG-001                          # validate and close
 tspec-validate                                 # check the graph
+tspec-write-item decision DEC-001              # author one item of any role
 ----
 
 Related graph items may share optional `externalId=<id>` metadata when associated with the same external item. `tspec-new-change` requires applicable approved requirement anchors, but not an external ID.
