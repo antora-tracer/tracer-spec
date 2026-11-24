@@ -1,0 +1,6 @@
+////
+[#DOC-018, item, role=documentation, title="Understanding the Architecture and Change Impact"]
+--
+documents:REQ-051[]
+--
+////

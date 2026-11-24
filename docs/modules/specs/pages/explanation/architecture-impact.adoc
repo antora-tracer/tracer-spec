@@ -1,0 +1,58 @@
+= Understanding the Architecture and Change Impact
+
+include::partial$documentation/DOC-018-understanding-architecture-impact.adoc[]
+
+A contributor arriving at this project needs two things: what the system is now, and what a proposed change would touch.
+Both are answerable from the graph rather than from reading the whole repository.
+
+== The current architecture
+
+The arc42 baseline in xref:architecture.adoc[Architecture] describes the system as it is built.
+It is organized into the usual arc42 sections, and within those sections it names the durable `ARC` items that carry the architecture.
+
+An `ARC` item is an independently meaningful element — a solution strategy, a building block, a runtime or deployment element, or a cross-cutting concept.
+Each has a stable identifier and a `kind`, so the same element keeps its identity as the baseline prose around it changes.
+
+Because the elements are items rather than only prose, the baseline is navigable: a reader can follow from a section to the elements it names, and from an element to the requirements it realizes.
+
+== What a change touches
+
+A proposed change does not exist in isolation.
+It links the requirements it addresses, the architectural elements it updates, the decisions and ADRs it records, and the design that carries its approach.
+Those links make impact a question the graph can answer, rather than an exercise in reading every file.
+
+`query reverse <id>` answers the narrow question — every item that points directly at this one:
+
+[source,bash]
+----
+antora-tracer query reverse REQ-086
+----
+
+[source,text]
+----
+ID       Role           Relation   File
+CHG-012  change         addresses  …CHG-012-requirement-driven-architecture-records.adoc
+CHG-018  change         addresses  …CHG-018-architecture-diagrams.adoc
+DSN-001  design         realizes   …DSN-001-chg-012-architecture-records.adoc
+DOC-008  documentation  documents  …DOC-008-architecture-guidance.adoc
+REQ-101  requirement    refines    …component-architecture-documentation.adoc
+----
+
+`query impact <id>` answers the wide one, returning everything transitively connected:
+
+[source,bash]
+----
+antora-tracer query impact CHG-018
+----
+
+On this repository that returns around 200 items — the change, its design, the requirements it addresses, the architecture items it updates, the decisions it records, and then each of those items' own relatives.
+The breadth is the point: a change to one requirement reaches every change, design, test, and decision that ever touched it.
+
+Use `impact` before refining a change to see what it will disturb, and again before archiving to confirm the baseline was reconciled.
+Use `reverse` when you want the direct neighbours rather than the closure.
+`query path <from> <to>` answers whether two items are connected at all, and prints `No path found` when they are not.
+
+== Why it is recorded rather than remembered
+
+A contributor can reconstruct impact from the graph months later, without the original conversation, because the relations live in the source items.
+That is what tracing architecture to requirements and to changes buys: the description of the system and of each change's footprint stays checkable as the system moves.
