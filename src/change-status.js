@@ -34,12 +34,17 @@ function duplicateItemIds(parsed) {
     if (seen.has(item.id)) duplicates.add(item.id);
     else seen.add(item.id);
   }
-  const prefix = "Duplicate item ID: ";
-  const suffix = ". An item with this ID already exists.";
+  // The parser skips a same-file redefinition instead of returning it as a
+  // second item, so it surfaces only as a `duplicate_id` error. That error
+  // carries no structured id field, so read the id from the message's leading
+  // clause, which is its stable part. Do not match the trailing sentence: it
+  // already changed once (core 0.34.0 replaced "An item with this ID already
+  // exists." with the two source locations), which silently stopped a
+  // duplicated id from being rejected.
   for (const error of parsed.result.errors) {
-    if (error.type === "duplicate_id" && error.message.startsWith(prefix) && error.message.endsWith(suffix)) {
-      duplicates.add(error.message.slice(prefix.length, -suffix.length));
-    }
+    if (error.type !== "duplicate_id") continue;
+    const match = /^Duplicate item ID: ([^\s.]+)\./.exec(error.message);
+    if (match) duplicates.add(match[1]);
   }
   return duplicates;
 }
