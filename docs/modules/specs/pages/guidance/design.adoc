@@ -1,5 +1,7 @@
 = Change Design
 
+include::partial$documentation/DOC-013-design-guidance.adoc[]
+
 A *Design* records the technical approach for one implementation change. It is durable and remains with the change after closure; execution tasks remain temporary under `tspec/<change-id>/`.
 
 Create one design item during `tspec-refine-change`, after the software requirements and before the task list. Link the change, relevant requirements, affected architecture items, and any related ADRs. Record material alternatives and trade-offs; for a change with no architecture impact, say so explicitly.

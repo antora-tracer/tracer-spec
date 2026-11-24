@@ -2,6 +2,10 @@
 [#DOC-008, item, role=documentation, title="Architecture Item"]
 --
 documents:REQ-064[]
+documents:REQ-086[]
+documents:REQ-087[]
+documents:REQ-089[]
+documents:REQ-090[]
 documents:REQ-101[]
 documents:REQ-102[]
 --

@@ -1,0 +1,7 @@
+////
+[#DOC-012, item, role=documentation, title="Architecture Decision Record"]
+--
+documents:REQ-094[]
+documents:REQ-095[]
+--
+////
