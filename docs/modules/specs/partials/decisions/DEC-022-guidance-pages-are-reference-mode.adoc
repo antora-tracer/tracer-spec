@@ -1,0 +1,30 @@
+[#DEC-022, item, role=decision, status=accepted, title="Count the guidance pages as reference mode, not a sixth mode"]
+--
+Context:: Every site page must belong to exactly one Diátaxis mode, and the modes are tutorial, how-to, reference, explanation, and self-traceability.
+The seven authoring-guidance pages live under `pages/guidance/` rather than `pages/reference/`, so the directory count exceeds the mode count and the mode of those pages was unstated.
+DEC-014 kept them in place for a different reason — `traceability.yml` resolves their paths — and recorded as its downside that reference-like pages remain outside `reference/`.
+
+Options::
+* Count the guidance pages as reference mode, leaving their files where they are.
+** Good: satisfies the one-mode-per-page rule without a config edit; matches what the pages are, which is reference material for authoring an item of a role; resolves the downside DEC-014 accepted.
+** Bad: the directory tree does not by itself show the mode, so the mapping has to be stated somewhere a reader can find it.
+* Declare guidance a sixth mode.
+** Good: the directory tree matches the mode list exactly.
+** Bad: invents a mode Diátaxis does not define, and the pages would still be reference material in everything but name.
+* Move the pages into `reference/` and update every `roleGuidance.page` path.
+** Good: directory and mode agree.
+** Bad: re-opens DEC-014 for a config edit with no functional gain, and breaks the paths any existing scaffolded project already resolves.
+
+Decision:: The guidance pages are reference mode; no sixth mode is added.
+Their placement under `pages/guidance/` is a directory choice, not a mode.
+
+Rationale:: The pages list a role's fields, statuses, and relations — the definition of reference material.
+Diátaxis's five modes are exhaustive for the kinds of documentation this site holds, so a sixth would be a local invention, while moving the files costs a configuration change DEC-014 already declined.
+
+Consequences:: `pages/guidance/` holds reference-mode pages, so a reader listing the site's modes reads the tree as five directories plus one that supplies reference content.
+The nav presents the guidance pages within the Reference section, since that is the mode they belong to.
+A future move of those files remains possible but would still require the `traceability.yml` edit DEC-014 rejected.
+
+leads_to:REQ-023[]
+tracer:links[]
+--

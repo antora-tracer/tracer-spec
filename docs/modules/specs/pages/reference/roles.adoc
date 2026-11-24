@@ -171,6 +171,8 @@ Other transitions are declarative and reviewed via Git.
 
 == Guidance pairs
 
+Role guidance is reference material for authoring an item of a role, so the guidance pages are reference mode; their `guidance/` directory is a placement choice, not a sixth documentation mode.
+
 Each role's authoring guidance exists twice: under `docs/modules/specs/pages/guidance/` and, for the scaffold, under `templates/docs/modules/specs/pages/guidance/`.
 
 The two copies are not mirrors, and neither is derived from the other.

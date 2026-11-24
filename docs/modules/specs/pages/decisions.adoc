@@ -61,6 +61,8 @@ include::partial$decisions/DEC-020-enforce-atomicity-at-authoring-and-review.ado
 
 include::partial$decisions/DEC-021-devbox-development-shell.adoc[]
 
+include::partial$decisions/DEC-022-guidance-pages-are-reference-mode.adoc[]
+
 == Proposed
 
 include::partial$decisions/DEC-012-enforce-what-not-how-at-propose.adoc[]
