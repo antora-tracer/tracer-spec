@@ -162,6 +162,7 @@ The workflow uses these commands directly.
 |===
 
 The full `antora-tracer` CLI is documented in its own reference; this workflow depends on it as `@antora-tracer/core`.
+See xref:reference/validation.adoc[Validation Reference] for what `validate` checks, refuses, and does not enforce.
 == Skill evaluation
 
 `npm run eval:skills --` runs one skill's scenario suite with Claude Code.

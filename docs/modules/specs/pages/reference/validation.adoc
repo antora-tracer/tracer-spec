@@ -1,0 +1,83 @@
+= Validation Reference
+
+include::partial$documentation/DOC-016-validation-reference.adoc[]
+
+`antora-tracer validate` is the gate the workflow runs before a change is
+accepted and again before it closes.
+This page states what it checks, what it refuses, and what it does not police.
+
+== What validation checks
+
+Validation reads `traceability.yml` and the AsciiDoc sources, then reports the
+result and an item/relationship count.
+
+[source,bash]
+----
+antora-tracer validate -i docs --config traceability.yml
+----
+
+It reports two kinds of finding:
+
+* *Errors* exit nonzero. A dangling relation, a duplicate item ID, a
+  self-supersession, or a supersession cycle stops the run.
+* *Warnings* exit zero. A relation that targets a superseded item is reported
+  for review, and the graph still validates.
+
+A clean run prints no findings:
+
+[source,text]
+----
+Validating requirements traceability...
+No validation errors found
+Summary: 198 items, 435 relationships
+----
+
+== The supersession review
+
+When an item is superseded, validation reports every functional relation that
+still involves it, so the author decides what each one needs.
+The check covers either endpoint: a relation may store the superseded item as
+its source or its target depending on how the configuration declares it, and
+both are reported.
+
+```
+Relation 'verifies' between 'TST-008' and 'REQ-062' requires review:
+'REQ-062' is superseded by REQ-068.
+```
+
+The item does not disappear when superseded.
+Its record and source page stay in the graph for audit; only the listing moves
+it out of the live items.
+
+== A malformed configuration
+
+If `traceability.yml` cannot be parsed, or declares a relation to a role it does
+not list, validation exits nonzero and names the offending location.
+
+[source,bash]
+----
+$ antora-tracer validate -i docs --config traceability.yml
+Error creating extension: Configuration 'traceability.yml':
+  - Relation target role 'notdeclared' is not defined in roles (in relations for 'change')
+----
+
+== What validation does not enforce
+
+The acceptance gate is structural only.
+Validation does not judge whether the requirements themselves are sound,
+complete, or correct — that is a human review.
+
+`validation.change.accepted.requiresRoles` and its `closed` counterpart are
+declarative configuration.
+Core does not enforce them as workflow gates, so an accepted change with no
+addressed requirement passes validation as this repository configures it.
+Treat the field as a statement of intent that a consumer may act on, not as a
+guarantee that validation blocks the transition.
+
+== Performance
+
+Validation is expected to report within one second on a developer machine for a
+graph of 1000 items.
+
+Measured on this repository's toolchain: a generated 1000-item graph validates
+in about 0.4 seconds.
