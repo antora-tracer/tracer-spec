@@ -2,6 +2,7 @@
 [#DOC-006, item, role=documentation, title="Roles Reference"]
 --
 documents:REQ-020[]
+documents:REQ-023[]
 documents:REQ-027[]
 documents:REQ-069[]
 documents:REQ-112[]

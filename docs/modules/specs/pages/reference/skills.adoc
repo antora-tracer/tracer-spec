@@ -61,6 +61,10 @@ Refine an existing feature ticket into product-level behavior, use cases, and re
 
 Record one proposed implementation change from conversation context and approved requirements. Domain/business choices use `decision`; costly-to-reverse architecture choices are resolved during design refinement and recorded as ADRs. `externalId` is optional.
 
+Proposing is deliberately narrow.
+It records the change alone: it creates no detailed software requirements and no task checklist, both of which belong to `tspec-refine-change`.
+If no applicable approved product/component requirement exists to anchor the change, it stops and asks for that requirement to be established first, rather than inventing a link or creating one to get past the gate.
+The temporary task checklist is created only after the user confirms the change's scope and software requirements are complete enough to estimate.
 
 == tspec-refine-change
 

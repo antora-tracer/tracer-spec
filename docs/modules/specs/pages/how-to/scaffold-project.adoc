@@ -26,10 +26,14 @@ npm install
 
 * `traceability.yml` — the traceability model (roles, relations, matrices, workflow).
 * `tspec.yml` — the tracer-spec configuration (issue-tracker bridge).
+* `package.json` — the project dependencies, including the diagram renderer.
 * `docs/` — the Antora content source and site.
 * `antora-playbook.yml` — the site build playbook.
 * `AGENTS.md` — the project's agent instructions.
 * `skills/` — a local copy of the nine workflow skills.
+
+The scaffold renders diagrams without further setup: `antora-playbook.yml` registers `asciidoctor-kroki` with `kroki-fetch-diagram: true`, `package.json` declares the matching dependency, and each architecture view carries a commented slot where a diagram is added.
+Running `npm install` after `init` is what puts the renderer in place.
 
 Omit the name to use the current directory name.
 
