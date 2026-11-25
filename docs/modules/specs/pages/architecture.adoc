@@ -114,6 +114,8 @@ The traceability configuration, role guidance, skill instructions, and starter t
 
 Duplicate item IDs are a live defect in the `antora-tracer` parser, not in this project's graph: it keeps the first block and silently discards the rest, so validation reports success on a graph that lost items. Fixing it belongs upstream; tracked as https://github.com/rattermeyer/antora-tracer/issues/18[antora-tracer#18].
 
+REQ-084 is approved but unsatisfied. It requires validation to enforce the accepted-state transition, and `validation.change.accepted.requiresRoles` is declared in this project's `traceability.yml` and read by nothing: an accepted change that addresses no requirement exits zero. The `spec-driven-development` preset advertises the same key, so the defect is in the validator rather than in either configuration, and no configuration edit can close it. Tracked as https://github.com/rattermeyer/antora-tracer/issues/22[antora-tracer#22]; the alternatives are for upstream to enforce the key or to remove it.
+
 == 12. Glossary
 
 [cols="20a,80a"]
