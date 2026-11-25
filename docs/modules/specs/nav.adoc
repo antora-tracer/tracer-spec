@@ -37,3 +37,7 @@
 * xref:designs.adoc[Change Designs]
 * xref:adrs.adoc[Architecture Decisions]
 * xref:tests.adoc[Tests]
+
+.Traceability
+* xref:attachment$traceability/overview.html[Traceability overview]
+* xref:attachment$traceability/graph.json[Graph snapshot (JSON)]
