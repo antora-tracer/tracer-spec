@@ -3,3 +3,4 @@ build/
 public/
 *.lock
 .DS_Store
+.tspec-baseline/

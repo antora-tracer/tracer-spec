@@ -5,7 +5,7 @@ description: >
 argument-hint: "<change-id>"
 license: MIT
 compatibility: antora-tracer
-allowed-tools: Bash(antora-tracer:*)
+allowed-tools: Bash(antora-tracer:*, git:*)
 ---
 
 Archive (close) a verified change.
@@ -15,7 +15,17 @@ Archive (close) a verified change.
 1. Run `antora-tracer validate -i docs --config traceability.yml` and fix any validation errors before continuing.
 2. Read the change's durable DSN design and its linked ARC and ADR items.
 3. If the design records architecture impact, update the arc42 baseline and affected ARC items to describe the implemented system. Create new ARC items for materially new elements; mark replaced items `superseded` rather than repurposing their identities. Preserve the design and decision links.
-4. Show the exact baseline and graph-item changes to the user and ask for approval before writing. Save only approved updates, then rerun `antora-tracer validate -i docs --config traceability.yml`.
+4. Show the exact baseline and graph-item changes and ask for approval before writing:
+
+  a. Capture a baseline of the committed graph: `git worktree add --detach .tspec-baseline HEAD`
+  b. Compute the delta of your edits: `antora-tracer diff --from .tspec-baseline/docs --to docs`
+  c. Show that delta to the user and ask for approval. `added`, `removed`, and `modified` rows are the graph items being changed; a `modified` row lists the fields that differ (`content`, `status`, `title`, relations).
+  d. Remove the baseline: `git worktree remove --force .tspec-baseline`
+  e. Save only approved updates, then rerun `antora-tracer validate -i docs --config traceability.yml`.
+
+  The baseline is `HEAD`, not the working tree, so the delta covers every uncommitted change in the repository — anything else a contributor or agent left uncommitted appears in it too. Present the rows for this change, and say so if the delta contains a modification the change did not make, rather than approving it silently.
+  If the working tree is clean before step 3 runs, every row is this change's.
+  Commit or stash unrelated work before archiving when that matters.
 5. Spawn the shipped `tspec-conformance-reviewer` agent (a fresh subagent with no prior context) to verify the change against its addressed requirements, DSN design, recorded ADRs, and affected ARC items. The review emits a per-requirement SATISFIED/NOT verdict and checks the baseline against the implemented system. Install it with `tspec install`; if the harness has no agent convention, spawn a fresh subagent with the same read-only instructions.
 6. If any requirement is NOT satisfied, or the architecture baseline is stale, stop and report — do not delete `tspec/` or advance state.
 7. Delete `tspec/<change-id>/` — the temporary tasks are consumed. Durable DSN, ARC, and ADR items remain in the graph.

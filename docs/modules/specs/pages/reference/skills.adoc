@@ -15,7 +15,7 @@ The `SKILL.md` files are the source of truth — this page mirrors their frontma
 | `tspec-new-change` | Record a context-first implementation change against approved requirements. | `<change idea>` | `antora-tracer`
 | `tspec-refine-change` | Refine a change into software requirements, a durable design item, and temporary tasks. | `<change-id>` | `antora-tracer`
 | `tspec-apply-change` | Implement tasks using the accepted design and architecture context. | `<change-id>` | `antora-tracer`
-| `tspec-archive` | Verify requirements and design, reconcile architecture, and close a change. | `<change-id>` | `antora-tracer`
+| `tspec-archive` | Verify requirements and design, reconcile architecture, and close a change. | `<change-id>` | `antora-tracer`, `git`
 | `tspec-validate` | Validate the traceability graph. | — | `antora-tracer`
 | `tspec-write-item` | Write one item of any role. | `<role> [<id>]` | `antora-tracer`
 | `tspec-track` | Read or update an existing feature ticket. | `--read` or `--update-refinement` with `<feature-ticket-id>` | `antora-tracer`, `gh`, `curl`, `node`
@@ -77,6 +77,8 @@ Implement an accepted change from its temporary task list and durable DSN design
 == tspec-archive
 
 Close a verified change after validation and an independent review of requirements, DSN design, ADRs, and affected architecture. Reconcile the arc42 baseline to the implemented system, retain durable items, remove `tspec/<change-id>/`, and advance the change to `closed`.
+
+Reconcile edits are approved from a computed delta, not from a narrated list: the skill captures a `git worktree` baseline at `HEAD` and shows `antora-tracer diff` between it and the working tree. Because the baseline is the committed state, the delta covers every uncommitted change in the repository, so unrelated work appears in it too and should be excluded by the reviewer rather than approved silently.
 
 == tspec-validate
 

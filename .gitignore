@@ -6,3 +6,4 @@ public/
 !devbox.lock
 .DS_Store
 .idea/
+.tspec-baseline/
