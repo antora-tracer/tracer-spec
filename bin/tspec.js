@@ -12,7 +12,7 @@ import {
   parseTools,
 } from "../src/scaffold.js";
 
-import { readChangeStatus, checkChangeReadiness } from "../src/change-status.js";
+import { readChangeStatus, checkChangeReadiness, readCoverage } from "../src/change-status.js";
 
 const pkg = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8"),
@@ -246,6 +246,23 @@ program
       `Error: ${result.id} has ${result.tasksFile} but the graph records no design item for it.`,
     );
     process.exit(1);
+  });
+
+program
+  .command("coverage")
+  .description("Report how many current requirements a test item verifies")
+  .option("-c, --config <path>", "Traceability config path (default: traceability.yml)")
+  .option("--docs <path>", "AsciiDoc source directory (default: docs/)")
+  .option("--list", "List every uncovered requirement ID")
+  .action((options) => {
+    const result = readCoverage(process.cwd(), options);
+    const pct = result.total === 0 ? 0 : ((result.covered / result.total) * 100).toFixed(1);
+    console.log(
+      `requirements=${result.total} covered=${result.covered} uncovered=${result.uncovered.length} coverage=${pct}%`,
+    );
+    if (options.list && result.uncovered.length > 0) {
+      console.log(result.uncovered.join("\n"));
+    }
   });
 
 try {

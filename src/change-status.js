@@ -81,7 +81,7 @@ function assertAcyclicChangeRefinements(graph) {
   for (const item of graph.getItemsByRole("change")) visit(item);
 }
 
-export function readChangeStatus(projectDirectory, changeId, options = {}) {
+function loadGraph(projectDirectory, options = {}) {
   const configLoader = new ConfigLoader();
   configLoader.load(resolve(projectDirectory, options.config ?? "traceability.yml"));
   const extension = new RequirementsTraceabilityExtension(configLoader);
@@ -90,14 +90,19 @@ export function readChangeStatus(projectDirectory, changeId, options = {}) {
   if (duplicateIds.size > 0) {
     throw new Error(`Duplicate item ID in project graph: ${duplicateIds.values().next().value}`);
   }
-  assertAcyclicChangeRefinements(extension.graph);
-  const item = extension.graph.getItem(changeId);
+  return extension.graph;
+}
+
+export function readChangeStatus(projectDirectory, changeId, options = {}) {
+  const graph = loadGraph(projectDirectory, options);
+  assertAcyclicChangeRefinements(graph);
+  const item = graph.getItem(changeId);
   if (item?.role !== "change") throw new Error(`Change not found: ${changeId}`);
 
   return {
     id: item.id,
     status: item.status ?? "unknown",
-    actionable: isActionable(item, extension.graph),
+    actionable: isActionable(item, graph),
     finished: item.status === "closed",
   };
 }
@@ -116,16 +121,7 @@ export function checkChangeReadiness(projectDirectory, changeId, options = {}) {
     return { id: changeId, checked: false, reason: `No task checklist at tspec/${changeId}/tasks.md` };
   }
 
-  const configLoader = new ConfigLoader();
-  configLoader.load(resolve(projectDirectory, options.config ?? "traceability.yml"));
-  const extension = new RequirementsTraceabilityExtension(configLoader);
-  const parsed = extension.processFiles(collectAdocFiles(resolve(projectDirectory, options.docs ?? "docs")));
-  const duplicateIds = duplicateItemIds(parsed);
-  if (duplicateIds.size > 0) {
-    throw new Error(`Duplicate item ID in project graph: ${duplicateIds.values().next().value}`);
-  }
-
-  const graph = extension.graph;
+  const graph = loadGraph(projectDirectory, options);
   const item = graph.getItem(changeId);
   if (item?.role !== "change") throw new Error(`Change not found: ${changeId}`);
 
@@ -144,5 +140,30 @@ export function checkChangeReadiness(projectDirectory, changeId, options = {}) {
     tasksFile: `tspec/${changeId}/tasks.md`,
     designs,
     satisfied: designs.length > 0,
+  };
+}
+
+/**
+ * Report how many current requirements a test item verifies.
+ *
+ * A test declares `verifies:REQ-NNN[]`, which the graph stores with the
+ * requirement as source (`requirement.test.verified_by`), so the edge is read
+ * from the requirement's own relationships rather than its incoming ones —
+ * reading the reverse direction reports zero coverage. Superseded requirements
+ * are excluded from the total and reported separately, since a requirement kept
+ * only for audit is not expected to have a test.
+ */
+export function readCoverage(projectDirectory, options = {}) {
+  const graph = loadGraph(projectDirectory, options);
+  const current = graph.getCurrentItemsByRole("requirement");
+  const covered = current.filter((requirement) =>
+    graph.getRelationships(requirement.id).some((relation) => relation.type === "verified_by"),
+  );
+  const coveredIds = new Set(covered.map((requirement) => requirement.id));
+
+  return {
+    total: current.length,
+    covered: covered.length,
+    uncovered: current.filter((requirement) => !coveredIds.has(requirement.id)).map((r) => r.id),
   };
 }

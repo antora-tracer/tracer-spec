@@ -258,3 +258,32 @@ test('check skips a change with no task checklist', (t) => {
   assert.equal(result.status, 0, result.stderr)
   assert.match(result.stdout, /check=skipped/)
 })
+
+test('coverage counts current requirements a test verifies, not superseded ones', (t) => {
+  const directory = mkdtempSync(join(tmpdir(), 'tracer-coverage-'))
+  t.after(() => rmSync(directory, { recursive: true, force: true }))
+  mkdirSync(join(directory, 'docs'), { recursive: true })
+  writeFileSync(join(directory, 'traceability.yml'), 'extends: minimal\n')
+  writeFileSync(join(directory, 'docs/items.adoc'), [
+    '[#REQ-A, item, role=requirement, level=software, status=approved, title="Covered"]',
+    '--', 'The system SHALL do A.', '--',
+    '[#REQ-B, item, role=requirement, level=software, status=approved, title="Uncovered"]',
+    '--', 'The system SHALL do B.', '--',
+    // Superseded requirements are excluded from the total.
+    '[#REQ-C, item, role=requirement, level=software, status=approved, title="Replaced"]',
+    '--', 'The system SHALL do C.', '--',
+    '[#REQ-D, item, role=requirement, level=software, status=approved, title="Replacement"]',
+    '--', 'The system SHALL do C, revised.', 'supersedes:REQ-C[]', '--',
+    // A test declares the relation; the graph stores the requirement as source.
+    '[#TST-A, item, role=test, title="Verifies A"]',
+    '--', 'Test method:: Check A.', 'verifies:REQ-A[]', '--',
+    ''
+  ].join('\n'))
+
+  const result = spawnSync(process.execPath, [cli, 'coverage', '--list'], { cwd: directory, encoding: 'utf8' })
+  assert.equal(result.status, 0, result.stderr)
+  // REQ-A covered, REQ-B uncovered, REQ-C superseded (excluded), REQ-D current+uncovered.
+  assert.match(result.stdout, /requirements=3 covered=1 uncovered=2 coverage=33\.3%/)
+  assert.match(result.stdout, /REQ-B/)
+  assert.doesNotMatch(result.stdout, /REQ-C\n/)
+})

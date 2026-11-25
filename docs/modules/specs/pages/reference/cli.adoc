@@ -177,6 +177,33 @@ The command answers whether a change that has a temporary task checklist at `tsp
 
 A design is recorded through the authorable `records:DSN-NNN[]` relation on the change; the design's `recorded_by` is the derived name and is not authored. The command is read-only: it reports a missing design rather than creating one.
 
+=== coverage
+
+Report how many current requirements a test item verifies. Run from a Tracer Spec project root.
+
+[source,bash]
+----
+tspec coverage [options]
+----
+
+[cols="25a,75a"]
+|===
+| Option | Description
+
+| `-c, --config <path>` | Traceability configuration file. Defaults to `traceability.yml`.
+| `--docs <path>` | AsciiDoc source directory. Defaults to `docs/`.
+| `--list` | Also print every uncovered requirement ID, one per line.
+|===
+
+[source,text]
+----
+requirements=107 covered=46 uncovered=61 coverage=43.0%
+----
+
+A test declares `verifies:REQ-NNN[]`, which the graph stores with the requirement as source, so coverage counts requirements whose own relationships carry a test link. Superseded requirements are excluded from `requirements` and from `uncovered`: a requirement kept only for audit is not expected to have a test. The figure matches the site's `requirements-tests` matrix.
+
+Use it before proposing a change, to see which requirements already have verification and which are open, and to decide whether a new requirement needs a test alongside it.
+
 == antora-tracer
 
 `antora-tracer` is the graph engine behind the workflow.

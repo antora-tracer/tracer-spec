@@ -114,3 +114,12 @@ Example: Given `tspec/CHG-001/tasks.md` exists and no design item carries `recor
 refines:REQ-091[]
 tracer:links[]
 --
+
+[#REQ-128, item, role=requirement, level=software, status=draft, title="Report requirement test coverage from the graph"]
+--
+WHEN coverage is requested, the system SHALL report the number of current requirements that no test item verifies, alongside the total, and SHALL account for a superseded requirement separately from a current one.
+
+Example: Given 106 current requirements and 46 with a verifying test, when `tspec coverage` runs, then it reports 46 of 106 covered and lists the uncovered requirement IDs.
+
+tracer:links[]
+--
