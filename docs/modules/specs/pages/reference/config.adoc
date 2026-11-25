@@ -165,6 +165,7 @@ validation:
 | `workflow.<role>.states` | The ordered, declarative states a role may occupy; they do not enforce state transitions.
 | `workflow.<role>.transitions` | Configured state-to-state moves, available to consumers as metadata.
 | `validation` | Structural validation settings. Core does not enforce `requiresRoles` workflow gates.
+| `idAllocation` | Optional remote ID allocation. With an `endpoint` set, `antora-tracer next-id` requests the next identifier from an allocator service instead of scanning local files, so concurrent authors cannot claim the same ID. `--local` forces a local scan anyway.
 |===
 
 Use one `requirement` role for each abstraction level. `level=product`, `level=component`, and `level=software` are ordinary item metadata conventions, not separate roles or a core-validated enum.

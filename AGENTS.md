@@ -47,3 +47,9 @@ Related graph items may share optional `externalId=<id>` metadata when associate
   backlog position, or estimates.
 - Take role names, relation types, and ID prefixes from `traceability.yml`
   (or its `extends:` preset) — never invent them.
+- Allocate every identifier with `antora-tracer next-id --prefix <PREFIX> -i docs`;
+  never assign one by hand or by incrementing a known ID. That command scans
+  local files unless `traceability.yml` sets `idAllocation.endpoint`, in which
+  case it requests the ID from a shared allocator. Configure the allocator when
+  more than one author or agent may write items at the same time, or two authors
+  can compute the same next ID and one will overwrite the other.

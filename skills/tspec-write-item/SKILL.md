@@ -13,7 +13,7 @@ Write one item of any declared role.
 ## Behavior
 
 1. Confirm the role is declared in `traceability.yml` and resolve its guidance page and ID prefix with `antora-tracer role-guidance <role> --config traceability.yml --content`. Declared roles include `change`, `requirement`, `decision`, `test`, `use_case`, `architecture`, `design`, and `adr`.
-2. Generate the next ID with `antora-tracer next-id --prefix <PREFIX> -i docs`; prefixes come from role guidance and are not reserved.
+2. Generate the next ID with `antora-tracer next-id --prefix <PREFIX> -i docs`; prefixes come from role guidance and are not reserved. Never assign an ID by hand or by incrementing a known one. That command scans local files, unless the project configures `idAllocation.endpoint` in `traceability.yml`, in which case it requests the identifier from a shared allocator so concurrent authors cannot claim the same ID. If a duplicate ID is reported by a later `validate`, the allocator is the remedy, not a retry.
 3. Locate destination of the item:
   * if antora-tracer query by-role <role> --json -i docs returns items, use the directory of their sourceFile; 
   * otherwise use the destination named in antora-tracer role-guidance <role> --config traceability.yml --content; 
