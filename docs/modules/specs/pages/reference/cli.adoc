@@ -147,6 +147,36 @@ The command reads the selected configuration and AsciiDoc source paths and print
 
 A leaf is actionable when its status is `refined` or `accepted`; it is finished only when `closed`. A closed or rejected parent is not actionable. An unclosed parent is actionable when every child linked through `refines:CHG-parent[]` is actionable; this is evaluated recursively. Any cycle in change refinement links, duplicate item IDs in the scanned graph, or an ID that does not resolve to a change exit nonzero with an error and no status line.
 
+=== check
+
+Check one change against a rule the graph alone cannot decide. Run from a Tracer Spec project root.
+
+[source,bash]
+----
+tspec check <change-id> [options]
+----
+
+[cols="25a,75a"]
+|===
+| Option | Description
+
+| `-c, --config <path>` | Traceability configuration file. Defaults to `traceability.yml`.
+| `--docs <path>` | AsciiDoc source directory. Defaults to `docs/`.
+|===
+
+The command answers whether a change that has a temporary task checklist at `tspec/<change-id>/tasks.md` also has a durable design item recording it in the graph. Execution tasks are files rather than graph items — `validate` never sees them — so a rule about their ordering spans the filesystem and the graph and needs a command that reads both.
+
+[cols="30a,70a"]
+|===
+| Output | Meaning
+
+| `<id> check=ok design=DSN-NNN` | The change has a task checklist and the graph records its design. Exits zero.
+| `<id> check=skipped (...)` | The change has no task checklist, so the rule does not apply. Exits zero.
+| `Error: <id> has tspec/<id>/tasks.md but the graph records no design item` | The checklist exists with no recorded design. Exits nonzero.
+|===
+
+A design is recorded through the authorable `records:DSN-NNN[]` relation on the change; the design's `recorded_by` is the derived name and is not authored. The command is read-only: it reports a missing design rather than creating one.
+
 == antora-tracer
 
 `antora-tracer` is the graph engine behind the workflow.

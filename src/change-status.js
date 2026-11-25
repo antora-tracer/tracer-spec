@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import {
   ConfigLoader,
@@ -99,5 +99,50 @@ export function readChangeStatus(projectDirectory, changeId, options = {}) {
     status: item.status ?? "unknown",
     actionable: isActionable(item, extension.graph),
     finished: item.status === "closed",
+  };
+}
+
+/**
+ * Check that a change with a temporary task checklist records a durable design.
+ *
+ * Tasks live under `tspec/<change-id>/tasks.md`, which the graph never sees, so
+ * the ordering rule "design before tasks" can only be checked by looking at the
+ * filesystem and the graph together. The check is read-only and reports rather
+ * than fixes: creating the missing design is the author's call.
+ */
+export function checkChangeReadiness(projectDirectory, changeId, options = {}) {
+  const tasksFile = resolve(projectDirectory, "tspec", changeId, "tasks.md");
+  if (!existsSync(tasksFile)) {
+    return { id: changeId, checked: false, reason: `No task checklist at tspec/${changeId}/tasks.md` };
+  }
+
+  const configLoader = new ConfigLoader();
+  configLoader.load(resolve(projectDirectory, options.config ?? "traceability.yml"));
+  const extension = new RequirementsTraceabilityExtension(configLoader);
+  const parsed = extension.processFiles(collectAdocFiles(resolve(projectDirectory, options.docs ?? "docs")));
+  const duplicateIds = duplicateItemIds(parsed);
+  if (duplicateIds.size > 0) {
+    throw new Error(`Duplicate item ID in project graph: ${duplicateIds.values().next().value}`);
+  }
+
+  const graph = extension.graph;
+  const item = graph.getItem(changeId);
+  if (item?.role !== "change") throw new Error(`Change not found: ${changeId}`);
+
+  // A design records its change through `records:DSN-NNN[]` on the change or the
+  // derived `recorded_by` on the design, so read the change's own relations and
+  // filter by the target's role rather than trusting one direction.
+  const designs = graph
+    .getRelationships(changeId, "records")
+    .map((relation) => graph.getItem(relation.targetId))
+    .filter((target) => target?.role === "design")
+    .map((design) => design.id);
+
+  return {
+    id: changeId,
+    checked: true,
+    tasksFile: `tspec/${changeId}/tasks.md`,
+    designs,
+    satisfied: designs.length > 0,
   };
 }

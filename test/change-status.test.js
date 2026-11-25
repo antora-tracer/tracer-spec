@@ -216,3 +216,45 @@ test('rejects unreadable explicit status paths without a status line', (t) => {
     assert.notEqual(result.stderr, '')
   }
 })
+
+test('check reports a change whose tasks have no recorded design', (t) => {
+  const directory = mkdtempSync(join(tmpdir(), 'tracer-check-'))
+  t.after(() => rmSync(directory, { recursive: true, force: true }))
+  mkdirSync(join(directory, 'docs'), { recursive: true })
+  writeFileSync(join(directory, 'traceability.yml'), `extends: minimal
+roles:
+  - change
+  - design
+relations:
+  change:
+    design:
+      records:
+        reverse: recorded_by
+`)
+  mkdirSync(join(directory, 'tspec/CHG-X'), { recursive: true })
+  writeFileSync(join(directory, 'tspec/CHG-X/tasks.md'), '# Tasks\n')
+  writeFileSync(join(directory, 'docs/changes.adoc'), change('CHG-X', 'refined'))
+
+  const missing = spawnSync(process.execPath, [cli, 'check', 'CHG-X'], { cwd: directory, encoding: 'utf8' })
+  assert.equal(missing.status, 1)
+  assert.match(missing.stderr, /records no design item/)
+
+  // The change records its design through the authorable `records` direction;
+  // `recorded_by` on the design is the derived name and is not authorable.
+  writeFileSync(join(directory, 'docs/changes.adoc'), `${change('CHG-X', 'refined').replace('--\n', '--\nrecords:DSN-X[]\n')}
+[#DSN-X, item, role=design, status=accepted, title="Design"]
+--
+Approach:: It works.
+--
+`)
+  const satisfied = spawnSync(process.execPath, [cli, 'check', 'CHG-X'], { cwd: directory, encoding: 'utf8' })
+  assert.equal(satisfied.status, 0, satisfied.stderr)
+  assert.match(satisfied.stdout, /check=ok design=DSN-X/)
+})
+
+test('check skips a change with no task checklist', (t) => {
+  const directory = project(t, change('CHG-Y', 'refined'))
+  const result = spawnSync(process.execPath, [cli, 'check', 'CHG-Y'], { cwd: directory, encoding: 'utf8' })
+  assert.equal(result.status, 0, result.stderr)
+  assert.match(result.stdout, /check=skipped/)
+})

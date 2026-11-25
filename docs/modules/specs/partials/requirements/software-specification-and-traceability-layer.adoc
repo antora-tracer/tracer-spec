@@ -104,3 +104,13 @@ Example: Given a graph of 1000 items, when `antora-tracer validate` runs, then i
 
 tracer:links[]
 --
+
+[#REQ-127, item, role=requirement, level=software, status=draft, title="Check that a change with tasks records a design"]
+--
+WHEN a change has a temporary task checklist, the system SHALL verify that the graph records a durable design item for it, and SHALL report a nonzero result naming the change when it does not.
+
+Example: Given `tspec/CHG-001/tasks.md` exists and no design item carries `recorded_by:CHG-001[]`, when `tspec check CHG-001` runs, then it exits nonzero and names `CHG-001`.
+
+refines:REQ-091[]
+tracer:links[]
+--

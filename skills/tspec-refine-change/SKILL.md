@@ -19,6 +19,7 @@ If a costly-to-reverse architecture choice remains unresolved, ask the user to s
 3. Show the proposed requirements, complete design item, and any ADR items with IDs, relations, and paths. Ask before saving. Save only the approved items to the resolved location.
 4. Ask whether the user considers the slice estimatable. Mark the change `refined` only when the user confirms the scope and testable requirements are complete enough to estimate; otherwise keep its prior status, report gaps, and create no checklist.
 5. Only after marking an estimatable change `refined`, create `tspec/<change-id>/tasks.md` from the accepted requirements and durable design. Tasks remain temporary; the design remains in the graph after archive.
+   Verify the ordering rule holds: `tspec check <change-id>` must report `check=ok design=DSN-NNN`. A nonzero result means the checklist exists without a recorded design; create the design before proceeding, since `validate` cannot see task files and will not catch this.
 
 ## Rules
 

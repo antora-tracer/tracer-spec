@@ -12,7 +12,7 @@ import {
   parseTools,
 } from "../src/scaffold.js";
 
-import { readChangeStatus } from "../src/change-status.js";
+import { readChangeStatus, checkChangeReadiness } from "../src/change-status.js";
 
 const pkg = JSON.parse(
   readFileSync(new URL("../package.json", import.meta.url), "utf8"),
@@ -225,6 +225,27 @@ program
     console.log(
       `${result.id} status=${result.status} actionable=${result.actionable} finished=${result.finished}`,
     );
+  });
+
+program
+  .command("check <changeId>")
+  .description("Check a change against the graph rules that span files and items")
+  .option("-c, --config <path>", "Traceability config path (default: traceability.yml)")
+  .option("--docs <path>", "AsciiDoc source directory (default: docs)")
+  .action((changeId, options) => {
+    const result = checkChangeReadiness(process.cwd(), changeId, options);
+    if (!result.checked) {
+      console.log(`${result.id} check=skipped (${result.reason})`);
+      return;
+    }
+    if (result.satisfied) {
+      console.log(`${result.id} check=ok design=${result.designs.join(",")}`);
+      return;
+    }
+    console.error(
+      `Error: ${result.id} has ${result.tasksFile} but the graph records no design item for it.`,
+    );
+    process.exit(1);
   });
 
 try {
